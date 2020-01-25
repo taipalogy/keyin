@@ -1,0 +1,1 @@
+self.__BUILD_MANIFEST = (function(a){return {"/kana":[a],"/lurzmafjiz":[a]}}("static\u002Fchunks\u002F36bd96e82df724d2fd07f8918487d0f7d855c2ee.9d3aa75ecee185c8b3a4.js"));self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
