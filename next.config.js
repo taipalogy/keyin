@@ -4,8 +4,9 @@ module.exports = {
   exportPathMap: function() {
     return {
       '/': { page: '/' },
+      '/word': { page: '/word' },
+      '/convnounadv': { page: '/convnounadv' },
       '/kana': { page: '/kana' },
-      '/lurzmafjiz': { page: '/lurzmafjiz' },
     }
   },
   assetPrefix: !debug ? '/keyin/' : '',

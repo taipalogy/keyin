@@ -39,3 +39,12 @@ export function getSurfaceForms(underlying: string, surface: string) {
     }
     return forms;
 }
+
+export function itemize(str: string) {
+    const items: string[] = [];
+    if(str) {
+        items.push(str);
+        return items;
+    }
+    return items;
+}

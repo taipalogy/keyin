@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { TonalLemmatizationAnalyzer, TonalInflectionAnalyzer, TonalCombiningForms, TonalDesinenceInflection } from 'taipa';
 import { getInflectionalSuffixes, getStems, getSoundSequences, getSurfaceForms } from '../src/process';
 
-function LurzmafjizPage() {
-    const [input, setInput] = useState()
+function WordPage() {
+    const [input, setInput] = useState();
 
     const tla = new TonalLemmatizationAnalyzer();
 
@@ -70,4 +70,4 @@ function LurzmafjizPage() {
         </div>)
 }
   
-export default LurzmafjizPage
+export default WordPage
