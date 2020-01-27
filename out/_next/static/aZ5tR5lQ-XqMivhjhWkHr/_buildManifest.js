@@ -1,0 +1,1 @@
+self.__BUILD_MANIFEST = (function(a){return {"/convnounadv":[a],"/kana":[a],"/word":[a]}}("static\u002Fchunks\u002Fbc39d207d0f5f66623665eec2e9f2a414fc07564.abf8671a2c1399fd63b6.js"));self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
