@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { TonalInflectionAnalyzer, ThirdCombiningForm, TransfixInflection } from 'taipa';
 import { itemize } from '../src/process'
 
-function ConvNounAdvPage() {
+function ReplacivePage() {
     const [input, setInput] = useState();
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
@@ -18,12 +18,11 @@ function ConvNounAdvPage() {
 
     const tia = new TonalInflectionAnalyzer();
     const lx = tia.analyze(input, new ThirdCombiningForm(), new TransfixInflection());
-    let items: string[] = [];
-    if(lx.otherForms[0]) items = itemize(lx.otherForms[0].literal);
+    const items = lx.otherForms.map(x => x.literal);
 
     return (
         <div>
-            <label>拍名詞, 輸出副詞
+            <label>拍羅馬字, 輸出 inflected form
             <br/>
             <input  type='text' list="phrasalverbs" onChange={handleChange}/></label>
             <datalist id="phrasalverbs">
@@ -34,4 +33,4 @@ function ConvNounAdvPage() {
     )
 }
 
-export default ConvNounAdvPage
+export default ReplacivePage

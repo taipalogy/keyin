@@ -5,7 +5,7 @@ module.exports = {
     return {
       '/': { page: '/' },
       '/word': { page: '/word' },
-      '/convnounadv': { page: '/convnounadv' },
+      '/replacive': { page: '/replacive' },
       '/kana': { page: '/kana' },
     }
   },

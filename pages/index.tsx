@@ -9,8 +9,8 @@ function Home() {
                 </Link>
             </li>
             <li>
-                <Link href="/convnounadv">
-                    <a>名詞轉換副詞</a>
+                <Link href="/replacive">
+                    <a>replacive</a>
                 </Link>
             </li>
             <li>
