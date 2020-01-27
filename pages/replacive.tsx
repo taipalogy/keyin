@@ -18,7 +18,10 @@ function ReplacivePage() {
 
     const tia = new TonalInflectionAnalyzer();
     const lx = tia.analyze(input, new ThirdCombiningForm(), new TransfixInflection());
-    const items = lx.otherForms.map(x => x.literal);
+    let items: string[] = [];
+    if(nouns.includes(input)) {
+        items = lx.otherForms.map(x => x.literal);
+    }
 
     return (
         <div>
