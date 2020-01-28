@@ -6781,7 +6781,7 @@ function WordPage() {
   }));
   var lexemeLemma = tla.analyze(input);
   var stems = Object(_src_process__WEBPACK_IMPORTED_MODULE_2__["getStems"])(lexemeLemma.word.literal, lexemeLemma.getInflectionalEnding());
-  var inflexctionalSuffixes = Object(_src_process__WEBPACK_IMPORTED_MODULE_2__["getInflectionalSuffixes"])(lexemeLemma.getInflectionalEnding());
+  var inflectionalSuffixes = Object(_src_process__WEBPACK_IMPORTED_MODULE_2__["getInflectionalSuffixes"])(lexemeLemma.getInflectionalEnding());
   var lemmas = lexemeLemma.getLemmata().map(function (x) {
     return x.literal;
   });
@@ -6789,12 +6789,7 @@ function WordPage() {
   var lexemeInflect = tia.analyze(input, new taipa__WEBPACK_IMPORTED_MODULE_1__["TonalCombiningForms"](), new taipa__WEBPACK_IMPORTED_MODULE_1__["TonalDesinenceInflection"]());
   var proceedingForms = lexemeInflect.otherForms.map(function (x) {
     return x.literal;
-  }); // const lexemeRegrAssim = tia.analyze(input, new TonalZeroCombining(), new RegressiveAssimilation());
-  // const surfaceForm = getSurfaceForms(lexemeRegrAssim.word.literal, lexemeRegrAssim.otherForms[0].literal);
-  // const lexemeAgrAssim = tia.analyze(input, new TonalZeroCombining(), new AgressiveAssimila());
-  // if(lexemeAgrAssim.word.literal !== lexemeAgrAssim.otherForms[0].literal) {
-  //     surfaceForm = getSurfaceForms(lexemeAgrAssim.word.literal, lexemeAgrAssim.otherForms[0].literal);
-  // }
+  });
 
   var handleChange = function handleChange(e) {
     setInput(e.target.value);
@@ -6803,19 +6798,19 @@ function WordPage() {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 28
     },
     __self: this
   }, "\u62CD\u7F85\u99AC\u5B57, \u8F38\u51FA lemmas, stem, inflectional suffix, proceeding forms, sound sequences, \u7532 letters", __jsx("label", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 29
     },
     __self: this
   }, __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 30
     },
     __self: this
   }), __jsx("input", {
@@ -6824,89 +6819,89 @@ function WordPage() {
     onChange: handleChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 31
     },
     __self: this
   })), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 41
+      lineNumber: 34
     },
     __self: this
   }), "lemmas", lemmas.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 37
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 39
     },
     __self: this
   }), "stem", stems.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 42
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 44
     },
     __self: this
-  }), "inflectional suffix", inflexctionalSuffixes.map(function (x) {
+  }), "inflectional suffix", inflectionalSuffixes.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54
+        lineNumber: 47
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 56
+      lineNumber: 49
     },
     __self: this
   }), "proceeding forms", proceedingForms.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59
+        lineNumber: 52
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 61
+      lineNumber: 54
     },
     __self: this
   }), "sound sequences", soudnSeqs.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64
+        lineNumber: 57
       },
       __self: this
     }, x[0] + ' - ' + x[1]);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 59
     },
     __self: this
   }), "letters: ", letters.join(', '), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 61
     },
     __self: this
   }));

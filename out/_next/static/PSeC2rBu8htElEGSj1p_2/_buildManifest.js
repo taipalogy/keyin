@@ -1,0 +1,1 @@
+self.__BUILD_MANIFEST = (function(a){return {"/additive":[a],"/kana":[a],"/replacive":[a],"/word":[a]}}("static\u002Fchunks\u002F76f49d6ae5a831541cccfc9edcae41d3944c9b01.81bd9734fadad37364ad.js"));self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
