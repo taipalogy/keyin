@@ -14,12 +14,12 @@ function AdditivePage() {
     };
 
     const syllableSeqs = [
-        ['qong', 'qo'],
+        ['hoe', 'qi'],
     ];
 
     const patterns = [
-            [TonalLetterTags.z, TonalLetterTags.w], // 73
-            [TonalLetterTags.f, TonalLetterTags.y], // 12
+            [TonalLetterTags.w, TonalLetterTags.x], // 73
+            [TonalLetterTags.f, TonalLetterTags.w], // 12
         ]
 
     const matches = syllableSeqs.filter(x => x.join('') === input);
