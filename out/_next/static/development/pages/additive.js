@@ -6777,9 +6777,9 @@ function AdditivePage() {
     setInput(e.target.value);
   };
 
-  var syllableSeqs = [['qong', 'qo']];
-  var patterns = [[taipa_lib_tonal_version2__WEBPACK_IMPORTED_MODULE_2__["TonalLetterTags"].z, taipa_lib_tonal_version2__WEBPACK_IMPORTED_MODULE_2__["TonalLetterTags"].w], // 73
-  [taipa_lib_tonal_version2__WEBPACK_IMPORTED_MODULE_2__["TonalLetterTags"].f, taipa_lib_tonal_version2__WEBPACK_IMPORTED_MODULE_2__["TonalLetterTags"].y] // 12
+  var syllableSeqs = [['hoe', 'qi']];
+  var patterns = [[taipa_lib_tonal_version2__WEBPACK_IMPORTED_MODULE_2__["TonalLetterTags"].w, taipa_lib_tonal_version2__WEBPACK_IMPORTED_MODULE_2__["TonalLetterTags"].x], // 73
+  [taipa_lib_tonal_version2__WEBPACK_IMPORTED_MODULE_2__["TonalLetterTags"].f, taipa_lib_tonal_version2__WEBPACK_IMPORTED_MODULE_2__["TonalLetterTags"].w] // 12
   ];
   var matches = syllableSeqs.filter(function (x) {
     return x.join('') === input;
