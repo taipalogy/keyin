@@ -13,19 +13,12 @@ function WordPage() {
 
     const lexemeLemma = tla.analyze(input);
     const stems = getStems(lexemeLemma.word.literal, lexemeLemma.getInflectionalEnding());
-    const inflexctionalSuffixes = getInflectionalSuffixes(lexemeLemma.getInflectionalEnding());
+    const inflectionalSuffixes = getInflectionalSuffixes(lexemeLemma.getInflectionalEnding());
     const lemmas = lexemeLemma.getLemmata().map(x => x.literal);
 
     const tia = new TonalInflectionAnalyzer();
     const lexemeInflect = tia.analyze(input, new TonalCombiningForms(), new TonalDesinenceInflection());
     const proceedingForms = lexemeInflect.otherForms.map(x => x.literal);
-
-    // const lexemeRegrAssim = tia.analyze(input, new TonalZeroCombining(), new RegressiveAssimilation());
-    // const surfaceForm = getSurfaceForms(lexemeRegrAssim.word.literal, lexemeRegrAssim.otherForms[0].literal);
-    // const lexemeAgrAssim = tia.analyze(input, new TonalZeroCombining(), new AgressiveAssimila());
-    // if(lexemeAgrAssim.word.literal !== lexemeAgrAssim.otherForms[0].literal) {
-    //     surfaceForm = getSurfaceForms(lexemeAgrAssim.word.literal, lexemeAgrAssim.otherForms[0].literal);
-    // }
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(e.target.value)
@@ -50,7 +43,7 @@ function WordPage() {
             ))}
             <br />
             inflectional suffix
-            {inflexctionalSuffixes.map(x => (
+            {inflectionalSuffixes.map(x => (
                 <li>{x}</li>
             ))}
             <br />

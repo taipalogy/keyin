@@ -6,6 +6,7 @@ module.exports = {
       '/': { page: '/' },
       '/word': { page: '/word' },
       '/replacive': { page: '/replacive' },
+      '/additive': { page: '/additive' },
       '/kana': { page: '/kana' },
     }
   },

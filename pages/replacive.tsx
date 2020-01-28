@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { TonalInflectionAnalyzer, ThirdCombiningForm, TransfixInflection } from 'taipa';
-import { itemize } from '../src/process'
 
 function ReplacivePage() {
     const [input, setInput] = useState();
