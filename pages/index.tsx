@@ -19,6 +19,11 @@ function Home() {
                 </Link>
             </li>
             <li>
+                <Link href="/phrasalverbs">
+                    <a>phrasalverbs</a>
+                </Link>
+            </li>
+            <li>
                 <Link href="/kana">
                     <a>kana</a>
                 </Link>
