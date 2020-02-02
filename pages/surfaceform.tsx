@@ -12,7 +12,7 @@ function SurfaceFormPage() {
     const words = [
         'lakkwex',
         'hietfkiw',
-        'qapfbay',
+        'qapfay',
         'chappwex',
         'cutfmiax',
         'qutflatt',
