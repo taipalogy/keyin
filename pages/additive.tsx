@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { TonalCombiningForms, TonalInflectionAnalyzer, TonalDesinenceInflection } from 'taipa';
+import { TonalInflectionLexeme } from 'taipa';
+import { TonalCombiningMorpheme } from 'taipa';
+import { lowerLettersOfTonal } from 'taipa'
 
-import { lowerLettersOfTonal, TonalLetterTags } from 'taipa/lib/tonal/version2';
+import { TonalLetterTags } from 'taipa/lib/tonal/version2';
 import { AlphabeticGrapheme } from 'taipa/lib/grapheme';
-import { TonalInflectionLexeme } from 'taipa/lib/dparser/lexeme';
-import { TonalCombiningMorpheme } from 'taipa/lib/dparser/morpheme';
 
 function AdditivePage() {
     const [input, setInput] = useState();

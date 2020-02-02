@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { PhrasalInflectionAnalyzer } from 'taipa/lib/dparser/analyzer';
-import { TonalTransitivePhraseme } from 'taipa/lib/dparser/phraseme';
+import { TonalPhrasalInflector} from 'taipa';
+import { TonalTransitivePhraseme } from 'taipa';
 
 function PhrasalVerbPage() {
     const [input, setInput] = useState();
@@ -16,26 +16,25 @@ function PhrasalVerbPage() {
 
     const matches = phrasalVerbs.filter(x => x.join(' ') === input);
 
-    const phinfl = new PhrasalInflectionAnalyzer();
+    const phinfl = new TonalPhrasalInflector();
     
-    let fr1 
+    let fr1 = phinfl.analyzeTransitiveFourth('', ''); 
     if(matches[0]) {
-        fr1 = phinfl.analyzeTransitive(matches[0][0], matches[0][1]);
+        fr1 = phinfl.analyzeTransitiveFourth(matches[0][0], matches[0][1]);
     }
 
-    let forms: TonalTransitivePhraseme[] = [];
-    if(fr1) forms = [fr1];
+    const forms = fr1.getProceedingForms()
 
     return (
 
         <div>
             <label>拍羅馬字, 輸出繼續形
             <br/>
-            <input  type='text' list="phrasalverbs" onChange={handleChange}/></label>
-            <datalist id="phrasalverbs">
+            <input  type='text' list="verbs" onChange={handleChange}/></label>
+            <datalist id="verbs">
                 {phrasalVerbs.map(x => <option key={x[0] + x[1]} value={x[0] + ' ' + x[1]}/> )}
             </datalist>
-            {forms.map(x => (<a>{x.proceedingForms[0].literal} </a>))}
+            {forms.map(x => (<a>{x.literal} </a>))}
         </div>
     )
 }

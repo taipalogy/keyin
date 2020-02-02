@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { TonalLemmatizationAnalyzer, TonalInflectionAnalyzer, TonalCombiningForms, TonalDesinenceInflection } from 'taipa';
-import { getInflectionalSuffixes, getStems, getSoundSequences, getSurfaceForms } from '../src/process';
+import { TonalLemmatizationAnalyzer, TonalCombiningForms, TonalDesinenceInflection, TonalLemmatizer, TonalInflector } from 'taipa';
+import { getInflectionalSuffixes, getStems, getSoundSequences } from '../src/process';
 
 function WordPage() {
     const [input, setInput] = useState();
@@ -11,14 +11,15 @@ function WordPage() {
 
     const soudnSeqs = getSoundSequences(tla.morphAnalyze(input).map(x => x.sounds));
 
-    const lexemeLemma = tla.analyze(input);
+    const tl = new TonalLemmatizer();
+    const lexemeLemma = tl.lemmatize(input);
     const stems = getStems(lexemeLemma.word.literal, lexemeLemma.getInflectionalEnding());
     const inflectionalSuffixes = getInflectionalSuffixes(lexemeLemma.getInflectionalEnding());
     const lemmas = lexemeLemma.getLemmata().map(x => x.literal);
 
-    const tia = new TonalInflectionAnalyzer();
-    const lexemeInflect = tia.analyze(input, new TonalCombiningForms(), new TonalDesinenceInflection());
-    const proceedingForms = lexemeInflect.otherForms.map(x => x.literal);
+    const ti = new TonalInflector();
+    const lexemeInflect = ti.inflect(input, new TonalCombiningForms(), new TonalDesinenceInflection());
+    const proceedingForms = lexemeInflect.getProceedingForms().map(x => x.literal);
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(e.target.value)
@@ -58,8 +59,6 @@ function WordPage() {
             ))}
             <br />
             letters: {letters.join(', ')}
-            <br />
-            {/* surface form{surfaceForm.map(x => (<li>{x}</li>))} */}
         </div>)
 }
   

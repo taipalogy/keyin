@@ -19,8 +19,18 @@ function Home() {
                 </Link>
             </li>
             <li>
-                <Link href="/phrasalverbs">
-                    <a>phrasalverbs</a>
+                <Link href="/phrasalverb">
+                    <a>phrasal verb</a>
+                </Link>
+            </li>
+            <li>
+                <Link href="/surfaceform">
+                    <a>surface form</a>
+                </Link>
+            </li>
+            <li>
+                <Link href="/eadjective">
+                    <a>e-adjective</a>
                 </Link>
             </li>
             <li>
