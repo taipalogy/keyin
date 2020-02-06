@@ -10,6 +10,7 @@ module.exports = {
       '/phrasalverb': { page: '/phrasalverb' },
       '/surfaceform': { page: '/surfaceform' },
       '/eadjective': { page: '/eadjective' },
+      '/composition': { page: '/composition' },
       '/kana': { page: '/kana' },
     }
   },

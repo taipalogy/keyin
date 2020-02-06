@@ -34,6 +34,11 @@ function Home() {
                 </Link>
             </li>
             <li>
+                <Link href="/composition">
+                    <a>composition</a>
+                </Link>
+            </li>
+            <li>
                 <Link href="/kana">
                     <a>kana</a>
                 </Link>
