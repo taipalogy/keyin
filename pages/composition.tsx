@@ -1,6 +1,6 @@
 import { useReducer, useState } from 'react'
 
-import { TonalInflector, TonalCombiningForms, TonalDesinenceInflection, TonalLemmatizer, TonalLemmatizationAnalyzer } from 'taipa';
+import { TonalInflector, TonalCombiningForms, TonalDesinenceInflection, TonalLemmatizer, TonalLemmatizationAnalyzer, Client } from 'taipa';
 
 const inflective = function(str: string) {
     const infl = new TonalInflector();
@@ -19,7 +19,7 @@ const jiz = inflective('jiz');
 const sek = inflective('sek');
 
 const opt1 = ['type'];
-const opt2 = ['daizgiy', 'kana', 'hangul'];
+const opt2 = ['daizgiy', 'kana'];
 const opt3 = ['blue', 'green', 'red'];
 
 const segments = [
@@ -40,9 +40,6 @@ const segments = [
 console.log(opt1);
 console.log(opt2);
 console.log(opt3);
-
-console.log(['add', 'increase']);
-console.log(['time', 'clock', 'alarm']);
 
 const composite2 = function() {
     const opti = opt2;
@@ -79,9 +76,25 @@ if (pah('pahy')) {
     console.log(doc3);
 }
 
+const cli = new Client();
+
+function getSeqs(alphabet: string, str: string) {
+    if(alphabet == 'kana') {
+        const ta = cli.processKana(str);
+        return ta.blockSequences.filter(x => x.length > 0);
+    }
+    return [];
+}
+
+let seqs: string[] = [];
+let alphabet = '';
+let fcolor = {};
+
+
 function CompositionPage() {
     const [scanned, setScanned] = useState();
     const [selected, setSelected] = useState();
+    const [input, setInput] = useState();
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
         setScanned(e.target.value);
@@ -91,14 +104,21 @@ function CompositionPage() {
         setSelected(e.target.value);
     };
 
+    const handleInputChange = function(e: React.ChangeEvent<HTMLInputElement>) {
+        setInput(e.target.value);
+    };
+
     let segs: number = -1;
     const baseForms = ['pah', 'jiz', 'sek'];
     const proceedingForms = ['pahy', 'jiw', 'sekf']; 
 
     const tl = new TonalLemmatizationAnalyzer();
     for(let i = 0; i < baseForms.length; i++) {
-        if(baseForms[i].search(scanned) >= 0 || proceedingForms[i].search(scanned) >= 0) {
-            segs = i;
+        const str: string = scanned;
+        if(str && str.length > 0) {
+            if(str.search(baseForms[i]) >= 0 || str.search(proceedingForms[i]) >= 0) {
+                segs = i;
+            }
         }
     }
 
@@ -108,10 +128,26 @@ function CompositionPage() {
 
     let options: string[] = [];
 
-    if(segs >= 0) options = segments[segs].options;
+    if(segs >= 0) {
+        options = segments[segs].options;
+    }
+    
+    if(opt2.filter(x => x.includes(selected)).length > 0) {
+        alphabet = selected;
+        seqs = getSeqs(alphabet, input);
+    } else {
+        seqs = getSeqs(alphabet, input);
+    }
+
+    if(opt3.filter(x => x.includes(selected)).length > 0) {
+        const str: string = selected;
+        fcolor = {color: str};
+    }
+
 
     return (
         <div>
+            {'debug:' + alphabet}
             <input type='text' list="words" value={scanned} name="scanned" onChange={handleChange} />
             <datalist id="words">
                 {candidates.map(item => <option key={item} value={item}/> )}
@@ -124,6 +160,10 @@ function CompositionPage() {
                     </div>
                 ))
             }
+            </div>
+            <div style={fcolor}>
+            {segs == 1 || segs == 2 ? <input type='text' value={input} onChange={handleInputChange} /> : null}
+            {segs == 1 || segs == 2 ? seqs.map(x => (<li> {x} </li>)) : null}
             </div>
         </div>
     )
