@@ -147,7 +147,6 @@ function CompositionPage() {
 
     return (
         <div>
-            {'debug:' + alphabet}
             <input type='text' list="words" value={scanned} name="scanned" onChange={handleChange} />
             <datalist id="words">
                 {candidates.map(item => <option key={item} value={item}/> )}
