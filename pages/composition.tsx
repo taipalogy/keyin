@@ -1,6 +1,12 @@
-import { useReducer, useState } from 'react'
+import { useReducer } from 'react';
 
-import { TonalInflector, TonalCombiningForms, TonalDesinenceInflection, TonalLemmatizer, TonalLemmatizationAnalyzer, Client } from 'taipa';
+import {
+    TonalInflector,
+    TonalCombiningForms,
+    TonalDesinenceInflection,
+    TonalLemmatizationAnalyzer,
+    Client
+} from 'taipa';
 
 class Segment {
     literal: string = '';
@@ -10,7 +16,7 @@ class Segment {
     }
 
     isBaseForm(str: string) {
-        if(str === this.literal) return true;
+        if (str === this.literal) return true;
         return false;
     }
 
@@ -22,7 +28,7 @@ class Segment {
     }
 
     includes(str: string) {
-        if(this.isBaseForm(str) || this.isProceedingForm(str)) return true;
+        if (this.isBaseForm(str) || this.isProceedingForm(str)) return true;
         return false;
     }
 }
@@ -42,67 +48,69 @@ const segments = [
     },
     {
         segment: jiz,
-        options: opt2,
+        options: opt2
     },
     {
         segment: sek,
         options: opt3
     }
-]
+];
 
 const cli = new Client();
 
 function getSeqs(alphabet: string, str: string) {
-    if(alphabet == 'kana') {
+    if (alphabet == opt2[1]) {
         const ta = cli.processKana(str);
         return ta.blockSequences.filter(x => x.length > 0);
-    } else if(alphabet == 'daizgiy') {
+    } else if (alphabet == opt2[0]) {
         const ta = cli.processTonal(str);
         return ta.word.syllables.flatMap(x => x.literal);
     }
     return [];
 }
 
-let seqs: string[] = [];
+let seqs: string[] = []; // output sequences
 let alphabet = '';
-let fcolor = {};
+let fcolor = {}; // font color
 
+const ti = new TonalInflector();
+const lx1 = ti.inflect(segments[0].segment.literal, new TonalCombiningForms(), new TonalDesinenceInflection());
+const lx2 = ti.inflect(segments[1].segment.literal, new TonalCombiningForms(), new TonalDesinenceInflection());
+const candidates = [
+    lx1.word.literal,
+    lx1.getProceedingForms()[1].literal + lx2.word.literal,
+    lx1.getProceedingForms()[1].literal + lx2.getProceedingForms()[0].literal + segments[2].segment.literal
+];
 
 function CompositionPage() {
-    const [scanned, setScanned] = useState();
-    const [selected, setSelected] = useState();
-    const [input, setInput] = useState();
+    const [input, setInput] = useReducer((state: any, newState: any) => ({ ...state, ...newState }), {
+        scanned: '',
+        selected: '',
+        typed: ''
+    });
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
-        setScanned(e.target.value);
+        const name = e.target.name;
+        const value = e.target.value;
+        setInput({ [name]: value });
     };
 
-    const handleSelectedChange = function(e: React.ChangeEvent<HTMLInputElement>) {
-        setSelected(e.target.value);
-    };
-
-    const handleInputChange = function(e: React.ChangeEvent<HTMLInputElement>) {
-        setInput(e.target.value);
-    };
-
-    let segNo: number = -1;
-    let combiningSegNo: number = -1;
-
-    // const baseForms = ['pah', 'jiz', 'sek'];
-    // const proceedingForms = ['pahy', 'jiw', 'sekf']; 
+    let segNo: number = -1; // no. of segment
+    let combinedSegNo: number = -1; // no. of combined segments
+    let optNo = -1; // which radio button and input field to be displayed
 
     const tl = new TonalLemmatizationAnalyzer();
-    const mphs = tl.morphAnalyze(scanned);
+    const mphs = tl.morphAnalyze(input.scanned);
     const len = mphs.length;
 
-    if(mphs) {
-        for(let i = 0; i < mphs.length; i++) {
-            // const str: string = scanned;
-            //str && str.length > 0 && 
-            if(mphs[i] && segments[i]) {
-                if(i < segments.length - 1 && segments[i].segment.isProceedingForm(mphs[i].syllable.literal) ||
-                    i == segments.length - 1 && segments[i].segment.isBaseForm(mphs[i].syllable.literal)) {
-                        combiningSegNo = i;
+    if (mphs) {
+        for (let i = 0; i < mphs.length; i++) {
+            if (mphs[i] && segments[i]) {
+                if (
+                    (i < segments.length - 1 && segments[i].segment.isProceedingForm(mphs[i].syllable.literal)) ||
+                    (i == segments.length - 1 && segments[i].segment.isBaseForm(mphs[i].syllable.literal))
+                ) {
+                    combinedSegNo = i;
                 } else {
                     break;
                 }
@@ -110,59 +118,67 @@ function CompositionPage() {
         }
     }
 
-    for(let i = 0; i < segments.length; i++) {
-        if(mphs && mphs[i] && segments[i]) {
-            if(segments[i].segment.includes(mphs[i].syllable.literal)) {
+    for (let i = 0; i < segments.length; i++) {
+        if (mphs && mphs[i] && segments[i]) {
+            if (segments[i].segment.includes(mphs[i].syllable.literal)) {
                 segNo = i;
             }
         }
     }
 
-    const ti = new TonalInflector();
-    const lx = ti.inflect('pah', new TonalCombiningForms(), new TonalDesinenceInflection())
-    const candidates = [lx.word.literal, lx.getProceedingForms()[1].literal];
-
     let options: string[] = [];
 
-    if(segNo >= 0) {
-        if(combiningSegNo < segNo) options = segments[combiningSegNo + 1].options;
-        else options = segments[segNo].options;
+    if (segNo >= 0) {
+        if (combinedSegNo < segNo) {
+            options = segments[combinedSegNo + 1].options;
+            optNo = combinedSegNo + 1;
+        } else {
+            options = segments[segNo].options;
+            optNo = segNo;
+        }
     }
-    
-    if(opt2.filter(x => x.includes(selected)).length > 0) {
-        alphabet = selected;
-        seqs = getSeqs(alphabet, input);
+
+    if (opt2.filter(x => x.includes(input.selected)).length > 0) {
+        alphabet = input.selected;
+        seqs = getSeqs(alphabet, input.typed);
     } else {
-        seqs = getSeqs(alphabet, input);
+        seqs = getSeqs(alphabet, input.typed);
     }
 
-    if(opt3.filter(x => x.includes(selected)).length > 0) {
-        const str: string = selected;
-        fcolor = {color: str};
+    if (opt3.filter(x => x.includes(input.selected)).length > 0) {
+        const str: string = input.selected;
+        fcolor = { color: str };
     }
-
 
     return (
         <div>
-            <input type='text' list="words" value={scanned} name="scanned" onChange={handleChange} />
+            <input type="text" list="words" value={input.scanned} name="scanned" onChange={handleChange} />
             <datalist id="words">
-                {candidates.map(item => <option key={item} value={item}/> )}
+                {candidates.map(item => (
+                    <option key={item} value={item} />
+                ))}
             </datalist>
-            <br/>
+            <br />
             <div>
-                {options.map((opt, i) => (
+                {options.map((checked_opt, i) => (
                     <div key={i}>
-                        <input type="radio" checked={selected === opt} onChange={handleSelectedChange} value={opt} />{opt}
+                        <input
+                            type="radio"
+                            checked={input.selected === checked_opt}
+                            name="selected"
+                            onChange={handleChange}
+                            value={checked_opt}
+                        />
+                        {checked_opt}
                     </div>
-                ))
-            }
+                ))}
             </div>
             <div style={fcolor}>
-            {segNo == 1 || segNo == 2 ? <input type='text' value={input} onChange={handleInputChange} /> : null}
-            {segNo == 1 || segNo == 2 ? seqs.map(x => (<li> {x} </li>)) : null}
+                {optNo > 0 ? <input type="text" value={input.typed} name="typed" onChange={handleChange} /> : null}
+                {optNo > 0 ? seqs.map(x => <li> {x} </li>) : null}
             </div>
         </div>
-    )
+    );
 }
-  
-export default CompositionPage
+
+export default CompositionPage;
