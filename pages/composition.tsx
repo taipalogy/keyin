@@ -86,7 +86,7 @@ function CompositionPage() {
     const [input, setInput] = useReducer((state: any, newState: any) => ({ ...state, ...newState }), {
         scanned: '',
         selected: '',
-        typed: ''
+        typed: '',
     });
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
@@ -101,7 +101,6 @@ function CompositionPage() {
 
     const tl = new TonalLemmatizationAnalyzer();
     const mphs = tl.morphAnalyze(input.scanned);
-    const len = mphs.length;
 
     if (mphs) {
         for (let i = 0; i < mphs.length; i++) {
