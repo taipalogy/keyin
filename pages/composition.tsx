@@ -37,32 +37,33 @@ const pah = new Segment('pah');
 const jiz = new Segment('jiz');
 const sek = new Segment('sek');
 
-const opt1 = ['type'];
-const opt2 = ['daizgiy', 'kana'];
-const opt3 = ['blue', 'green', 'red'];
+// radio groups
+const optGroup1 = ['type'];
+const optGroup2 = ['daizgiy', 'kana'];
+const optGroup3 = ['blue', 'green', 'red'];
 
 const segments = [
     {
         segment: pah,
-        options: opt1
+        options: optGroup1
     },
     {
         segment: jiz,
-        options: opt2
+        options: optGroup2
     },
     {
         segment: sek,
-        options: opt3
+        options: optGroup3
     }
 ];
 
 const cli = new Client();
 
 function getSeqs(alphabet: string, str: string) {
-    if (alphabet == opt2[1]) {
+    if (alphabet == optGroup2[1]) {
         const ta = cli.processKana(str);
         return ta.blockSequences.filter(x => x.length > 0);
-    } else if (alphabet == opt2[0]) {
+    } else if (alphabet == optGroup2[0]) {
         const ta = cli.processTonal(str);
         return ta.word.syllables.flatMap(x => x.literal);
     }
@@ -85,8 +86,10 @@ const candidates = [
 function CompositionPage() {
     const [input, setInput] = useReducer((state: any, newState: any) => ({ ...state, ...newState }), {
         scanned: '',
-        selected: '',
+        selectedOne: '',
         typed: '',
+        selectedTwo: '',
+        selectedThree: '',
     });
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
@@ -95,9 +98,9 @@ function CompositionPage() {
         setInput({ [name]: value });
     };
 
-    let segNo: number = -1; // no. of segment
-    let combinedSegNo: number = -1; // no. of combined segments
-    let optNo = -1; // which radio button and input field to be displayed
+    let segIdx: number = -1; // no. of segment
+    let combinedSegIdx: number = -1; // no. of combined segments
+    let optIdx = -1; // which radio button and input field to be displayed
 
     const tl = new TonalLemmatizationAnalyzer();
     const mphs = tl.morphAnalyze(input.scanned);
@@ -109,7 +112,7 @@ function CompositionPage() {
                     (i < segments.length - 1 && segments[i].segment.isProceedingForm(mphs[i].syllable.literal)) ||
                     (i == segments.length - 1 && segments[i].segment.isBaseForm(mphs[i].syllable.literal))
                 ) {
-                    combinedSegNo = i;
+                    combinedSegIdx = i;
                 } else {
                     break;
                 }
@@ -120,34 +123,37 @@ function CompositionPage() {
     for (let i = 0; i < segments.length; i++) {
         if (mphs && mphs[i] && segments[i]) {
             if (segments[i].segment.includes(mphs[i].syllable.literal)) {
-                segNo = i;
+                segIdx = i;
             }
         }
     }
 
     let options: string[] = [];
 
-    if (segNo >= 0) {
-        if (combinedSegNo < segNo) {
-            options = segments[combinedSegNo + 1].options;
-            optNo = combinedSegNo + 1;
+    if (segIdx >= 0) {
+        if (combinedSegIdx < segIdx) {
+            options = segments[combinedSegIdx + 1].options;
+            optIdx = combinedSegIdx + 1;
         } else {
-            options = segments[segNo].options;
-            optNo = segNo;
+            options = segments[segIdx].options;
+            optIdx = segIdx;
         }
     }
 
-    if (opt2.filter(x => x.includes(input.selected)).length > 0) {
-        alphabet = input.selected;
+    if (optGroup2.filter(x => x.includes(input.selectedTwo)).length > 0) {
+        alphabet = input.selectedTwo;
         seqs = getSeqs(alphabet, input.typed);
     } else {
         seqs = getSeqs(alphabet, input.typed);
     }
 
-    if (opt3.filter(x => x.includes(input.selected)).length > 0) {
-        const str: string = input.selected;
+    if (optGroup3.filter(x => x.includes(input.selectedThree)).length > 0) {
+        const str: string = input.selectedThree;
         fcolor = { color: str };
     }
+
+    let isDisabled = true;
+    if(optIdx > 0) isDisabled = false;
 
     return (
         <div>
@@ -159,12 +165,36 @@ function CompositionPage() {
             </datalist>
             <br />
             <div>
-                {options.map((checked_opt, i) => (
+                {optIdx == 0 && options.map((checked_opt, i) => (
                     <div key={i}>
                         <input
                             type="radio"
-                            checked={input.selected === checked_opt}
-                            name="selected"
+                            checked={input.selectedOne === checked_opt}
+                            name="selectedOne"
+                            onChange={handleChange}
+                            value={checked_opt}
+                        />
+                        {checked_opt}
+                    </div>
+                ))}
+                {optIdx == 1 && options.map((checked_opt, i) => (
+                    <div key={i}>
+                        <input
+                            type="radio"
+                            checked={input.selectedTwo === checked_opt}
+                            name="selectedTwo"
+                            onChange={handleChange}
+                            value={checked_opt}
+                        />
+                        {checked_opt}
+                    </div>
+                ))}
+                {optIdx == 2 && options.map((checked_opt, i) => (
+                    <div key={i}>
+                        <input
+                            type="radio"
+                            checked={input.selectedThree === checked_opt}
+                            name="selectedThree"
                             onChange={handleChange}
                             value={checked_opt}
                         />
@@ -173,8 +203,8 @@ function CompositionPage() {
                 ))}
             </div>
             <div style={fcolor}>
-                {optNo > 0 ? <input type="text" value={input.typed} name="typed" onChange={handleChange} /> : null}
-                {optNo > 0 ? seqs.map(x => <li> {x} </li>) : null}
+                {optIdx > 0 && <input type="text" disabled={isDisabled} value={input.typed} name="typed" onChange={handleChange} />}
+                {seqs.map(x => <li> {x} </li>)}
             </div>
         </div>
     );
