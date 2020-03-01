@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
 function Home() {
     return (
@@ -39,12 +39,17 @@ function Home() {
                 </Link>
             </li>
             <li>
+                <Link href="/prediction">
+                    <a>prediction</a>
+                </Link>
+            </li>
+            <li>
                 <Link href="/kana">
                     <a>kana</a>
                 </Link>
             </li>
-        </ul>        
-    )
+        </ul>
+    );
 }
 
-export default Home
+export default Home;

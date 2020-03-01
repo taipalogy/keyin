@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { TonalLemmatizationAnalyzer, TonalCombiningForms, TonalDesinenceInflection, TonalLemmatizer, TonalInflector } from 'taipa';
+import { useState } from 'react';
+import { TonalLemmatizationAnalyzer, TonalLemmatizer, TonalInflector } from 'taipa';
 import { getInflectionalSuffixes, getStems, getSoundSequences } from '../src/process';
 
 function WordPage() {
@@ -15,23 +15,23 @@ function WordPage() {
     const lexemeLemma = tl.lemmatize(input);
     const stems = getStems(lexemeLemma.word.literal, lexemeLemma.getInflectionalEnding());
     const inflectionalSuffixes = getInflectionalSuffixes(lexemeLemma.getInflectionalEnding());
-    const lemmas = lexemeLemma.getLemmata().map(x => x.literal);
+    const lemmas = lexemeLemma.getLemmas().map(x => x.literal);
 
     const ti = new TonalInflector();
-    const lexemeInflect = ti.inflect(input, new TonalCombiningForms(), new TonalDesinenceInflection());
-    const proceedingForms = lexemeInflect.getProceedingForms().map(x => x.literal);
+    const lexemeInflect = ti.inflectDesinence(input);
+    const proceedingForms = lexemeInflect.getForms().map(x => x.literal);
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
-        setInput(e.target.value)
+        setInput(e.target.value);
     };
 
     return (
-        <div>拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms, sound sequences, 甲 letters
+        <div>
+            拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms, sound sequences, 甲 letters
             <label>
                 <br />
-                    <input type='text' value={input} onChange={handleChange} />
+                <input type="text" value={input} onChange={handleChange} />
             </label>
-
             <br />
             lemmas
             {lemmas.map(x => (
@@ -59,7 +59,8 @@ function WordPage() {
             ))}
             <br />
             letters: {letters.join(', ')}
-        </div>)
+        </div>
+    );
 }
-  
-export default WordPage
+
+export default WordPage;

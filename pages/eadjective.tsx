@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { TonalPhrasalInflector, Adnominal} from 'taipa';
+import { TonalPhrasalInflector } from 'taipa';
 
 function EAdjectivePage() {
     const [input, setInput] = useState();
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
-        setInput(e.target.value)
+        setInput(e.target.value);
     };
 
     const eAdjectives = [
@@ -17,26 +17,31 @@ function EAdjectivePage() {
     const matches = eAdjectives.filter(x => x.join(' ') === input);
 
     const phinfl = new TonalPhrasalInflector();
-    
-    let fr1 = phinfl.analyzeAdjective('', '', new Adnominal()); 
-    if(matches[0]) {
-        fr1 = phinfl.analyzeAdjective(matches[0][0], matches[0][1], new Adnominal());
+
+    let fr1 = phinfl.inflectEToAdnominal('', '');
+    if (matches[0]) {
+        fr1 = phinfl.inflectEToAdnominal(matches[0][0], matches[0][1]);
     }
 
-    const forms = fr1.getProceedingForms()
+    const forms = fr1.getForms();
 
     return (
-
         <div>
-            <label>拍羅馬字, 輸出繼續形
-            <br/>
-            <input  type='text' list="adjectives" onChange={handleChange}/></label>
+            <label>
+                拍羅馬字, 輸出繼續形
+                <br />
+                <input type="text" list="adjectives" onChange={handleChange} />
+            </label>
             <datalist id="adjectives">
-                {eAdjectives.map(x => <option key={x[0] + x[1]} value={x[0] + ' ' + x[1]}/> )}
+                {eAdjectives.map(x => (
+                    <option key={x[0] + x[1]} value={x[0] + ' ' + x[1]} />
+                ))}
             </datalist>
-            {forms.map(x => (<a>{x.literal} </a>))}
+            {forms.map(x => (
+                <a>{x.literal} </a>
+            ))}
         </div>
-    )
+    );
 }
 
-export default EAdjectivePage
+export default EAdjectivePage;

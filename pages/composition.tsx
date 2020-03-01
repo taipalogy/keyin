@@ -1,12 +1,6 @@
 import { useReducer } from 'react';
 
-import {
-    TonalInflector,
-    TonalCombiningForms,
-    TonalDesinenceInflection,
-    TonalLemmatizationAnalyzer,
-    Client
-} from 'taipa';
+import { TonalInflector, TonalLemmatizationAnalyzer, Client } from 'taipa';
 
 class Segment {
     literal: string = '';
@@ -22,8 +16,8 @@ class Segment {
 
     isProceedingForm(str: string) {
         const infl = new TonalInflector();
-        const lx = infl.inflect(this.literal, new TonalCombiningForms(), new TonalDesinenceInflection());
-        if (lx.getProceedingForms().filter(x => x.literal === str).length > 0) return true;
+        const lx = infl.inflectDesinence(this.literal);
+        if (lx.getForms().filter(x => x.literal === str).length > 0) return true;
         return false;
     }
 
@@ -75,12 +69,12 @@ let alphabet = '';
 let fcolor = {}; // font color
 
 const ti = new TonalInflector();
-const lx1 = ti.inflect(segments[0].segment.literal, new TonalCombiningForms(), new TonalDesinenceInflection());
-const lx2 = ti.inflect(segments[1].segment.literal, new TonalCombiningForms(), new TonalDesinenceInflection());
+const lx1 = ti.inflectDesinence(segments[0].segment.literal);
+const lx2 = ti.inflectDesinence(segments[1].segment.literal);
 const candidates = [
     lx1.word.literal,
-    lx1.getProceedingForms()[1].literal + lx2.word.literal,
-    lx1.getProceedingForms()[1].literal + lx2.getProceedingForms()[0].literal + segments[2].segment.literal
+    lx1.getForms()[1].literal + lx2.word.literal,
+    lx1.getForms()[1].literal + lx2.getForms()[0].literal + segments[2].segment.literal
 ];
 
 function CompositionPage() {
@@ -89,7 +83,7 @@ function CompositionPage() {
         selectedOne: '',
         typed: '',
         selectedTwo: '',
-        selectedThree: '',
+        selectedThree: ''
     });
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
@@ -153,7 +147,7 @@ function CompositionPage() {
     }
 
     let isDisabled = true;
-    if(optIdx > 0) isDisabled = false;
+    if (optIdx > 0) isDisabled = false;
 
     return (
         <div>
@@ -165,46 +159,53 @@ function CompositionPage() {
             </datalist>
             <br />
             <div>
-                {optIdx == 0 && options.map((checked_opt, i) => (
-                    <div key={i}>
-                        <input
-                            type="radio"
-                            checked={input.selectedOne === checked_opt}
-                            name="selectedOne"
-                            onChange={handleChange}
-                            value={checked_opt}
-                        />
-                        {checked_opt}
-                    </div>
-                ))}
-                {optIdx == 1 && options.map((checked_opt, i) => (
-                    <div key={i}>
-                        <input
-                            type="radio"
-                            checked={input.selectedTwo === checked_opt}
-                            name="selectedTwo"
-                            onChange={handleChange}
-                            value={checked_opt}
-                        />
-                        {checked_opt}
-                    </div>
-                ))}
-                {optIdx == 2 && options.map((checked_opt, i) => (
-                    <div key={i}>
-                        <input
-                            type="radio"
-                            checked={input.selectedThree === checked_opt}
-                            name="selectedThree"
-                            onChange={handleChange}
-                            value={checked_opt}
-                        />
-                        {checked_opt}
-                    </div>
-                ))}
+                {optIdx == 0 &&
+                    options.map((checked_opt, i) => (
+                        <div key={i}>
+                            <input
+                                type="radio"
+                                checked={input.selectedOne === checked_opt}
+                                name="selectedOne"
+                                onChange={handleChange}
+                                value={checked_opt}
+                            />
+                            {checked_opt}
+                        </div>
+                    ))}
+                {optIdx == 1 &&
+                    options.map((checked_opt, i) => (
+                        <div key={i}>
+                            <input
+                                type="radio"
+                                checked={input.selectedTwo === checked_opt}
+                                name="selectedTwo"
+                                onChange={handleChange}
+                                value={checked_opt}
+                            />
+                            {checked_opt}
+                        </div>
+                    ))}
+                {optIdx == 2 &&
+                    options.map((checked_opt, i) => (
+                        <div key={i}>
+                            <input
+                                type="radio"
+                                checked={input.selectedThree === checked_opt}
+                                name="selectedThree"
+                                onChange={handleChange}
+                                value={checked_opt}
+                            />
+                            {checked_opt}
+                        </div>
+                    ))}
             </div>
             <div style={fcolor}>
-                {optIdx > 0 && <input type="text" disabled={isDisabled} value={input.typed} name="typed" onChange={handleChange} />}
-                {seqs.map(x => <li> {x} </li>)}
+                {optIdx > 0 && (
+                    <input type="text" disabled={isDisabled} value={input.typed} name="typed" onChange={handleChange} />
+                )}
+                {seqs.map(x => (
+                    <li> {x} </li>
+                ))}
             </div>
         </div>
     );

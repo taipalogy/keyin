@@ -1,42 +1,41 @@
-import { getSurfaceForms } from '../src/process'
-import { useState } from 'react'
-import { TonalAssimilator, AssimiDirection } from 'taipa';
+import { getSurfaceForms } from '../src/process';
+import { useState } from 'react';
+import { TonalAssimilator } from 'taipa';
 
 function SurfaceFormPage() {
     const [input, setInput] = useState();
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
-        setInput(e.target.value)
+        setInput(e.target.value);
     };
 
-    const words = [
-        'lakkwex',
-        'hietfkiw',
-        'qapfay',
-        'chappwex',
-        'cutfmiax',
-        'qutflatt',
-    ]
+    const words = ['lakkwex', 'hietfkiw', 'qapfay', 'chappwex', 'cutfmiax', 'qutflatt'];
 
     const assim = new TonalAssimilator();
-    const lx = assim.assimilate(input, AssimiDirection.regressive);
-    const surfaceForm = getSurfaceForms(lx.word.literal, lx.getProceedingForms()[0].literal);
+    const lx = assim.assimilateRegressive(input);
+    const surfaceForm = getSurfaceForms(
+        lx.word.literal,
+        lx.getForms().length > 0 && lx.getForms()[0] ? lx.getForms()[0].literal : ''
+    );
 
     return (
-        <div>拍羅馬字, 輸出表面形
+        <div>
+            拍羅馬字, 輸出表面形
             <label>
                 <br />
-                    <input type='text' list="words" value={input} onChange={handleChange} />
-                    <datalist id="words">
-                        {words.map(item => <option key={item} value={item}/> )}
-                    </datalist>
+                <input type="text" list="words" value={input} onChange={handleChange} />
+                <datalist id="words">
+                    {words.map(item => (
+                        <option key={item} value={item} />
+                    ))}
+                </datalist>
             </label>
-
             <br />
             {surfaceForm.map(x => (
-                <li>{x}</li>)
-            )}
-        </div>)
+                <li>{x}</li>
+            ))}
+        </div>
+    );
 }
-  
-export default SurfaceFormPage
+
+export default SurfaceFormPage;
