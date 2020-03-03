@@ -7,7 +7,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 
     const tl = new TonalLemmatizer();
     const lexemeLemma = tl.lemmatize(word as string);
-    const lemmas = lexemeLemma.getLemmata().map(x => x.literal);
+    const lemmas = lexemeLemma.getLemmas().map(x => x.literal);
     const obj = Object.assign({ word: word }, { lemmas: lemmas });
 
     return res.json(obj);
