@@ -10,6 +10,12 @@ function WordPage() {
     const letters = tla.graphAnalyze(input).map(x => x.letter && x.letter.literal);
 
     const soudnSeqs = getSoundSequences(tla.morphAnalyze(input).map(x => x.sounds));
+    const uncombiningFormSeqs = tla.morphAnalyze(input).map(it =>
+        it
+            .getForms()
+            .map(it => it.literal)
+            .join(', ')
+    );
 
     const tl = new TonalLemmatizer();
     const lexemeLemma = tl.lemmatize(input);
@@ -56,6 +62,11 @@ function WordPage() {
             sound sequences
             {soudnSeqs.map(x => (
                 <li>{x[0] + ' - ' + x[1]}</li>
+            ))}
+            <br />
+            uncombining form sequences
+            {uncombiningFormSeqs.map(x => (
+                <li>{x}</li>
             ))}
             <br />
             letters: {letters.join(', ')}
