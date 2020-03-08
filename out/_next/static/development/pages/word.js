@@ -7599,6 +7599,11 @@ function WordPage() {
   var soudnSeqs = Object(_src_process__WEBPACK_IMPORTED_MODULE_2__["getSoundSequences"])(tla.morphAnalyze(input).map(function (x) {
     return x.sounds;
   }));
+  var uncombiningFormSeqs = tla.morphAnalyze(input).map(function (it) {
+    return it.getForms().map(function (it) {
+      return it.literal;
+    }).join(', ');
+  });
   var tl = new taipa__WEBPACK_IMPORTED_MODULE_1__["TonalLemmatizer"]();
   var lexemeLemma = tl.lemmatize(input);
   var stems = Object(_src_process__WEBPACK_IMPORTED_MODULE_2__["getStems"])(lexemeLemma.word.literal, lexemeLemma.getInflectionalEnding());
@@ -7619,19 +7624,19 @@ function WordPage() {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 35
     },
     __self: this
   }, "\u62CD\u7F85\u99AC\u5B57, \u8F38\u51FA lemmas, stem, inflectional suffix, proceeding forms, sound sequences, \u7532 letters", __jsx("label", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 37
     },
     __self: this
   }, __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 38
     },
     __self: this
   }), __jsx("input", {
@@ -7640,83 +7645,97 @@ function WordPage() {
     onChange: handleChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 39
     },
     __self: this
   })), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 41
     },
     __self: this
   }), "lemmas", lemmas.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 44
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 46
     },
     __self: this
   }), "stem", stems.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 49
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45
+      lineNumber: 51
     },
     __self: this
   }), "inflectional suffix", inflectionalSuffixes.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 54
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 56
     },
     __self: this
   }), "proceeding forms", proceedingForms.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 53
+        lineNumber: 59
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 55
+      lineNumber: 61
     },
     __self: this
   }), "sound sequences", soudnSeqs.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 58
+        lineNumber: 64
       },
       __self: this
     }, x[0] + ' - ' + x[1]);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 60
+      lineNumber: 66
+    },
+    __self: this
+  }), "uncombining form sequences", uncombiningFormSeqs.map(function (x) {
+    return __jsx("li", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 69
+      },
+      __self: this
+    }, x);
+  }), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 71
     },
     __self: this
   }), "letters: ", letters.join(', '));
@@ -7797,7 +7816,7 @@ function itemize(str) {
 
 /***/ }),
 
-/***/ 11:
+/***/ 2:
 /*!**************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fword&absolutePagePath=%2FUsers%2Fjslv%2FProjects%2Fkeyin%2Fpages%2Fword.tsx ***!
   \**************************************************************************************************************************/
@@ -7820,5 +7839,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[11,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=word.js.map
