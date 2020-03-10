@@ -7588,7 +7588,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 function WordPage() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       input = _useState[0],
       setInput = _useState[1];
 
@@ -7603,17 +7603,19 @@ function WordPage() {
     return it.getForms().map(function (it) {
       return it.literal;
     }).join(', ');
+  }).filter(function (it) {
+    return it.length > 0;
   });
   var tl = new taipa__WEBPACK_IMPORTED_MODULE_1__["TonalLemmatizer"]();
-  var lexemeLemma = tl.lemmatize(input);
-  var stems = Object(_src_process__WEBPACK_IMPORTED_MODULE_2__["getStems"])(lexemeLemma.word.literal, lexemeLemma.getInflectionalEnding());
-  var inflectionalSuffixes = Object(_src_process__WEBPACK_IMPORTED_MODULE_2__["getInflectionalSuffixes"])(lexemeLemma.getInflectionalEnding());
-  var lemmas = lexemeLemma.getLemmas().map(function (x) {
+  var lxLemma = tl.lemmatize(input);
+  var stems = Object(_src_process__WEBPACK_IMPORTED_MODULE_2__["getStems"])(lxLemma.word.literal, lxLemma.getInflectionalEnding());
+  var inflectionalSuffixes = Object(_src_process__WEBPACK_IMPORTED_MODULE_2__["getInflectionalSuffixes"])(lxLemma.getInflectionalEnding());
+  var lemmas = lxLemma.getLemmas().map(function (x) {
     return x.literal;
   });
   var ti = new taipa__WEBPACK_IMPORTED_MODULE_1__["TonalInflector"]();
-  var lexemeInflect = ti.inflectDesinence(input);
-  var proceedingForms = lexemeInflect.getForms().map(function (x) {
+  var lxInflect = ti.inflectDesinence(input);
+  var proceedingForms = lxInflect.getForms().map(function (x) {
     return x.literal;
   });
 
@@ -7624,19 +7626,19 @@ function WordPage() {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 38
     },
     __self: this
-  }, "\u62CD\u7F85\u99AC\u5B57, \u8F38\u51FA lemmas, stem, inflectional suffix, proceeding forms, sound sequences, \u7532 letters", __jsx("label", {
+  }, "\u62CD\u7F85\u99AC\u5B57, \u8F38\u51FA lemmas, stem, inflectional suffix, proceeding forms, sound sequences, uncombining form sequences, \u7532 letters", __jsx("label", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 41
     },
     __self: this
   }, __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 42
     },
     __self: this
   }), __jsx("input", {
@@ -7645,97 +7647,97 @@ function WordPage() {
     onChange: handleChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 43
     },
     __self: this
   })), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 41
+      lineNumber: 45
     },
     __self: this
   }), "lemmas", lemmas.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 48
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 50
     },
     __self: this
   }), "stem", stems.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 53
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 55
     },
     __self: this
   }), "inflectional suffix", inflectionalSuffixes.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54
+        lineNumber: 58
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 56
+      lineNumber: 60
     },
     __self: this
   }), "proceeding forms", proceedingForms.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59
+        lineNumber: 63
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 61
+      lineNumber: 65
     },
     __self: this
   }), "sound sequences", soudnSeqs.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64
+        lineNumber: 68
       },
       __self: this
     }, x[0] + ' - ' + x[1]);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 70
     },
     __self: this
   }), "uncombining form sequences", uncombiningFormSeqs.map(function (x) {
     return __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 73
       },
       __self: this
     }, x);
   }), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 75
     },
     __self: this
   }), "letters: ", letters.join(', '));
@@ -7816,7 +7818,7 @@ function itemize(str) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 4:
 /*!**************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fword&absolutePagePath=%2FUsers%2Fjslv%2FProjects%2Fkeyin%2Fpages%2Fword.tsx ***!
   \**************************************************************************************************************************/
@@ -7839,5 +7841,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[4,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=word.js.map
