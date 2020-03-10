@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TonalAssimilator, TonalLemmatizationAnalyzer, Prediction } from 'taipa';
 
 function PredictionPage() {
-    const [input, setInput] = useState();
+    const [input, setInput] = useState('');
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(e.target.value);

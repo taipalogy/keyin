@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { TonalInflector } from 'taipa';
 
 function ReplacivePage() {
-    const [input, setInput] = useState();
+    const [input, setInput] = useState('');
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(e.target.value);
     };
 
-    const nouns = ['chittwvaiy', 'chittwqoa', 'voannydang', 'dangzsixay', 'damwvurhhxay'];
+    const words = ['chittwvaiy', 'chittwqoa', 'voannydang', 'dangzsixay', 'damwvurhhxay'];
 
     const ti = new TonalInflector();
     const lx = ti.inflectTransfix(input);
     let items: string[] = [];
-    if (nouns.includes(input)) {
+    if (words.includes(input)) {
         items = lx.getForms().map(x => x.literal);
     }
 
@@ -22,10 +22,10 @@ function ReplacivePage() {
             <label>
                 拍羅馬字, 輸出 inflected form
                 <br />
-                <input type="text" list="nouns" onChange={handleChange} />
+                <input type="text" list="entries" onChange={handleChange} />
             </label>
-            <datalist id="nouns">
-                {nouns.map(item => (
+            <datalist id="entries">
+                {words.map(item => (
                     <option key={item} value={item} />
                 ))}
             </datalist>

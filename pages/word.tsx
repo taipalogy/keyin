@@ -1,31 +1,34 @@
 import { useState } from 'react';
 import { TonalLemmatizationAnalyzer, TonalLemmatizer, TonalInflector } from 'taipa';
-import { getInflectionalSuffixes, getStems, getSoundSequences } from '../src/process';
+import { getInflectionalSuffixes, getStems, getSoundSequences, itemize } from '../src/process';
 
 function WordPage() {
-    const [input, setInput] = useState();
+    const [input, setInput] = useState('');
 
     const tla = new TonalLemmatizationAnalyzer();
 
     const letters = tla.graphAnalyze(input).map(x => x.letter && x.letter.literal);
 
     const soudnSeqs = getSoundSequences(tla.morphAnalyze(input).map(x => x.sounds));
-    const uncombiningFormSeqs = tla.morphAnalyze(input).map(it =>
-        it
-            .getForms()
-            .map(it => it.literal)
-            .join(', ')
-    );
+    const uncombiningFormSeqs = tla
+        .morphAnalyze(input)
+        .map(it =>
+            it
+                .getForms()
+                .map(it => it.literal)
+                .join(', ')
+        )
+        .filter(it => it.length > 0);
 
     const tl = new TonalLemmatizer();
-    const lexemeLemma = tl.lemmatize(input);
-    const stems = getStems(lexemeLemma.word.literal, lexemeLemma.getInflectionalEnding());
-    const inflectionalSuffixes = getInflectionalSuffixes(lexemeLemma.getInflectionalEnding());
-    const lemmas = lexemeLemma.getLemmas().map(x => x.literal);
+    const lxLemma = tl.lemmatize(input);
+    const stems = getStems(lxLemma.word.literal, lxLemma.getInflectionalEnding());
+    const inflectionalSuffixes = getInflectionalSuffixes(lxLemma.getInflectionalEnding());
+    const lemmas = lxLemma.getLemmas().map(x => x.literal);
 
     const ti = new TonalInflector();
-    const lexemeInflect = ti.inflectDesinence(input);
-    const proceedingForms = lexemeInflect.getForms().map(x => x.literal);
+    const lxInflect = ti.inflectDesinence(input);
+    const proceedingForms = lxInflect.getForms().map(x => x.literal);
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(e.target.value);
@@ -33,7 +36,8 @@ function WordPage() {
 
     return (
         <div>
-            拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms, sound sequences, 甲 letters
+            拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms, sound sequences, uncombining form
+            sequences, 甲 letters
             <label>
                 <br />
                 <input type="text" value={input} onChange={handleChange} />

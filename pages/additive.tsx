@@ -7,7 +7,7 @@ import { TonalLetterTags } from 'taipa';
 import { AlphabeticGrapheme } from 'taipa';
 
 function AdditivePage() {
-    const [input, setInput] = useState();
+    const [input, setInput] = useState('');
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(e.target.value);

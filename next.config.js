@@ -12,6 +12,7 @@ module.exports = {
             '/eadjective': { page: '/eadjective' },
             '/composition': { page: '/composition' },
             '/prediction': { page: '/prediction' },
+            '/tonepattern': { page: '/tonepattern' },
             '/kana': { page: '/kana' }
         };
     },

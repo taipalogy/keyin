@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { TonalAssimilator } from 'taipa';
 
 function SurfaceFormPage() {
-    const [input, setInput] = useState();
+    const [input, setInput] = useState('');
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(e.target.value);

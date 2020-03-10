@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TonalPhrasalInflector } from 'taipa';
 
 function EAdjectivePage() {
-    const [input, setInput] = useState();
+    const [input, setInput] = useState('');
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(e.target.value);
