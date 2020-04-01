@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { tonalInflectionAnalyzer, TonalCombiningForms, TonalLetterTags, TonalCombiningMorpheme } from 'taipa';
+import { tonalInflectionAnalyzer, TonalCombiningForms, TonalLetterTags, TonalCombiningMorpheme, TonalDesinenceInflection } from 'taipa';
 
-function TonePatternPage() {
+function TonePatternWordsPage() {
     const [input, setInput] = useState('');
 
     const handleChange = function(e: React.ChangeEvent<HTMLInputElement>) {
@@ -28,14 +28,21 @@ function TonePatternPage() {
         .set(TonalLetterTags.hh, 8);
 
     const tia = tonalInflectionAnalyzer;
-    const ms1 = tia.morphAnalyze(input, new TonalCombiningForms());
-    const items = ms1.map(it =>
-        mapTonal.has(it.allomorph.tonal.toString())
-            ? mapTonal.get(it.allomorph.tonal.toString())
-            : mapFinal.get(it.allomorph.toString())
-    );
+    let tokens: string[] = [];
+    if(input) {
+        tokens = input.split(' ');
+    }
+    let items: (number | undefined)[] = [];
+    if(tokens.length > 0) {
+        const ls1 = tokens.map(it => tia.lexAnalyze(it, new TonalDesinenceInflection()));
+        items = ls1.map(it =>
+            mapTonal.has(it.getInflectionalEnding().toString())
+                ? mapTonal.get(it.getInflectionalEnding().toString())
+                : mapFinal.get(it.getAllomorphicEnding().toString())
+        );
+    }
 
-    const words = ['chongwtaiwgiy', 'pannypannyqiurw', 'angfangwangx', 'siurfsiurzsiur', 'liyleyqiurw'];
+    const phrases = ['ciet dngh', 'hoz goaz', 'qongy aw', 'giurx ez', 'chongx cut kih', 'chau laiz chau kiw'];
 
     return (
         <div>
@@ -45,7 +52,7 @@ function TonePatternPage() {
                 <input type="text" list="entries" onChange={handleChange} />
             </label>
             <datalist id="entries">
-                {words.map(it => (
+                {phrases.map(it => (
                     <option key={it} value={it} />
                 ))}
             </datalist>
@@ -54,4 +61,4 @@ function TonePatternPage() {
     );
 }
 
-export default TonePatternPage;
+export default TonePatternWordsPage;

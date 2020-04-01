@@ -49,6 +49,11 @@ function Home() {
                 </Link>
             </li>
             <li>
+                <Link href="/tonepatternwords">
+                    <a>tone pattern - words</a>
+                </Link>
+            </li>
+            <li>
                 <Link href="/kana">
                     <a>kana</a>
                 </Link>

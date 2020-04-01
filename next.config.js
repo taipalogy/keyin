@@ -13,6 +13,7 @@ module.exports = {
             '/composition': { page: '/composition' },
             '/prediction': { page: '/prediction' },
             '/tonepattern': { page: '/tonepattern' },
+            '/tonepatternwords': { page: '/tonepatternwords' },
             '/kana': { page: '/kana' }
         };
     },
