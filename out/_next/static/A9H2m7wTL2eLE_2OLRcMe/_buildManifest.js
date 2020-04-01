@@ -1,1 +1,0 @@
-self.__BUILD_MANIFEST = (function(a){return {"/additive":[a],"/composition":[a],"/eadjective":[a],"/kana":[a],"/phrasalverb":[a],"/prediction":[a],"/replacive":[a],"/surfaceform":[a],"/tonepattern":[a],"/word":[a]}}("static\u002Fchunks\u002F26c8b7f150c8607fed1707d05964d3cca6dd7bda.b412d37b128a0626fa5a.js"));self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
