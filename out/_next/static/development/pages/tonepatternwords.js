@@ -8193,30 +8193,28 @@ function TonePatternWordsPage() {
     items = ls1.map(function (it) {
       return mapTonal.has(it.getInflectionalEnding().toString()) ? mapTonal.get(it.getInflectionalEnding().toString()) : mapFinal.get(it.getAllomorphicEnding().toString());
     });
-  } else {
-    items = [];
   }
 
-  var phrases = ['ciet dngh', 'hoz goaz', 'qongy aw', 'giurx ez', 'chau laiz chau kiw'];
+  var phrases = ['ciet dngh', 'hoz goaz', 'qongy aw', 'giurx ez', 'chongx cut kih', 'chau laiz chau kiw'];
   return __jsx("div", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50,
+      lineNumber: 48,
       columnNumber: 9
     }
   }, __jsx("label", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51,
+      lineNumber: 49,
       columnNumber: 13
     }
   }, "\u62CD\u7F85\u99AC\u5B57, \u8F38\u51FA\u8072\u8ABF\u6A21\u5F0F", __jsx("br", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53,
+      lineNumber: 51,
       columnNumber: 17
     }
   }), __jsx("input", {
@@ -8226,7 +8224,7 @@ function TonePatternWordsPage() {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54,
+      lineNumber: 52,
       columnNumber: 17
     }
   })), __jsx("datalist", {
@@ -8234,7 +8232,7 @@ function TonePatternWordsPage() {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 56,
+      lineNumber: 54,
       columnNumber: 13
     }
   }, phrases.map(function (it) {
@@ -8244,7 +8242,7 @@ function TonePatternWordsPage() {
       __self: _this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 58,
+        lineNumber: 56,
         columnNumber: 21
       }
     });
@@ -8255,7 +8253,7 @@ function TonePatternWordsPage() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /*!**************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Ftonepatternwords&absolutePagePath=%2FUsers%2Fjslv%2FProjects%2Fkeyin%2Fpages%2Ftonepatternwords.tsx ***!
   \**************************************************************************************************************************************************/
@@ -8278,5 +8276,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=tonepatternwords.js.map
