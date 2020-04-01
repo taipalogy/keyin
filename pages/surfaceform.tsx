@@ -1,6 +1,6 @@
 import { getSurfaceForms } from '../src/process';
 import { useState } from 'react';
-import { TonalAssimilator } from 'taipa';
+import { assimilateRegressiveLexical } from 'taipa';
 
 function SurfaceFormPage() {
     const [input, setInput] = useState('');
@@ -11,8 +11,7 @@ function SurfaceFormPage() {
 
     const words = ['lakkwex', 'hietfkiw', 'qapfay', 'chappwex', 'cutfmiax', 'qutflatt'];
 
-    const assim = new TonalAssimilator();
-    const lx = assim.assimilateRegressive(input);
+    const lx = assimilateRegressiveLexical(input);
     const surfaceForm = getSurfaceForms(
         lx.word.literal,
         lx.getForms().length > 0 && lx.getForms()[0] ? lx.getForms()[0].literal : ''

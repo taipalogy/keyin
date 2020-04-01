@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TonalInflector } from 'taipa';
+import { inflectTransfix } from 'taipa';
 
 function ReplacivePage() {
     const [input, setInput] = useState('');
@@ -10,8 +10,7 @@ function ReplacivePage() {
 
     const words = ['chittwvaiy', 'chittwqoa', 'voannydang', 'dangzsixay', 'damwvurhhxay'];
 
-    const ti = new TonalInflector();
-    const lx = ti.inflectTransfix(input);
+    const lx = inflectTransfix(input);
     let items: string[] = [];
     if (words.includes(input)) {
         items = lx.getForms().map(x => x.literal);

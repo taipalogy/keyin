@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TonalAssimilator, TonalLemmatizationAnalyzer, Prediction } from 'taipa';
+import { graphAnalyzeTonal, predict } from 'taipa';
 
 function PredictionPage() {
     const [input, setInput] = useState('');
@@ -8,11 +8,9 @@ function PredictionPage() {
         setInput(e.target.value);
     };
 
-    const tla = new TonalLemmatizationAnalyzer();
-    const prmptr = new Prediction();
-    const gs = tla.graphAnalyze(input);
+    const gs = graphAnalyzeTonal(input);
 
-    const tuples = prmptr.predict(gs.map(x => x.letter).map(y => y.literal));
+    const tuples = predict(gs.map(x => x.letter).map(y => y.literal));
 
     return (
         <div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TonalPhrasalInflector } from 'taipa';
+import { inflectEToAdnominal } from 'taipa';
 
 function EAdjectivePage() {
     const [input, setInput] = useState('');
@@ -16,11 +16,9 @@ function EAdjectivePage() {
 
     const matches = eAdjectives.filter(x => x.join(' ') === input);
 
-    const phinfl = new TonalPhrasalInflector();
-
-    let fr1 = phinfl.inflectEToAdnominal('', '');
+    let fr1 = inflectEToAdnominal('', '');
     if (matches[0]) {
-        fr1 = phinfl.inflectEToAdnominal(matches[0][0], matches[0][1]);
+        fr1 = inflectEToAdnominal(matches[0][0], matches[0][1]);
     }
 
     const forms = fr1.getForms();

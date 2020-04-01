@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TonalPhrasalInflector } from 'taipa';
+import { inflectToProceeding } from 'taipa';
 
 function PhrasalVerbPage() {
     const [input, setInput] = useState('');
@@ -15,11 +15,9 @@ function PhrasalVerbPage() {
 
     const matches = phrasalVerbs.filter(x => x.join(' ') === input);
 
-    const phinfl = new TonalPhrasalInflector();
-
-    let fr1 = phinfl.inflectToProceeding('', '');
+    let fr1 = inflectToProceeding('', '');
     if (matches[0]) {
-        fr1 = phinfl.inflectToProceeding(matches[0][0], matches[0][1]);
+        fr1 = inflectToProceeding(matches[0][0], matches[0][1]);
     }
 
     const forms = fr1.getForms();

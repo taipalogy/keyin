@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TonalCombiningForms, TonalInflectionAnalyzer, TonalDesinenceInflection } from 'taipa';
+import { TonalCombiningForms, tonalInflectionAnalyzer, TonalDesinenceInflection, graphAnalyzeTonal } from 'taipa';
 import { TonalInflectionLexeme } from 'taipa';
 import { TonalCombiningMorpheme } from 'taipa';
 import { lowerLettersTonal } from 'taipa';
@@ -22,13 +22,13 @@ function AdditivePage() {
     ];
 
     const matches = syllableSeqs.filter(x => x.join('') === input);
-    const tia = new TonalInflectionAnalyzer();
+    const tia = tonalInflectionAnalyzer;
 
     let gs1: AlphabeticGrapheme[] = [];
     let gs2: AlphabeticGrapheme[] = [];
     if (matches.length > 0) {
-        gs1 = tia.graphAnalyze(matches[0][0]);
-        gs2 = tia.graphAnalyze(matches[0][1]);
+        gs1 = graphAnalyzeTonal(matches[0][0]);
+        gs2 = graphAnalyzeTonal(matches[0][1]);
     }
 
     const ms1: TonalCombiningMorpheme[] = tia.morphAnalyze(gs1, new TonalCombiningForms());

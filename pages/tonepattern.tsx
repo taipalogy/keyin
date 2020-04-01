@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TonalInflectionAnalyzer, TonalCombiningForms, TonalLetterTags } from 'taipa';
+import { tonalInflectionAnalyzer, TonalCombiningForms, TonalLetterTags, TonalCombiningMorpheme } from 'taipa';
 
 function TonePatternPage() {
     const [input, setInput] = useState('');
@@ -13,8 +13,8 @@ function TonePatternPage() {
         .set(TonalLetterTags.y, 2)
         .set(TonalLetterTags.w, 3)
         .set(TonalLetterTags.x, 5)
-        .set(TonalLetterTags.z, 7);
-    // .set(TonalLetterTags.xx, 9);
+        .set(TonalLetterTags.z, 7)
+        .set(TonalLetterTags.xx, 9);
 
     const mapFinal = new Map<string, number>()
         .set(TonalLetterTags.zero, 1)
@@ -27,7 +27,7 @@ function TonePatternPage() {
         .set(TonalLetterTags.kk, 8)
         .set(TonalLetterTags.hh, 8);
 
-    const tia = new TonalInflectionAnalyzer();
+    const tia = tonalInflectionAnalyzer;
     const ms1 = tia.morphAnalyze(input, new TonalCombiningForms());
     const items = ms1.map(it =>
         mapTonal.has(it.allomorph.tonal.toString())

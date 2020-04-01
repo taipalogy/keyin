@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-import { TonalInflector, TonalLemmatizationAnalyzer, Client } from 'taipa';
+import {  tonalLemmatizationAnalyzer, Client, inflectDesinence, TonalWord } from 'taipa';
 
 class Segment {
     literal: string = '';
@@ -15,8 +15,7 @@ class Segment {
     }
 
     isProceedingForm(str: string) {
-        const infl = new TonalInflector();
-        const lx = infl.inflectDesinence(this.literal);
+        const lx = inflectDesinence(this.literal);
         if (lx.getForms().filter(x => x.literal === str).length > 0) return true;
         return false;
     }
@@ -59,7 +58,9 @@ function getSeqs(alphabet: string, str: string) {
         return ta.blockSequences.filter(x => x.length > 0);
     } else if (alphabet == optGroup2[0]) {
         const ta = cli.processTonal(str);
-        return ta.word.syllables.flatMap(x => x.literal);
+        if((ta.word as TonalWord).syllables) {
+            return (ta.word as TonalWord).syllables.flatMap(x => x.literal);
+        }
     }
     return [];
 }
@@ -68,9 +69,8 @@ let seqs: string[] = []; // output sequences
 let alphabet = '';
 let fcolor = {}; // font color
 
-const ti = new TonalInflector();
-const lx1 = ti.inflectDesinence(segments[0].segment.literal);
-const lx2 = ti.inflectDesinence(segments[1].segment.literal);
+const lx1 = inflectDesinence(segments[0].segment.literal);
+const lx2 = inflectDesinence(segments[1].segment.literal);
 const candidates = [
     lx1.word.literal,
     lx1.getForms()[1].literal + lx2.word.literal,
@@ -96,7 +96,7 @@ function CompositionPage() {
     let combinedSegIdx: number = -1; // no. of combined segments
     let optIdx = -1; // which radio button and input field to be displayed
 
-    const tl = new TonalLemmatizationAnalyzer();
+    const tl = tonalLemmatizationAnalyzer;
     const mphs = tl.morphAnalyze(input.scanned);
 
     if (mphs) {

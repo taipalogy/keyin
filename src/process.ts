@@ -1,4 +1,4 @@
-import { Sound } from 'taipa/lib/grapheme';
+import { Sound } from 'taipa';
 
 export function getInflectionalSuffixes(ending: string) {
     const desinences: string[] = [];
