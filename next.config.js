@@ -14,7 +14,8 @@ module.exports = {
             '/prediction': { page: '/prediction' },
             '/tonepattern': { page: '/tonepattern' },
             '/tonepatternwords': { page: '/tonepatternwords' },
-            '/kana': { page: '/kana' }
+            '/kana': { page: '/kana' },
+            '/hint': { page: '/hint' }
         };
     },
     assetPrefix: !debug ? '/keyin/' : ''

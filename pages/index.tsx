@@ -58,6 +58,11 @@ function Home() {
                     <a>kana</a>
                 </Link>
             </li>
+            <li>
+                <Link href="/hint">
+                    <a>hint</a>
+                </Link>
+            </li>
         </ul>
     );
 }
