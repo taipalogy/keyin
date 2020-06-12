@@ -1,6 +1,6 @@
 import { getSurfaceForms } from '../src/process';
 import { useState } from 'react';
-import { assimilateRegressiveLexical } from 'taipa';
+import { mutateFinalOfPrecedingSyllable } from 'taipa'
 
 function SurfaceFormPage() {
   const [input, setInput] = useState('');
@@ -18,7 +18,7 @@ function SurfaceFormPage() {
     'qutflatt',
   ];
 
-  const lx = assimilateRegressiveLexical(input);
+  const lx = mutateFinalOfPrecedingSyllable(input);
   const surfaceForm = getSurfaceForms(
     lx.word.literal,
     lx.getForms().length > 0 && lx.getForms()[0] ? lx.getForms()[0].literal : ''

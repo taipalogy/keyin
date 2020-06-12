@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import {
   tonalInflectionAnalyzer,
-  TonalCombiningForms,
   TonalLetterTags,
-  TonalCombiningMorpheme,
   TonalDesinenceInflection,
 } from 'taipa';
 

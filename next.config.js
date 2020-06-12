@@ -16,6 +16,9 @@ module.exports = {
       '/tonepatternwords': { page: '/tonepatternwords' },
       '/kana': { page: '/kana' },
       '/hint': { page: '/hint' },
+      '/taikana': { page: '/taikana' },
+      '/daizjitt': { page: '/daizjitt' },
+      '/jittwdaix': { page: '/jittwdaix' },
     };
   },
   assetPrefix: !debug ? '/keyin/' : '',

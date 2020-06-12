@@ -63,6 +63,21 @@ function Home() {
           <a>hint</a>
         </Link>
       </li>
+      <li>
+        <Link href="/taikana">
+          <a>taiwanese kana</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/daizjitt">
+          <a>臺日</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/jittwdaix">
+          <a>日臺</a>
+        </Link>
+      </li>
     </ul>
   );
 }

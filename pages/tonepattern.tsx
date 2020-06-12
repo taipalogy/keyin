@@ -3,7 +3,6 @@ import {
   tonalInflectionAnalyzer,
   TonalCombiningForms,
   TonalLetterTags,
-  TonalCombiningMorpheme,
 } from 'taipa';
 
 function TonePatternPage() {

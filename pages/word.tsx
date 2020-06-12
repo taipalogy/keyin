@@ -9,7 +9,6 @@ import {
   getInflectionalSuffixes,
   getStems,
   getSoundSequences,
-  itemize,
 } from '../src/process';
 
 function WordPage() {
