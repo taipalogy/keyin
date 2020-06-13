@@ -1,5 +1,5 @@
 
-function KanaPage() {
+function JittwdaixPage() {
 
   return (
     <div>
@@ -14,4 +14,4 @@ function KanaPage() {
   );
 }
 
-export default KanaPage;
+export default JittwdaixPage;

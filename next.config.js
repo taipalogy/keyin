@@ -19,6 +19,7 @@ module.exports = {
       '/taikana': { page: '/taikana' },
       '/daizjitt': { page: '/daizjitt' },
       '/jittwdaix': { page: '/jittwdaix' },
+      '/qoaxay': { page: '/qoaxay' },
     };
   },
   assetPrefix: !debug ? '/keyin/' : '',

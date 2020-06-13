@@ -78,6 +78,11 @@ function Home() {
           <a>日臺</a>
         </Link>
       </li>
+      <li>
+        <Link href="/qoaxay">
+          <a>歌仔</a>
+        </Link>
+      </li>
     </ul>
   );
 }
