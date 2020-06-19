@@ -83,6 +83,11 @@ function Home() {
           <a>歌仔</a>
         </Link>
       </li>
+      <li>
+        <Link href="/taikanakana">
+          <a>taiwanese kana and kana</a>
+        </Link>
+      </li>
     </ul>
   );
 }
