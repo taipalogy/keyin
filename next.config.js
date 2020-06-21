@@ -20,7 +20,7 @@ module.exports = {
       '/daizjitt': { page: '/daizjitt' },
       '/jittwdaix': { page: '/jittwdaix' },
       '/qoaxay': { page: '/qoaxay' },
-      '/taikanakana': { page: '/taikanakana' },
+      '/tokenizer': { page: '/tokenizer' },
     };
   },
   assetPrefix: !debug ? '/keyin/' : '',
