@@ -15,7 +15,7 @@ let movingForward: boolean = true; // moving backward when false
 // the current index and the next one are the boundary of a token
 const indices: number[] = [];
 
-function TokenizerPage() {
+function InputMethodPage() {
   const [input, setInput] = useState('');
 
   const cli = new Client();
@@ -24,7 +24,7 @@ function TokenizerPage() {
   const taKana = cli.processKana(input);
   const kanaSeqs = taKana.blockSequences.filter(x => x.length > 0);
 
-  const tokenized: Array<string[]> = new Array();
+  const delimited: Array<string[]> = new Array();
 
   const letters = graphAnalyzeTonal(input).map(
     x => x.letter && x.letter.literal
@@ -106,14 +106,14 @@ function TokenizerPage() {
     for (let i = 0, j = 1; j < indices.length; i++, j++) {
       const syl = cli.processTonal(input.slice(indices[i], indices[j]))
         .blockSequences;
-      tokenized.push(syl);
+      delimited.push(syl);
     }
     if (input.length - indices[indices.length - 1] > 0) {
       // the last syllable, if available
       const syl = cli.processTonal(
         input.slice(indices[indices.length - 1], input.length)
       ).blockSequences;
-      tokenized.push(syl);
+      delimited.push(syl);
     }
   }
 
@@ -123,19 +123,19 @@ function TokenizerPage() {
 
   return (
     <div>
-      羅馬字个 tonkenizer
+      輸入法
       <label>
         <br />
         <input type="text" value={input} onChange={handleChange} />
       </label>
       {taikanaSeqs.map(x => (
-        <li> {x + ' <-taikana'} </li>
+        <li> {x + '(taikana)'} </li>
       ))}
       {kanaSeqs.map(x => (
-        <li> {x + ' <-kana'} </li>
+        <li> {x + ' (kana)'} </li>
       ))}
-      {tokenized.map(x => (
-        <li> {x + '<-tokenized'} </li>
+      {delimited.map(x => (
+        <li> {x + '(delimited)'} </li>
       ))}
       {/* <li>
         indices:
@@ -157,4 +157,4 @@ function TokenizerPage() {
   );
 }
 
-export default TokenizerPage;
+export default InputMethodPage;
