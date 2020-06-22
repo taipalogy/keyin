@@ -137,7 +137,7 @@ function TokenizerPage() {
       {tokenized.map(x => (
         <li> {x + '<-tokenized'} </li>
       ))}
-      <li>
+      {/* <li>
         indices:
         {indices.map(x => x.toString()).join(',')}
       </li>
@@ -152,7 +152,7 @@ function TokenizerPage() {
       <li>characters: {characters.join(', ')}</li>
       <li>letters: {letters.join(', ')}</li>
       <li>last letters: {letters[letters.length - 1]}</li>
-      <li>soundSeqs: {soundSeqs}</li>
+      <li>soundSeqs: {soundSeqs}</li> */}
     </div>
   );
 }
