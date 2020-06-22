@@ -6,11 +6,13 @@ import {
 } from 'taipa/lib/tonal/version2';
 import { useState } from 'react';
 
-let previousLetter: string = '';
+let deletedLetter: string = '';
 let previousLength: number = 0;
-// let movingBackward: boolean = false;
+let precedingLetters: string[] = [];
+let precedingLetter: string = '';
+let movingForward: boolean = true; // moving backward when false
 
-// the current index and the next one form a token
+// the current index and the next one are the boundary of a token
 const indices: number[] = [];
 
 function TokenizerPage() {
@@ -36,37 +38,37 @@ function TokenizerPage() {
 
   // lastLetter is set before previousLetter
   const lastLetter = letters[letters.length - 1];
-  const tmpPreviousLetter = previousLetter; // for debugging, logging
 
-  // if (previousLength > input.length) {
-  //   movingBackward = true;
-  // } else if (previousLength < input.length) {
-  //   movingBackward = false;
-  // }
+  if (previousLength > input.length) {
+    movingForward = false;
+    precedingLetters.pop();
+  } else if (previousLength < input.length) {
+    movingForward = true;
+    precedingLetters.push(lastLetter);
+  }
+  previousLength = input.length;
+
+  precedingLetter = precedingLetters[precedingLetters.length - 2]; // for debugging, logging
 
   let sliced;
-  if (initialSounds.includes(lastLetter)) {
-    if (
-      initialSounds.includes(lastLetter) &&
-      initialSounds.includes(previousLetter)
-    ) {
+  if (initialSounds.includes(lastLetter) && movingForward == true) {
+    if (initialSounds.includes(precedingLetter)) {
       if (
         lastLetter === TonalLetterTags.ch &&
-        previousLetter === TonalLetterTags.c
+        precedingLetter === TonalLetterTags.c
       ) {
         indices.pop();
         sliced = input.slice(0, characters.length - 2);
         if (!indices.includes(input.length - 2))
           indices.push(characters.length - 2);
       } else if (
-        previousLetter === TonalLetterTags.ng &&
-        initialSounds.includes(lastLetter)
+        precedingLetter === TonalLetterTags.ng &&
+        initialSounds.includes(lastLetter) &&
+        movingForward == true
       ) {
         indices.push(characters.length - 1);
       }
     } else {
-      // } else if (!medialSounds.includes(previousLetter) && !movingBackward) {
-      // when moving forward
       // if the previous letter is not an medial
       sliced = input.slice(0, characters.length - 1);
       if (!indices.includes(input.length - 1))
@@ -74,29 +76,23 @@ function TokenizerPage() {
     }
   } else if (
     nasalizationSounds.includes(lastLetter) &&
-    previousLetter === TonalLetterTags.n
+    precedingLetter === TonalLetterTags.n
   ) {
     // when an n followed by another n.
     indices.pop();
-  } else if (
-    previousLength > input.length &&
-    initialSounds.includes(previousLetter)
-  ) {
+  } else if (movingForward == false && initialSounds.includes(deletedLetter)) {
     // moving backward and removed the pushed index
     indices.pop();
   } else if (
     lastLetter === TonalLetterTags.tt &&
-    (previousLetter === TonalLetterTags.t ||
-      medialSounds.includes(previousLetter))
+    (precedingLetter === TonalLetterTags.t ||
+      medialSounds.includes(precedingLetter))
   ) {
     // tt is not an initial
     indices.pop();
   }
 
-  // previousLetter could be the preceding letter when moving forward or the following letter when moving backward
-  // previousLetter is set later than lastLetter
-  previousLetter = lastLetter;
-  previousLength = input.length;
+  deletedLetter = lastLetter;
 
   if (indices.length > 0) {
     for (let i = 0, j = 1; j < indices.length; i++, j++) {
@@ -119,7 +115,7 @@ function TokenizerPage() {
 
   return (
     <div>
-      拍羅馬字, 輸出台灣語假名甲假名
+      羅馬字个 tonkenizer
       <label>
         <br />
         <input type="text" value={input} onChange={handleChange} />
@@ -138,7 +134,7 @@ function TokenizerPage() {
         {indices.map(x => x.toString()).join(',')}
       </li>
       <li>number of initial consonants: {indices.length}</li>
-      <li>previousLetter: {tmpPreviousLetter}</li>
+      <li>precedingLetter: {precedingLetter}</li>
       <li>lettersLength: {letters.length}</li>
       <li>soundSeqsLength: {soundSeqs.length}</li>
       <li>
@@ -147,6 +143,7 @@ function TokenizerPage() {
       </li>
       <li>characters: {characters.join(', ')}</li>
       <li>letters: {letters.join(', ')}</li>
+      <li>last letters: {letters[letters.length - 1]}</li>
       <li>soundSeqs: {soundSeqs}</li> */}
     </div>
   );
