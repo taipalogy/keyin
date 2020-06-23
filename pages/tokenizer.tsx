@@ -15,7 +15,7 @@ let movingForward: boolean = true; // moving backward when false
 // the current index and the next one are the boundary of a token
 const indices: number[] = [];
 
-function InputMethodPage() {
+function TokenizerPage() {
   const [input, setInput] = useState('');
 
   const cli = new Client();
@@ -123,7 +123,7 @@ function InputMethodPage() {
 
   return (
     <div>
-      輸入法
+      羅馬字 tokenizer
       <label>
         <br />
         <input type="text" value={input} onChange={handleChange} />
@@ -157,4 +157,4 @@ function InputMethodPage() {
   );
 }
 
-export default InputMethodPage;
+export default TokenizerPage;

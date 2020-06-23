@@ -84,8 +84,8 @@ function Home() {
         </Link>
       </li>
       <li>
-        <Link href="/inputmethod">
-          <a>input method</a>
+        <Link href="/tokenizer">
+          <a>羅馬字 tokenizer</a>
         </Link>
       </li>
     </ul>
