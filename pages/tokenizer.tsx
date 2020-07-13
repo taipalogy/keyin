@@ -106,14 +106,14 @@ function TokenizerPage() {
     for (let i = 0, j = 1; j < indices.length; i++, j++) {
       const syl = cli.processTonal(input.slice(indices[i], indices[j]))
         .blockSequences;
-      delimited.push(syl);
+      if(syl.length > 0) delimited.push(syl);
     }
     if (input.length - indices[indices.length - 1] > 0) {
       // the last syllable, if available
       const syl = cli.processTonal(
         input.slice(indices[indices.length - 1], input.length)
       ).blockSequences;
-      delimited.push(syl);
+      if(syl.length > 0) delimited.push(syl);
     }
   }
 
@@ -152,7 +152,8 @@ function TokenizerPage() {
       <li>characters: {characters.join(', ')}</li>
       <li>letters: {letters.join(', ')}</li>
       <li>last letters: {letters[letters.length - 1]}</li>
-      <li>soundSeqs: {soundSeqs}</li> */}
+      <li>soundSeqs: {soundSeqs}</li>
+      <li>len of delimited: {delimited.length}</li> */}
     </div>
   );
 }
