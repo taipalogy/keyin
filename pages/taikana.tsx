@@ -1,5 +1,6 @@
-import { Client } from 'taipa';
+import { Client, TonalLetterTags } from 'taipa';
 import { useState } from 'react';
+import { Table } from 'semantic-ui-react';
 
 function TaiKanaPage() {
   const [input, setInput] = useState('');
@@ -32,6 +33,40 @@ function TaiKanaPage() {
         <li> {x} </li>
       ))}
       <li>{listOfSeqs.map(y => y[0]).join('')}</li>
+      <Table celled striped collapsing>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell colSpan="9">中聲</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>{TonalLetterTags.a.toString()}</Table.Cell>
+            <Table.Cell>{TonalLetterTags.e.toString()}</Table.Cell>
+            <Table.Cell>{TonalLetterTags.i.toString()}</Table.Cell>
+            <Table.Cell>{TonalLetterTags.o.toString()}</Table.Cell>
+            <Table.Cell>{TonalLetterTags.u.toString()}</Table.Cell>
+            <Table.Cell>{TonalLetterTags.ur.toString()}</Table.Cell>
+            <Table.Cell>{TonalLetterTags.or.toString()}</Table.Cell>
+            <Table.Cell>{TonalLetterTags.ir.toString()}</Table.Cell>
+            <Table.Cell>{TonalLetterTags.er.toString()}</Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+      <Table celled striped collapsing>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>鼻音化</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>{TonalLetterTags.nn.toString()}</Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
     </div>
   );
 }
