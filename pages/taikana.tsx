@@ -29,9 +29,12 @@ function TaiKanaPage() {
         <br />
         <input type="text" value={input} onChange={handleChange} />
       </label>
+      <br />
       {listOfSeqs.map(x => (
-        <li> {x} </li>
+        <li> {x.length == 1 ? x : x[0] + ', ' + x[1]} </li>
       ))}
+      {/* <li>{listOfSeqs.join(', ')}</li> */}
+      <br />
       <li>{listOfSeqs.map(y => y[0]).join('')}</li>
       <Table celled striped collapsing>
         <Table.Header>
@@ -67,7 +70,7 @@ function TaiKanaPage() {
           <Table.Row>
             <Table.Cell>阿</Table.Cell>
             <Table.Cell>米</Table.Cell>
-            <Table.Cell></Table.Cell>
+            <Table.Cell>十个</Table.Cell>
             <Table.Cell>市</Table.Cell>
             <Table.Cell>志</Table.Cell>
             <Table.Cell>池</Table.Cell>
@@ -75,7 +78,7 @@ function TaiKanaPage() {
             <Table.Cell></Table.Cell>
             <Table.Cell></Table.Cell>
             <Table.Cell>牛</Table.Cell>
-            <Table.Cell></Table.Cell>
+            <Table.Cell>六个</Table.Cell>
             <Table.Cell>火</Table.Cell>
             <Table.Cell>頁</Table.Cell>
             <Table.Cell>衣</Table.Cell>
@@ -85,7 +88,7 @@ function TaiKanaPage() {
             <Table.Cell>去</Table.Cell>
             <Table.Cell>目</Table.Cell>
             <Table.Cell>女</Table.Cell>
-            <Table.Cell></Table.Cell>
+            <Table.Cell>一个</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>{TonalLetterTags.m.toString()}</Table.Cell>

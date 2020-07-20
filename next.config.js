@@ -21,6 +21,7 @@ module.exports = {
       '/jittwdaix': { page: '/jittwdaix' },
       '/qoaxay': { page: '/qoaxay' },
       '/tokenizer': { page: '/tokenizer' },
+      '/widgets': { page: '/widgets' },
     };
   },
   assetPrefix: !debug ? '/keyin/' : '',

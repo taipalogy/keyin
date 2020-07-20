@@ -88,6 +88,11 @@ function Home() {
           <a>羅馬字 tokenizer</a>
         </Link>
       </li>
+      <li>
+        <Link href="widgets">
+          <a>widgets</a>
+        </Link>
+      </li>
     </ul>
   );
 }
