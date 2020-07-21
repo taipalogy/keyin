@@ -49,7 +49,8 @@ function WidgetsPage() {
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              {hp.targets[hp.idx]}, {hp.tails[hp.idx]}
+              <text style={{ color: 'red' }}>{hp.targets[hp.idx]}</text>
+              {hp.tails[hp.idx]}
             </Table.Cell>
           </Table.Row>
           <Table.Row>
