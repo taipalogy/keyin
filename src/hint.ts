@@ -1,15 +1,23 @@
 import { Client, TonalSoundTags, graphAnalyzeTonal } from 'taipa';
 
 /*
- * initial state: target + tail
- * typing: head + target + tail
- * final state: n/a
+ * initial state:      target + tail
+ * typing:      head + target + tail
+ * before final state: target
+ * final state:     no target
  */
 
 class Hint {
   hint: string = '';
   sounds: Array<string> = new Array();
   namesOfSound: Array<string> = new Array();
+}
+
+export class Highlight {
+  posTarget: number = 0; // accumulated steps
+  target: string = ''; // where you are up to
+  tail: string = ''; // remainings
+  hint: Hint = new Hint();
 }
 
 export class Entry {
@@ -153,10 +161,11 @@ export class HintProcessor {
         this.tails[idx] = this.literals[idx].slice(idxTailBegin);
       }
     }
-    return {
-      posTarget: idxTarget,
-      target: this.targets[idx],
-      tail: this.tails[idx],
-    };
+    const hl = new Highlight();
+    hl.posTarget = idxTarget;
+    hl.target = this.targets[idx];
+    hl.tail = this.tails[idx];
+    hl.hint = this.hints[idx];
+    return hl;
   }
 }
