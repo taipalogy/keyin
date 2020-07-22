@@ -46,7 +46,7 @@ const namesInHanji = new Map()
   .set('freeTonal', '聲調')
   .set('checkedTonal', '聲調');
 
-export class HintProcessor {
+export class Highlighter {
   tails: string[] = [];
   literals: string[] = [];
   entries: Entry[] = [];

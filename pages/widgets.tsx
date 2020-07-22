@@ -1,23 +1,26 @@
 import { Client } from 'taipa';
-import { useState, useReducer } from 'react';
+import { useReducer } from 'react';
 import { Table } from 'semantic-ui-react';
-import { HintProcessor, Group, Entry, Highlight } from '../src/hint';
+import { Highlighter, Group, Entry, Highlight } from '../src/highlight';
 
 const words = [
-  { hanyjiz: '粽', lurzmafjiz: 'changw' },
-  { hanyjiz: '欉', lurzmafjiz: 'changx' },
+  { index: 0, hanyjiz: '粽', lurzmafjiz: 'changw' },
+  { index: 1, hanyjiz: '欉', lurzmafjiz: 'changx' },
 ];
 
 function WidgetsPage() {
-  const [inputZero, setInputXXX] = useState('');
-  const [inputOne, setInputOne] = useState('');
+  const [input, setInput] = useReducer(
+    (state: any, newState: any) => ({ ...state, ...newState }),
+    {
+      inputZero: '',
+      inputOne: '',
+    }
+  );
 
   const handleChange = function (e: React.ChangeEvent<HTMLInputElement>) {
-    setInputXXX(e.target.value);
-  };
-
-  const handleChangeOne = function (e: React.ChangeEvent<HTMLInputElement>) {
-    setInputOne(e.target.value);
+    const name = e.target.name;
+    const value = e.target.value;
+    setInput({ [name]: value });
   };
 
   const cli = new Client();
@@ -27,11 +30,10 @@ function WidgetsPage() {
     new Entry(words[0].lurzmafjiz),
     new Entry(words[1].lurzmafjiz),
   ];
-  const hp = new HintProcessor(group);
-  const idxWordZero = 0;
-  const idxWordOne = 1;
-  const hlZero: Highlight = hp.getTarget(inputZero, idxWordZero);
-  const hlOne: Highlight = hp.getTarget(inputOne, idxWordOne);
+
+  const hlt = new Highlighter(group);
+  const hlZero: Highlight = hlt.getTarget(input.inputZero, words[0].index);
+  const hlOne: Highlight = hlt.getTarget(input.inputOne, words[1].index);
 
   return (
     <div>
@@ -40,22 +42,22 @@ function WidgetsPage() {
       <Table celled striped collapsing>
         <Table.Body>
           <Table.Row>
-            <Table.Cell>{words[idxWordZero].hanyjiz}</Table.Cell>
-            <Table.Cell>{words[idxWordOne].hanyjiz}</Table.Cell>
+            <Table.Cell>{words[words[0].index].hanyjiz}</Table.Cell>
+            <Table.Cell>{words[words[1].index].hanyjiz}</Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.Cell>{words[idxWordZero].lurzmafjiz}</Table.Cell>
-            <Table.Cell>{words[idxWordOne].lurzmafjiz}</Table.Cell>
+            <Table.Cell>{words[words[0].index].lurzmafjiz}</Table.Cell>
+            <Table.Cell>{words[words[1].index].lurzmafjiz}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               {cli
-                .processTonal(words[idxWordZero].lurzmafjiz)
+                .processTonal(words[words[0].index].lurzmafjiz)
                 .blockSequences.filter(it => it.length > 0)}
             </Table.Cell>
             <Table.Cell>
               {cli
-                .processTonal(words[idxWordOne].lurzmafjiz)
+                .processTonal(words[words[1].index].lurzmafjiz)
                 .blockSequences.filter(it => it.length > 0)}
             </Table.Cell>
           </Table.Row>
@@ -66,7 +68,12 @@ function WidgetsPage() {
               <br />
               {hlZero.hint.hint}
               <br />
-              <input type="text" value={inputZero} onChange={handleChange} />
+              <input
+                type="text"
+                value={input.inputZero}
+                name="inputZero"
+                onChange={handleChange}
+              />
             </Table.Cell>
             <Table.Cell>
               <text style={{ color: 'red' }}>{hlOne.target}</text>
@@ -74,7 +81,12 @@ function WidgetsPage() {
               <br />
               {hlOne.hint.hint}
               <br />
-              <input type="text" value={inputOne} onChange={handleChangeOne} />
+              <input
+                type="text"
+                value={input.inputOne}
+                name="inputOne"
+                onChange={handleChange}
+              />
             </Table.Cell>
           </Table.Row>
         </Table.Body>
