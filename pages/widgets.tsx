@@ -9,7 +9,7 @@ const words = [
 ];
 
 function WidgetsPage() {
-  const [input, setInput] = useState('');
+  const [inputOne, setInput] = useState('');
 
   const handleChange = function (e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
@@ -23,39 +23,38 @@ function WidgetsPage() {
     new Entry(words[1].lurzmafjiz),
   ];
   const hp = new HintProcessor(group);
-  const idxWord = 1;
-  hp.idx = idxWord;
-  const len = hp.getCurrentLen(input);
+  const idxWordOne = 0;
+  const { posTarget, target, tail } = hp.getTarget(inputOne, idxWordOne);
 
   return (
     <div>
       widgets
       <br />
-      {len}
+      {posTarget}
       <Table celled striped collapsing>
         <Table.Body>
           <Table.Row>
-            <Table.Cell>{words[idxWord].hanyjiz}</Table.Cell>
+            <Table.Cell>{words[idxWordOne].hanyjiz}</Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.Cell>{words[idxWord].lurzmafjiz}</Table.Cell>
+            <Table.Cell>{words[idxWordOne].lurzmafjiz}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               {cli
-                .processTonal(words[idxWord].lurzmafjiz)
+                .processTonal(words[idxWordOne].lurzmafjiz)
                 .blockSequences.filter(it => it.length > 0)}
             </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              <text style={{ color: 'red' }}>{hp.targets[hp.idx]}</text>
-              {hp.tails[hp.idx]}
+              <text style={{ color: 'red' }}>{target}</text>
+              {tail}
             </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              <input type="text" value={input} onChange={handleChange} />
+              <input type="text" value={inputOne} onChange={handleChange} />
             </Table.Cell>
           </Table.Row>
         </Table.Body>

@@ -1,5 +1,11 @@
 import { Client, TonalSoundTags, graphAnalyzeTonal } from 'taipa';
 
+/*
+ * initial state: target + tail
+ * typing: head + target + tail
+ * final state: n/a
+ */
+
 class Hint {
   hint: string = '';
   sounds: Array<string> = new Array();
@@ -38,7 +44,6 @@ export class HintProcessor {
   entries: Entry[] = [];
   hints: Array<Hint> = new Array();
   targets: string[] = [];
-  idx = 0;
 
   constructor(private group: Group) {
     this.getGroup();
@@ -66,7 +71,7 @@ export class HintProcessor {
     }
   }
 
-  setHintAndHighlight(index: number, n: number) {
+  setHintAndTarget(index: number, n: number) {
     if (
       this.hints[index].namesOfSound[n] === TonalSoundTags.freeTonal ||
       this.hints[index].namesOfSound[n] === TonalSoundTags.checkedTonal
@@ -89,44 +94,42 @@ export class HintProcessor {
     this.targets[index] = this.hints[index].sounds[n];
   }
 
-  getCurrentLen(strInput: string) {
+  getTarget(strInput: string, idx: number) {
     let idxTarget: number = 0;
     if (
       strInput.length > 0 &&
-      this.literals[this.idx].search(new RegExp(strInput)) == 0
+      this.literals[idx].search(new RegExp(strInput)) == 0
     ) {
-      for (let j = 0; j < this.hints[this.idx].sounds.length; j++) {
-        idxTarget += this.hints[this.idx].sounds[j].length;
+      for (let j = 0; j < this.hints[idx].sounds.length; j++) {
+        idxTarget += this.hints[idx].sounds[j].length;
         if (idxTarget >= strInput.length) {
           if (idxTarget > strInput.length) {
-            this.setHintAndHighlight(this.idx, j);
+            this.setHintAndTarget(idx, j);
           } else {
-            if (j + 1 == this.hints[this.idx].sounds.length) {
+            if (j + 1 == this.hints[idx].sounds.length) {
               // last sound
-              this.hints[this.idx].hint = '';
-              this.targets[this.idx] = '';
+              this.hints[idx].hint = '';
+              this.targets[idx] = '';
             } else {
-              this.setHintAndHighlight(this.idx, j + 1);
+              this.setHintAndTarget(idx, j + 1);
             }
           }
           break;
         }
       }
     } else if (strInput.length == 0) {
-      this.setHintAndHighlight(this.idx, 0);
+      this.setHintAndTarget(idx, 0);
     }
 
     if (idxTarget == strInput.length) {
-      let targetPlusTail = this.literals[this.idx].slice(strInput.length);
-      if (this.literals[this.idx].search(new RegExp(strInput)) == 0) {
-        if (this.targets[this.idx] != undefined) {
-          this.tails[this.idx] = targetPlusTail.slice(
-            this.targets[this.idx].length
-          );
+      let targetPlusTail = this.literals[idx].slice(strInput.length);
+      if (this.literals[idx].search(new RegExp(strInput)) == 0) {
+        if (this.targets[idx] != undefined) {
+          this.tails[idx] = targetPlusTail.slice(this.targets[idx].length);
         }
       }
     } else if (idxTarget > strInput.length) {
-      const gsLiteral = graphAnalyzeTonal(this.literals[this.idx]);
+      const gsLiteral = graphAnalyzeTonal(this.literals[idx]);
       const gsInput = graphAnalyzeTonal(strInput);
       let idxSlicing: number = 0;
       for (let i = 0; i < gsLiteral.length; i++) {
@@ -147,9 +150,13 @@ export class HintProcessor {
           ? lensSlicedGsLiteral.reduce((prev, curr) => prev + curr)
           : 0;
       if (idxSlicing) {
-        this.tails[this.idx] = this.literals[this.idx].slice(idxTailBegin);
+        this.tails[idx] = this.literals[idx].slice(idxTailBegin);
       }
     }
-    return idxTarget;
+    return {
+      posTarget: idxTarget,
+      target: this.targets[idx],
+      tail: this.tails[idx],
+    };
   }
 }
