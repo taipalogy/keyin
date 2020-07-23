@@ -5,11 +5,13 @@ import { Highlighter, Group, Entry, Highlight } from '../src/highlight';
 
 const wordsChang = [
   { index: 0, hanyjiz: '棕', lurzmafjiz: 'chang' },
-  { index: 1, hanyjiz: '粽(葉)', lurzmafjiz: 'changy' },
+  { index: 1, hanyjiz: '粽ハァ⤇', lurzmafjiz: 'changy' },
   { index: 2, hanyjiz: '粽', lurzmafjiz: 'changw' },
-  { index: 3, hanyjiz: '欉', lurzmafjiz: 'changx' },
-  { index: 4, hanyjiz: '棕(簑)', lurzmafjiz: 'changz' },
-  { index: 5, hanyjiz: '昨昏', lurzmafjiz: 'changxx' },
+  { index: 3, hanyjiz: 'サ̅ㇰ⤆', lurzmafjiz: 'chak' },
+  { index: 4, hanyjiz: '欉', lurzmafjiz: 'changx' },
+  { index: 5, hanyjiz: '棕簑', lurzmafjiz: 'changz' },
+  { index: 6, hanyjiz: 'サ̅ㇰ⤇', lurzmafjiz: 'chakk' },
+  { index: 7, hanyjiz: '昨昏', lurzmafjiz: 'changxx' },
 ];
 
 const wordsItfditt = [
@@ -36,6 +38,8 @@ function WidgetsPage() {
       inputThree: '',
       inputFour: '',
       inputFive: '',
+      inputSix: '',
+      inputSeven: '',
 
       inputTen: '',
       inputEleven: '',
@@ -67,6 +71,8 @@ function WidgetsPage() {
     new Entry(wordsChang[3].lurzmafjiz),
     new Entry(wordsChang[4].lurzmafjiz),
     new Entry(wordsChang[5].lurzmafjiz),
+    new Entry(wordsChang[6].lurzmafjiz),
+    new Entry(wordsChang[7].lurzmafjiz),
   ];
 
   const hltChang = new Highlighter(groupChang);
@@ -86,7 +92,6 @@ function WidgetsPage() {
     input.inputThree,
     wordsChang[3].index
   );
-
   const hltChangFour: Highlight = hltChang.getTarget(
     input.inputFour,
     wordsChang[4].index
@@ -94,6 +99,14 @@ function WidgetsPage() {
   const hltChangFive: Highlight = hltChang.getTarget(
     input.inputFive,
     wordsChang[5].index
+  );
+  const hltChangSix: Highlight = hltChang.getTarget(
+    input.inputSix,
+    wordsChang[6].index
+  );
+  const hltChangSeven: Highlight = hltChang.getTarget(
+    input.inputSeven,
+    wordsChang[7].index
   );
 
   const groupItfditt = new Group();
@@ -130,6 +143,8 @@ function WidgetsPage() {
             <Table.Cell>{wordsChang[wordsChang[3].index].hanyjiz}</Table.Cell>
             <Table.Cell>{wordsChang[wordsChang[4].index].hanyjiz}</Table.Cell>
             <Table.Cell>{wordsChang[wordsChang[5].index].hanyjiz}</Table.Cell>
+            <Table.Cell>{wordsChang[wordsChang[6].index].hanyjiz}</Table.Cell>
+            <Table.Cell>{wordsChang[wordsChang[7].index].hanyjiz}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
@@ -150,6 +165,12 @@ function WidgetsPage() {
             <Table.Cell>
               {wordsChang[wordsChang[5].index].lurzmafjiz}
             </Table.Cell>
+            <Table.Cell>
+              {wordsChang[wordsChang[6].index].lurzmafjiz}
+            </Table.Cell>
+            <Table.Cell>
+              {wordsChang[wordsChang[7].index].lurzmafjiz}
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
@@ -168,9 +189,11 @@ function WidgetsPage() {
                 .blockSequences.filter(it => it.length > 0)}
             </Table.Cell>
             <Table.Cell>
-              {cli
-                .processTonal(wordsChang[wordsChang[3].index].lurzmafjiz)
-                .blockSequences.filter(it => it.length > 0)}
+              {
+                cli
+                  .processTonal(wordsChang[wordsChang[3].index].lurzmafjiz)
+                  .blockSequences.filter(it => it.length > 0)[1]
+              }
             </Table.Cell>
             <Table.Cell>
               {cli
@@ -180,6 +203,16 @@ function WidgetsPage() {
             <Table.Cell>
               {cli
                 .processTonal(wordsChang[wordsChang[5].index].lurzmafjiz)
+                .blockSequences.filter(it => it.length > 0)}
+            </Table.Cell>
+            <Table.Cell>
+              {cli
+                .processTonal(wordsChang[wordsChang[6].index].lurzmafjiz)
+                .blockSequences.filter(it => it.length > 0)}
+            </Table.Cell>
+            <Table.Cell>
+              {cli
+                .processTonal(wordsChang[wordsChang[7].index].lurzmafjiz)
                 .blockSequences.filter(it => it.length > 0)}
             </Table.Cell>
           </Table.Row>
@@ -259,6 +292,32 @@ function WidgetsPage() {
                 type="text"
                 value={input.inputFive}
                 name="inputFive"
+                onChange={handleChangeChang}
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <text style={{ color: 'red' }}>{hltChangSix.target}</text>
+              {hltChangSix.tail}
+              <br />
+              {hltChangSix.hint.hint}
+              <br />
+              <input
+                type="text"
+                value={input.inputSix}
+                name="inputSix"
+                onChange={handleChangeChang}
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <text style={{ color: 'red' }}>{hltChangSeven.target}</text>
+              {hltChangSeven.tail}
+              <br />
+              {hltChangSeven.hint.hint}
+              <br />
+              <input
+                type="text"
+                value={input.inputSeven}
+                name="inputSeven"
                 onChange={handleChangeChang}
               />
             </Table.Cell>
