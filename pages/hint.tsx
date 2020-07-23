@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HintProcessor, Group, Entry } from '../src/hint';
+import { Highlighter, Group, Entry } from '../src/highlight';
 
 function HintPage() {
   const [input, setInput] = useState('');
@@ -10,8 +10,8 @@ function HintPage() {
 
   const group = new Group();
   group.entries = [new Entry('hoefcia'), new Entry('hefcia')];
-  const hp = new HintProcessor(group);
-  const len = hp.getCurrentLen(input);
+  const hp = new Highlighter(group);
+  const hlt = hp.getTarget(input, 0);
 
   return (
     <div>
@@ -20,13 +20,13 @@ function HintPage() {
         <br />
         <input type="text" list="words" value={input} onChange={handleChange} />
       </label>
-      {hp.targets[hp.idx]}, {hp.tails[hp.idx]}
+      {hp.targets[0]}, {hp.tails[0]}
       <br />
-      {hp.literals[hp.idx]}
+      {hp.literals[0]}
       <br />
-      {len}
+      {hlt.posTarget}
       <br />
-      {len < hp.literals[hp.idx].length ? hp.hints[hp.idx].hint : ''}
+      {hlt.posTarget < hp.literals[0].length ? hp.hints[0].hint : ''}
     </div>
   );
 }
