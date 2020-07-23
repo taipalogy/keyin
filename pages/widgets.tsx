@@ -7,7 +7,7 @@ const wordsChang = [
   { index: 0, hanyjiz: '棕', lurzmafjiz: 'chang' },
   { index: 1, hanyjiz: '粽ハァ⤇', lurzmafjiz: 'changy' },
   { index: 2, hanyjiz: '粽', lurzmafjiz: 'changw' },
-  { index: 3, hanyjiz: 'サ̅ㇰ⤆', lurzmafjiz: 'chak' },
+  { index: 3, hanyjiz: 'サ̅ㇰ', lurzmafjiz: 'chak' },
   { index: 4, hanyjiz: '欉', lurzmafjiz: 'changx' },
   { index: 5, hanyjiz: '棕簑', lurzmafjiz: 'changz' },
   { index: 6, hanyjiz: 'サ̅ㇰ⤇', lurzmafjiz: 'chakk' },
@@ -24,9 +24,10 @@ const wordsItfditt = [
   { index: 2, hanyjiz: '', lurzmafjiz: 'itfditf' },
 ];
 
-// const wordsMizmix = [
-//   { index: 20, hanyjiz: '綿綿', lurzmafjiz: ['mizmix', 'mixxmix'] },
-// ];
+const wordsMizmix = [
+  { index: 0, hanyjiz: '綿綿', lurzmafjiz: 'mizmix' },
+  { index: 1, hanyjiz: '', lurzmafjiz: 'mixxmix' },
+];
 
 function WidgetsPage() {
   const [input, setInput] = useReducer(
@@ -44,6 +45,9 @@ function WidgetsPage() {
       inputTen: '',
       inputEleven: '',
       inputTwelve: '',
+
+      inputTwenty: '',
+      inputTwentyOne: '',
     }
   );
 
@@ -56,6 +60,12 @@ function WidgetsPage() {
   const handleChangeItfditt = function (
     e: React.ChangeEvent<HTMLInputElement>
   ) {
+    const name = e.target.name;
+    const value = e.target.value;
+    setInput({ [name]: value });
+  };
+
+  const handleChangeMizmix = function (e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
     const value = e.target.value;
     setInput({ [name]: value });
@@ -130,10 +140,27 @@ function WidgetsPage() {
     wordsItfditt[2].index
   );
 
+  const groupMizmix = new Group();
+  groupMizmix.entries = [
+    new Entry(wordsMizmix[0].lurzmafjiz),
+    new Entry(wordsMizmix[1].lurzmafjiz),
+  ];
+
+  const hltMizmix = new Highlighter(groupMizmix);
+  const hltMizmixTwenty: Highlight = hltMizmix.getTarget(
+    input.inputTwenty,
+    wordsMizmix[0].index
+  );
+  const hltMizmixTwentyOne: Highlight = hltMizmix.getTarget(
+    input.inputTwentyOne,
+    wordsMizmix[1].index
+  );
+
   return (
     <div>
       widgets
       <br />
+      1.
       <Table celled striped collapsing>
         <Table.Body>
           <Table.Row>
@@ -325,6 +352,7 @@ function WidgetsPage() {
         </Table.Body>
       </Table>
       <br />
+      2.
       <Table celled striped collapsing>
         <Table.Body>
           <Table.Row>
@@ -376,6 +404,58 @@ function WidgetsPage() {
                 onChange={handleChangeItfditt}
               />
             </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+      <br />
+      3.
+      <Table celled striped collapsing>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>{wordsMizmix[wordsMizmix[0].index].hanyjiz}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>
+              <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
+              {hltMizmixTwenty.tail}
+              <br />
+              {hltMizmixTwenty.hint.hint}
+              <br />
+              <input
+                type="text"
+                value={input.inputTwenty}
+                name="inputTwenty"
+                onChange={handleChangeMizmix}
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
+              {hltMizmixTwentyOne.tail}
+              <br />
+              {hltMizmixTwentyOne.hint.hint}
+              <br />
+              <input
+                type="text"
+                value={input.inputTwentyOne}
+                name="inputTwentyOne"
+                onChange={handleChangeMizmix}
+              />
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+      <br />
+      4.
+      <Table celled striped collapsing>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>單語</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>danzgiy</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>タヌ⎸ギイ⎛</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
