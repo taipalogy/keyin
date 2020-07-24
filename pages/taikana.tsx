@@ -31,9 +31,16 @@ function TaiKanaPage() {
       </label>
       <br />
       {listOfSeqs.map(x => (
-        <li> {x.length == 1 ? x : x[0] + ', ' + x[1]} </li>
+        <li>
+          {x.length == 0
+            ? ''
+            : x.length == 1
+            ? x[0]
+            : x.length == 2
+            ? x[0] + ', ' + x[1]
+            : ''}
+        </li>
       ))}
-      {/* <li>{listOfSeqs.join(', ')}</li> */}
       <br />
       <li>{listOfSeqs.map(y => y[0]).join('')}</li>
       <Table celled striped collapsing>
