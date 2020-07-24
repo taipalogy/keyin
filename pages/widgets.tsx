@@ -1,9 +1,9 @@
 import { Client } from 'taipa';
 import { useReducer } from 'react';
 import { Table } from 'semantic-ui-react';
-import { Highlighter, Group, Entry, Highlight } from '../src/highlight';
+import { Highlighter, Entry, Highlight } from '../src/highlight';
 
-const wordsChang = [
+const wordsChang: Entry[] = [
   { index: 0, hanyjiz: '棕', lurzmafjiz: 'chang' },
   { index: 1, hanyjiz: '粽ハァ⤇', lurzmafjiz: 'changy' },
   { index: 2, hanyjiz: '粽', lurzmafjiz: 'changw' },
@@ -73,19 +73,7 @@ function WidgetsPage() {
 
   const cli = new Client();
 
-  const groupChang = new Group();
-  groupChang.entries = [
-    new Entry(wordsChang[0].lurzmafjiz),
-    new Entry(wordsChang[1].lurzmafjiz),
-    new Entry(wordsChang[2].lurzmafjiz),
-    new Entry(wordsChang[3].lurzmafjiz),
-    new Entry(wordsChang[4].lurzmafjiz),
-    new Entry(wordsChang[5].lurzmafjiz),
-    new Entry(wordsChang[6].lurzmafjiz),
-    new Entry(wordsChang[7].lurzmafjiz),
-  ];
-
-  const hltChang = new Highlighter(groupChang);
+  const hltChang = new Highlighter(wordsChang);
   const hltChangZero: Highlight = hltChang.getTarget(
     input.inputZero,
     wordsChang[0].index
@@ -119,14 +107,7 @@ function WidgetsPage() {
     wordsChang[7].index
   );
 
-  const groupItfditt = new Group();
-  groupItfditt.entries = [
-    new Entry(wordsItfditt[0].lurzmafjiz),
-    new Entry(wordsItfditt[1].lurzmafjiz),
-    new Entry(wordsItfditt[2].lurzmafjiz),
-  ];
-
-  const hltItfditt = new Highlighter(groupItfditt);
+  const hltItfditt = new Highlighter(wordsItfditt);
   const hltItfdittTen: Highlight = hltItfditt.getTarget(
     input.inputTen,
     wordsItfditt[0].index
@@ -140,13 +121,7 @@ function WidgetsPage() {
     wordsItfditt[2].index
   );
 
-  const groupMizmix = new Group();
-  groupMizmix.entries = [
-    new Entry(wordsMizmix[0].lurzmafjiz),
-    new Entry(wordsMizmix[1].lurzmafjiz),
-  ];
-
-  const hltMizmix = new Highlighter(groupMizmix);
+  const hltMizmix = new Highlighter(wordsMizmix);
   const hltMizmixTwenty: Highlight = hltMizmix.getTarget(
     input.inputTwenty,
     wordsMizmix[0].index

@@ -21,12 +21,9 @@ export class Highlight {
 }
 
 export class Entry {
-  constructor(public reading: string) {}
-}
-
-export class Group {
-  // a set of words
-  entries: Entry[] = [];
+  index: number = 0;
+  hanyjiz: string = '';
+  lurzmafjiz: string = '';
 }
 
 const tonalInHanji = new Map()
@@ -49,20 +46,17 @@ const namesInHanji = new Map()
 export class Highlighter {
   tails: string[] = [];
   literals: string[] = [];
-  entries: Entry[] = [];
   hints: Array<Hint> = new Array();
   targets: string[] = [];
 
-  constructor(private group: Group) {
+  constructor(private entries: Entry[]) {
     this.getGroup();
   }
 
   private getGroup(): void {
-    this.entries = this.group.entries;
-
     const clt = new Client();
-    for (let i = 0; i < this.group.entries.length; i++) {
-      const ta = clt.processTonal(this.group.entries[i].reading);
+    for (let i = 0; i < this.entries.length; i++) {
+      const ta = clt.processTonal(this.entries[i].lurzmafjiz);
       this.literals[i] = ta.word.literal;
       const h = new Hint();
       for (const e of ta.soundSequences) {

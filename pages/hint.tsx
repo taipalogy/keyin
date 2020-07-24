@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Highlighter, Group, Entry } from '../src/highlight';
+import { Highlighter } from '../src/highlight';
 
 function HintPage() {
   const [input, setInput] = useState('');
@@ -8,9 +8,11 @@ function HintPage() {
     setInput(e.target.value);
   };
 
-  const group = new Group();
-  group.entries = [new Entry('hoefcia'), new Entry('hefcia')];
-  const hp = new Highlighter(group);
+  const words = [
+    { index: 0, hanyjiz: '', lurzmafjiz: 'hoefcia' },
+    { index: 1, hanyjiz: '', lurzmafjiz: 'hefcia' },
+  ];
+  const hp = new Highlighter(words);
   const hlt = hp.getTarget(input, 0);
 
   return (
