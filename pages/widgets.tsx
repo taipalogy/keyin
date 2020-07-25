@@ -1,5 +1,5 @@
 import { Client } from 'taipa';
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import { Table } from 'semantic-ui-react';
 import { Highlighter, Entry, Highlight } from '../src/highlight';
 
@@ -29,6 +29,9 @@ const wordsMizmix = [
   { index: 1, hanyjiz: '', lurzmafjiz: 'mixxmix' },
 ];
 
+const sentence = ['hitf', 'chanz', 'daiwchiw'];
+let currWord: number = 0;
+
 function WidgetsPage() {
   const [input, setInput] = useReducer(
     (state: any, newState: any) => ({ ...state, ...newState }),
@@ -50,6 +53,7 @@ function WidgetsPage() {
       inputTwentyOne: '',
     }
   );
+  const [inputThirty, setInputThirty] = useState('');
 
   const handleChangeChang = function (e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
@@ -69,6 +73,12 @@ function WidgetsPage() {
     const name = e.target.name;
     const value = e.target.value;
     setInput({ [name]: value });
+  };
+
+  const handleChangeSentence = function (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
+    setInputThirty(e.target.value);
   };
 
   const cli = new Client();
@@ -130,6 +140,28 @@ function WidgetsPage() {
     input.inputTwentyOne,
     wordsMizmix[1].index
   );
+
+  const entries: Entry[] = [];
+  for (let i = 0; i < sentence.length; i++) {
+    entries.push({ index: i, hanyjiz: '', lurzmafjiz: sentence[i] });
+  }
+
+  const hltSentence = new Highlighter(entries);
+
+  let hltSentenceThirty: Highlight = new Highlight();
+  hltSentenceThirty = hltSentence.getTarget(
+    inputThirty ? inputThirty : '',
+    currWord
+  );
+
+  if (
+    hltSentenceThirty.tail.length == 0 &&
+    inputThirty &&
+    inputThirty === sentence[currWord]
+  ) {
+    currWord + 1 < sentence.length ? currWord++ : (currWord = 0);
+    setInputThirty('');
+  }
 
   return (
     <div>
@@ -421,6 +453,34 @@ function WidgetsPage() {
       </Table>
       <br />
       4.
+      <Table celled striped collapsing>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>漢字</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>{sentence.map(it => it).join(' ')}</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <text style={{ color: 'red' }}>{hltSentenceThirty.target}</text>
+            {hltSentenceThirty.tail}
+            <br />
+            {hltSentenceThirty.hint.hint}
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>
+              <input
+                type="text"
+                value={inputThirty}
+                // name="inputThirty"
+                onChange={handleChangeSentence}
+              />
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+      <br />
+      5.
       <Table celled striped collapsing>
         <Table.Body>
           <Table.Row>
