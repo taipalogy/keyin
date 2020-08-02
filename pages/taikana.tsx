@@ -68,7 +68,6 @@ function TaiKanaPage() {
             <Table.Cell>{TonalLetterTags.i.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.ir.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.j.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.jj.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.k.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.kk.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.l.toString()}</Table.Cell>
@@ -77,7 +76,7 @@ function TaiKanaPage() {
           <Table.Row>
             <Table.Cell>阿</Table.Cell>
             <Table.Cell>米</Table.Cell>
-            <Table.Cell>十个</Table.Cell>
+            <Table.Cell></Table.Cell>
             <Table.Cell>市</Table.Cell>
             <Table.Cell>志</Table.Cell>
             <Table.Cell>池</Table.Cell>
@@ -85,17 +84,16 @@ function TaiKanaPage() {
             <Table.Cell></Table.Cell>
             <Table.Cell></Table.Cell>
             <Table.Cell>牛</Table.Cell>
-            <Table.Cell>六个</Table.Cell>
+            <Table.Cell></Table.Cell>
             <Table.Cell>火</Table.Cell>
             <Table.Cell>頁</Table.Cell>
             <Table.Cell>衣</Table.Cell>
             <Table.Cell>去</Table.Cell>
             <Table.Cell>而</Table.Cell>
-            <Table.Cell></Table.Cell>
             <Table.Cell>去</Table.Cell>
             <Table.Cell>目</Table.Cell>
             <Table.Cell>女</Table.Cell>
-            <Table.Cell>一个</Table.Cell>
+            <Table.Cell></Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>{TonalLetterTags.m.toString()}</Table.Cell>
@@ -289,7 +287,6 @@ function TaiKanaPage() {
             <Table.Cell>{TonalLetterTags.s.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.bb.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.gg.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.jj.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.ll.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.ss.toString()}</Table.Cell>
             <Table.Cell>{TonalLetterTags.m.toString()}</Table.Cell>
