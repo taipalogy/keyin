@@ -230,9 +230,6 @@ function TaiKanaPage() {
               {TonalLetterTags.ir.toString() + TonalLetterTags.i.toString()}
             </Table.Cell>
             <Table.Cell>
-              {TonalLetterTags.o.toString() + TonalLetterTags.er.toString()}
-            </Table.Cell>
-            <Table.Cell>
               {TonalLetterTags.i.toString() +
                 TonalLetterTags.a.toString() +
                 TonalLetterTags.i.toString()}
