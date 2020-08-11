@@ -9,11 +9,11 @@ function ReplacivePage() {
   };
 
   const words = [
-    'chittwvaiy',
-    'chittwqoa',
+    'chitwvaiy',
+    'chitwqoa',
     'voannydang',
     'dangzsixay',
-    'damwvurhhxay',
+    'damwvurhxay',
   ];
 
   const lx = inflectTransfix(input);

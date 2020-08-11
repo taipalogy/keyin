@@ -10,7 +10,6 @@ function TokenizerPage() {
   const taKana = cli.processKana(input);
   const kanaSeqs = taKana.blockSequences.filter(x => x.length > 0);
 
-
   const handleChange = function (e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
   };

@@ -1,6 +1,6 @@
 import { getSurfaceForms } from '../src/process';
 import { useState } from 'react';
-import { mutateFinalOfPrecedingSyllable } from 'taipa'
+import { mutateFinalOfPrecedingSyllable } from 'taipa';
 
 function SurfaceFormPage() {
   const [input, setInput] = useState('');
@@ -10,10 +10,10 @@ function SurfaceFormPage() {
   };
 
   const words = [
-    'lakkwex',
+    'lakwex',
     'hietfkiw',
     'qapfay',
-    'chappwex',
+    'chapwex',
     'cutfmiax',
     'qutflatt',
   ];

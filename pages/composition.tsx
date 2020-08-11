@@ -78,8 +78,8 @@ const lx1 = inflectDesinence(segments[0].segment.literal);
 const lx2 = inflectDesinence(segments[1].segment.literal);
 const candidates = [
   lx1.word.literal,
-  lx1.getForms()[1].literal + lx2.word.literal,
-  lx1.getForms()[1].literal +
+  lx1.getForms()[0].literal + lx2.word.literal,
+  lx1.getForms()[0].literal +
     lx2.getForms()[0].literal +
     segments[2].segment.literal,
 ];

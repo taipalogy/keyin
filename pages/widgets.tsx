@@ -20,7 +20,7 @@ const wordsItfditt = [
     hanyjiz: '一直',
     lurzmafjiz: 'itfditt',
   },
-  { index: 1, hanyjiz: '', lurzmafjiz: 'itfdittw' },
+  { index: 1, hanyjiz: '', lurzmafjiz: 'itfditw' },
   { index: 2, hanyjiz: '', lurzmafjiz: 'itfditf' },
 ];
 
@@ -455,9 +455,6 @@ function WidgetsPage() {
       4.
       <Table celled striped collapsing>
         <Table.Body>
-          <Table.Row>
-            <Table.Cell>漢字</Table.Cell>
-          </Table.Row>
           <Table.Row>
             <Table.Cell>{sentence.map(it => it).join(' ')}</Table.Cell>
           </Table.Row>
