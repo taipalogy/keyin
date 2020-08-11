@@ -23,7 +23,7 @@ function WordPage() {
   const soudnSeqs = getSoundSequences(
     tla.morphAnalyze(input).map(x => x.sounds)
   );
-  const rootSeqs = tla
+  const uncombiningSeqs = tla
     .morphAnalyze(input)
     .map(it =>
       it
@@ -50,7 +50,7 @@ function WordPage() {
   return (
     <div>
       拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms, sound
-      sequences, root sequences, 甲 letters
+      sequences, uncombining form sequences, 甲 letters
       <label>
         <br />
         <input type="text" value={input} onChange={handleChange} />
@@ -81,8 +81,8 @@ function WordPage() {
         <li>{x[0] + ' - ' + x[1]}</li>
       ))}
       <br />
-      root sequences
-      {rootSeqs.map(x => (
+      uncombining form sequences
+      {uncombiningSeqs.map(x => (
         <li>{x}</li>
       ))}
       <br />
