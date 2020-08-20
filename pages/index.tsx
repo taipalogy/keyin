@@ -85,7 +85,7 @@ function Home() {
       </li>
       <li>
         <Link href="tokenizer">
-          <a>羅馬字 tokenizer</a>
+          <a>羅馬字 syllable tokenizer</a>
         </Link>
       </li>
       <li>

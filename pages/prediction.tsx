@@ -20,7 +20,6 @@ function PredictionPage() {
         <input type="text" value={input} onChange={handleChange} />
       </label>
       <br />
-      tuples
       {tuples.map(x => (
         <li>{x[0] + ', ' + x[1]}</li>
       ))}
