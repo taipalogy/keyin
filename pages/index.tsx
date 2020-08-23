@@ -74,9 +74,7 @@ function Home() {
         </Link>
       </li>
       <li>
-        <Link href="jittwdaix">
-          <a>日臺</a>
-        </Link>
+        <a href="jittwdaix">日臺</a>
       </li>
       <li>
         <Link href="qoaxay">

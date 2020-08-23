@@ -24,5 +24,5 @@ module.exports = {
       '/widgets': { page: '/widgets' },
     };
   },
-  assetPrefix: !debug ? '/keyin/' : '',
+  // assetPrefix: !debug ? '/keyin/' : '',
 };
