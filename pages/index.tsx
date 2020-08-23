@@ -4,92 +4,58 @@ function Home() {
   return (
     <ul>
       <li>
-        <Link href="word">
-          <a>單語</a>
-        </Link>
+        <a href="word">單語</a>
       </li>
       <li>
-        <Link href="replacive">
-          <a>replacive</a>
-        </Link>
+        <a href="replacive">replacive</a>
       </li>
       <li>
-        <Link href="additive">
-          <a>additive</a>
-        </Link>
+        <a href="additive">additive</a>
       </li>
       <li>
-        <Link href="phrasalverb">
-          <a>phrasal verb</a>
-        </Link>
+        <a href="phrasalverb">phrasal verb</a>
       </li>
       <li>
-        <Link href="surfaceform">
-          <a>surface form</a>
-        </Link>
+        <a href="surfaceform">surface form</a>
       </li>
       <li>
-        <Link href="eadjective">
-          <a>e-adjective</a>
-        </Link>
+        <a href="eadjective">e-adjective</a>
       </li>
       <li>
-        <Link href="composition">
-          <a>composition</a>
-        </Link>
+        <a href="composition">composition</a>
       </li>
       <li>
-        <Link href="prediction">
-          <a>prediction</a>
-        </Link>
+        <a href="prediction">prediction</a>
       </li>
       <li>
-        <Link href="tonepattern">
-          <a>tone pattern</a>
-        </Link>
+          <a href="tonepattern">tone pattern</a>
       </li>
       <li>
-        <Link href="tonepatternwords">
-          <a>tone pattern - words</a>
-        </Link>
+        <a href="tonepatternwords">tone pattern - words</a>
       </li>
       <li>
-        <Link href="kana">
-          <a>kana</a>
-        </Link>
+        <a href="kana">kana</a>
       </li>
       <li>
-        <Link href="hint">
-          <a>hint</a>
-        </Link>
+        <a href="hint">hint</a>
       </li>
       <li>
-        <Link href="taikana">
-          <a>taiwanese kana</a>
-        </Link>
+        <a href="taikana">taiwanese kana</a>
       </li>
       <li>
-        <Link href="daizjitt">
-          <a>臺日</a>
-        </Link>
+        <a href="daizjitt">臺日</a>
       </li>
       <li>
         <a href="jittwdaix">日臺</a>
       </li>
       <li>
-        <Link href="qoaxay">
-          <a>歌仔</a>
-        </Link>
+        <a href="qoaxay">歌仔</a>
       </li>
       <li>
-        <Link href="tokenizer">
-          <a>羅馬字 syllable tokenizer</a>
-        </Link>
+        <a href="tokenizer">羅馬字 syllable tokenizer</a>
       </li>
       <li>
-        <Link href="widgets">
-          <a>widgets</a>
-        </Link>
+        <a href="widgets">widgets</a>
       </li>
     </ul>
   );
