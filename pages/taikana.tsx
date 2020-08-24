@@ -35,6 +35,9 @@ function TaiKanaPage() {
     setOpenTip(true);
   };
 */
+
+  const textTaikana = listOfSeqs.map(y => y[0]).join('');
+
   return (
     <div>
       拍羅馬字, 輸出台灣語假名
@@ -55,10 +58,10 @@ function TaiKanaPage() {
         </li>
       ))}
       <br />
-      <li>{listOfSeqs.map(y => y[0]).join('')}</li>
-      <CopyToClipBoard text={listOfSeqs.map(y => y[0]).join('')}>
+      <li>{textTaikana}</li>
+      <CopyToClipBoard text={textTaikana}>
         <button
-          disabled={listOfSeqs.map(y => y[0]).join('') === ''}
+          disabled={textTaikana === ''}
           // onClick={handleClickButton}
         >
           Copy
