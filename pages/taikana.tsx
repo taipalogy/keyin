@@ -1,9 +1,13 @@
 import { Client, TonalLetterTags } from 'taipa';
 import { useState } from 'react';
 import { Table } from 'semantic-ui-react';
+// you have to install both react-copy-to-clipboard and
+// @types/react-copy-to-clipboard to make the below import work
+import CopyToClipBoard from 'react-copy-to-clipboard';
 
 function TaiKanaPage() {
   const [input, setInput] = useState('');
+  // const [openTip, setOpenTip] = useState<boolean>(false);
 
   const tokens: string[] = [];
 
@@ -22,6 +26,15 @@ function TaiKanaPage() {
     setInput(e.target.value);
   };
 
+  /*
+  const handleCloseTip = (): void => {
+    setOpenTip(false);
+  };
+
+  const handleClickButton = (): void => {
+    setOpenTip(true);
+  };
+*/
   return (
     <div>
       拍羅馬字, 輸出台灣語假名
@@ -43,6 +56,14 @@ function TaiKanaPage() {
       ))}
       <br />
       <li>{listOfSeqs.map(y => y[0]).join('')}</li>
+      <CopyToClipBoard text={listOfSeqs.map(y => y[0]).join('')}>
+        <button
+          disabled={listOfSeqs.map(y => y[0]).join('') === ''}
+          // onClick={handleClickButton}
+        >
+          Copy
+        </button>
+      </CopyToClipBoard>
       <Table celled striped collapsing>
         <Table.Header>
           <Table.Row>
