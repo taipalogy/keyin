@@ -50,7 +50,7 @@ function WordPage() {
   return (
     <div>
       拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms, sound
-      sequences, {/* uncombining form sequences,*/} 甲 letters
+      sequences, uncombining form sequences, 甲 letters
       <label>
         <br />
         <input type="text" value={input} onChange={handleChange} />
@@ -81,10 +81,10 @@ function WordPage() {
         <li>{x[0] + ' - ' + x[1]}</li>
       ))}
       <br />
-      {/* uncombining form sequences
+      uncombining form sequences
       {uncombiningSeqs.map(x => (
         <li>{x}</li>
-      ))} */}
+      ))}
       <br />
       letters: {letters.join(', ')}
     </div>
