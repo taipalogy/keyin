@@ -21,7 +21,7 @@ function WordPage() {
   );
 
   const soudnSeqs = getSoundSequences(
-    tla.morphAnalyze(input).map(x => x.sounds)
+    tla.morphAnalyze(input).map(x => x.letters)
   );
   const uncombiningSeqs = tla
     .morphAnalyze(input)

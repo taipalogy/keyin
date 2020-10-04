@@ -1,4 +1,4 @@
-import { Client, TonalSoundTags, graphAnalyzeTonal } from 'taipa';
+import { Client, TonalSpellingTags, graphAnalyzeTonal } from 'taipa';
 
 /*
  * initial state:      target + tail
@@ -59,7 +59,7 @@ export class Highlighter {
       const ta = clt.processTonal(this.entries[i].lurzmafjiz);
       this.literals[i] = ta.word.literal;
       const h = new Hint();
-      for (const e of ta.soundSequences) {
+      for (const e of ta.letterSequences) {
         for (const j of e) {
           h.namesOfSound.push(j.name);
           h.sounds.push(j.toString());
@@ -75,8 +75,8 @@ export class Highlighter {
 
   setHintAndTarget(index: number, n: number) {
     if (
-      this.hints[index].namesOfSound[n] === TonalSoundTags.freeTonal ||
-      this.hints[index].namesOfSound[n] === TonalSoundTags.checkedTonal
+      this.hints[index].namesOfSound[n] === TonalSpellingTags.freeTonal ||
+      this.hints[index].namesOfSound[n] === TonalSpellingTags.checkedTonal
     ) {
       if (tonalInHanji.has(this.hints[index].sounds[n])) {
         let tonal: string = '';

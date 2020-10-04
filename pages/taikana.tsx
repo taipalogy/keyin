@@ -199,7 +199,7 @@ function TaiKanaPage() {
       <Table celled striped collapsing>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell colSpan="28">中聲(母音, 準母音)</Table.HeaderCell>
+            <Table.HeaderCell colSpan="25">中聲(母音, 準母音)</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -287,7 +287,9 @@ function TaiKanaPage() {
       <Table celled striped collapsing>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell colSpan="26">終聲(語尾子音)</Table.HeaderCell>
+            <Table.HeaderCell colSpan="25">
+              終聲(語尾子音, 聲調)
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -334,7 +336,7 @@ function TaiKanaPage() {
       <Table celled striped collapsing>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell colSpan="9">聲調</Table.HeaderCell>
+            <Table.HeaderCell colSpan="6">聲調</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
