@@ -28,7 +28,7 @@ function Home() {
         <a href="prediction">prediction</a>
       </li>
       <li>
-          <a href="tonepattern">tone pattern</a>
+        <a href="tonepattern">tone pattern</a>
       </li>
       <li>
         <a href="tonepatternwords">tone pattern - words</a>
