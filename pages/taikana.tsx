@@ -1,9 +1,150 @@
 import { Client, TonalLetterTags } from 'taipa';
 import { useState } from 'react';
-import { Table } from 'semantic-ui-react';
-// you have to install both react-copy-to-clipboard and
-// @types/react-copy-to-clipboard to make the below import work
+import { FixedSizeGrid, GridChildComponentProps } from 'react-window';
 import CopyToClipBoard from 'react-copy-to-clipboard';
+
+const letter20 = [
+  { letter: TonalLetterTags.a.toString(), hanji: '阿' },
+  { letter: TonalLetterTags.b.toString(), hanji: '米' },
+  { letter: TonalLetterTags.bb.toString(), hanji: '' },
+  { letter: TonalLetterTags.c.toString(), hanji: '市' },
+  { letter: TonalLetterTags.ch.toString(), hanji: '志' },
+  { letter: TonalLetterTags.d.toString(), hanji: '池' },
+  { letter: TonalLetterTags.e.toString(), hanji: '个' },
+  { letter: TonalLetterTags.er.toString(), hanji: '' },
+  { letter: TonalLetterTags.f.toString(), hanji: '' },
+  { letter: TonalLetterTags.g.toString(), hanji: '牛' },
+  { letter: TonalLetterTags.gg.toString(), hanji: '' },
+  { letter: TonalLetterTags.h.toString(), hanji: '火' },
+  { letter: TonalLetterTags.hh.toString(), hanji: '頁' },
+  { letter: TonalLetterTags.i.toString(), hanji: '衣' },
+  { letter: TonalLetterTags.ir.toString(), hanji: '去' },
+  { letter: TonalLetterTags.j.toString(), hanji: '而' },
+  { letter: TonalLetterTags.k.toString(), hanji: '去' },
+  { letter: TonalLetterTags.kk.toString(), hanji: '目' },
+  { letter: TonalLetterTags.l.toString(), hanji: '女' },
+  { letter: TonalLetterTags.ll.toString(), hanji: '' },
+];
+
+const letter21 = [
+  { letter: TonalLetterTags.m.toString(), hanji: '乜' },
+  { letter: TonalLetterTags.n.toString(), hanji: '尼' },
+  { letter: TonalLetterTags.ng.toString(), hanji: '午' },
+  { letter: TonalLetterTags.nn.toString(), hanji: '井' },
+  { letter: TonalLetterTags.o.toString(), hanji: '芋' },
+  { letter: TonalLetterTags.or.toString(), hanji: '蚵' },
+  { letter: TonalLetterTags.p.toString(), hanji: '皮' },
+  { letter: TonalLetterTags.pp.toString(), hanji: '入' },
+  { letter: TonalLetterTags.q.toString(), hanji: '古' },
+  { letter: TonalLetterTags.s.toString(), hanji: '示' },
+  { letter: TonalLetterTags.ss.toString(), hanji: '' },
+  { letter: TonalLetterTags.t.toString(), hanji: '土' },
+  { letter: TonalLetterTags.tt.toString(), hanji: '日' },
+  { letter: TonalLetterTags.u.toString(), hanji: '宇' },
+  { letter: TonalLetterTags.ur.toString(), hanji: '蚵' },
+  { letter: TonalLetterTags.v.toString(), hanji: '比' },
+  { letter: TonalLetterTags.w.toString(), hanji: '' },
+  { letter: TonalLetterTags.x.toString(), hanji: '' },
+  { letter: TonalLetterTags.xx.toString(), hanji: '' },
+  { letter: TonalLetterTags.y.toString(), hanji: '' },
+  { letter: TonalLetterTags.z.toString(), hanji: '' },
+];
+
+// 初聲(語頭子音)
+const initials = [
+  TonalLetterTags.b.toString(),
+  TonalLetterTags.c.toString(),
+  TonalLetterTags.ch.toString(),
+  TonalLetterTags.d.toString(),
+  TonalLetterTags.g.toString(),
+  TonalLetterTags.h.toString(),
+  TonalLetterTags.j.toString(),
+  TonalLetterTags.k.toString(),
+  TonalLetterTags.l.toString(),
+  TonalLetterTags.m.toString(),
+  TonalLetterTags.n.toString(),
+  TonalLetterTags.ng.toString(),
+  TonalLetterTags.p.toString(),
+  TonalLetterTags.q.toString(),
+  TonalLetterTags.s.toString(),
+  TonalLetterTags.t.toString(),
+  TonalLetterTags.v.toString(),
+];
+// 中聲(母音, 準母音)
+const medials = [
+  TonalLetterTags.a.toString(),
+  TonalLetterTags.e.toString(),
+  TonalLetterTags.i.toString(),
+  TonalLetterTags.o.toString(),
+  TonalLetterTags.u.toString(),
+  TonalLetterTags.ur.toString(),
+  TonalLetterTags.or.toString(),
+  TonalLetterTags.ir.toString(),
+  TonalLetterTags.er.toString(),
+  TonalLetterTags.m.toString(),
+  TonalLetterTags.n.toString(),
+  TonalLetterTags.ng.toString(),
+  TonalLetterTags.a.toString() + TonalLetterTags.i.toString(),
+  TonalLetterTags.a.toString() + TonalLetterTags.u.toString(),
+  TonalLetterTags.i.toString() + TonalLetterTags.a.toString(),
+  TonalLetterTags.i.toString() + TonalLetterTags.e.toString(),
+  TonalLetterTags.i.toString() + TonalLetterTags.o.toString(),
+  TonalLetterTags.i.toString() + TonalLetterTags.u.toString(),
+  TonalLetterTags.i.toString() + TonalLetterTags.ur.toString(),
+  TonalLetterTags.o.toString() + TonalLetterTags.a.toString(),
+  TonalLetterTags.o.toString() + TonalLetterTags.e.toString(),
+  TonalLetterTags.u.toString() + TonalLetterTags.i.toString(),
+  TonalLetterTags.or.toString() + TonalLetterTags.e.toString(),
+  TonalLetterTags.ir.toString() + TonalLetterTags.i.toString(),
+  TonalLetterTags.i.toString() +
+    TonalLetterTags.a.toString() +
+    TonalLetterTags.i.toString(),
+  TonalLetterTags.i.toString() +
+    TonalLetterTags.a.toString() +
+    TonalLetterTags.u.toString(),
+  TonalLetterTags.o.toString() +
+    TonalLetterTags.a.toString() +
+    TonalLetterTags.i.toString(),
+];
+// 鼻音化
+const nasalizations = [TonalLetterTags.nn.toString()];
+// 終聲(語尾子音, 聲調)
+const finals = [
+  TonalLetterTags.p.toString(),
+  TonalLetterTags.t.toString(),
+  TonalLetterTags.k.toString(),
+  TonalLetterTags.h.toString(),
+  TonalLetterTags.pp.toString(),
+  TonalLetterTags.tt.toString(),
+  TonalLetterTags.kk.toString(),
+  TonalLetterTags.hh.toString(),
+  TonalLetterTags.b.toString(),
+  TonalLetterTags.g.toString(),
+  TonalLetterTags.j.toString(),
+  TonalLetterTags.l.toString(),
+  TonalLetterTags.s.toString(),
+  TonalLetterTags.bb.toString(),
+  TonalLetterTags.gg.toString(),
+  TonalLetterTags.ll.toString(),
+  TonalLetterTags.ss.toString(),
+  TonalLetterTags.m.toString(),
+  TonalLetterTags.n.toString(),
+  TonalLetterTags.ng.toString(),
+  TonalLetterTags.m.toString() + TonalLetterTags.h.toString(),
+  TonalLetterTags.m.toString() + TonalLetterTags.hh.toString(),
+  TonalLetterTags.n.toString() + TonalLetterTags.h.toString(),
+  TonalLetterTags.ng.toString() + TonalLetterTags.h.toString(),
+  TonalLetterTags.ng.toString() + TonalLetterTags.hh.toString(),
+];
+// 聲調
+const tonals = [
+  TonalLetterTags.f.toString(),
+  TonalLetterTags.y.toString(),
+  TonalLetterTags.w.toString(),
+  TonalLetterTags.x.toString(),
+  TonalLetterTags.z.toString(),
+  TonalLetterTags.xx.toString(),
+];
 
 function TaiKanaPage() {
   const [input, setInput] = useState('');
@@ -38,6 +179,59 @@ function TaiKanaPage() {
 
   const textTaikana = listOfSeqs.map(y => y[0]).join('');
 
+  const CellLetters = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div
+      className={
+        columnIndex % 2
+          ? rowIndex % 2 === 0
+            ? 'GridItemOdd'
+            : 'GridItemEven'
+          : rowIndex % 2
+          ? 'GridItemOdd'
+          : 'GridItemEven'
+      }
+      style={style}
+    >
+      {rowIndex == 0 && columnIndex == 0
+        ? 'Alphabet'
+        : rowIndex == 1
+        ? columnIndex >= 0 && letter20[columnIndex]
+          ? letter20[columnIndex].letter
+          : ''
+        : rowIndex == 2
+        ? columnIndex >= 0 && letter20[columnIndex]
+          ? letter20[columnIndex].hanji
+          : ''
+        : rowIndex == 3
+        ? columnIndex >= 0 && letter21[columnIndex]
+          ? letter21[columnIndex].letter
+          : ''
+        : rowIndex == 4
+        ? columnIndex >= 0 && letter21[columnIndex]
+          ? letter21[columnIndex].hanji
+          : ''
+        : ''}
+    </div>
+  );
+
+  const TableAlphabet = () => (
+    <FixedSizeGrid
+      className="GridAlphabet"
+      columnCount={21}
+      columnWidth={30}
+      rowCount={5}
+      rowHeight={30}
+      height={190}
+      width={640}
+    >
+      {CellLetters}
+    </FixedSizeGrid>
+  );
+
   return (
     <div>
       拍羅馬字, 輸出台灣語假名
@@ -67,298 +261,7 @@ function TaiKanaPage() {
           Copy
         </button>
       </CopyToClipBoard>
-      <Table celled striped collapsing>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell colSpan="42">Alphabet</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{TonalLetterTags.a.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.b.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.bb.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.c.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ch.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.d.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.e.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.er.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.f.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.g.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.gg.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.h.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.hh.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.i.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ir.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.j.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.k.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.kk.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.l.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ll.toString()}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>阿</Table.Cell>
-            <Table.Cell>米</Table.Cell>
-            <Table.Cell></Table.Cell>
-            <Table.Cell>市</Table.Cell>
-            <Table.Cell>志</Table.Cell>
-            <Table.Cell>池</Table.Cell>
-            <Table.Cell>个</Table.Cell>
-            <Table.Cell></Table.Cell>
-            <Table.Cell></Table.Cell>
-            <Table.Cell>牛</Table.Cell>
-            <Table.Cell></Table.Cell>
-            <Table.Cell>火</Table.Cell>
-            <Table.Cell>頁</Table.Cell>
-            <Table.Cell>衣</Table.Cell>
-            <Table.Cell>去</Table.Cell>
-            <Table.Cell>而</Table.Cell>
-            <Table.Cell>去</Table.Cell>
-            <Table.Cell>目</Table.Cell>
-            <Table.Cell>女</Table.Cell>
-            <Table.Cell></Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>{TonalLetterTags.m.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.n.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ng.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.nn.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.o.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.or.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.p.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.pp.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.q.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.s.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ss.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.t.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.tt.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.u.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ur.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.v.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.w.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.x.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.xx.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.y.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.z.toString()}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>乜</Table.Cell>
-            <Table.Cell>尼</Table.Cell>
-            <Table.Cell>午</Table.Cell>
-            <Table.Cell>井</Table.Cell>
-            <Table.Cell>芋</Table.Cell>
-            <Table.Cell>蚵</Table.Cell>
-            <Table.Cell>皮</Table.Cell>
-            <Table.Cell>入</Table.Cell>
-            <Table.Cell>古</Table.Cell>
-            <Table.Cell>示</Table.Cell>
-            <Table.Cell></Table.Cell>
-            <Table.Cell>土</Table.Cell>
-            <Table.Cell>日</Table.Cell>
-            <Table.Cell>宇</Table.Cell>
-            <Table.Cell>蚵</Table.Cell>
-            <Table.Cell>比</Table.Cell>
-            <Table.Cell></Table.Cell>
-            <Table.Cell></Table.Cell>
-            <Table.Cell></Table.Cell>
-            <Table.Cell></Table.Cell>
-            <Table.Cell></Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-      <Table celled striped collapsing>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell colSpan="17">初聲(語頭子音)</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{TonalLetterTags.b.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.c.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ch.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.d.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.g.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.h.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.j.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.k.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.l.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.m.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.n.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ng.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.p.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.q.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.s.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.t.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.v.toString()}</Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-      <Table celled striped collapsing>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell colSpan="25">中聲(母音, 準母音)</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{TonalLetterTags.a.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.e.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.i.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.o.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.u.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ur.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.or.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ir.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.er.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.m.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.n.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ng.toString()}</Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.a.toString() + TonalLetterTags.i.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.a.toString() + TonalLetterTags.u.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.i.toString() + TonalLetterTags.a.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.i.toString() + TonalLetterTags.e.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.i.toString() + TonalLetterTags.o.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.i.toString() + TonalLetterTags.u.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.i.toString() + TonalLetterTags.ur.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.o.toString() + TonalLetterTags.a.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.o.toString() + TonalLetterTags.e.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.u.toString() + TonalLetterTags.i.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.or.toString() + TonalLetterTags.e.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.ir.toString() + TonalLetterTags.i.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.i.toString() +
-                TonalLetterTags.a.toString() +
-                TonalLetterTags.i.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.i.toString() +
-                TonalLetterTags.a.toString() +
-                TonalLetterTags.u.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.o.toString() +
-                TonalLetterTags.a.toString() +
-                TonalLetterTags.i.toString()}
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-      <Table celled striped collapsing>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>鼻音化</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{TonalLetterTags.nn.toString()}</Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-      <Table celled striped collapsing>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell colSpan="25">
-              終聲(語尾子音, 聲調)
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{TonalLetterTags.p.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.t.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.k.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.h.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.pp.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.tt.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.kk.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.hh.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.b.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.g.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.j.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.l.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.s.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.bb.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.gg.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ll.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ss.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.m.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.n.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.ng.toString()}</Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.m.toString() + TonalLetterTags.h.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.m.toString() + TonalLetterTags.hh.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.n.toString() + TonalLetterTags.h.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.ng.toString() + TonalLetterTags.h.toString()}
-            </Table.Cell>
-            <Table.Cell>
-              {TonalLetterTags.ng.toString() + TonalLetterTags.hh.toString()}
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-      <Table celled striped collapsing>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell colSpan="6">聲調</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{TonalLetterTags.f.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.y.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.w.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.x.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.z.toString()}</Table.Cell>
-            <Table.Cell>{TonalLetterTags.xx.toString()}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>1</Table.Cell>
-            <Table.Cell>2</Table.Cell>
-            <Table.Cell>3</Table.Cell>
-            <Table.Cell>5</Table.Cell>
-            <Table.Cell>7</Table.Cell>
-            <Table.Cell>9</Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      <TableAlphabet />
     </div>
   );
 }
