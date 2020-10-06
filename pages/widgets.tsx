@@ -1,7 +1,7 @@
 import { Client } from 'taipa';
 import { useReducer, useState } from 'react';
-import { Table } from 'semantic-ui-react';
 import { Highlighter, Entry, Highlight } from '../src/highlight';
+import { FixedSizeGrid, GridChildComponentProps } from 'react-window';
 
 const wordsChang: Entry[] = [
   { index: 0, hanyjiz: '棕', lurzmafjiz: 'chang' },
@@ -29,7 +29,7 @@ const wordsMizmix = [
   { index: 1, hanyjiz: '', lurzmafjiz: 'mixxmix' },
 ];
 
-const sentence = ['hitf', 'chanz', 'daiwchiw'];
+const sentence = ['hitf', 'chanz', 'daiwchiw', 'chinz', 'doaw', 'diaux'];
 let currWord: number = 0;
 
 function WidgetsPage() {
@@ -163,334 +163,399 @@ function WidgetsPage() {
     setInputThirty('');
   }
 
+  const CellChang = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div
+      className={
+        columnIndex % 2
+          ? rowIndex % 2 === 0
+            ? 'GridItemOdd'
+            : 'GridItemEven'
+          : rowIndex % 2
+          ? 'GridItemOdd'
+          : 'GridItemEven'
+      }
+      style={style}
+    >
+      {rowIndex == 0 ? (
+        wordsChang[columnIndex].hanyjiz
+      ) : rowIndex == 1 ? (
+        wordsChang[columnIndex].lurzmafjiz
+      ) : rowIndex == 2 ? (
+        cli
+          .processTonal(wordsChang[columnIndex].lurzmafjiz)
+          .blockSequences.filter(it => it.length > 0)
+      ) : rowIndex == 3 ? (
+        columnIndex == 0 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltChangZero.target}</text>
+            {hltChangZero.tail}
+            <br />
+            {hltChangZero.hint.hint}
+            <br />
+            {/* <input
+              type="text"
+              value={input.inputZero}
+              name="inputZero"
+              onChange={handleChangeChang}
+            /> */}
+          </div>
+        ) : columnIndex == 1 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltChangOne.target}</text>
+            {hltChangOne.tail}
+            <br />
+            {hltChangOne.hint.hint}
+            <br />
+            {/* <input
+              type="text"
+              value={input.inputOne}
+              name="inputOne"
+              onChange={handleChangeChang}
+            /> */}
+          </div>
+        ) : columnIndex == 2 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltChangTwo.target}</text>
+            {hltChangTwo.tail}
+            <br />
+            {hltChangTwo.hint.hint}
+            <br />
+            {/* <input
+              type="text"
+              value={input.inputTwo}
+              name="inputTwo"
+              onChange={handleChangeChang}
+            /> */}
+          </div>
+        ) : columnIndex == 3 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltChangThree.target}</text>
+            {hltChangThree.tail}
+            <br />
+            {hltChangThree.hint.hint}
+            <br />
+            {/* <input
+              type="text"
+              value={input.inputThree}
+              name="inputThree"
+              onChange={handleChangeChang}
+            /> */}
+          </div>
+        ) : columnIndex == 4 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltChangFour.target}</text>
+            {hltChangFour.tail}
+            <br />
+            {hltChangFour.hint.hint}
+            <br />
+            {/* <input
+              type="text"
+              value={input.inputFour}
+              name="inputFour"
+              onChange={handleChangeChang}
+            /> */}
+          </div>
+        ) : columnIndex == 5 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltChangFive.target}</text>
+            {hltChangFive.tail}
+            <br />
+            {hltChangFive.hint.hint}
+            <br />
+            {/* <input
+              type="text"
+              value={input.inputFive}
+              name="inputFive"
+              onChange={handleChangeChang}
+            /> */}
+          </div>
+        ) : columnIndex == 6 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltChangSix.target}</text>
+            {hltChangSix.tail}
+            <br />
+            {hltChangSix.hint.hint}
+            <br />
+            {/* <input
+              type="text"
+              value={input.inputSix}
+              name="inputSix"
+              onChange={handleChangeChang}
+            /> */}
+          </div>
+        ) : columnIndex == 7 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltChangSeven.target}</text>
+            {hltChangSeven.tail}
+            <br />
+            {hltChangSeven.hint.hint}
+            <br />
+            {/* <input
+              type="text"
+              value={input.inputSeven}
+              name="inputSeven"
+              onChange={handleChangeChang}
+            /> */}
+          </div>
+        ) : (
+          <div />
+        )
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const TableChang = () => (
+    <FixedSizeGrid
+      className="GridChang"
+      columnCount={8}
+      columnWidth={160}
+      rowCount={4}
+      rowHeight={35}
+      height={190}
+      width={1300}
+    >
+      {CellChang}
+    </FixedSizeGrid>
+  );
+
+  const CellItfditt = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div
+      className={
+        columnIndex % 2
+          ? rowIndex % 2 === 0
+            ? 'GridItemOdd'
+            : 'GridItemEven'
+          : rowIndex % 2
+          ? 'GridItemOdd'
+          : 'GridItemEven'
+      }
+      style={style}
+    >
+      {rowIndex == 0 ? (
+        wordsItfditt[0].hanyjiz
+      ) : rowIndex == 1 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltItfdittTen.target}</text>
+          {hltItfdittTen.tail}
+          <br />
+          {hltItfdittTen.hint.hint}
+          <br />
+          {/* <input
+            type="text"
+            value={input.inputTen}
+            name="inputTen"
+            onChange={handleChangeItfditt}
+          /> */}
+        </div>
+      ) : rowIndex == 2 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltItfdittEleven.target}</text>
+          {hltItfdittEleven.tail}
+          <br />
+          {hltItfdittEleven.hint.hint}
+          <br />
+          {/* <input
+                type="text"
+                value={input.inputEleven}
+                name="inputEleven"
+                onChange={handleChangeItfditt}
+              /> */}
+        </div>
+      ) : rowIndex == 3 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltItfdittTwelve.target}</text>
+          {hltItfdittTwelve.tail}
+          <br />
+          {hltItfdittTwelve.hint.hint}
+          <br />
+          {/* <input
+            type="text"
+            value={input.inputTwelve}
+            name="inputTwelve"
+            onChange={handleChangeItfditt}
+          /> */}
+        </div>
+      ) : (
+        ''
+      )}
+    </div>
+  );
+
+  const TableItfditt = () => (
+    <FixedSizeGrid
+      className="GridItfditt"
+      columnCount={1}
+      columnWidth={160}
+      rowCount={4}
+      rowHeight={35}
+      height={190}
+      width={160}
+    >
+      {CellItfditt}
+    </FixedSizeGrid>
+  );
+
+  const CellMizmix = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div
+      className={
+        columnIndex % 2
+          ? rowIndex % 2 === 0
+            ? 'GridItemOdd'
+            : 'GridItemEven'
+          : rowIndex % 2
+          ? 'GridItemOdd'
+          : 'GridItemEven'
+      }
+      style={style}
+    >
+      {rowIndex == 0 ? (
+        wordsMizmix[0].hanyjiz
+      ) : rowIndex == 1 && columnIndex == 0 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
+          {hltMizmixTwenty.tail}
+          <br />
+          {hltMizmixTwenty.hint.hint}
+          <br />
+          {/* <input
+                type="text"
+                value={input.inputTwenty}
+                name="inputTwenty"
+                onChange={handleChangeMizmix}
+              /> */}
+        </div>
+      ) : rowIndex == 1 && columnIndex == 1 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
+          {hltMizmixTwentyOne.tail}
+          <br />
+          {hltMizmixTwentyOne.hint.hint}
+          <br />
+          {/* <input
+            type="text"
+            value={input.inputTwentyOne}
+            name="inputTwentyOne"
+            onChange={handleChangeMizmix}
+          /> */}
+        </div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const TableMizmix = () => (
+    <FixedSizeGrid
+      className="GridMizmix"
+      columnCount={2}
+      columnWidth={160}
+      rowCount={2}
+      rowHeight={35}
+      height={190}
+      width={320}
+    >
+      {CellMizmix}
+    </FixedSizeGrid>
+  );
+
+  const CellSentence = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div
+      className={
+        columnIndex % 2
+          ? rowIndex % 2 === 0
+            ? 'GridItemOdd'
+            : 'GridItemEven'
+          : rowIndex % 2
+          ? 'GridItemOdd'
+          : 'GridItemEven'
+      }
+      style={style}
+    >
+      {rowIndex == 0 ? (
+        sentence.map(it => it).join(' ')
+      ) : rowIndex == 1 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltSentenceThirty.target}</text>
+          {hltSentenceThirty.tail}
+          <br />
+          {hltSentenceThirty.hint.hint}
+        </div>
+      ) : rowIndex == 2 ? (
+        <div>
+          <input
+            type="text"
+            value={inputThirty}
+            // name="inputThirty"
+            onChange={handleChangeSentence}
+            autoFocus
+          />
+        </div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const TableSentence = () => (
+    <FixedSizeGrid
+      className="GridSentence"
+      columnCount={1}
+      columnWidth={320}
+      rowCount={3}
+      rowHeight={35}
+      height={190}
+      width={320}
+    >
+      {CellSentence}
+    </FixedSizeGrid>
+  );
+
   return (
     <div>
       widgets
       <br />
       1.
-      <Table celled striped collapsing>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{wordsChang[wordsChang[0].index].hanyjiz}</Table.Cell>
-            <Table.Cell>{wordsChang[wordsChang[1].index].hanyjiz}</Table.Cell>
-            <Table.Cell>{wordsChang[wordsChang[2].index].hanyjiz}</Table.Cell>
-            <Table.Cell>{wordsChang[wordsChang[3].index].hanyjiz}</Table.Cell>
-            <Table.Cell>{wordsChang[wordsChang[4].index].hanyjiz}</Table.Cell>
-            <Table.Cell>{wordsChang[wordsChang[5].index].hanyjiz}</Table.Cell>
-            <Table.Cell>{wordsChang[wordsChang[6].index].hanyjiz}</Table.Cell>
-            <Table.Cell>{wordsChang[wordsChang[7].index].hanyjiz}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              {wordsChang[wordsChang[0].index].lurzmafjiz}
-            </Table.Cell>
-            <Table.Cell>
-              {wordsChang[wordsChang[1].index].lurzmafjiz}
-            </Table.Cell>
-            <Table.Cell>
-              {wordsChang[wordsChang[2].index].lurzmafjiz}
-            </Table.Cell>
-            <Table.Cell>
-              {wordsChang[wordsChang[3].index].lurzmafjiz}
-            </Table.Cell>
-            <Table.Cell>
-              {wordsChang[wordsChang[4].index].lurzmafjiz}
-            </Table.Cell>
-            <Table.Cell>
-              {wordsChang[wordsChang[5].index].lurzmafjiz}
-            </Table.Cell>
-            <Table.Cell>
-              {wordsChang[wordsChang[6].index].lurzmafjiz}
-            </Table.Cell>
-            <Table.Cell>
-              {wordsChang[wordsChang[7].index].lurzmafjiz}
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              {cli
-                .processTonal(wordsChang[wordsChang[0].index].lurzmafjiz)
-                .blockSequences.filter(it => it.length > 0)}
-            </Table.Cell>
-            <Table.Cell>
-              {cli
-                .processTonal(wordsChang[wordsChang[1].index].lurzmafjiz)
-                .blockSequences.filter(it => it.length > 0)}
-            </Table.Cell>
-            <Table.Cell>
-              {cli
-                .processTonal(wordsChang[wordsChang[2].index].lurzmafjiz)
-                .blockSequences.filter(it => it.length > 0)}
-            </Table.Cell>
-            <Table.Cell>
-              {
-                cli
-                  .processTonal(wordsChang[wordsChang[3].index].lurzmafjiz)
-                  .blockSequences.filter(it => it.length > 0)[1]
-              }
-            </Table.Cell>
-            <Table.Cell>
-              {cli
-                .processTonal(wordsChang[wordsChang[4].index].lurzmafjiz)
-                .blockSequences.filter(it => it.length > 0)}
-            </Table.Cell>
-            <Table.Cell>
-              {cli
-                .processTonal(wordsChang[wordsChang[5].index].lurzmafjiz)
-                .blockSequences.filter(it => it.length > 0)}
-            </Table.Cell>
-            <Table.Cell>
-              {cli
-                .processTonal(wordsChang[wordsChang[6].index].lurzmafjiz)
-                .blockSequences.filter(it => it.length > 0)}
-            </Table.Cell>
-            <Table.Cell>
-              {cli
-                .processTonal(wordsChang[wordsChang[7].index].lurzmafjiz)
-                .blockSequences.filter(it => it.length > 0)}
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltChangZero.target}</text>
-              {hltChangZero.tail}
-              <br />
-              {hltChangZero.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputZero}
-                name="inputZero"
-                onChange={handleChangeChang}
-              />
-            </Table.Cell>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltChangOne.target}</text>
-              {hltChangOne.tail}
-              <br />
-              {hltChangOne.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputOne}
-                name="inputOne"
-                onChange={handleChangeChang}
-              />
-            </Table.Cell>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltChangTwo.target}</text>
-              {hltChangTwo.tail}
-              <br />
-              {hltChangTwo.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputTwo}
-                name="inputTwo"
-                onChange={handleChangeChang}
-              />
-            </Table.Cell>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltChangThree.target}</text>
-              {hltChangThree.tail}
-              <br />
-              {hltChangThree.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputThree}
-                name="inputThree"
-                onChange={handleChangeChang}
-              />
-            </Table.Cell>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltChangFour.target}</text>
-              {hltChangFour.tail}
-              <br />
-              {hltChangFour.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputFour}
-                name="inputFour"
-                onChange={handleChangeChang}
-              />
-            </Table.Cell>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltChangFive.target}</text>
-              {hltChangFive.tail}
-              <br />
-              {hltChangFive.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputFive}
-                name="inputFive"
-                onChange={handleChangeChang}
-              />
-            </Table.Cell>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltChangSix.target}</text>
-              {hltChangSix.tail}
-              <br />
-              {hltChangSix.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputSix}
-                name="inputSix"
-                onChange={handleChangeChang}
-              />
-            </Table.Cell>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltChangSeven.target}</text>
-              {hltChangSeven.tail}
-              <br />
-              {hltChangSeven.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputSeven}
-                name="inputSeven"
-                onChange={handleChangeChang}
-              />
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      <TableChang />
       <br />
       2.
-      <Table celled striped collapsing>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>
-              {wordsItfditt[wordsItfditt[0].index].hanyjiz}
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltItfdittTen.target}</text>
-              {hltItfdittTen.tail}
-              <br />
-              {hltItfdittTen.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputTen}
-                name="inputTen"
-                onChange={handleChangeItfditt}
-              />
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltItfdittEleven.target}</text>
-              {hltItfdittEleven.tail}
-              <br />
-              {hltItfdittEleven.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputEleven}
-                name="inputEleven"
-                onChange={handleChangeItfditt}
-              />
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltItfdittTwelve.target}</text>
-              {hltItfdittTwelve.tail}
-              <br />
-              {hltItfdittTwelve.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputTwelve}
-                name="inputTwelve"
-                onChange={handleChangeItfditt}
-              />
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      <TableItfditt />
       <br />
       3.
-      <Table celled striped collapsing>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{wordsMizmix[wordsMizmix[0].index].hanyjiz}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
-              {hltMizmixTwenty.tail}
-              <br />
-              {hltMizmixTwenty.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputTwenty}
-                name="inputTwenty"
-                onChange={handleChangeMizmix}
-              />
-            </Table.Cell>
-            <Table.Cell>
-              <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
-              {hltMizmixTwentyOne.tail}
-              <br />
-              {hltMizmixTwentyOne.hint.hint}
-              <br />
-              <input
-                type="text"
-                value={input.inputTwentyOne}
-                name="inputTwentyOne"
-                onChange={handleChangeMizmix}
-              />
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      <TableMizmix />
       <br />
       4.
-      <Table celled striped collapsing>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>{sentence.map(it => it).join(' ')}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <text style={{ color: 'red' }}>{hltSentenceThirty.target}</text>
-            {hltSentenceThirty.tail}
-            <br />
-            {hltSentenceThirty.hint.hint}
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>
-              <input
-                type="text"
-                value={inputThirty}
-                // name="inputThirty"
-                onChange={handleChangeSentence}
-              />
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      <TableSentence />
       <br />
       5.
-      <Table celled striped collapsing>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>單語</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>danzgiy</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>タヌ⎸ギイ⎛</Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      <table>
+        <tr>
+          <td>單語</td>
+        </tr>
+        <tr>
+          <td>danzgiy. danzguy</td>
+        </tr>
+        <tr>
+          <td>タヌ⎸ギイ⎛. タヌ⎸グウ⎛</td>
+        </tr>
+      </table>
     </div>
   );
 }
