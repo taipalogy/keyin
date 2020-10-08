@@ -194,23 +194,33 @@ function TaiKanaPage() {
           ? 'GridItemOdd'
           : 'GridItemEven'
       }
-      style={style}
+      style={Object.assign(
+        style,
+        rowIndex % 2 === 0
+          ? {
+              backgroundColor: 'lightgray',
+              border: '1px solid white',
+              color: 'black',
+              padding: 1,
+              // fontFamily: 'Monaco',
+              // fontSize: 24,
+            }
+          : {}
+      )}
     >
-      {rowIndex == 0 && columnIndex == 0
-        ? 'Alphabet'
-        : rowIndex == 1
+      {rowIndex == 0
         ? columnIndex >= 0 && letter20[columnIndex]
           ? letter20[columnIndex].letter
           : ''
-        : rowIndex == 2
+        : rowIndex == 1
         ? columnIndex >= 0 && letter20[columnIndex]
           ? letter20[columnIndex].hanji
           : ''
-        : rowIndex == 3
+        : rowIndex == 2
         ? columnIndex >= 0 && letter21[columnIndex]
           ? letter21[columnIndex].letter
           : ''
-        : rowIndex == 4
+        : rowIndex == 3
         ? columnIndex >= 0 && letter21[columnIndex]
           ? letter21[columnIndex].hanji
           : ''
@@ -223,10 +233,11 @@ function TaiKanaPage() {
       className="GridAlphabet"
       columnCount={21}
       columnWidth={30}
-      rowCount={5}
-      rowHeight={30}
-      height={190}
+      rowCount={4}
+      rowHeight={25}
+      height={100}
       width={640}
+      style={{ textAlign: 'center' }}
     >
       {CellLetters}
     </FixedSizeGrid>
@@ -261,6 +272,10 @@ function TaiKanaPage() {
           Copy
         </button>
       </CopyToClipBoard>
+      <br />
+      <li>
+        <h4>Alphabet</h4>
+      </li>
       <TableAlphabet />
     </div>
   );
