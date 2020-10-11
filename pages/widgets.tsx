@@ -59,6 +59,7 @@ function WidgetsPage() {
     const name = e.target.name;
     const value = e.target.value;
     setInput({ [name]: value });
+    // e.target.focus();
   };
 
   const handleChangeItfditt = function (
@@ -422,35 +423,21 @@ function WidgetsPage() {
       }
       style={style}
     >
-      {rowIndex == 0 ? (
-        wordsMizmix[0].hanyjiz
-      ) : rowIndex == 1 && columnIndex == 0 ? (
+      {rowIndex == 0 && columnIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
           {hltMizmixTwenty.tail}
           <br />
           {hltMizmixTwenty.hint.hint}
           <br />
-          {/* <input
-                type="text"
-                value={input.inputTwenty}
-                name="inputTwenty"
-                onChange={handleChangeMizmix}
-              /> */}
         </div>
-      ) : rowIndex == 1 && columnIndex == 1 ? (
+      ) : rowIndex == 0 && columnIndex == 1 ? (
         <div>
           <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
           {hltMizmixTwentyOne.tail}
           <br />
           {hltMizmixTwentyOne.hint.hint}
           <br />
-          {/* <input
-            type="text"
-            value={input.inputTwentyOne}
-            name="inputTwentyOne"
-            onChange={handleChangeMizmix}
-          /> */}
         </div>
       ) : (
         <div />
@@ -465,7 +452,7 @@ function WidgetsPage() {
       columnWidth={160}
       rowCount={2}
       rowHeight={35}
-      height={190}
+      height={70}
       width={320}
     >
       {CellMizmix}
@@ -505,7 +492,6 @@ function WidgetsPage() {
             value={inputThirty}
             // name="inputThirty"
             onChange={handleChangeSentence}
-            autoFocus
           />
         </div>
       ) : (
@@ -539,22 +525,53 @@ function WidgetsPage() {
       <TableItfditt />
       <br />
       3.
-      <TableMizmix />
+      {/* <TableMizmix /> */}
+      <table>
+        <thead>{wordsMizmix[0].hanyjiz}</thead>
+        <tbody>
+          <tr>
+            <td colSpan={2}>
+              <TableMizmix />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="text"
+                value={input.inputTwenty}
+                name="inputTwenty"
+                onChange={handleChangeMizmix}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={input.inputTwentyOne}
+                name="inputTwentyOne"
+                onChange={handleChangeMizmix}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <br />
       4.
       <TableSentence />
       <br />
       5.
       <table>
-        <tr>
-          <td>單語</td>
-        </tr>
-        <tr>
-          <td>danzgiy. danzguy</td>
-        </tr>
-        <tr>
-          <td>タヌ⎸ギイ⎛. タヌ⎸グウ⎛</td>
-        </tr>
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td>單語</td>
+          </tr>
+          <tr>
+            <td>danzgiy. danzguy</td>
+          </tr>
+          <tr>
+            <td>タヌ⎸ギイ⎛. タヌ⎸グウ⎛</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
