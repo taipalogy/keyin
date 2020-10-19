@@ -243,6 +243,42 @@ function TaiKanaPage() {
     </FixedSizeGrid>
   );
 
+  const CellInitials = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div
+    style={Object.assign(
+      style, {
+        backgroundColor: 'lightgray',
+      border: '1px solid white',
+      color: 'black',
+      padding: 1,
+      }
+    )}
+    >
+      {
+       initials[columnIndex]
+          }
+    </div>);
+
+  const TableInitials = () => (
+    <FixedSizeGrid
+      className="GridInitials"
+      columnCount={initials.length}
+      columnWidth={30}
+      rowCount={1}
+      rowHeight={25}
+      height={30}
+      width={520}
+      style={{ textAlign: 'center'
+}}
+    >
+      {CellInitials}
+    </FixedSizeGrid>
+  );
+
   return (
     <div>
       拍羅馬字, 輸出台灣語假名
@@ -273,10 +309,28 @@ function TaiKanaPage() {
         </button>
       </CopyToClipBoard>
       <br />
-      <li>
-        <h4>Alphabet</h4>
-      </li>
-      <TableAlphabet />
+      <table>
+        <thead><tr><th align="left">Alphabet</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <TableAlphabet />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <table>
+        <thead><tr><th align="left">Initials</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <TableInitials />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
   );
 }
