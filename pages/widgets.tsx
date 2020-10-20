@@ -196,13 +196,6 @@ function WidgetsPage() {
             {hltChangZero.tail}
             <br />
             {hltChangZero.hint.hint}
-            <br />
-            {/* <input
-              type="text"
-              value={input.inputZero}
-              name="inputZero"
-              onChange={handleChangeChang}
-            /> */}
           </div>
         ) : columnIndex == 1 ? (
           <div>
@@ -210,13 +203,6 @@ function WidgetsPage() {
             {hltChangOne.tail}
             <br />
             {hltChangOne.hint.hint}
-            <br />
-            {/* <input
-              type="text"
-              value={input.inputOne}
-              name="inputOne"
-              onChange={handleChangeChang}
-            /> */}
           </div>
         ) : columnIndex == 2 ? (
           <div>
@@ -224,13 +210,6 @@ function WidgetsPage() {
             {hltChangTwo.tail}
             <br />
             {hltChangTwo.hint.hint}
-            <br />
-            {/* <input
-              type="text"
-              value={input.inputTwo}
-              name="inputTwo"
-              onChange={handleChangeChang}
-            /> */}
           </div>
         ) : columnIndex == 3 ? (
           <div>
@@ -238,13 +217,6 @@ function WidgetsPage() {
             {hltChangThree.tail}
             <br />
             {hltChangThree.hint.hint}
-            <br />
-            {/* <input
-              type="text"
-              value={input.inputThree}
-              name="inputThree"
-              onChange={handleChangeChang}
-            /> */}
           </div>
         ) : columnIndex == 4 ? (
           <div>
@@ -252,13 +224,6 @@ function WidgetsPage() {
             {hltChangFour.tail}
             <br />
             {hltChangFour.hint.hint}
-            <br />
-            {/* <input
-              type="text"
-              value={input.inputFour}
-              name="inputFour"
-              onChange={handleChangeChang}
-            /> */}
           </div>
         ) : columnIndex == 5 ? (
           <div>
@@ -266,13 +231,6 @@ function WidgetsPage() {
             {hltChangFive.tail}
             <br />
             {hltChangFive.hint.hint}
-            <br />
-            {/* <input
-              type="text"
-              value={input.inputFive}
-              name="inputFive"
-              onChange={handleChangeChang}
-            /> */}
           </div>
         ) : columnIndex == 6 ? (
           <div>
@@ -280,13 +238,6 @@ function WidgetsPage() {
             {hltChangSix.tail}
             <br />
             {hltChangSix.hint.hint}
-            <br />
-            {/* <input
-              type="text"
-              value={input.inputSix}
-              name="inputSix"
-              onChange={handleChangeChang}
-            /> */}
           </div>
         ) : columnIndex == 7 ? (
           <div>
@@ -294,13 +245,6 @@ function WidgetsPage() {
             {hltChangSeven.tail}
             <br />
             {hltChangSeven.hint.hint}
-            <br />
-            {/* <input
-              type="text"
-              value={input.inputSeven}
-              name="inputSeven"
-              onChange={handleChangeChang}
-            /> */}
           </div>
         ) : (
           <div />
@@ -522,7 +466,82 @@ function WidgetsPage() {
       widgets
       <br />
       1.
-      <TableChang />
+      <table>
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td colSpan={8}>
+              <TableChang />
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <input
+              type="text"
+              value={input.inputZero}
+              name="inputZero"
+              onChange={handleChangeChang}
+            />
+            </td>
+            <td>
+            <input
+              type="text"
+              value={input.inputOne}
+              name="inputOne"
+              onChange={handleChangeChang}
+            />
+            </td>
+            <td>
+            <input
+              type="text"
+              value={input.inputTwo}
+              name="inputTwo"
+              onChange={handleChangeChang}
+            />
+            </td>
+            <td>
+            <input
+              type="text"
+              value={input.inputThree}
+              name="inputThree"
+              onChange={handleChangeChang}
+            />
+            </td>
+            <td>
+              <input
+              type="text"
+              value={input.inputFour}
+              name="inputFour"
+              onChange={handleChangeChang}
+            />
+            </td>
+            <td>
+            <input
+              type="text"
+              value={input.inputFive}
+              name="inputFive"
+              onChange={handleChangeChang}
+            />
+            </td>
+            <td>
+            <input
+              type="text"
+              value={input.inputSix}
+              name="inputSix"
+              onChange={handleChangeChang}
+            />
+            </td>
+            <td>
+            <input
+              type="text"
+              value={input.inputSeven}
+              name="inputSeven"
+              onChange={handleChangeChang}
+            />
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <br />
       2.
       <table>
