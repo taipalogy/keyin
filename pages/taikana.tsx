@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FixedSizeGrid, GridChildComponentProps } from 'react-window';
 import CopyToClipBoard from 'react-copy-to-clipboard';
 
+// alphabet
 const letter20 = [
   { letter: TonalLetterTags.a.toString(), hanji: '阿' },
   { letter: TonalLetterTags.b.toString(), hanji: '米' },
@@ -26,6 +27,7 @@ const letter20 = [
   { letter: TonalLetterTags.ll.toString(), hanji: '' },
 ];
 
+// alphabet
 const letter21 = [
   { letter: TonalLetterTags.m.toString(), hanji: '乜' },
   { letter: TonalLetterTags.n.toString(), hanji: '尼' },
@@ -70,6 +72,7 @@ const initials = [
   TonalLetterTags.t.toString(),
   TonalLetterTags.v.toString(),
 ];
+
 // 中聲(母音, 準母音)
 const medials = [
   TonalLetterTags.a.toString(),
@@ -97,17 +100,19 @@ const medials = [
   TonalLetterTags.or.toString() + TonalLetterTags.e.toString(),
   TonalLetterTags.ir.toString() + TonalLetterTags.i.toString(),
   TonalLetterTags.i.toString() +
-    TonalLetterTags.a.toString() +
-    TonalLetterTags.i.toString(),
+  TonalLetterTags.a.toString() +
+  TonalLetterTags.i.toString(),
   TonalLetterTags.i.toString() +
-    TonalLetterTags.a.toString() +
-    TonalLetterTags.u.toString(),
+  TonalLetterTags.a.toString() +
+  TonalLetterTags.u.toString(),
   TonalLetterTags.o.toString() +
-    TonalLetterTags.a.toString() +
-    TonalLetterTags.i.toString(),
+  TonalLetterTags.a.toString() +
+  TonalLetterTags.i.toString(),
 ];
+
 // 鼻音化
 const nasalizations = [TonalLetterTags.nn.toString()];
+
 // 終聲(語尾子音, 聲調)
 const finals = [
   TonalLetterTags.p.toString(),
@@ -136,14 +141,15 @@ const finals = [
   TonalLetterTags.ng.toString() + TonalLetterTags.h.toString(),
   TonalLetterTags.ng.toString() + TonalLetterTags.hh.toString(),
 ];
+
 // 聲調
 const tonals = [
-  TonalLetterTags.f.toString(),
-  TonalLetterTags.y.toString(),
-  TonalLetterTags.w.toString(),
-  TonalLetterTags.x.toString(),
-  TonalLetterTags.z.toString(),
-  TonalLetterTags.xx.toString(),
+  { letter: TonalLetterTags.f.toString(), number: 1 },
+  { letter: TonalLetterTags.y.toString(), number: 2 },
+  { letter: TonalLetterTags.w.toString(), number: 3 },
+  { letter: TonalLetterTags.x.toString(), number: 5 },
+  { letter: TonalLetterTags.z.toString(), number: 7 },
+  { letter: TonalLetterTags.xx.toString(), number: 9 },
 ];
 
 function TaiKanaPage() {
@@ -184,20 +190,19 @@ function TaiKanaPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      className={
-        columnIndex % 2
-          ? rowIndex % 2 === 0
-            ? 'GridItemOdd'
-            : 'GridItemEven'
-          : rowIndex % 2
-          ? 'GridItemOdd'
-          : 'GridItemEven'
-      }
-      style={Object.assign(
-        style,
-        rowIndex % 2 === 0
-          ? {
+      <div
+        className={
+          columnIndex % 2
+            ? rowIndex % 2 == 0
+              ? 'GridItemOdd'
+              : 'GridItemEven'
+            : rowIndex % 2
+              ? 'GridItemOdd'
+              : 'GridItemEven'
+        }
+        style={Object.assign(
+          rowIndex % 2 == 0
+            ? {
               backgroundColor: 'lightgray',
               border: '1px solid white',
               color: 'black',
@@ -205,28 +210,28 @@ function TaiKanaPage() {
               // fontFamily: 'Monaco',
               // fontSize: 24,
             }
-          : {}
-      )}
-    >
-      {rowIndex == 0
-        ? columnIndex >= 0 && letter20[columnIndex]
-          ? letter20[columnIndex].letter
-          : ''
-        : rowIndex == 1
-        ? columnIndex >= 0 && letter20[columnIndex]
-          ? letter20[columnIndex].hanji
-          : ''
-        : rowIndex == 2
-        ? columnIndex >= 0 && letter21[columnIndex]
-          ? letter21[columnIndex].letter
-          : ''
-        : rowIndex == 3
-        ? columnIndex >= 0 && letter21[columnIndex]
-          ? letter21[columnIndex].hanji
-          : ''
-        : ''}
-    </div>
-  );
+            : {}, style
+        )}
+      >
+        {rowIndex == 0
+          ? columnIndex >= 0 && letter20[columnIndex]
+            ? letter20[columnIndex].letter
+            : ''
+          : rowIndex == 1
+            ? columnIndex >= 0 && letter20[columnIndex]
+              ? letter20[columnIndex].hanji
+              : ''
+            : rowIndex == 2
+              ? columnIndex >= 0 && letter21[columnIndex]
+                ? letter21[columnIndex].letter
+                : ''
+              : rowIndex == 3
+                ? columnIndex >= 0 && letter21[columnIndex]
+                  ? letter21[columnIndex].hanji
+                  : ''
+                : ''}
+      </div>
+    );
 
   const TableAlphabet = () => (
     <FixedSizeGrid
@@ -248,20 +253,20 @@ function TaiKanaPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-    style={Object.assign(
-      style, {
-        backgroundColor: 'lightgray',
-      border: '1px solid white',
-      color: 'black',
-      padding: 1,
-      }
-    )}
-    >
-      {
-       initials[columnIndex]
-          }
-    </div>);
+      <div
+        style={Object.assign(
+          {
+          backgroundColor: 'lightgray',
+          border: '1px solid white',
+          color: 'black',
+          padding: 1,
+        }, style
+        )}
+      >
+        {
+          initials[columnIndex]
+        }
+      </div>);
 
   const TableInitials = () => (
     <FixedSizeGrid
@@ -271,11 +276,154 @@ function TaiKanaPage() {
       rowCount={1}
       rowHeight={25}
       height={30}
-      width={520}
-      style={{ textAlign: 'center'
-}}
+      width={initials.length * 31}
+      style={{ textAlign: 'center' }}
     >
       {CellInitials}
+    </FixedSizeGrid>
+  );
+
+  const CellMedials = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+      <div
+        style={Object.assign(
+          {
+          backgroundColor: 'lightgray',
+          border: '1px solid white',
+          color: 'black',
+          padding: 1,
+        }, style
+        )}
+      >
+        {
+          medials[columnIndex]
+        }
+      </div>);
+
+  const TableMedials = () => (
+    <FixedSizeGrid
+      className="GridMedials"
+      columnCount={medials.length}
+      columnWidth={30}
+      rowCount={1}
+      rowHeight={25}
+      height={30}
+      width={medials.length * 31}
+      style={{ textAlign: 'center' }}
+    >
+      {CellMedials}
+    </FixedSizeGrid>
+  );
+
+  const CellNasalizations = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+      <div
+        style={Object.assign(
+          {
+          backgroundColor: 'lightgray',
+          border: '1px solid white',
+          color: 'black',
+          padding: 1,
+        }, style
+        )}
+      >
+        {
+          nasalizations[columnIndex]
+        }
+      </div>);
+
+  const TableNasalizations = () => (
+    <FixedSizeGrid
+      className="GridNasalizations"
+      columnCount={nasalizations.length}
+      columnWidth={30}
+      rowCount={1}
+      rowHeight={25}
+      height={30}
+      width={nasalizations.length * 31}
+      style={{ textAlign: 'center' }}
+    >
+      {CellNasalizations}
+    </FixedSizeGrid>
+  );
+
+  const CellFinals = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+      <div
+        style={Object.assign(
+          {
+          backgroundColor: 'lightgray',
+          border: '1px solid white',
+          color: 'black',
+          padding: 1,
+        }, style
+        )}
+      >
+        {
+          finals[columnIndex]
+        }
+      </div>);
+
+  const TableFinals = () => (
+    <FixedSizeGrid
+      className="GridFinals"
+      columnCount={finals.length}
+      columnWidth={30}
+      rowCount={1}
+      rowHeight={25}
+      height={30}
+      width={finals.length * 31}
+      style={{ textAlign: 'center' }}
+    >
+      {CellFinals}
+    </FixedSizeGrid>
+  );
+
+  const CellTonals = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+      <div
+      style={Object.assign(
+        rowIndex == 0
+          ? {
+            backgroundColor: 'lightgray',
+            border: '1px solid white',
+            color: 'black',
+            padding: 1,
+            // fontFamily: 'Monaco',
+            // fontSize: 24,
+          }
+          : {}, style
+      )}
+      >
+        {
+          rowIndex == 0 ? tonals[columnIndex].letter : rowIndex == 1 ? tonals[columnIndex].number : ''
+        }
+      </div>);
+
+  const TableTonals = () => (
+    <FixedSizeGrid
+      className="GridTonals"
+      columnCount={tonals.length}
+      columnWidth={30}
+      rowCount={2}
+      rowHeight={25}
+      height={2 * 30}
+      width={tonals.length * 31}
+      style={{ textAlign: 'center' }}
+    >
+      {CellTonals}
     </FixedSizeGrid>
   );
 
@@ -292,10 +440,10 @@ function TaiKanaPage() {
           {x.length == 0
             ? ''
             : x.length == 1
-            ? x[0]
-            : x.length == 2
-            ? x[0] + ', ' + x[1]
-            : ''}
+              ? x[0]
+              : x.length == 2
+                ? x[0] + ', ' + x[1]
+                : ''}
         </li>
       ))}
       <br />
@@ -303,7 +451,7 @@ function TaiKanaPage() {
       <CopyToClipBoard text={textTaikana}>
         <button
           disabled={textTaikana === ''}
-          // onClick={handleClickButton}
+        // onClick={handleClickButton}
         >
           Copy
         </button>
@@ -321,7 +469,7 @@ function TaiKanaPage() {
       </table>
       <br />
       <table>
-        <thead><tr><th align="left">Initials</th></tr></thead>
+        <thead><tr><th align="left">初聲(語頭子音)</th></tr></thead>
         <tbody>
           <tr>
             <td>
@@ -330,7 +478,50 @@ function TaiKanaPage() {
           </tr>
         </tbody>
       </table>
-
+      <br />
+      <table>
+        <thead><tr><th align="left">中聲(母音, 準母音)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <TableMedials />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <table>
+        <thead><tr><th align="left">鼻音化</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <TableNasalizations />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <table>
+        <thead><tr><th align="left">終聲(語尾子音, 聲調)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <TableFinals />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <table>
+        <thead><tr><th align="left">聲調</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <TableTonals />
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
