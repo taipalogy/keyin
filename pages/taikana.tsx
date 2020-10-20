@@ -152,6 +152,17 @@ const tonals = [
   { letter: TonalLetterTags.xx.toString(), number: 9 },
 ];
 
+const cellStyle = {
+  backgroundColor: 'papayawhip',
+  border: '1px solid white',
+  color: 'black',
+  // fontFamily: 'Monaco',
+  // fontSize: 24,
+  columnWidth: 32,
+  rowHeight: 25,
+  backgroundColorAlphabet: 'mistyrose',
+}
+
 function TaiKanaPage() {
   const [input, setInput] = useState('');
   // const [openTip, setOpenTip] = useState<boolean>(false);
@@ -203,13 +214,10 @@ function TaiKanaPage() {
         style={Object.assign(
           rowIndex % 2 == 0
             ? {
-              backgroundColor: 'lightgray',
+              backgroundColor: cellStyle.backgroundColorAlphabet,
               border: '1px solid white',
-              color: 'black',
-              padding: 1,
-              // fontFamily: 'Monaco',
-              // fontSize: 24,
-            }
+              color: cellStyle.color,
+                          }
             : {}, style
         )}
       >
@@ -237,11 +245,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridAlphabet"
       columnCount={21}
-      columnWidth={30}
+      columnWidth={cellStyle.columnWidth}
       rowCount={4}
-      rowHeight={25}
-      height={100}
-      width={640}
+      rowHeight={cellStyle.rowHeight}
+      height={4 * cellStyle.rowHeight}
+      width={letter21.length * (cellStyle.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
       {CellLetters}
@@ -256,10 +264,9 @@ function TaiKanaPage() {
       <div
         style={Object.assign(
           {
-          backgroundColor: 'lightgray',
-          border: '1px solid white',
-          color: 'black',
-          padding: 1,
+            backgroundColor: cellStyle.backgroundColor,
+            border: '1px solid white',
+            color: cellStyle.color,
         }, style
         )}
       >
@@ -272,11 +279,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridInitials"
       columnCount={initials.length}
-      columnWidth={30}
+      columnWidth={cellStyle.columnWidth}
       rowCount={1}
-      rowHeight={25}
-      height={30}
-      width={initials.length * 31}
+      rowHeight={cellStyle.rowHeight}
+      height={cellStyle.rowHeight + 2}
+      width={initials.length * (cellStyle.columnWidth+1)}
       style={{ textAlign: 'center' }}
     >
       {CellInitials}
@@ -291,10 +298,9 @@ function TaiKanaPage() {
       <div
         style={Object.assign(
           {
-          backgroundColor: 'lightgray',
-          border: '1px solid white',
-          color: 'black',
-          padding: 1,
+            backgroundColor: cellStyle.backgroundColor,
+            border: '1px solid white',
+            color: cellStyle.color,
         }, style
         )}
       >
@@ -307,11 +313,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridMedials"
       columnCount={medials.length}
-      columnWidth={30}
+      columnWidth={cellStyle.columnWidth}
       rowCount={1}
-      rowHeight={25}
-      height={30}
-      width={medials.length * 31}
+      rowHeight={cellStyle.rowHeight}
+      height={cellStyle.rowHeight + 2}
+      width={medials.length * (cellStyle.columnWidth +1)}
       style={{ textAlign: 'center' }}
     >
       {CellMedials}
@@ -326,10 +332,9 @@ function TaiKanaPage() {
       <div
         style={Object.assign(
           {
-          backgroundColor: 'lightgray',
-          border: '1px solid white',
-          color: 'black',
-          padding: 1,
+            backgroundColor: cellStyle.backgroundColor,
+            border: '1px solid white',
+            color: cellStyle.color,
         }, style
         )}
       >
@@ -342,11 +347,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridNasalizations"
       columnCount={nasalizations.length}
-      columnWidth={30}
+      columnWidth={cellStyle.columnWidth}
       rowCount={1}
-      rowHeight={25}
-      height={30}
-      width={nasalizations.length * 31}
+      rowHeight={cellStyle.rowHeight}
+      height={cellStyle.rowHeight + 2}
+      width={nasalizations.length * cellStyle.columnWidth  + 2}
       style={{ textAlign: 'center' }}
     >
       {CellNasalizations}
@@ -361,10 +366,9 @@ function TaiKanaPage() {
       <div
         style={Object.assign(
           {
-          backgroundColor: 'lightgray',
-          border: '1px solid white',
-          color: 'black',
-          padding: 1,
+            backgroundColor: cellStyle.backgroundColor,
+            border: '1px solid white',
+            color: cellStyle.color,
         }, style
         )}
       >
@@ -377,11 +381,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridFinals"
       columnCount={finals.length}
-      columnWidth={30}
+      columnWidth={cellStyle.columnWidth}
       rowCount={1}
-      rowHeight={25}
-      height={30}
-      width={finals.length * 31}
+      rowHeight={cellStyle.rowHeight}
+      height={cellStyle.rowHeight + 2}
+      width={finals.length * (cellStyle.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
       {CellFinals}
@@ -397,12 +401,9 @@ function TaiKanaPage() {
       style={Object.assign(
         rowIndex == 0
           ? {
-            backgroundColor: 'lightgray',
+            backgroundColor: cellStyle.backgroundColor,
             border: '1px solid white',
-            color: 'black',
-            padding: 1,
-            // fontFamily: 'Monaco',
-            // fontSize: 24,
+            color: cellStyle.color,
           }
           : {}, style
       )}
@@ -416,12 +417,12 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridTonals"
       columnCount={tonals.length}
-      columnWidth={30}
+      columnWidth={cellStyle.columnWidth}
       rowCount={2}
-      rowHeight={25}
-      height={2 * 30}
-      width={tonals.length * 31}
-      style={{ textAlign: 'center' }}
+      rowHeight={cellStyle.rowHeight}
+      height={2 * cellStyle.rowHeight}
+      width={tonals.length * (cellStyle.columnWidth +1)}
+      style={ {textAlign: 'center'} }
     >
       {CellTonals}
     </FixedSizeGrid>
