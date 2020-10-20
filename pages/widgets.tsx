@@ -325,84 +325,114 @@ function WidgetsPage() {
     </FixedSizeGrid>
   );
 
-  const CellItfditt = ({
+  const CellItfdittEighth = ({
     columnIndex,
     rowIndex,
     style,
   }: GridChildComponentProps) => (
     <div
-      className={
-        columnIndex % 2
-          ? rowIndex % 2 === 0
-            ? 'GridItemOdd'
-            : 'GridItemEven'
-          : rowIndex % 2
-          ? 'GridItemOdd'
-          : 'GridItemEven'
-      }
       style={style}
     >
       {rowIndex == 0 ? (
-        wordsItfditt[0].hanyjiz
-      ) : rowIndex == 1 ? (
         <div>
           <text style={{ color: 'red' }}>{hltItfdittTen.target}</text>
           {hltItfdittTen.tail}
-          <br />
-          {hltItfdittTen.hint.hint}
-          <br />
-          {/* <input
-            type="text"
-            value={input.inputTen}
-            name="inputTen"
-            onChange={handleChangeItfditt}
-          /> */}
         </div>
-      ) : rowIndex == 2 ? (
+      ) : rowIndex == 1 ? (
+        <div>
+          {hltItfdittTen.hint.hint}
+        </div>
+      ) : (
+        <div />
+      )}
+      </div>
+      );
+    
+  const TableItfdittEighth = () => (
+    <FixedSizeGrid
+      className="GridItfdittEighth"
+      columnCount={1}
+      columnWidth={160}
+      rowCount={2}
+      rowHeight={35}
+      height={70}
+      width={160}
+    >
+      {CellItfdittEighth}
+    </FixedSizeGrid>
+  );
+
+  const CellItfdittThird = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div
+      style={style}
+    >
+      {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltItfdittEleven.target}</text>
           {hltItfdittEleven.tail}
-          <br />
-          {hltItfdittEleven.hint.hint}
-          <br />
-          {/* <input
-                type="text"
-                value={input.inputEleven}
-                name="inputEleven"
-                onChange={handleChangeItfditt}
-              /> */}
-        </div>
-      ) : rowIndex == 3 ? (
+        </div>        
+      ) : rowIndex == 1 ? (
         <div>
-          <text style={{ color: 'red' }}>{hltItfdittTwelve.target}</text>
-          {hltItfdittTwelve.tail}
-          <br />
-          {hltItfdittTwelve.hint.hint}
-          <br />
-          {/* <input
-            type="text"
-            value={input.inputTwelve}
-            name="inputTwelve"
-            onChange={handleChangeItfditt}
-          /> */}
+          {hltItfdittEleven.hint.hint}          
         </div>
       ) : (
-        ''
+        <div />
       )}
-    </div>
-  );
-
-  const TableItfditt = () => (
+      </div>
+      );
+    
+  const TableItfdittThird = () => (
     <FixedSizeGrid
-      className="GridItfditt"
+      className="GridItfdittThird"
       columnCount={1}
       columnWidth={160}
-      rowCount={4}
+      rowCount={2}
       rowHeight={35}
-      height={190}
+      height={70}
       width={160}
     >
-      {CellItfditt}
+      {CellItfdittThird}
+    </FixedSizeGrid>
+  );
+
+  const CellItfdittFirst = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div
+      style={style}
+    >
+      {rowIndex == 0 ? (
+        <div>
+        <text style={{ color: 'red' }}>{hltItfdittTwelve.target}</text>
+        {hltItfdittTwelve.tail}
+        </div>
+      ) : rowIndex == 1 ? (
+        <div>
+          {hltItfdittTwelve.hint.hint}
+        </div>
+      ) : (
+        <div />
+      )}
+      </div>
+      );
+    
+  const TableItfdittFirst = () => (
+    <FixedSizeGrid
+      className="GridItfdittFirst"
+      columnCount={1}
+      columnWidth={160}
+      rowCount={2}
+      rowHeight={35}
+      height={70}
+      width={160}
+    >
+      {CellItfdittFirst}
     </FixedSizeGrid>
   );
 
@@ -412,15 +442,6 @@ function WidgetsPage() {
     style,
   }: GridChildComponentProps) => (
     <div
-      className={
-        columnIndex % 2
-          ? rowIndex % 2 === 0
-            ? 'GridItemOdd'
-            : 'GridItemEven'
-          : rowIndex % 2
-          ? 'GridItemOdd'
-          : 'GridItemEven'
-      }
       style={style}
     >
       {rowIndex == 0 && columnIndex == 0 ? (
@@ -465,15 +486,6 @@ function WidgetsPage() {
     style,
   }: GridChildComponentProps) => (
     <div
-      className={
-        columnIndex % 2
-          ? rowIndex % 2 === 0
-            ? 'GridItemOdd'
-            : 'GridItemEven'
-          : rowIndex % 2
-          ? 'GridItemOdd'
-          : 'GridItemEven'
-      }
       style={style}
     >
       {rowIndex == 0 ? (
@@ -484,15 +496,6 @@ function WidgetsPage() {
           {hltSentenceThirty.tail}
           <br />
           {hltSentenceThirty.hint.hint}
-        </div>
-      ) : rowIndex == 2 ? (
-        <div>
-          <input
-            type="text"
-            value={inputThirty}
-            // name="inputThirty"
-            onChange={handleChangeSentence}
-          />
         </div>
       ) : (
         <div />
@@ -507,7 +510,7 @@ function WidgetsPage() {
       columnWidth={320}
       rowCount={3}
       rowHeight={35}
-      height={190}
+      height={110}
       width={320}
     >
       {CellSentence}
@@ -522,10 +525,66 @@ function WidgetsPage() {
       <TableChang />
       <br />
       2.
-      <TableItfditt />
+      <table>
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td>
+            {wordsItfditt[0].hanyjiz}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <TableItfdittEighth />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input
+            type="text"
+            value={input.inputTen}
+            name="inputTen"
+            onChange={handleChangeItfditt}
+          />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <TableItfdittThird />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="text"
+                value={input.inputEleven}
+                name="inputEleven"
+                onChange={handleChangeItfditt}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <TableItfdittFirst />
+            </td>
+          </tr>
+          <tr>
+            <td>
+                        <input
+            type="text"
+            value={input.inputTwelve}
+            name="inputTwelve"
+            onChange={handleChangeItfditt}
+          />
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+
       <br />
       3.
-      {/* <TableMizmix /> */}
       <table>
         <thead>{wordsMizmix[0].hanyjiz}</thead>
         <tbody>
@@ -556,7 +615,26 @@ function WidgetsPage() {
       </table>
       <br />
       4.
-      <TableSentence />
+      <table>
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td>
+              <TableSentence />
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <input
+            type="text"
+            value={inputThirty}
+            // name="inputThirty"
+            onChange={handleChangeSentence}
+          />
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <br />
       5.
       <table>
