@@ -169,111 +169,111 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      className={
-        columnIndex % 2
-          ? rowIndex % 2 === 0
-            ? 'GridItemOdd'
-            : 'GridItemEven'
-          : rowIndex % 2
-          ? 'GridItemOdd'
-          : 'GridItemEven'
-      }
-      style={style}
-    >
-      {rowIndex == 0 ? (
-        wordsChang[columnIndex].hanyjiz
-      ) : rowIndex == 1 ? (
-        wordsChang[columnIndex].lurzmafjiz
-      ) : rowIndex == 2 ? (
-        cli
-          .processTonal(wordsChang[columnIndex].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0).join(', ')
-      ) : rowIndex == 3 ? (
-        columnIndex == 0 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangZero.target}</text>
-            {hltChangZero.tail}
-          </div>
-        ) : columnIndex == 1 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangOne.target}</text>
-            {hltChangOne.tail}
-          </div>
-        ) : columnIndex == 2 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangTwo.target}</text>
-            {hltChangTwo.tail}
-          </div>
-        ) : columnIndex == 3 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangThree.target}</text>
-            {hltChangThree.tail}
-          </div>
-        ) : columnIndex == 4 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangFour.target}</text>
-            {hltChangFour.tail}
-          </div>
-        ) : columnIndex == 5 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangFive.target}</text>
-            {hltChangFive.tail}
-          </div>
-        ) : columnIndex == 6 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangSix.target}</text>
-            {hltChangSix.tail}
-          </div>
-        ) : columnIndex == 7 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangSeven.target}</text>
-            {hltChangSeven.tail}
-          </div>
+      <div
+        className={
+          columnIndex % 2
+            ? rowIndex % 2 === 0
+              ? 'GridItemOdd'
+              : 'GridItemEven'
+            : rowIndex % 2
+              ? 'GridItemOdd'
+              : 'GridItemEven'
+        }
+        style={style}
+      >
+        {rowIndex == 0 ? (
+          wordsChang[columnIndex].hanyjiz
+        ) : rowIndex == 1 ? (
+          wordsChang[columnIndex].lurzmafjiz
+        ) : rowIndex == 2 ? (
+          cli
+            .processTonal(wordsChang[columnIndex].lurzmafjiz)
+            .blockSequences.filter(it => it.length > 0).join(', ')
+        ) : rowIndex == 3 ? (
+          columnIndex == 0 ? (
+            <div>
+              <text style={{ color: 'red' }}>{hltChangZero.target}</text>
+              {hltChangZero.tail}
+            </div>
+          ) : columnIndex == 1 ? (
+            <div>
+              <text style={{ color: 'red' }}>{hltChangOne.target}</text>
+              {hltChangOne.tail}
+            </div>
+          ) : columnIndex == 2 ? (
+            <div>
+              <text style={{ color: 'red' }}>{hltChangTwo.target}</text>
+              {hltChangTwo.tail}
+            </div>
+          ) : columnIndex == 3 ? (
+            <div>
+              <text style={{ color: 'red' }}>{hltChangThree.target}</text>
+              {hltChangThree.tail}
+            </div>
+          ) : columnIndex == 4 ? (
+            <div>
+              <text style={{ color: 'red' }}>{hltChangFour.target}</text>
+              {hltChangFour.tail}
+            </div>
+          ) : columnIndex == 5 ? (
+            <div>
+              <text style={{ color: 'red' }}>{hltChangFive.target}</text>
+              {hltChangFive.tail}
+            </div>
+          ) : columnIndex == 6 ? (
+            <div>
+              <text style={{ color: 'red' }}>{hltChangSix.target}</text>
+              {hltChangSix.tail}
+            </div>
+          ) : columnIndex == 7 ? (
+            <div>
+              <text style={{ color: 'red' }}>{hltChangSeven.target}</text>
+              {hltChangSeven.tail}
+            </div>
+          ) : (
+                            <div />
+                          )
+        ) : rowIndex == 4 ? (
+          columnIndex == 0 ? (
+            <div>
+              {hltChangZero.hint.hint}
+            </div>
+          ) : columnIndex == 1 ? (
+            <div>
+              {hltChangOne.hint.hint}
+            </div>
+          ) : columnIndex == 2 ? (
+            <div>
+              {hltChangTwo.hint.hint}
+            </div>
+          ) : columnIndex == 3 ? (
+            <div>
+              {hltChangThree.hint.hint}
+            </div>
+          ) : columnIndex == 4 ? (
+            <div>
+              {hltChangFour.hint.hint}
+            </div>
+          ) : columnIndex == 5 ? (
+            <div>
+              {hltChangFive.hint.hint}
+            </div>
+          ) : columnIndex == 6 ? (
+            <div>
+              {hltChangSix.hint.hint}
+            </div>
+          ) : columnIndex == 7 ? (
+            <div>
+              {hltChangSeven.hint.hint}
+            </div>
+          ) : (
+                            <div />
+                          )
         ) : (
-          <div />
-        )
-      ) :  rowIndex == 4 ? (
-        columnIndex == 0 ? (
-          <div>
-            {hltChangZero.hint.hint}
-          </div>
-        ) : columnIndex == 1 ? (
-          <div>
-            {hltChangOne.hint.hint}
-          </div>
-        ) : columnIndex == 2 ? (
-          <div>
-            {hltChangTwo.hint.hint}
-          </div>
-        ) : columnIndex == 3 ? (
-          <div>
-            {hltChangThree.hint.hint}
-          </div>
-        ) : columnIndex == 4 ? (
-          <div>
-            {hltChangFour.hint.hint}
-          </div>
-        ) : columnIndex == 5 ? (
-          <div>
-            {hltChangFive.hint.hint}
-          </div>
-        ) : columnIndex == 6 ? (
-          <div>
-            {hltChangSix.hint.hint}
-          </div>
-        ) : columnIndex == 7 ? (
-          <div>
-            {hltChangSeven.hint.hint}
-          </div>
-        ) : (
-          <div />
-        )
-      ) : (
-        <div />
-      )}
-    </div>
-  );
+                    <div />
+                  )}
+      </div>
+    );
 
   const TableChang = () => (
     <FixedSizeGrid
@@ -294,24 +294,24 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={style}
-    >
-      {rowIndex == 0 ? (
-        <div>
-          <text style={{ color: 'red' }}>{hltItfdittTen.target}</text>
-          {hltItfdittTen.tail}
-        </div>
-      ) : rowIndex == 1 ? (
-        <div>
-          {hltItfdittTen.hint.hint}
-        </div>
-      ) : (
-        <div />
-      )}
+      <div
+        style={style}
+      >
+        {rowIndex == 0 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltItfdittTen.target}</text>
+            {hltItfdittTen.tail}
+          </div>
+        ) : rowIndex == 1 ? (
+          <div>
+            {hltItfdittTen.hint.hint}
+          </div>
+        ) : (
+              <div />
+            )}
       </div>
-      );
-    
+    );
+
   const TableItfdittEighth = () => (
     <FixedSizeGrid
       className="GridItfdittEighth"
@@ -331,24 +331,24 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={style}
-    >
-      {rowIndex == 0 ? (
-        <div>
-          <text style={{ color: 'red' }}>{hltItfdittEleven.target}</text>
-          {hltItfdittEleven.tail}
-        </div>        
-      ) : rowIndex == 1 ? (
-        <div>
-          {hltItfdittEleven.hint.hint}          
-        </div>
-      ) : (
-        <div />
-      )}
+      <div
+        style={style}
+      >
+        {rowIndex == 0 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltItfdittEleven.target}</text>
+            {hltItfdittEleven.tail}
+          </div>
+        ) : rowIndex == 1 ? (
+          <div>
+            {hltItfdittEleven.hint.hint}
+          </div>
+        ) : (
+              <div />
+            )}
       </div>
-      );
-    
+    );
+
   const TableItfdittThird = () => (
     <FixedSizeGrid
       className="GridItfdittThird"
@@ -368,24 +368,24 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={style}
-    >
-      {rowIndex == 0 ? (
-        <div>
-        <text style={{ color: 'red' }}>{hltItfdittTwelve.target}</text>
-        {hltItfdittTwelve.tail}
-        </div>
-      ) : rowIndex == 1 ? (
-        <div>
-          {hltItfdittTwelve.hint.hint}
-        </div>
-      ) : (
-        <div />
-      )}
+      <div
+        style={style}
+      >
+        {rowIndex == 0 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltItfdittTwelve.target}</text>
+            {hltItfdittTwelve.tail}
+          </div>
+        ) : rowIndex == 1 ? (
+          <div>
+            {hltItfdittTwelve.hint.hint}
+          </div>
+        ) : (
+              <div />
+            )}
       </div>
-      );
-    
+    );
+
   const TableItfdittFirst = () => (
     <FixedSizeGrid
       className="GridItfdittFirst"
@@ -405,30 +405,30 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={style}
-    >
-      {rowIndex == 0 && columnIndex == 0 ? (
-        <div>
-          <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
-          {hltMizmixTwenty.tail}
-        </div>
-      ) : rowIndex == 0 && columnIndex == 1 ? (
-        <div>
-          <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
-          {hltMizmixTwentyOne.tail}
-        </div>
-      ) : rowIndex == 1 && columnIndex == 0 ? (
+      <div
+        style={style}
+      >
+        {rowIndex == 0 && columnIndex == 0 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
+            {hltMizmixTwenty.tail}
+          </div>
+        ) : rowIndex == 0 && columnIndex == 1 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
+            {hltMizmixTwentyOne.tail}
+          </div>
+        ) : rowIndex == 1 && columnIndex == 0 ? (
           <div>{hltMizmixTwenty.hint.hint}</div>
-      ) : rowIndex == 1 && columnIndex == 1 ? (
-        <div>
-          {hltMizmixTwentyOne.hint.hint}
-        </div>
-    ) : (
-        <div />
-      )}
-    </div>
-  );
+        ) : rowIndex == 1 && columnIndex == 1 ? (
+          <div>
+            {hltMizmixTwentyOne.hint.hint}
+          </div>
+        ) : (
+                  <div />
+                )}
+      </div>
+    );
 
   const TableMizmix = () => (
     <FixedSizeGrid
@@ -449,23 +449,23 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={style}
-    >
-      {rowIndex == 0 ? (
-        sentence.map(it => it).join(' ')
-      ) : rowIndex == 1 ? (
-        <div>
-          <text style={{ color: 'red' }}>{hltSentenceThirty.target}</text>
-          {hltSentenceThirty.tail}
-          <br />
-          {/* {hltSentenceThirty.hint.hint} */}
-        </div>
-      ) : rowIndex == 2 ? (<div>{hltSentenceThirty.hint.hint}</div>) : (
-        <div />
-      )}
-    </div>
-  );
+      <div
+        style={style}
+      >
+        {rowIndex == 0 ? (
+          sentence.map(it => it).join(' ')
+        ) : rowIndex == 1 ? (
+          <div>
+            <text style={{ color: 'red' }}>{hltSentenceThirty.target}</text>
+            {hltSentenceThirty.tail}
+            <br />
+            {/* {hltSentenceThirty.hint.hint} */}
+          </div>
+        ) : rowIndex == 2 ? (<div>{hltSentenceThirty.hint.hint}</div>) : (
+          <div />
+        )}
+      </div>
+    );
 
   const TableSentence = () => (
     <FixedSizeGrid
@@ -496,69 +496,69 @@ function WidgetsPage() {
           </tr>
           <tr>
             <td>
-            <input
-              type="text"
-              value={input.inputZero}
-              name="inputZero"
-              onChange={handleChangeChang}
+              <input
+                type="text"
+                value={input.inputZero}
+                name="inputZero"
+                onChange={handleChangeChang}
               // style={{ maxWidth: 60 }}
-            />
-            </td>
-            <td>
-            <input
-              type="text"
-              value={input.inputOne}
-              name="inputOne"
-              onChange={handleChangeChang}
-            />
-            </td>
-            <td>
-            <input
-              type="text"
-              value={input.inputTwo}
-              name="inputTwo"
-              onChange={handleChangeChang}
-            />
-            </td>
-            <td>
-            <input
-              type="text"
-              value={input.inputThree}
-              name="inputThree"
-              onChange={handleChangeChang}
-            />
+              />
             </td>
             <td>
               <input
-              type="text"
-              value={input.inputFour}
-              name="inputFour"
-              onChange={handleChangeChang}
-            />
+                type="text"
+                value={input.inputOne}
+                name="inputOne"
+                onChange={handleChangeChang}
+              />
             </td>
             <td>
-            <input
-              type="text"
-              value={input.inputFive}
-              name="inputFive"
-              onChange={handleChangeChang}
-            />
+              <input
+                type="text"
+                value={input.inputTwo}
+                name="inputTwo"
+                onChange={handleChangeChang}
+              />
             </td>
             <td>
-            <input
-              type="text"
-              value={input.inputSix}
-              name="inputSix"
-              onChange={handleChangeChang}
-            />
+              <input
+                type="text"
+                value={input.inputThree}
+                name="inputThree"
+                onChange={handleChangeChang}
+              />
             </td>
             <td>
-            <input
-              type="text"
-              value={input.inputSeven}
-              name="inputSeven"
-              onChange={handleChangeChang}
-            />
+              <input
+                type="text"
+                value={input.inputFour}
+                name="inputFour"
+                onChange={handleChangeChang}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={input.inputFive}
+                name="inputFive"
+                onChange={handleChangeChang}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={input.inputSix}
+                name="inputSix"
+                onChange={handleChangeChang}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={input.inputSeven}
+                name="inputSeven"
+                onChange={handleChangeChang}
+              />
             </td>
           </tr>
         </tbody>
@@ -570,7 +570,7 @@ function WidgetsPage() {
         <tbody>
           <tr>
             <td>
-            {wordsItfditt[0].hanyjiz}
+              {wordsItfditt[0].hanyjiz}
             </td>
           </tr>
           <tr>
@@ -581,11 +581,11 @@ function WidgetsPage() {
           <tr>
             <td>
               <input
-            type="text"
-            value={input.inputTen}
-            name="inputTen"
-            onChange={handleChangeItfditt}
-          />
+                type="text"
+                value={input.inputTen}
+                name="inputTen"
+                onChange={handleChangeItfditt}
+              />
             </td>
           </tr>
           <tr>
@@ -605,17 +605,17 @@ function WidgetsPage() {
           </tr>
           <tr>
             <td>
-            <TableItfdittFirst />
+              <TableItfdittFirst />
             </td>
           </tr>
           <tr>
             <td>
-                        <input
-            type="text"
-            value={input.inputTwelve}
-            name="inputTwelve"
-            onChange={handleChangeItfditt}
-          />
+              <input
+                type="text"
+                value={input.inputTwelve}
+                name="inputTwelve"
+                onChange={handleChangeItfditt}
+              />
 
             </td>
           </tr>
@@ -665,12 +665,12 @@ function WidgetsPage() {
           </tr>
           <tr>
             <td>
-            <input
-            type="text"
-            value={inputThirty}
-            // name="inputThirty"
-            onChange={handleChangeSentence}
-          />
+              <input
+                type="text"
+                value={inputThirty}
+                // name="inputThirty"
+                onChange={handleChangeSentence}
+              />
             </td>
           </tr>
         </tbody>

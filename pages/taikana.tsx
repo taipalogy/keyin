@@ -217,7 +217,7 @@ function TaiKanaPage() {
               backgroundColor: cellStyle.backgroundColorAlphabet,
               border: '1px solid white',
               color: cellStyle.color,
-                          }
+            }
             : {}, style
         )}
       >
@@ -267,7 +267,7 @@ function TaiKanaPage() {
             backgroundColor: cellStyle.backgroundColor,
             border: '1px solid white',
             color: cellStyle.color,
-        }, style
+          }, style
         )}
       >
         {
@@ -283,7 +283,7 @@ function TaiKanaPage() {
       rowCount={1}
       rowHeight={cellStyle.rowHeight}
       height={cellStyle.rowHeight + 2}
-      width={initials.length * (cellStyle.columnWidth+1)}
+      width={initials.length * (cellStyle.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
       {CellInitials}
@@ -301,7 +301,7 @@ function TaiKanaPage() {
             backgroundColor: cellStyle.backgroundColor,
             border: '1px solid white',
             color: cellStyle.color,
-        }, style
+          }, style
         )}
       >
         {
@@ -317,7 +317,7 @@ function TaiKanaPage() {
       rowCount={1}
       rowHeight={cellStyle.rowHeight}
       height={cellStyle.rowHeight + 2}
-      width={medials.length * (cellStyle.columnWidth +1)}
+      width={medials.length * (cellStyle.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
       {CellMedials}
@@ -335,7 +335,7 @@ function TaiKanaPage() {
             backgroundColor: cellStyle.backgroundColor,
             border: '1px solid white',
             color: cellStyle.color,
-        }, style
+          }, style
         )}
       >
         {
@@ -351,7 +351,7 @@ function TaiKanaPage() {
       rowCount={1}
       rowHeight={cellStyle.rowHeight}
       height={cellStyle.rowHeight + 2}
-      width={nasalizations.length * cellStyle.columnWidth  + 2}
+      width={nasalizations.length * cellStyle.columnWidth + 2}
       style={{ textAlign: 'center' }}
     >
       {CellNasalizations}
@@ -369,7 +369,7 @@ function TaiKanaPage() {
             backgroundColor: cellStyle.backgroundColor,
             border: '1px solid white',
             color: cellStyle.color,
-        }, style
+          }, style
         )}
       >
         {
@@ -398,15 +398,15 @@ function TaiKanaPage() {
     style,
   }: GridChildComponentProps) => (
       <div
-      style={Object.assign(
-        rowIndex == 0
-          ? {
-            backgroundColor: cellStyle.backgroundColor,
-            border: '1px solid white',
-            color: cellStyle.color,
-          }
-          : {}, style
-      )}
+        style={Object.assign(
+          rowIndex == 0
+            ? {
+              backgroundColor: cellStyle.backgroundColor,
+              border: '1px solid white',
+              color: cellStyle.color,
+            }
+            : {}, style
+        )}
       >
         {
           rowIndex == 0 ? tonals[columnIndex].letter : rowIndex == 1 ? tonals[columnIndex].number : ''
@@ -421,8 +421,8 @@ function TaiKanaPage() {
       rowCount={2}
       rowHeight={cellStyle.rowHeight}
       height={2 * cellStyle.rowHeight}
-      width={tonals.length * (cellStyle.columnWidth +1)}
-      style={ {textAlign: 'center'} }
+      width={tonals.length * (cellStyle.columnWidth + 1)}
+      style={{ textAlign: 'center' }}
     >
       {CellTonals}
     </FixedSizeGrid>
