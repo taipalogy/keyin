@@ -188,62 +188,82 @@ function WidgetsPage() {
       ) : rowIndex == 2 ? (
         cli
           .processTonal(wordsChang[columnIndex].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0)
+          .blockSequences.filter(it => it.length > 0).join(', ')
       ) : rowIndex == 3 ? (
         columnIndex == 0 ? (
           <div>
             <text style={{ color: 'red' }}>{hltChangZero.target}</text>
             {hltChangZero.tail}
-            <br />
-            {hltChangZero.hint.hint}
           </div>
         ) : columnIndex == 1 ? (
           <div>
             <text style={{ color: 'red' }}>{hltChangOne.target}</text>
             {hltChangOne.tail}
-            <br />
-            {hltChangOne.hint.hint}
           </div>
         ) : columnIndex == 2 ? (
           <div>
             <text style={{ color: 'red' }}>{hltChangTwo.target}</text>
             {hltChangTwo.tail}
-            <br />
-            {hltChangTwo.hint.hint}
           </div>
         ) : columnIndex == 3 ? (
           <div>
             <text style={{ color: 'red' }}>{hltChangThree.target}</text>
             {hltChangThree.tail}
-            <br />
-            {hltChangThree.hint.hint}
           </div>
         ) : columnIndex == 4 ? (
           <div>
             <text style={{ color: 'red' }}>{hltChangFour.target}</text>
             {hltChangFour.tail}
-            <br />
-            {hltChangFour.hint.hint}
           </div>
         ) : columnIndex == 5 ? (
           <div>
             <text style={{ color: 'red' }}>{hltChangFive.target}</text>
             {hltChangFive.tail}
-            <br />
-            {hltChangFive.hint.hint}
           </div>
         ) : columnIndex == 6 ? (
           <div>
             <text style={{ color: 'red' }}>{hltChangSix.target}</text>
             {hltChangSix.tail}
-            <br />
-            {hltChangSix.hint.hint}
           </div>
         ) : columnIndex == 7 ? (
           <div>
             <text style={{ color: 'red' }}>{hltChangSeven.target}</text>
             {hltChangSeven.tail}
-            <br />
+          </div>
+        ) : (
+          <div />
+        )
+      ) :  rowIndex == 4 ? (
+        columnIndex == 0 ? (
+          <div>
+            {hltChangZero.hint.hint}
+          </div>
+        ) : columnIndex == 1 ? (
+          <div>
+            {hltChangOne.hint.hint}
+          </div>
+        ) : columnIndex == 2 ? (
+          <div>
+            {hltChangTwo.hint.hint}
+          </div>
+        ) : columnIndex == 3 ? (
+          <div>
+            {hltChangThree.hint.hint}
+          </div>
+        ) : columnIndex == 4 ? (
+          <div>
+            {hltChangFour.hint.hint}
+          </div>
+        ) : columnIndex == 5 ? (
+          <div>
+            {hltChangFive.hint.hint}
+          </div>
+        ) : columnIndex == 6 ? (
+          <div>
+            {hltChangSix.hint.hint}
+          </div>
+        ) : columnIndex == 7 ? (
+          <div>
             {hltChangSeven.hint.hint}
           </div>
         ) : (
@@ -260,7 +280,7 @@ function WidgetsPage() {
       className="GridChang"
       columnCount={8}
       columnWidth={160}
-      rowCount={4}
+      rowCount={5}
       rowHeight={35}
       height={190}
       width={1300}
@@ -392,19 +412,19 @@ function WidgetsPage() {
         <div>
           <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
           {hltMizmixTwenty.tail}
-          <br />
-          {hltMizmixTwenty.hint.hint}
-          <br />
         </div>
       ) : rowIndex == 0 && columnIndex == 1 ? (
         <div>
           <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
           {hltMizmixTwentyOne.tail}
-          <br />
-          {hltMizmixTwentyOne.hint.hint}
-          <br />
         </div>
-      ) : (
+      ) : rowIndex == 1 && columnIndex == 0 ? (
+          <div>{hltMizmixTwenty.hint.hint}</div>
+      ) : rowIndex == 1 && columnIndex == 1 ? (
+        <div>
+          {hltMizmixTwentyOne.hint.hint}
+        </div>
+    ) : (
         <div />
       )}
     </div>
@@ -439,9 +459,9 @@ function WidgetsPage() {
           <text style={{ color: 'red' }}>{hltSentenceThirty.target}</text>
           {hltSentenceThirty.tail}
           <br />
-          {hltSentenceThirty.hint.hint}
+          {/* {hltSentenceThirty.hint.hint} */}
         </div>
-      ) : (
+      ) : rowIndex == 2 ? (<div>{hltSentenceThirty.hint.hint}</div>) : (
         <div />
       )}
     </div>
@@ -481,6 +501,7 @@ function WidgetsPage() {
               value={input.inputZero}
               name="inputZero"
               onChange={handleChangeChang}
+              // style={{ maxWidth: 60 }}
             />
             </td>
             <td>
