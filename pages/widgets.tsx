@@ -32,6 +32,16 @@ const wordsMizmix = [
 const sentence = ['hitf', 'chanz', 'daiwchiw', 'chinz', 'doaw', 'diaux'];
 let currWord: number = 0;
 
+const cellStyle = {
+  // backgroundColor: 'papayawhip',
+  border: '1px solid silver',
+  // color: 'black',
+  // fontFamily: 'Monaco',
+  // fontSize: 24,
+  columnWidth: 140,
+  rowHeight: 25,
+}
+
 function WidgetsPage() {
   const [input, setInput] = useReducer(
     (state: any, newState: any) => ({ ...state, ...newState }),
@@ -295,7 +305,12 @@ function WidgetsPage() {
     style,
   }: GridChildComponentProps) => (
       <div
-        style={style}
+        style={Object.assign(
+          {
+            border: cellStyle.border,
+          }
+          , style
+        )}
       >
         {rowIndex == 0 ? (
           <div>
@@ -316,11 +331,11 @@ function WidgetsPage() {
     <FixedSizeGrid
       className="GridItfdittEighth"
       columnCount={1}
-      columnWidth={160}
+      columnWidth={cellStyle.columnWidth}
       rowCount={2}
-      rowHeight={35}
-      height={70}
-      width={160}
+      rowHeight={cellStyle.rowHeight}
+      height={cellStyle.rowHeight * 2 + 2}
+      width={cellStyle.columnWidth + 2}
     >
       {CellItfdittEighth}
     </FixedSizeGrid>
@@ -332,7 +347,12 @@ function WidgetsPage() {
     style,
   }: GridChildComponentProps) => (
       <div
-        style={style}
+        style={Object.assign(
+          {
+            border: cellStyle.border,
+          }
+          , style
+        )}
       >
         {rowIndex == 0 ? (
           <div>
@@ -353,11 +373,11 @@ function WidgetsPage() {
     <FixedSizeGrid
       className="GridItfdittThird"
       columnCount={1}
-      columnWidth={160}
+      columnWidth={cellStyle.columnWidth}
       rowCount={2}
-      rowHeight={35}
-      height={70}
-      width={160}
+      rowHeight={cellStyle.rowHeight}
+      height={cellStyle.rowHeight * 2 + 2}
+      width={cellStyle.columnWidth + 2}
     >
       {CellItfdittThird}
     </FixedSizeGrid>
@@ -369,7 +389,12 @@ function WidgetsPage() {
     style,
   }: GridChildComponentProps) => (
       <div
-        style={style}
+        style={Object.assign(
+          {
+            border: cellStyle.border,
+          }
+          , style
+        )}
       >
         {rowIndex == 0 ? (
           <div>
@@ -390,11 +415,11 @@ function WidgetsPage() {
     <FixedSizeGrid
       className="GridItfdittFirst"
       columnCount={1}
-      columnWidth={160}
+      columnWidth={cellStyle.columnWidth}
       rowCount={2}
-      rowHeight={35}
-      height={70}
-      width={160}
+      rowHeight={cellStyle.rowHeight}
+      height={cellStyle.rowHeight * 2 + 2}
+      width={cellStyle.columnWidth + 2}
     >
       {CellItfdittFirst}
     </FixedSizeGrid>
@@ -684,10 +709,16 @@ function WidgetsPage() {
             <td>單語</td>
           </tr>
           <tr>
-            <td>danzgiy. danzguy</td>
+            <td>danzgiy</td>
           </tr>
           <tr>
-            <td>タヌ⎸ギイ⎛. タヌ⎸グウ⎛</td>
+            <td>タヌ⎸ギイ⎛</td>
+          </tr>
+          <tr>
+            <td>danzguy</td>
+          </tr>
+          <tr>
+            <td>タヌ⎸グウ⎛</td>
           </tr>
         </tbody>
       </table>
