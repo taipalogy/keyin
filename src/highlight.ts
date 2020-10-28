@@ -8,7 +8,7 @@ import { Client, TonalSpellingTags, graphAnalyzeTonal } from 'taipa';
  */
 
 class Hint {
-  hint: string = '';
+  text: string = '';
   sounds: Array<string> = new Array();
   namesOfSound: Array<string> = new Array();
 }
@@ -64,7 +64,7 @@ export class Highlighter {
           h.namesOfSound.push(j.name);
           h.sounds.push(j.toString());
         }
-        h.hint = namesInHanji.get(h.namesOfSound[0]) + ' ' + h.namesOfSound[0];
+        h.text = namesInHanji.get(h.namesOfSound[0]) + ' ' + h.namesOfSound[0];
       }
       this.targets[i] = h.sounds[0];
       const sliced = this.literals[i].slice(this.targets[i].length);
@@ -81,14 +81,14 @@ export class Highlighter {
       if (tonalInHanji.has(this.hints[index].sounds[n])) {
         let tonal: string = '';
         tonal = tonalInHanji.get(this.hints[index].sounds[n]);
-        this.hints[index].hint =
+        this.hints[index].text =
           namesInHanji.get(this.hints[index].namesOfSound[n]) +
           tonal +
           ' ' +
           this.hints[index].namesOfSound[n];
       }
     } else {
-      this.hints[index].hint =
+      this.hints[index].text =
         namesInHanji.get(this.hints[index].namesOfSound[n]) +
         ' ' +
         this.hints[index].namesOfSound[n];
@@ -110,7 +110,7 @@ export class Highlighter {
           } else {
             if (j + 1 == this.hints[idx].sounds.length) {
               // last sound
-              this.hints[idx].hint = '';
+              this.hints[idx].text = '';
               this.targets[idx] = '';
             } else {
               this.setHintAndTarget(idx, j + 1);

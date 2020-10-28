@@ -28,7 +28,7 @@ function HintPage() {
       <br />
       {hlt.posTarget}
       <br />
-      {hlt.posTarget < hp.literals[0].length ? hp.hints[0].hint : ''}
+      {hlt.posTarget < hp.literals[0].length ? hp.hints[0].text : ''}
     </div>
   );
 }

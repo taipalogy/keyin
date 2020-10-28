@@ -40,16 +40,16 @@ const divStyle = {
   // backgroundColor: 'papayawhip',
   border: '1px solid silver',
   // color: 'black',
-  fontFamily: 'Monaco',
+  fontFamily: 'monaco',
   // fontSize: 24,
   padding: '5px',
   width: '170px',
+  color: 'black',
 };
 
 const cellStyle = {
-  // backgroundColor: 'papayawhip',
-  border: '1px dotted lightgray',
-  // color: 'black',
+  backgroundColor: 'papayawhip',
+  border: '1px dotted white',
   // fontFamily: 'Monaco',
   // fontSize: 24,
   columnWidth: 140,
@@ -260,21 +260,21 @@ function WidgetsPage() {
         )
       ) : rowIndex == 4 ? (
         columnIndex == 0 ? (
-          <div>{hltChangZero.hint.hint}</div>
+          <div>{hltChangZero.hint.text}</div>
         ) : columnIndex == 1 ? (
-          <div>{hltChangOne.hint.hint}</div>
+          <div>{hltChangOne.hint.text}</div>
         ) : columnIndex == 2 ? (
-          <div>{hltChangTwo.hint.hint}</div>
+          <div>{hltChangTwo.hint.text}</div>
         ) : columnIndex == 3 ? (
-          <div>{hltChangThree.hint.hint}</div>
+          <div>{hltChangThree.hint.text}</div>
         ) : columnIndex == 4 ? (
-          <div>{hltChangFour.hint.hint}</div>
+          <div>{hltChangFour.hint.text}</div>
         ) : columnIndex == 5 ? (
-          <div>{hltChangFive.hint.hint}</div>
+          <div>{hltChangFive.hint.text}</div>
         ) : columnIndex == 6 ? (
-          <div>{hltChangSix.hint.hint}</div>
+          <div>{hltChangSix.hint.text}</div>
         ) : columnIndex == 7 ? (
-          <div>{hltChangSeven.hint.hint}</div>
+          <div>{hltChangSeven.hint.text}</div>
         ) : (
           <div />
         )
@@ -304,12 +304,23 @@ function WidgetsPage() {
     style,
   }: GridChildComponentProps) => (
     <div
-      style={Object.assign(
-        {
-          border: cellStyle.border,
-        },
-        style
-      )}
+      style={
+        rowIndex % 2 == 0
+          ? Object.assign(
+              {
+                border: cellStyle.border,
+                backgroundColor: 'mistyrose',
+              },
+              style
+            )
+          : Object.assign(
+              {
+                border: cellStyle.border,
+                textAlign: 'right',
+              },
+              style
+            )
+      }
     >
       {rowIndex == 0 ? (
         <div>
@@ -317,7 +328,7 @@ function WidgetsPage() {
           {hltItfdittTen.tail}
         </div>
       ) : rowIndex == 1 ? (
-        <div>{hltItfdittTen.hint.hint}</div>
+        <div>{hltItfdittTen.hint.text}</div>
       ) : (
         <div />
       )}
@@ -347,6 +358,7 @@ function WidgetsPage() {
       style={Object.assign(
         {
           border: cellStyle.border,
+          backgroundColor: cellStyle.backgroundColor,
         },
         style
       )}
@@ -357,7 +369,7 @@ function WidgetsPage() {
           {hltItfdittEleven.tail}
         </div>
       ) : rowIndex == 1 ? (
-        <div>{hltItfdittEleven.hint.hint}</div>
+        <div>{hltItfdittEleven.hint.text}</div>
       ) : (
         <div />
       )}
@@ -387,6 +399,7 @@ function WidgetsPage() {
       style={Object.assign(
         {
           border: cellStyle.border,
+          backgroundColor: cellStyle.backgroundColor,
         },
         style
       )}
@@ -397,7 +410,7 @@ function WidgetsPage() {
           {hltItfdittTwelve.tail}
         </div>
       ) : rowIndex == 1 ? (
-        <div>{hltItfdittTwelve.hint.hint}</div>
+        <div>{hltItfdittTwelve.hint.text}</div>
       ) : (
         <div />
       )}
@@ -435,9 +448,9 @@ function WidgetsPage() {
           {hltMizmixTwentyOne.tail}
         </div>
       ) : rowIndex == 1 && columnIndex == 0 ? (
-        <div>{hltMizmixTwenty.hint.hint}</div>
+        <div>{hltMizmixTwenty.hint.text}</div>
       ) : rowIndex == 1 && columnIndex == 1 ? (
-        <div>{hltMizmixTwentyOne.hint.hint}</div>
+        <div>{hltMizmixTwentyOne.hint.text}</div>
       ) : (
         <div />
       )}
@@ -474,7 +487,7 @@ function WidgetsPage() {
           {/* {hltSentenceThirty.hint.hint} */}
         </div>
       ) : rowIndex == 2 ? (
-        <div>{hltSentenceThirty.hint.hint}</div>
+        <div>{hltSentenceThirty.hint.text}</div>
       ) : (
         <div />
       )}
