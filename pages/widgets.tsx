@@ -40,7 +40,7 @@ const divStyle = {
   // backgroundColor: 'papayawhip',
   border: '1px solid silver',
   // color: 'black',
-  fontFamily: 'monaco',
+  fontFamily: 'Roboto Mono',
   // fontSize: 24,
   padding: '5px',
   width: '170px',
@@ -49,7 +49,7 @@ const divStyle = {
 
 const divStyleDouble = {
   border: '1px solid silver',
-  fontFamily: 'monaco',
+  fontFamily: 'IBM Plex Mono',
   padding: '5px',
   width: '340px',
   color: 'black',
@@ -335,6 +335,7 @@ function WidgetsPage() {
               {
                 border: cellStyle.border,
                 textAlign: 'right',
+                fontWeight: 100,
               },
               style
             )
@@ -667,6 +668,7 @@ function WidgetsPage() {
           value={input.inputEleven}
           name="inputEleven"
           onChange={handleChangeItfditt}
+          // style={{ fontSize: '14px' }}
         />
         <TableItfdittFirst />
         <input
