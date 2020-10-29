@@ -47,6 +47,24 @@ const divStyle = {
   color: 'black',
 };
 
+const divStyleDouble = {
+  border: '1px solid silver',
+  fontFamily: 'monaco',
+  padding: '5px',
+  width: '340px',
+  color: 'black',
+};
+
+const divStyleHorizontal = {
+  display: 'flex',
+  flexDirection: 'row' as 'row',
+};
+
+const divStyleVertical = {
+  display: 'flex',
+  flexDirection: 'column' as 'column',
+};
+
 const cellStyle = {
   backgroundColor: 'papayawhip',
   border: '1px dotted white',
@@ -436,21 +454,22 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div style={style}>
-      {rowIndex == 0 && columnIndex == 0 ? (
+    <div
+      style={Object.assign(
+        {
+          border: cellStyle.border,
+          backgroundColor: cellStyle.backgroundColor,
+        },
+        style
+      )}
+    >
+      {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
           {hltMizmixTwenty.tail}
         </div>
-      ) : rowIndex == 0 && columnIndex == 1 ? (
-        <div>
-          <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
-          {hltMizmixTwentyOne.tail}
-        </div>
-      ) : rowIndex == 1 && columnIndex == 0 ? (
+      ) : rowIndex == 1 ? (
         <div>{hltMizmixTwenty.hint.text}</div>
-      ) : rowIndex == 1 && columnIndex == 1 ? (
-        <div>{hltMizmixTwentyOne.hint.text}</div>
       ) : (
         <div />
       )}
@@ -460,14 +479,55 @@ function WidgetsPage() {
   const TableMizmix = () => (
     <FixedSizeGrid
       className="GridMizmix"
-      columnCount={2}
+      columnCount={1}
       columnWidth={160}
       rowCount={2}
       rowHeight={35}
       height={70}
-      width={320}
+      width={160}
     >
       {CellMizmix}
+    </FixedSizeGrid>
+  );
+
+  const CellMixxmix = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div
+      style={Object.assign(
+        {
+          border: cellStyle.border,
+          backgroundColor: cellStyle.backgroundColor,
+        },
+        style
+      )}
+    >
+      {rowIndex == 0 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
+          {hltMizmixTwentyOne.tail}
+        </div>
+      ) : rowIndex == 1 ? (
+        <div>{hltMizmixTwentyOne.hint.text}</div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const TableMixxmix = () => (
+    <FixedSizeGrid
+      className="GridMixxmix"
+      columnCount={1}
+      columnWidth={160}
+      rowCount={2}
+      rowHeight={35}
+      height={70}
+      width={160}
+    >
+      {CellMixxmix}
     </FixedSizeGrid>
   );
 
@@ -617,35 +677,29 @@ function WidgetsPage() {
         />
       </div>
       3.
-      <table>
-        <thead>{wordsMizmix[0].hanyjiz}</thead>
-        <tbody>
-          <tr>
-            <td colSpan={2}>
-              <TableMizmix />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input
-                type="text"
-                value={input.inputTwenty}
-                name="inputTwenty"
-                onChange={handleChangeMizmix}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={input.inputTwentyOne}
-                name="inputTwentyOne"
-                onChange={handleChangeMizmix}
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <br />
+      <div style={divStyleDouble}>
+        <div>{wordsMizmix[0].hanyjiz}</div>
+        <div style={divStyleHorizontal}>
+          <div>
+            <TableMizmix />
+            <input
+              type="text"
+              value={input.inputTwenty}
+              name="inputTwenty"
+              onChange={handleChangeMizmix}
+            />
+          </div>
+          <div>
+            <TableMixxmix />
+            <input
+              type="text"
+              value={input.inputTwentyOne}
+              name="inputTwentyOne"
+              onChange={handleChangeMizmix}
+            />
+          </div>
+        </div>
+      </div>
       4.
       <table>
         <thead></thead>
