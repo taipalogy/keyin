@@ -854,7 +854,6 @@ function WidgetsPage() {
       <br />
       1.
       <div style={divStyleEightColumns}>
-        <div>{'chang'}</div>
         <div style={divStyleHorizontal}>
           <div style={divStyle}>
             <GridChang />
