@@ -55,6 +55,14 @@ const divStyleTwoColumns = {
   color: 'black',
 };
 
+const divStyleEightColumns = {
+  border: '1px solid silver',
+  fontFamily: 'IBM Plex Mono',
+  padding: '5px',
+  width: '1460px',
+  color: 'black',
+};
+
 const divStyleHorizontal = {
   display: 'flex',
   flexDirection: 'row' as 'row',
@@ -67,7 +75,7 @@ const cellStyle = {
   rowHeight: 25,
 };
 
-const cellStyleMistyrose = (rowIndex: number, style: CSSProperties) => {
+const cellStyleTwoRows = (rowIndex: number, style: CSSProperties) => {
   if (rowIndex % 2 == 0)
     return Object.assign(
       {
@@ -86,11 +94,45 @@ const cellStyleMistyrose = (rowIndex: number, style: CSSProperties) => {
   );
 };
 
+const cellStyleFiveRows = (rowIndex: number, style: CSSProperties) => {
+  if (rowIndex == 3)
+    return Object.assign(
+      {
+        border: cellStyle.border,
+        backgroundColor: 'mistyrose',
+      },
+      style
+    );
+  else if (rowIndex == 0 || rowIndex == 1 || rowIndex == 2)
+    return Object.assign(
+      {
+        border: cellStyle.border,
+        backgroundColor: 'papayawhip',
+      },
+      style
+    );
+  return Object.assign(
+    {
+      border: cellStyle.border,
+      textAlign: 'right',
+      fontWeight: 100,
+    },
+    style
+  );
+};
+
 const gridStyle1x2 = {
   columnCount: 1,
   rowCount: 2,
   height: cellStyle.rowHeight * 2 + 2,
   width: cellStyle.columnWidth + 2,
+};
+
+const gridStyle1x5 = {
+  columnCount: 1,
+  rowCount: 5,
+  height: cellStyle.rowHeight * 5 + 15,
+  width: cellStyle.columnWidth + 8,
 };
 
 const inputStyle = {
@@ -236,117 +278,343 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      className={
-        columnIndex % 2
-          ? rowIndex % 2 === 0
-            ? 'GridItemOdd'
-            : 'GridItemEven'
-          : rowIndex % 2
-          ? 'GridItemOdd'
-          : 'GridItemEven'
-      }
-      style={style}
-    >
+    <div style={cellStyleFiveRows(rowIndex, style)}>
       {rowIndex == 0 ? (
-        wordsChang[columnIndex].hanyjiz
+        <div>{wordsChang[0].hanyjiz}</div>
       ) : rowIndex == 1 ? (
-        wordsChang[columnIndex].lurzmafjiz
+        wordsChang[0].lurzmafjiz
       ) : rowIndex == 2 ? (
         cli
-          .processTonal(wordsChang[columnIndex].lurzmafjiz)
+          .processTonal(wordsChang[0].lurzmafjiz)
           .blockSequences.filter(it => it.length > 0)
           .join(', ')
       ) : rowIndex == 3 ? (
-        columnIndex == 0 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangZero.target}</text>
-            {hltChangZero.tail}
-          </div>
-        ) : columnIndex == 1 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangOne.target}</text>
-            {hltChangOne.tail}
-          </div>
-        ) : columnIndex == 2 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangTwo.target}</text>
-            {hltChangTwo.tail}
-          </div>
-        ) : columnIndex == 3 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangThree.target}</text>
-            {hltChangThree.tail}
-          </div>
-        ) : columnIndex == 4 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangFour.target}</text>
-            {hltChangFour.tail}
-          </div>
-        ) : columnIndex == 5 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangFive.target}</text>
-            {hltChangFive.tail}
-          </div>
-        ) : columnIndex == 6 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangSix.target}</text>
-            {hltChangSix.tail}
-          </div>
-        ) : columnIndex == 7 ? (
-          <div>
-            <text style={{ color: 'red' }}>{hltChangSeven.target}</text>
-            {hltChangSeven.tail}
-          </div>
-        ) : (
-          <div />
-        )
+        <div>
+          <text style={{ color: 'red' }}>{hltChangZero.target}</text>
+          {hltChangZero.tail}
+        </div>
       ) : rowIndex == 4 ? (
-        columnIndex == 0 ? (
-          <div>{hltChangZero.hint.text}</div>
-        ) : columnIndex == 1 ? (
-          <div>{hltChangOne.hint.text}</div>
-        ) : columnIndex == 2 ? (
-          <div>{hltChangTwo.hint.text}</div>
-        ) : columnIndex == 3 ? (
-          <div>{hltChangThree.hint.text}</div>
-        ) : columnIndex == 4 ? (
-          <div>{hltChangFour.hint.text}</div>
-        ) : columnIndex == 5 ? (
-          <div>{hltChangFive.hint.text}</div>
-        ) : columnIndex == 6 ? (
-          <div>{hltChangSix.hint.text}</div>
-        ) : columnIndex == 7 ? (
-          <div>{hltChangSeven.hint.text}</div>
-        ) : (
-          <div />
-        )
+        <div>{hltChangZero.hint.text}</div>
       ) : (
         <div />
       )}
     </div>
   );
 
-  const TableChang = () => (
+  const GridChang = () => (
     <FixedSizeGrid
       className="GridChang"
-      columnCount={8}
-      columnWidth={160}
-      rowCount={5}
-      rowHeight={35}
-      height={190}
-      width={1300}
+      columnCount={gridStyle1x5.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x5.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x5.height}
+      width={gridStyle1x5.width}
     >
       {CellChang}
     </FixedSizeGrid>
   );
 
-  const CellItfdittEighth = ({
+  const CellChangy = ({
     columnIndex,
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div style={cellStyleMistyrose(rowIndex, style)}>
+    <div style={cellStyleFiveRows(rowIndex, style)}>
+      {rowIndex == 0 ? (
+        <div>{wordsChang[1].hanyjiz}</div>
+      ) : rowIndex == 1 ? (
+        wordsChang[1].lurzmafjiz
+      ) : rowIndex == 2 ? (
+        cli
+          .processTonal(wordsChang[1].lurzmafjiz)
+          .blockSequences.filter(it => it.length > 0)
+          .join(', ')
+      ) : rowIndex == 3 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltChangOne.target}</text>
+          {hltChangOne.tail}
+        </div>
+      ) : rowIndex == 4 ? (
+        <div>{hltChangOne.hint.text}</div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const GridChangy = () => (
+    <FixedSizeGrid
+      className="GridChangy"
+      columnCount={gridStyle1x5.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x5.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x5.height}
+      width={gridStyle1x5.width}
+    >
+      {CellChangy}
+    </FixedSizeGrid>
+  );
+
+  const CellChangw = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div style={cellStyleFiveRows(rowIndex, style)}>
+      {rowIndex == 0 ? (
+        <div>{wordsChang[2].hanyjiz}</div>
+      ) : rowIndex == 1 ? (
+        wordsChang[2].lurzmafjiz
+      ) : rowIndex == 2 ? (
+        cli
+          .processTonal(wordsChang[2].lurzmafjiz)
+          .blockSequences.filter(it => it.length > 0)
+          .join(', ')
+      ) : rowIndex == 3 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltChangTwo.target}</text>
+          {hltChangTwo.tail}
+        </div>
+      ) : rowIndex == 4 ? (
+        <div>{hltChangTwo.hint.text}</div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const GridChangw = () => (
+    <FixedSizeGrid
+      className="GridChangw"
+      columnCount={gridStyle1x5.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x5.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x5.height}
+      width={gridStyle1x5.width}
+    >
+      {CellChangw}
+    </FixedSizeGrid>
+  );
+
+  const CellChak = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div style={cellStyleFiveRows(rowIndex, style)}>
+      {rowIndex == 0 ? (
+        <div>{wordsChang[3].hanyjiz}</div>
+      ) : rowIndex == 1 ? (
+        wordsChang[3].lurzmafjiz
+      ) : rowIndex == 2 ? (
+        cli
+          .processTonal(wordsChang[3].lurzmafjiz)
+          .blockSequences.filter(it => it.length > 0)
+          .join(', ')
+      ) : rowIndex == 3 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltChangThree.target}</text>
+          {hltChangThree.tail}
+        </div>
+      ) : rowIndex == 4 ? (
+        <div>{hltChangThree.hint.text}</div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const GridChak = () => (
+    <FixedSizeGrid
+      className="GridChak"
+      columnCount={gridStyle1x5.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x5.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x5.height}
+      width={gridStyle1x5.width}
+    >
+      {CellChak}
+    </FixedSizeGrid>
+  );
+
+  const CellChangx = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div style={cellStyleFiveRows(rowIndex, style)}>
+      {rowIndex == 0 ? (
+        <div>{wordsChang[4].hanyjiz}</div>
+      ) : rowIndex == 1 ? (
+        wordsChang[4].lurzmafjiz
+      ) : rowIndex == 2 ? (
+        cli
+          .processTonal(wordsChang[4].lurzmafjiz)
+          .blockSequences.filter(it => it.length > 0)
+          .join(', ')
+      ) : rowIndex == 3 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltChangFour.target}</text>
+          {hltChangFour.tail}
+        </div>
+      ) : rowIndex == 4 ? (
+        <div>{hltChangFour.hint.text}</div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const GridChangx = () => (
+    <FixedSizeGrid
+      className="GridChangx"
+      columnCount={gridStyle1x5.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x5.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x5.height}
+      width={gridStyle1x5.width}
+    >
+      {CellChangx}
+    </FixedSizeGrid>
+  );
+
+  const CellChangz = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div style={cellStyleFiveRows(rowIndex, style)}>
+      {rowIndex == 0 ? (
+        <div>{wordsChang[5].hanyjiz}</div>
+      ) : rowIndex == 1 ? (
+        wordsChang[5].lurzmafjiz
+      ) : rowIndex == 2 ? (
+        cli
+          .processTonal(wordsChang[5].lurzmafjiz)
+          .blockSequences.filter(it => it.length > 0)
+          .join(', ')
+      ) : rowIndex == 3 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltChangFive.target}</text>
+          {hltChangFive.tail}
+        </div>
+      ) : rowIndex == 4 ? (
+        <div>{hltChangFive.hint.text}</div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const GridChangz = () => (
+    <FixedSizeGrid
+      className="GridChangz"
+      columnCount={gridStyle1x5.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x5.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x5.height}
+      width={gridStyle1x5.width}
+    >
+      {CellChangz}
+    </FixedSizeGrid>
+  );
+
+  const CellChakk = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div style={cellStyleFiveRows(rowIndex, style)}>
+      {rowIndex == 0 ? (
+        <div>{wordsChang[6].hanyjiz}</div>
+      ) : rowIndex == 1 ? (
+        wordsChang[6].lurzmafjiz
+      ) : rowIndex == 2 ? (
+        cli
+          .processTonal(wordsChang[6].lurzmafjiz)
+          .blockSequences.filter(it => it.length > 0)
+          .join(', ')
+      ) : rowIndex == 3 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltChangSix.target}</text>
+          {hltChangSix.tail}
+        </div>
+      ) : rowIndex == 4 ? (
+        <div>{hltChangSix.hint.text}</div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const GridChakk = () => (
+    <FixedSizeGrid
+      className="GridChakk"
+      columnCount={gridStyle1x5.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x5.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x5.height}
+      width={gridStyle1x5.width}
+    >
+      {CellChakk}
+    </FixedSizeGrid>
+  );
+
+  const CellChangxx = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div style={cellStyleFiveRows(rowIndex, style)}>
+      {rowIndex == 0 ? (
+        <div>{wordsChang[7].hanyjiz}</div>
+      ) : rowIndex == 1 ? (
+        wordsChang[7].lurzmafjiz
+      ) : rowIndex == 2 ? (
+        cli
+          .processTonal(wordsChang[7].lurzmafjiz)
+          .blockSequences.filter(it => it.length > 0)
+          .join(', ')
+      ) : rowIndex == 3 ? (
+        <div>
+          <text style={{ color: 'red' }}>{hltChangSeven.target}</text>
+          {hltChangSeven.tail}
+        </div>
+      ) : rowIndex == 4 ? (
+        <div>{hltChangSeven.hint.text}</div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const GridChangxx = () => (
+    <FixedSizeGrid
+      className="GridChangxx"
+      columnCount={gridStyle1x5.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x5.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x5.height}
+      width={gridStyle1x5.width}
+    >
+      {CellChangxx}
+    </FixedSizeGrid>
+  );
+
+  const CellItfditt = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div style={cellStyleTwoRows(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltItfdittTen.target}</text>
@@ -360,9 +628,9 @@ function WidgetsPage() {
     </div>
   );
 
-  const TableItfdittEighth = () => (
+  const GridItfditt = () => (
     <FixedSizeGrid
-      className="GridItfdittEighth"
+      className="GridItfditt"
       columnCount={gridStyle1x2.columnCount}
       columnWidth={cellStyle.columnWidth}
       rowCount={gridStyle1x2.rowCount}
@@ -370,16 +638,16 @@ function WidgetsPage() {
       height={gridStyle1x2.height}
       width={gridStyle1x2.width}
     >
-      {CellItfdittEighth}
+      {CellItfditt}
     </FixedSizeGrid>
   );
 
-  const CellItfdittThird = ({
+  const CellItfditw = ({
     columnIndex,
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div style={cellStyleMistyrose(rowIndex, style)}>
+    <div style={cellStyleTwoRows(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltItfdittEleven.target}</text>
@@ -393,9 +661,9 @@ function WidgetsPage() {
     </div>
   );
 
-  const TableItfdittThird = () => (
+  const GridItfditw = () => (
     <FixedSizeGrid
-      className="GridItfdittThird"
+      className="GridItfditw"
       columnCount={gridStyle1x2.columnCount}
       columnWidth={cellStyle.columnWidth}
       rowCount={gridStyle1x2.rowCount}
@@ -403,16 +671,16 @@ function WidgetsPage() {
       height={gridStyle1x2.height}
       width={gridStyle1x2.width}
     >
-      {CellItfdittThird}
+      {CellItfditw}
     </FixedSizeGrid>
   );
 
-  const CellItfdittFirst = ({
+  const CellItfditf = ({
     columnIndex,
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div style={cellStyleMistyrose(rowIndex, style)}>
+    <div style={cellStyleTwoRows(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltItfdittTwelve.target}</text>
@@ -426,9 +694,9 @@ function WidgetsPage() {
     </div>
   );
 
-  const TableItfdittFirst = () => (
+  const GridItfditf = () => (
     <FixedSizeGrid
-      className="GridItfdittFirst"
+      className="GridItfditf"
       columnCount={gridStyle1x2.columnCount}
       columnWidth={cellStyle.columnWidth}
       rowCount={gridStyle1x2.rowCount}
@@ -436,7 +704,7 @@ function WidgetsPage() {
       height={gridStyle1x2.height}
       width={gridStyle1x2.width}
     >
-      {CellItfdittFirst}
+      {CellItfditf}
     </FixedSizeGrid>
   );
 
@@ -445,7 +713,7 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div style={cellStyleMistyrose(rowIndex, style)}>
+    <div style={cellStyleTwoRows(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
@@ -459,7 +727,7 @@ function WidgetsPage() {
     </div>
   );
 
-  const TableMizmix = () => (
+  const GridMizmix = () => (
     <FixedSizeGrid
       className="GridMizmix"
       columnCount={gridStyle1x2.columnCount}
@@ -478,7 +746,7 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div style={cellStyleMistyrose(rowIndex, style)}>
+    <div style={cellStyleTwoRows(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
@@ -492,7 +760,7 @@ function WidgetsPage() {
     </div>
   );
 
-  const TableMixxmix = () => (
+  const GridMixxmix = () => (
     <FixedSizeGrid
       className="GridMixxmix"
       columnCount={gridStyle1x2.columnCount}
@@ -546,87 +814,95 @@ function WidgetsPage() {
       widgets
       <br />
       1.
-      <table>
-        <thead></thead>
-        <tbody>
-          <tr>
-            <td colSpan={8}>
-              <TableChang />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input
-                type="text"
-                value={input.inputZero}
-                name="inputZero"
-                onChange={handleChangeChang}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={input.inputOne}
-                name="inputOne"
-                onChange={handleChangeChang}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={input.inputTwo}
-                name="inputTwo"
-                onChange={handleChangeChang}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={input.inputThree}
-                name="inputThree"
-                onChange={handleChangeChang}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={input.inputFour}
-                name="inputFour"
-                onChange={handleChangeChang}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={input.inputFive}
-                name="inputFive"
-                onChange={handleChangeChang}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={input.inputSix}
-                name="inputSix"
-                onChange={handleChangeChang}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={input.inputSeven}
-                name="inputSeven"
-                onChange={handleChangeChang}
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <br />
+      <div style={divStyleEightColumns}>
+        <div>{'chang'}</div>
+        <div style={divStyleHorizontal}>
+          <div style={divStyle}>
+            <GridChang />
+            <input
+              type="text"
+              value={input.inputZero}
+              name="inputZero"
+              onChange={handleChangeChang}
+              style={inputStyle}
+            />
+          </div>
+          <div style={divStyle}>
+            <GridChangy />
+            <input
+              type="text"
+              value={input.inputOne}
+              name="inputOne"
+              onChange={handleChangeChang}
+              style={inputStyle}
+            />
+          </div>
+          <div style={divStyle}>
+            <GridChangw />
+            <input
+              type="text"
+              value={input.inputTwo}
+              name="inputTwo"
+              onChange={handleChangeChang}
+              style={inputStyle}
+            />
+          </div>
+          <div style={divStyle}>
+            <GridChak />
+            <input
+              type="text"
+              value={input.inputThree}
+              name="inputThree"
+              onChange={handleChangeChang}
+              style={inputStyle}
+            />
+          </div>
+          <div style={divStyle}>
+            <GridChangx />
+            <input
+              type="text"
+              value={input.inputFour}
+              name="inputFour"
+              onChange={handleChangeChang}
+              style={inputStyle}
+            />
+          </div>
+          <div style={divStyle}>
+            <GridChangz />
+            <input
+              type="text"
+              value={input.inputFive}
+              name="inputFive"
+              onChange={handleChangeChang}
+              style={inputStyle}
+            />
+          </div>
+          <div style={divStyle}>
+            <GridChakk />
+            <input
+              type="text"
+              value={input.inputSix}
+              name="inputSix"
+              onChange={handleChangeChang}
+              style={inputStyle}
+            />
+          </div>
+          <div style={divStyle}>
+            <GridChangxx />
+            <input
+              type="text"
+              value={input.inputSeven}
+              name="inputSeven"
+              onChange={handleChangeChang}
+              style={inputStyle}
+            />
+          </div>
+        </div>
+      </div>
       2.
       <div style={divStyle}>
         {wordsItfditt[0].hanyjiz}
-        <TableItfdittEighth />
+        <GridItfditt />
         <input
           type="text"
           value={input.inputTen}
@@ -634,7 +910,7 @@ function WidgetsPage() {
           onChange={handleChangeItfditt}
           style={inputStyle}
         />
-        <TableItfdittThird />
+        <GridItfditw />
         <input
           type="text"
           value={input.inputEleven}
@@ -642,7 +918,7 @@ function WidgetsPage() {
           onChange={handleChangeItfditt}
           style={inputStyle}
         />
-        <TableItfdittFirst />
+        <GridItfditf />
         <input
           type="text"
           value={input.inputTwelve}
@@ -656,7 +932,7 @@ function WidgetsPage() {
         <div>{wordsMizmix[0].hanyjiz}</div>
         <div style={divStyleHorizontal}>
           <div style={divStyle}>
-            <TableMizmix />
+            <GridMizmix />
             <input
               type="text"
               value={input.inputTwenty}
@@ -666,7 +942,7 @@ function WidgetsPage() {
             />
           </div>
           <div style={divStyle}>
-            <TableMixxmix />
+            <GridMixxmix />
             <input
               type="text"
               value={input.inputTwentyOne}
