@@ -47,6 +47,11 @@ const divStyle = {
   color: 'black',
 };
 
+const divStyleFont = {
+  fontFamily: 'IBM Plex Mono',
+  color: 'black',
+};
+
 const divStyleTwoColumns = {
   border: '1px solid silver',
   fontFamily: 'IBM Plex Mono',
@@ -779,15 +784,13 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div style={style}>
+    <div style={cellStyleTwoRows(rowIndex, style)}>
       {rowIndex == 0 ? (
-        sentence.map(it => it).join(' ')
-      ) : rowIndex == 1 ? (
         <div>
           <text style={{ color: 'red' }}>{hltSentenceThirty.target}</text>
           {hltSentenceThirty.tail}
         </div>
-      ) : rowIndex == 2 ? (
+      ) : rowIndex == 1 ? (
         <div>{hltSentenceThirty.hint.text}</div>
       ) : (
         <div />
@@ -795,17 +798,53 @@ function WidgetsPage() {
     </div>
   );
 
-  const TableSentence = () => (
+  const GridSentence = () => (
     <FixedSizeGrid
       className="GridSentence"
-      columnCount={1}
-      columnWidth={320}
-      rowCount={3}
-      rowHeight={35}
-      height={110}
-      width={320}
+      columnCount={gridStyle1x2.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x2.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x2.height}
+      width={gridStyle1x2.width}
     >
       {CellSentence}
+    </FixedSizeGrid>
+  );
+
+  const CellDanzgiy = ({
+    columnIndex,
+    rowIndex,
+    style,
+  }: GridChildComponentProps) => (
+    <div>
+      {rowIndex == 0 ? (
+        <div>{'單語'}</div>
+      ) : rowIndex == 1 ? (
+        <div>{'danzgiy'}</div>
+      ) : rowIndex == 2 ? (
+        <div>{'タヌ⎸ギイ⎛'}</div>
+      ) : rowIndex == 3 ? (
+        <div>{'danzguy'}</div>
+      ) : rowIndex == 4 ? (
+        <div>{'タヌ⎸グウ⎛'}</div>
+      ) : (
+        <div />
+      )}
+    </div>
+  );
+
+  const GridDanzgiy = () => (
+    <FixedSizeGrid
+      className="GridDanzgiy"
+      columnCount={gridStyle1x5.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x5.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x5.height}
+      width={gridStyle1x5.width}
+    >
+      {CellDanzgiy}
     </FixedSizeGrid>
   );
 
@@ -954,48 +993,21 @@ function WidgetsPage() {
         </div>
       </div>
       4.
-      <table>
-        <thead></thead>
-        <tbody>
-          <tr>
-            <td>
-              <TableSentence />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input
-                type="text"
-                value={inputThirty}
-                // name="inputThirty"
-                onChange={handleChangeSentence}
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <br />
+      <div style={divStyleFont}>
+        {sentence.map(it => it).join(' ')}
+        <GridSentence />
+        <input
+          type="text"
+          value={inputThirty}
+          // name="inputThirty"
+          onChange={handleChangeSentence}
+          style={inputStyle}
+        />
+      </div>
       5.
-      <table>
-        <thead></thead>
-        <tbody>
-          <tr>
-            <td>單語</td>
-          </tr>
-          <tr>
-            <td>danzgiy</td>
-          </tr>
-          <tr>
-            <td>タヌ⎸ギイ⎛</td>
-          </tr>
-          <tr>
-            <td>danzguy</td>
-          </tr>
-          <tr>
-            <td>タヌ⎸グウ⎛</td>
-          </tr>
-        </tbody>
-      </table>
+      <div style={divStyleFont}>
+        <GridDanzgiy />
+      </div>
     </div>
   );
 }
