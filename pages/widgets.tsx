@@ -1,5 +1,5 @@
 import { Client } from 'taipa';
-import { useReducer, useState } from 'react';
+import { CSSProperties, useReducer, useState } from 'react';
 import { Highlighter, Entry, Highlight } from '../src/highlight';
 import { FixedSizeGrid, GridChildComponentProps } from 'react-window';
 
@@ -40,18 +40,18 @@ const divStyle = {
   // backgroundColor: 'papayawhip',
   border: '1px solid silver',
   // color: 'black',
-  fontFamily: 'Roboto Mono',
+  fontFamily: 'IBM Plex Mono',
   // fontSize: 24,
   padding: '5px',
   width: '170px',
   color: 'black',
 };
 
-const divStyleDouble = {
+const divStyleTwoColumns = {
   border: '1px solid silver',
   fontFamily: 'IBM Plex Mono',
   padding: '5px',
-  width: '340px',
+  width: '365px',
   color: 'black',
 };
 
@@ -60,18 +60,43 @@ const divStyleHorizontal = {
   flexDirection: 'row' as 'row',
 };
 
-const divStyleVertical = {
-  display: 'flex',
-  flexDirection: 'column' as 'column',
-};
-
 const cellStyle = {
   backgroundColor: 'papayawhip',
   border: '1px dotted white',
-  // fontFamily: 'Monaco',
-  // fontSize: 24,
-  columnWidth: 140,
+  columnWidth: 173,
   rowHeight: 25,
+};
+
+const cellStyleMistyrose = (rowIndex: number, style: CSSProperties) => {
+  if (rowIndex % 2 == 0)
+    return Object.assign(
+      {
+        border: cellStyle.border,
+        backgroundColor: 'mistyrose',
+      },
+      style
+    );
+  return Object.assign(
+    {
+      border: cellStyle.border,
+      textAlign: 'right',
+      fontWeight: 100,
+    },
+    style
+  );
+};
+
+const gridStyle1x2 = {
+  columnCount: 1,
+  rowCount: 2,
+  height: cellStyle.rowHeight * 2 + 2,
+  width: cellStyle.columnWidth + 2,
+};
+
+const inputStyle = {
+  fontFamily: 'IBM Plex Mono',
+  fontSize: '16px',
+  maxWidth: '140px',
 };
 
 function WidgetsPage() {
@@ -321,26 +346,7 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={
-        rowIndex % 2 == 0
-          ? Object.assign(
-              {
-                border: cellStyle.border,
-                backgroundColor: 'mistyrose',
-              },
-              style
-            )
-          : Object.assign(
-              {
-                border: cellStyle.border,
-                textAlign: 'right',
-                fontWeight: 100,
-              },
-              style
-            )
-      }
-    >
+    <div style={cellStyleMistyrose(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltItfdittTen.target}</text>
@@ -357,12 +363,12 @@ function WidgetsPage() {
   const TableItfdittEighth = () => (
     <FixedSizeGrid
       className="GridItfdittEighth"
-      columnCount={1}
+      columnCount={gridStyle1x2.columnCount}
       columnWidth={cellStyle.columnWidth}
-      rowCount={2}
+      rowCount={gridStyle1x2.rowCount}
       rowHeight={cellStyle.rowHeight}
-      height={cellStyle.rowHeight * 2 + 2}
-      width={cellStyle.columnWidth + 2}
+      height={gridStyle1x2.height}
+      width={gridStyle1x2.width}
     >
       {CellItfdittEighth}
     </FixedSizeGrid>
@@ -373,15 +379,7 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={Object.assign(
-        {
-          border: cellStyle.border,
-          backgroundColor: cellStyle.backgroundColor,
-        },
-        style
-      )}
-    >
+    <div style={cellStyleMistyrose(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltItfdittEleven.target}</text>
@@ -398,12 +396,12 @@ function WidgetsPage() {
   const TableItfdittThird = () => (
     <FixedSizeGrid
       className="GridItfdittThird"
-      columnCount={1}
+      columnCount={gridStyle1x2.columnCount}
       columnWidth={cellStyle.columnWidth}
-      rowCount={2}
+      rowCount={gridStyle1x2.rowCount}
       rowHeight={cellStyle.rowHeight}
-      height={cellStyle.rowHeight * 2 + 2}
-      width={cellStyle.columnWidth + 2}
+      height={gridStyle1x2.height}
+      width={gridStyle1x2.width}
     >
       {CellItfdittThird}
     </FixedSizeGrid>
@@ -414,15 +412,7 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={Object.assign(
-        {
-          border: cellStyle.border,
-          backgroundColor: cellStyle.backgroundColor,
-        },
-        style
-      )}
-    >
+    <div style={cellStyleMistyrose(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltItfdittTwelve.target}</text>
@@ -439,12 +429,12 @@ function WidgetsPage() {
   const TableItfdittFirst = () => (
     <FixedSizeGrid
       className="GridItfdittFirst"
-      columnCount={1}
+      columnCount={gridStyle1x2.columnCount}
       columnWidth={cellStyle.columnWidth}
-      rowCount={2}
+      rowCount={gridStyle1x2.rowCount}
       rowHeight={cellStyle.rowHeight}
-      height={cellStyle.rowHeight * 2 + 2}
-      width={cellStyle.columnWidth + 2}
+      height={gridStyle1x2.height}
+      width={gridStyle1x2.width}
     >
       {CellItfdittFirst}
     </FixedSizeGrid>
@@ -455,15 +445,7 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={Object.assign(
-        {
-          border: cellStyle.border,
-          backgroundColor: cellStyle.backgroundColor,
-        },
-        style
-      )}
-    >
+    <div style={cellStyleMistyrose(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltMizmixTwenty.target}</text>
@@ -480,12 +462,12 @@ function WidgetsPage() {
   const TableMizmix = () => (
     <FixedSizeGrid
       className="GridMizmix"
-      columnCount={1}
-      columnWidth={160}
-      rowCount={2}
-      rowHeight={35}
-      height={70}
-      width={160}
+      columnCount={gridStyle1x2.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x2.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x2.height}
+      width={gridStyle1x2.width}
     >
       {CellMizmix}
     </FixedSizeGrid>
@@ -496,15 +478,7 @@ function WidgetsPage() {
     rowIndex,
     style,
   }: GridChildComponentProps) => (
-    <div
-      style={Object.assign(
-        {
-          border: cellStyle.border,
-          backgroundColor: cellStyle.backgroundColor,
-        },
-        style
-      )}
-    >
+    <div style={cellStyleMistyrose(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
           <text style={{ color: 'red' }}>{hltMizmixTwentyOne.target}</text>
@@ -521,12 +495,12 @@ function WidgetsPage() {
   const TableMixxmix = () => (
     <FixedSizeGrid
       className="GridMixxmix"
-      columnCount={1}
-      columnWidth={160}
-      rowCount={2}
-      rowHeight={35}
-      height={70}
-      width={160}
+      columnCount={gridStyle1x2.columnCount}
+      columnWidth={cellStyle.columnWidth}
+      rowCount={gridStyle1x2.rowCount}
+      rowHeight={cellStyle.rowHeight}
+      height={gridStyle1x2.height}
+      width={gridStyle1x2.width}
     >
       {CellMixxmix}
     </FixedSizeGrid>
@@ -544,8 +518,6 @@ function WidgetsPage() {
         <div>
           <text style={{ color: 'red' }}>{hltSentenceThirty.target}</text>
           {hltSentenceThirty.tail}
-          <br />
-          {/* {hltSentenceThirty.hint.hint} */}
         </div>
       ) : rowIndex == 2 ? (
         <div>{hltSentenceThirty.hint.text}</div>
@@ -589,7 +561,6 @@ function WidgetsPage() {
                 value={input.inputZero}
                 name="inputZero"
                 onChange={handleChangeChang}
-                // style={{ maxWidth: 60 }}
               />
             </td>
             <td>
@@ -661,6 +632,7 @@ function WidgetsPage() {
           value={input.inputTen}
           name="inputTen"
           onChange={handleChangeItfditt}
+          style={inputStyle}
         />
         <TableItfdittThird />
         <input
@@ -668,7 +640,7 @@ function WidgetsPage() {
           value={input.inputEleven}
           name="inputEleven"
           onChange={handleChangeItfditt}
-          // style={{ fontSize: '14px' }}
+          style={inputStyle}
         />
         <TableItfdittFirst />
         <input
@@ -676,28 +648,31 @@ function WidgetsPage() {
           value={input.inputTwelve}
           name="inputTwelve"
           onChange={handleChangeItfditt}
+          style={inputStyle}
         />
       </div>
       3.
-      <div style={divStyleDouble}>
+      <div style={divStyleTwoColumns}>
         <div>{wordsMizmix[0].hanyjiz}</div>
         <div style={divStyleHorizontal}>
-          <div>
+          <div style={divStyle}>
             <TableMizmix />
             <input
               type="text"
               value={input.inputTwenty}
               name="inputTwenty"
               onChange={handleChangeMizmix}
+              style={inputStyle}
             />
           </div>
-          <div>
+          <div style={divStyle}>
             <TableMixxmix />
             <input
               type="text"
               value={input.inputTwentyOne}
               name="inputTwentyOne"
               onChange={handleChangeMizmix}
+              style={inputStyle}
             />
           </div>
         </div>

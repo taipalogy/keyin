@@ -17,12 +17,12 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link
+          {/* <link
             href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400&display=swap"
             rel="stylesheet"
-          />
+          /> */}
           <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap"
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;400&display=swap"
             rel="stylesheet"
           />
         </Head>
