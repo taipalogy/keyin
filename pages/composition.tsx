@@ -31,13 +31,13 @@ class Segment {
   }
 }
 
-const pah = new Segment('pah');
+const pah = new Segment('phah');
 const jiz = new Segment('jiz');
 const sek = new Segment('sek');
 
 // radio groups
 const optGroup1 = ['type'];
-const optGroup2 = ['daizgiy', 'kana'];
+const optGroup2 = ['taizgiy', 'kana'];
 const optGroup3 = ['blue', 'green', 'red'];
 
 const segments = [

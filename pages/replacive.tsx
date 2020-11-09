@@ -9,11 +9,11 @@ function ReplacivePage() {
   };
 
   const words = [
-    'chitwvaiy',
-    'chitwqoa',
-    'voannydang',
-    'dangzsixay',
-    'damwvurhxay',
+    'chitwpaiy',
+    'chitwkoa',
+    'poannytang',
+    'tangzsixay',
+    'tamwpurhxay',
   ];
 
   const lx = inflectTransfix(input);

@@ -9,8 +9,8 @@ function PhrasalVerbPage() {
   };
 
   const phrasalVerbs = [
-    ['koannw', 'diurh'],
-    ['longw', 'diurh'],
+    ['khoannw', 'tiurh'],
+    ['longw', 'tiurh'],
   ];
 
   const matches = phrasalVerbs.filter(x => x.join(' ') === input);

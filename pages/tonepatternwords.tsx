@@ -49,12 +49,12 @@ function TonePatternWordsPage() {
   }
 
   const phrases = [
-    'ciet dngh',
+    'ciet tngh',
     'hoz goaz',
-    'qongy aw',
+    'kongy aw',
     'giurx ez',
-    'chongx cut kih',
-    'chau laiz chau kiw',
+    'chongx cut khih',
+    'chau laiz chau khiw',
   ];
 
   return (

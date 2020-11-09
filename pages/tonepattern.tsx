@@ -40,11 +40,11 @@ function TonePatternPage() {
   );
 
   const words = [
-    'chongwtaiwgiy',
-    'pannypannyqiurw',
+    'chongwthaiwgiy',
+    'phannyphannykiurw',
     'angfangwangx',
     'siurfsiurzsiur',
-    'liyleyqiurw',
+    'liyleykiurw',
   ];
 
   return (

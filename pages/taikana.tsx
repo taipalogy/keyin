@@ -4,13 +4,12 @@ import { FixedSizeGrid, GridChildComponentProps } from 'react-window';
 import CopyToClipBoard from 'react-copy-to-clipboard';
 
 // alphabet
-const letter20 = [
+const letter21 = [
   { letter: TonalLetterTags.a.toString(), hanji: '阿' },
   { letter: TonalLetterTags.b.toString(), hanji: '米' },
   { letter: TonalLetterTags.bb.toString(), hanji: '' },
   { letter: TonalLetterTags.c.toString(), hanji: '市' },
   { letter: TonalLetterTags.ch.toString(), hanji: '志' },
-  { letter: TonalLetterTags.d.toString(), hanji: '池' },
   { letter: TonalLetterTags.e.toString(), hanji: '个' },
   { letter: TonalLetterTags.er.toString(), hanji: '' },
   { letter: TonalLetterTags.f.toString(), hanji: '' },
@@ -21,30 +20,31 @@ const letter20 = [
   { letter: TonalLetterTags.i.toString(), hanji: '衣' },
   { letter: TonalLetterTags.ir.toString(), hanji: '去' },
   { letter: TonalLetterTags.j.toString(), hanji: '而' },
-  { letter: TonalLetterTags.k.toString(), hanji: '去' },
+  { letter: TonalLetterTags.k.toString(), hanji: '古' },
+  { letter: TonalLetterTags.kh.toString(), hanji: '去' },
   { letter: TonalLetterTags.kk.toString(), hanji: '目' },
   { letter: TonalLetterTags.l.toString(), hanji: '女' },
   { letter: TonalLetterTags.ll.toString(), hanji: '' },
+  { letter: TonalLetterTags.m.toString(), hanji: '乜' },
 ];
 
 // alphabet
-const letter21 = [
-  { letter: TonalLetterTags.m.toString(), hanji: '乜' },
+const letter20 = [
   { letter: TonalLetterTags.n.toString(), hanji: '尼' },
   { letter: TonalLetterTags.ng.toString(), hanji: '午' },
   { letter: TonalLetterTags.nn.toString(), hanji: '井' },
   { letter: TonalLetterTags.o.toString(), hanji: '芋' },
   { letter: TonalLetterTags.or.toString(), hanji: '蚵' },
-  { letter: TonalLetterTags.p.toString(), hanji: '皮' },
+  { letter: TonalLetterTags.p.toString(), hanji: '比' },
+  { letter: TonalLetterTags.ph.toString(), hanji: '皮' },
   { letter: TonalLetterTags.pp.toString(), hanji: '入' },
-  { letter: TonalLetterTags.q.toString(), hanji: '古' },
   { letter: TonalLetterTags.s.toString(), hanji: '示' },
   { letter: TonalLetterTags.ss.toString(), hanji: '' },
-  { letter: TonalLetterTags.t.toString(), hanji: '土' },
+  { letter: TonalLetterTags.t.toString(), hanji: '池' },
+  { letter: TonalLetterTags.th.toString(), hanji: '土' },
   { letter: TonalLetterTags.tt.toString(), hanji: '日' },
   { letter: TonalLetterTags.u.toString(), hanji: '宇' },
   { letter: TonalLetterTags.ur.toString(), hanji: '蚵' },
-  { letter: TonalLetterTags.v.toString(), hanji: '比' },
   { letter: TonalLetterTags.w.toString(), hanji: '' },
   { letter: TonalLetterTags.x.toString(), hanji: '' },
   { letter: TonalLetterTags.xx.toString(), hanji: '' },
@@ -57,20 +57,20 @@ const initials = [
   TonalLetterTags.b.toString(),
   TonalLetterTags.c.toString(),
   TonalLetterTags.ch.toString(),
-  TonalLetterTags.d.toString(),
   TonalLetterTags.g.toString(),
   TonalLetterTags.h.toString(),
   TonalLetterTags.j.toString(),
   TonalLetterTags.k.toString(),
+  TonalLetterTags.kh.toString(),
   TonalLetterTags.l.toString(),
   TonalLetterTags.m.toString(),
   TonalLetterTags.n.toString(),
   TonalLetterTags.ng.toString(),
   TonalLetterTags.p.toString(),
-  TonalLetterTags.q.toString(),
+  TonalLetterTags.ph.toString(),
   TonalLetterTags.s.toString(),
   TonalLetterTags.t.toString(),
-  TonalLetterTags.v.toString(),
+  TonalLetterTags.th.toString(),
 ];
 
 // 中聲(母音, 準母音)
@@ -228,20 +228,20 @@ function TaiKanaPage() {
       )}
     >
       {rowIndex == 0
-        ? columnIndex >= 0 && letter20[columnIndex]
-          ? letter20[columnIndex].letter
-          : ''
-        : rowIndex == 1
-        ? columnIndex >= 0 && letter20[columnIndex]
-          ? letter20[columnIndex].hanji
-          : ''
-        : rowIndex == 2
         ? columnIndex >= 0 && letter21[columnIndex]
           ? letter21[columnIndex].letter
           : ''
-        : rowIndex == 3
+        : rowIndex == 1
         ? columnIndex >= 0 && letter21[columnIndex]
           ? letter21[columnIndex].hanji
+          : ''
+        : rowIndex == 2
+        ? columnIndex >= 0 && letter20[columnIndex]
+          ? letter20[columnIndex].letter
+          : ''
+        : rowIndex == 3
+        ? columnIndex >= 0 && letter20[columnIndex]
+          ? letter20[columnIndex].hanji
           : ''
         : ''}
     </div>

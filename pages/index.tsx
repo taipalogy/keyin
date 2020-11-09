@@ -43,13 +43,13 @@ function Home() {
         <a href="taikana">taiwanese kana</a>
       </li>
       <li>
-        <a href="daizjitt">臺日</a>
+        <a href="taizjitt">臺日</a>
       </li>
       <li>
-        <a href="jittwdaix">日臺</a>
+        <a href="jittwtaix">日臺</a>
       </li>
       <li>
-        <a href="qoaxay">歌仔</a>
+        <a href="koaxay">歌仔</a>
       </li>
       <li>
         <a href="tokenizer">羅馬字 syllable tokenizer</a>

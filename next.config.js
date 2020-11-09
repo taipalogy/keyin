@@ -17,9 +17,9 @@ module.exports = {
       '/kana': { page: '/kana' },
       '/hint': { page: '/hint' },
       '/taikana': { page: '/taikana' },
-      '/daizjitt': { page: '/daizjitt' },
-      '/jittwdaix': { page: '/jittwdaix' },
-      '/qoaxay': { page: '/qoaxay' },
+      '/taizjitt': { page: '/taizjitt' },
+      '/jittwtaix': { page: '/jittwtaix' },
+      '/koaxay': { page: '/koaxay' },
       '/tokenizer': { page: '/tokenizer' },
       '/widgets': { page: '/widgets' },
     };

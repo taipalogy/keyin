@@ -10,7 +10,7 @@ function EAdjectivePage() {
 
   const eAdjectives = [
     ['sin', 'e'],
-    ['quz', 'ez'],
+    ['kuz', 'ez'],
     ['soew', 'ew'],
   ];
 

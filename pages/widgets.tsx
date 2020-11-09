@@ -14,14 +14,14 @@ const wordsChang: Entry[] = [
   { index: 7, hanyjiz: '昨昏', lurzmafjiz: 'changxx' },
 ];
 
-const wordsItfditt = [
+const wordsItftitt = [
   {
     index: 0,
     hanyjiz: '一直',
-    lurzmafjiz: 'itfditt',
+    lurzmafjiz: 'itftitt',
   },
-  { index: 1, hanyjiz: '', lurzmafjiz: 'itfditw' },
-  { index: 2, hanyjiz: '', lurzmafjiz: 'itfditf' },
+  { index: 1, hanyjiz: '', lurzmafjiz: 'itftitw' },
+  { index: 2, hanyjiz: '', lurzmafjiz: 'itftitf' },
 ];
 
 const wordsMizmix = [
@@ -29,7 +29,7 @@ const wordsMizmix = [
   { index: 1, hanyjiz: '', lurzmafjiz: 'mixxmix' },
 ];
 
-const sentence = ['hitf', 'chanz', 'daiwchiw', 'chinz', 'doaw', 'diaux'];
+const sentence = ['hitf', 'chanz', 'taiwchiw', 'chinz', 'toaw', 'tiaux'];
 let currWord: number = 0;
 
 const divStyle = {
@@ -129,14 +129,14 @@ const cellStyleFiveRows = (rowIndex: number, style: CSSProperties) => {
 const gridStyle1x2 = {
   columnCount: 1,
   rowCount: 2,
-  height: cellStyle.rowHeight * 2 + 2,
+  height: cellStyle.rowHeight * 2 + 20,
   width: cellStyle.columnWidth + 2,
 };
 
 const gridStyle1x5 = {
   columnCount: 1,
   rowCount: 5,
-  height: cellStyle.rowHeight * 5 + 15,
+  height: cellStyle.rowHeight * 5 + 20,
   width: cellStyle.columnWidth + 8,
 };
 
@@ -176,7 +176,7 @@ function WidgetsPage() {
     // e.target.focus();
   };
 
-  const handleChangeItfditt = function (
+  const handleChangeItftitt = function (
     e: React.ChangeEvent<HTMLInputElement>
   ) {
     const name = e.target.name;
@@ -232,18 +232,18 @@ function WidgetsPage() {
     wordsChang[7].index
   );
 
-  const hltItfditt = new Highlighter(wordsItfditt);
-  const hltItfdittTen: Highlight = hltItfditt.getTarget(
+  const hltItftitt = new Highlighter(wordsItftitt);
+  const hltItftittTen: Highlight = hltItftitt.getTarget(
     input.inputTen,
-    wordsItfditt[0].index
+    wordsItftitt[0].index
   );
-  const hltItfdittEleven: Highlight = hltItfditt.getTarget(
+  const hltItftittEleven: Highlight = hltItftitt.getTarget(
     input.inputEleven,
-    wordsItfditt[1].index
+    wordsItftitt[1].index
   );
-  const hltItfdittTwelve: Highlight = hltItfditt.getTarget(
+  const hltItftittTwelve: Highlight = hltItftitt.getTarget(
     input.inputTwelve,
-    wordsItfditt[2].index
+    wordsItftitt[2].index
   );
 
   const hltMizmix = new Highlighter(wordsMizmix);
@@ -614,7 +614,7 @@ function WidgetsPage() {
     </FixedSizeGrid>
   );
 
-  const CellItfditt = ({
+  const CellItftitt = ({
     columnIndex,
     rowIndex,
     style,
@@ -622,20 +622,20 @@ function WidgetsPage() {
     <div style={cellStyleTwoRows(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
-          <text style={{ color: 'red' }}>{hltItfdittTen.target}</text>
-          {hltItfdittTen.tail}
+          <text style={{ color: 'red' }}>{hltItftittTen.target}</text>
+          {hltItftittTen.tail}
         </div>
       ) : rowIndex == 1 ? (
-        <div>{hltItfdittTen.hint.text}</div>
+        <div>{hltItftittTen.hint.text}</div>
       ) : (
         <div />
       )}
     </div>
   );
 
-  const GridItfditt = () => (
+  const GridItftitt = () => (
     <FixedSizeGrid
-      className="GridItfditt"
+      className="GridItftitt"
       columnCount={gridStyle1x2.columnCount}
       columnWidth={cellStyle.columnWidth}
       rowCount={gridStyle1x2.rowCount}
@@ -643,11 +643,11 @@ function WidgetsPage() {
       height={gridStyle1x2.height}
       width={gridStyle1x2.width}
     >
-      {CellItfditt}
+      {CellItftitt}
     </FixedSizeGrid>
   );
 
-  const CellItfditw = ({
+  const CellItftitw = ({
     columnIndex,
     rowIndex,
     style,
@@ -655,20 +655,20 @@ function WidgetsPage() {
     <div style={cellStyleTwoRows(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
-          <text style={{ color: 'red' }}>{hltItfdittEleven.target}</text>
-          {hltItfdittEleven.tail}
+          <text style={{ color: 'red' }}>{hltItftittEleven.target}</text>
+          {hltItftittEleven.tail}
         </div>
       ) : rowIndex == 1 ? (
-        <div>{hltItfdittEleven.hint.text}</div>
+        <div>{hltItftittEleven.hint.text}</div>
       ) : (
         <div />
       )}
     </div>
   );
 
-  const GridItfditw = () => (
+  const GridItftitw = () => (
     <FixedSizeGrid
-      className="GridItfditw"
+      className="GridItftitw"
       columnCount={gridStyle1x2.columnCount}
       columnWidth={cellStyle.columnWidth}
       rowCount={gridStyle1x2.rowCount}
@@ -676,11 +676,11 @@ function WidgetsPage() {
       height={gridStyle1x2.height}
       width={gridStyle1x2.width}
     >
-      {CellItfditw}
+      {CellItftitw}
     </FixedSizeGrid>
   );
 
-  const CellItfditf = ({
+  const CellItftitf = ({
     columnIndex,
     rowIndex,
     style,
@@ -688,20 +688,20 @@ function WidgetsPage() {
     <div style={cellStyleTwoRows(rowIndex, style)}>
       {rowIndex == 0 ? (
         <div>
-          <text style={{ color: 'red' }}>{hltItfdittTwelve.target}</text>
-          {hltItfdittTwelve.tail}
+          <text style={{ color: 'red' }}>{hltItftittTwelve.target}</text>
+          {hltItftittTwelve.tail}
         </div>
       ) : rowIndex == 1 ? (
-        <div>{hltItfdittTwelve.hint.text}</div>
+        <div>{hltItftittTwelve.hint.text}</div>
       ) : (
         <div />
       )}
     </div>
   );
 
-  const GridItfditf = () => (
+  const GridItftitf = () => (
     <FixedSizeGrid
-      className="GridItfditf"
+      className="GridItftitf"
       columnCount={gridStyle1x2.columnCount}
       columnWidth={cellStyle.columnWidth}
       rowCount={gridStyle1x2.rowCount}
@@ -709,7 +709,7 @@ function WidgetsPage() {
       height={gridStyle1x2.height}
       width={gridStyle1x2.width}
     >
-      {CellItfditf}
+      {CellItftitf}
     </FixedSizeGrid>
   );
 
@@ -812,7 +812,7 @@ function WidgetsPage() {
     </FixedSizeGrid>
   );
 
-  const CellDanzgiy = ({
+  const CellTanzgiy = ({
     columnIndex,
     rowIndex,
     style,
@@ -821,11 +821,11 @@ function WidgetsPage() {
       {rowIndex == 0 ? (
         <div>{'單語'}</div>
       ) : rowIndex == 1 ? (
-        <div>{'danzgiy'}</div>
+        <div>{'tanzgiy'}</div>
       ) : rowIndex == 2 ? (
         <div>{'タヌ⎸ギイ⎛'}</div>
       ) : rowIndex == 3 ? (
-        <div>{'danzguy'}</div>
+        <div>{'tanzguy'}</div>
       ) : rowIndex == 4 ? (
         <div>{'タヌ⎸グウ⎛'}</div>
       ) : (
@@ -834,9 +834,9 @@ function WidgetsPage() {
     </div>
   );
 
-  const GridDanzgiy = () => (
+  const GridTanzgiy = () => (
     <FixedSizeGrid
-      className="GridDanzgiy"
+      className="GridTanzgiy"
       columnCount={gridStyle1x5.columnCount}
       columnWidth={cellStyle.columnWidth}
       rowCount={gridStyle1x5.rowCount}
@@ -844,7 +844,7 @@ function WidgetsPage() {
       height={gridStyle1x5.height}
       width={gridStyle1x5.width}
     >
-      {CellDanzgiy}
+      {CellTanzgiy}
     </FixedSizeGrid>
   );
 
@@ -939,29 +939,29 @@ function WidgetsPage() {
       </div>
       2.
       <div style={divStyle}>
-        {wordsItfditt[0].hanyjiz}
-        <GridItfditt />
+        {wordsItftitt[0].hanyjiz}
+        <GridItftitt />
         <input
           type="text"
           value={input.inputTen}
           name="inputTen"
-          onChange={handleChangeItfditt}
+          onChange={handleChangeItftitt}
           style={inputStyle}
         />
-        <GridItfditw />
+        <GridItftitw />
         <input
           type="text"
           value={input.inputEleven}
           name="inputEleven"
-          onChange={handleChangeItfditt}
+          onChange={handleChangeItftitt}
           style={inputStyle}
         />
-        <GridItfditf />
+        <GridItftitf />
         <input
           type="text"
           value={input.inputTwelve}
           name="inputTwelve"
-          onChange={handleChangeItfditt}
+          onChange={handleChangeItftitt}
           style={inputStyle}
         />
       </div>
@@ -1005,7 +1005,7 @@ function WidgetsPage() {
       </div>
       5.
       <div style={divStyleFont}>
-        <GridDanzgiy />
+        <GridTanzgiy />
       </div>
     </div>
   );

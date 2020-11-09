@@ -35,13 +35,13 @@ const tonalInHanji = new Map()
   .set('xx', '九');
 
 const namesInHanji = new Map()
-  .set('initial', '初聲')
-  .set('medial', '中聲')
+  .set('initialConsonant', '初聲')
+  .set('vowel', '中聲')
   .set('nasalization', '鼻音化')
-  .set('stopFinal', '終聲')
-  .set('nasalFinal', '終聲')
-  .set('freeTonal', '聲調')
-  .set('checkedTonal', '聲調');
+  .set('stopFinalConsonant', '終聲')
+  .set('nasalFinalConsonant', '終聲')
+  .set('freeTone', '聲調')
+  .set('checkedTone', '聲調');
 
 export class Highlighter {
   tails: string[] = [];
@@ -75,8 +75,8 @@ export class Highlighter {
 
   setHintAndTarget(index: number, n: number) {
     if (
-      this.hints[index].namesOfSound[n] === TonalSpellingTags.freeTonal ||
-      this.hints[index].namesOfSound[n] === TonalSpellingTags.checkedTonal
+      this.hints[index].namesOfSound[n] === TonalSpellingTags.freeTone ||
+      this.hints[index].namesOfSound[n] === TonalSpellingTags.checkedTone
     ) {
       if (tonalInHanji.has(this.hints[index].sounds[n])) {
         let tonal: string = '';
