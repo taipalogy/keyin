@@ -18,7 +18,7 @@ function AdditivePage() {
     setInput(e.target.value);
   };
 
-  const syllableSeqs = [['hoe', 'qi']];
+  const syllableSeqs = [['hoe', 'ki']];
 
   const patterns = [
     [TonalLetterTags.w, TonalLetterTags.x], // 35
