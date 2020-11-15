@@ -5,54 +5,52 @@ import CopyToClipBoard from 'react-copy-to-clipboard';
 
 // alphabet
 const letter21 = [
-  { letter: TonalLetterTags.a.toString(), hanji: '阿' },
-  { letter: TonalLetterTags.b.toString(), hanji: '米' },
-  { letter: TonalLetterTags.bb.toString(), hanji: '' },
-  { letter: TonalLetterTags.c.toString(), hanji: '市' },
-  { letter: TonalLetterTags.ch.toString(), hanji: '志' },
-  { letter: TonalLetterTags.e.toString(), hanji: '个' },
-  { letter: TonalLetterTags.er.toString(), hanji: '' },
-  { letter: TonalLetterTags.f.toString(), hanji: '' },
-  { letter: TonalLetterTags.g.toString(), hanji: '牛' },
-  { letter: TonalLetterTags.gg.toString(), hanji: '' },
-  { letter: TonalLetterTags.h.toString(), hanji: '火' },
-  { letter: TonalLetterTags.hh.toString(), hanji: '頁' },
-  { letter: TonalLetterTags.i.toString(), hanji: '衣' },
-  { letter: TonalLetterTags.ir.toString(), hanji: '去' },
-  { letter: TonalLetterTags.j.toString(), hanji: '而' },
-  { letter: TonalLetterTags.k.toString(), hanji: '古' },
-  { letter: TonalLetterTags.kh.toString(), hanji: '去' },
-  { letter: TonalLetterTags.kk.toString(), hanji: '目' },
-  { letter: TonalLetterTags.l.toString(), hanji: '女' },
-  { letter: TonalLetterTags.ll.toString(), hanji: '' },
-  { letter: TonalLetterTags.m.toString(), hanji: '乜' },
+  { letter: TonalLetterTags.a.toString(), hanjis: ['阿'] },
+  { letter: TonalLetterTags.b.toString(), hanjis: ['米'] },
+  { letter: TonalLetterTags.bb.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.c.toString(), hanjis: ['市'] },
+  { letter: TonalLetterTags.ch.toString(), hanjis: ['志'] },
+  { letter: TonalLetterTags.e.toString(), hanjis: ['个', '烟', '益'] },
+  { letter: TonalLetterTags.er.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.f.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.g.toString(), hanjis: ['牛'] },
+  { letter: TonalLetterTags.gg.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.h.toString(), hanjis: ['火'] },
+  { letter: TonalLetterTags.hh.toString(), hanjis: ['灱'] },
+  { letter: TonalLetterTags.i.toString(), hanjis: ['衣'] },
+  { letter: TonalLetterTags.ir.toString(), hanjis: ['去'] },
+  { letter: TonalLetterTags.j.toString(), hanjis: ['而'] },
+  { letter: TonalLetterTags.k.toString(), hanjis: ['古'] },
+  { letter: TonalLetterTags.kh.toString(), hanjis: ['去'] },
+  { letter: TonalLetterTags.kk.toString(), hanjis: ['目'] },
+  { letter: TonalLetterTags.l.toString(), hanjis: ['女'] },
+  { letter: TonalLetterTags.ll.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.m.toString(), hanjis: ['乜'] },
 ];
 
 // alphabet
 const letter20 = [
-  { letter: TonalLetterTags.n.toString(), hanji: '尼' },
-  { letter: TonalLetterTags.ng.toString(), hanji: '午' },
-  { letter: TonalLetterTags.nn.toString(), hanji: '井' },
-  { letter: TonalLetterTags.o.toString(), hanji: '芋' },
-  { letter: TonalLetterTags.or.toString(), hanji: '蚵' },
-  { letter: TonalLetterTags.p.toString(), hanji: '比' },
-  { letter: TonalLetterTags.ph.toString(), hanji: '皮' },
-  { letter: TonalLetterTags.pp.toString(), hanji: '入' },
-  { letter: TonalLetterTags.s.toString(), hanji: '示' },
-  { letter: TonalLetterTags.ss.toString(), hanji: '' },
-  { letter: TonalLetterTags.t.toString(), hanji: '池' },
-  { letter: TonalLetterTags.th.toString(), hanji: '土' },
-  { letter: TonalLetterTags.tt.toString(), hanji: '日' },
-  { letter: TonalLetterTags.u.toString(), hanji: '宇' },
-  { letter: TonalLetterTags.ur.toString(), hanji: '蚵' },
-  { letter: TonalLetterTags.w.toString(), hanji: '' },
-  { letter: TonalLetterTags.x.toString(), hanji: '' },
-  { letter: TonalLetterTags.xx.toString(), hanji: '' },
-  { letter: TonalLetterTags.y.toString(), hanji: '' },
-  { letter: TonalLetterTags.z.toString(), hanji: '' },
+  { letter: TonalLetterTags.n.toString(), hanjis: ['尼'] },
+  { letter: TonalLetterTags.ng.toString(), hanjis: ['午'] },
+  { letter: TonalLetterTags.nn.toString(), hanjis: ['井'] },
+  { letter: TonalLetterTags.o.toString(), hanjis: ['芋'] },
+  { letter: TonalLetterTags.or.toString(), hanjis: ['蚵'] },
+  { letter: TonalLetterTags.p.toString(), hanjis: ['比'] },
+  { letter: TonalLetterTags.ph.toString(), hanjis: ['皮'] },
+  { letter: TonalLetterTags.pp.toString(), hanjis: ['入'] },
+  { letter: TonalLetterTags.s.toString(), hanjis: ['示'] },
+  { letter: TonalLetterTags.ss.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.t.toString(), hanjis: ['池'] },
+  { letter: TonalLetterTags.th.toString(), hanjis: ['土'] },
+  { letter: TonalLetterTags.tt.toString(), hanjis: ['日'] },
+  { letter: TonalLetterTags.u.toString(), hanjis: ['宇'] },
+  { letter: TonalLetterTags.ur.toString(), hanjis: ['蚵'] },
+  { letter: TonalLetterTags.w.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.x.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.xx.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.y.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.z.toString(), hanjis: [''] },
 ];
-
-const hanjis = ['烟', '益']
 
 // 初聲(語頭子音)
 const initials = [
@@ -96,11 +94,11 @@ const medials = [
   TonalLetterTags.i.toString() + TonalLetterTags.o.toString(),
   TonalLetterTags.i.toString() + TonalLetterTags.u.toString(),
   TonalLetterTags.i.toString() + TonalLetterTags.ur.toString(),
+  TonalLetterTags.ir.toString() + TonalLetterTags.i.toString(),
+  TonalLetterTags.or.toString() + TonalLetterTags.e.toString(),
   TonalLetterTags.u.toString() + TonalLetterTags.a.toString(),
   TonalLetterTags.u.toString() + TonalLetterTags.e.toString(),
   TonalLetterTags.u.toString() + TonalLetterTags.i.toString(),
-  TonalLetterTags.or.toString() + TonalLetterTags.e.toString(),
-  TonalLetterTags.ir.toString() + TonalLetterTags.i.toString(),
   TonalLetterTags.i.toString() +
     TonalLetterTags.a.toString() +
     TonalLetterTags.i.toString(),
@@ -237,15 +235,15 @@ function TaiKanaPage() {
           : ''
         : rowIndex == 1
         ? columnIndex >= 0 && letter21[columnIndex]
-          ? letter21[columnIndex].hanji
+          ? letter21[columnIndex].hanjis[0]
           : ''
         : rowIndex == 2
         ? columnIndex == 5
-          ? hanjis[0]
+          ? letter21[columnIndex].hanjis[1]
           : ''
         : rowIndex == 3
         ? columnIndex == 5
-          ? hanjis[1]
+          ? letter21[columnIndex].hanjis[2]
           : ''
         : rowIndex == 4
         ? columnIndex >= 0 && letter20[columnIndex]
@@ -253,7 +251,7 @@ function TaiKanaPage() {
           : ''
         : rowIndex == 5
         ? columnIndex >= 0 && letter20[columnIndex]
-          ? letter20[columnIndex].hanji
+          ? letter20[columnIndex].hanjis[0]
           : ''
         : ''}
     </div>

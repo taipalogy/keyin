@@ -35,13 +35,13 @@ const tonalInHanji = new Map()
   .set('xx', '九');
 
 const namesInHanji = new Map()
-  .set('initialConsonant', '初聲')
-  .set('vowel', '中聲')
-  .set('nasalization', '鼻音化')
-  .set('stopFinalConsonant', '終聲')
-  .set('nasalFinalConsonant', '終聲')
-  .set('freeTone', '聲調')
-  .set('checkedTone', '聲調');
+  .set(TonalSpellingTags.initialConsonant, '初聲')
+  .set(TonalSpellingTags.vowel, '中聲')
+  .set(TonalSpellingTags.nasalization, '鼻音化')
+  .set(TonalSpellingTags.stopFinalConsonant, '終聲')
+  .set(TonalSpellingTags.nasalization, '終聲')
+  .set(TonalSpellingTags.freeTone, '聲調')
+  .set(TonalSpellingTags.checkedTone, '聲調');
 
 export class Highlighter {
   tails: string[] = [];
