@@ -29,7 +29,7 @@ const wordsMizmix = [
   { index: 1, hanyjiz: '', lurzmafjiz: 'mixxmix' },
 ];
 
-const sentence = ['hitf', 'chanz', 'taiwchiw', 'chinz', 'toaw', 'tiaux'];
+const sentence = ['hitf', 'chanz', 'taiwchiw', 'chinz', 'tuaw', 'tiaux'];
 let currWord: number = 0;
 
 const divStyle = {

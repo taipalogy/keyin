@@ -52,6 +52,8 @@ const letter20 = [
   { letter: TonalLetterTags.z.toString(), hanji: '' },
 ];
 
+const hanjis = ['烟', '益']
+
 // 初聲(語頭子音)
 const initials = [
   TonalLetterTags.b.toString(),
@@ -94,8 +96,8 @@ const medials = [
   TonalLetterTags.i.toString() + TonalLetterTags.o.toString(),
   TonalLetterTags.i.toString() + TonalLetterTags.u.toString(),
   TonalLetterTags.i.toString() + TonalLetterTags.ur.toString(),
-  TonalLetterTags.o.toString() + TonalLetterTags.a.toString(),
-  TonalLetterTags.o.toString() + TonalLetterTags.e.toString(),
+  TonalLetterTags.u.toString() + TonalLetterTags.a.toString(),
+  TonalLetterTags.u.toString() + TonalLetterTags.e.toString(),
   TonalLetterTags.u.toString() + TonalLetterTags.i.toString(),
   TonalLetterTags.or.toString() + TonalLetterTags.e.toString(),
   TonalLetterTags.ir.toString() + TonalLetterTags.i.toString(),
@@ -105,7 +107,7 @@ const medials = [
   TonalLetterTags.i.toString() +
     TonalLetterTags.a.toString() +
     TonalLetterTags.u.toString(),
-  TonalLetterTags.o.toString() +
+  TonalLetterTags.u.toString() +
     TonalLetterTags.a.toString() +
     TonalLetterTags.i.toString(),
 ];
@@ -158,7 +160,7 @@ const cellStyle = {
   color: 'black',
   // fontFamily: 'Monaco',
   // fontSize: 24,
-  columnWidth: 40,
+  columnWidth: 35,
   rowHeight: 20,
   backgroundColorAlphabet: 'mistyrose',
 };
@@ -166,6 +168,7 @@ const cellStyle = {
 const gridStyleNx1 = {
   rowCount: 1,
   height: cellStyle.rowHeight + 2,
+  columnWidth: 40,
 };
 
 function TaiKanaPage() {
@@ -217,13 +220,14 @@ function TaiKanaPage() {
           : 'GridItemEven'
       }
       style={Object.assign(
-        rowIndex % 2 == 0
+        rowIndex % 4 == 0
           ? {
               backgroundColor: cellStyle.backgroundColorAlphabet,
               border: '1px solid white',
               color: cellStyle.color,
             }
-          : {},
+          : {
+          },
         style
       )}
     >
@@ -236,10 +240,18 @@ function TaiKanaPage() {
           ? letter21[columnIndex].hanji
           : ''
         : rowIndex == 2
+        ? columnIndex == 5
+          ? hanjis[0]
+          : ''
+        : rowIndex == 3
+        ? columnIndex == 5
+          ? hanjis[1]
+          : ''
+        : rowIndex == 4
         ? columnIndex >= 0 && letter20[columnIndex]
           ? letter20[columnIndex].letter
           : ''
-        : rowIndex == 3
+        : rowIndex == 5
         ? columnIndex >= 0 && letter20[columnIndex]
           ? letter20[columnIndex].hanji
           : ''
@@ -252,9 +264,9 @@ function TaiKanaPage() {
       className="GridAlphabet"
       columnCount={21}
       columnWidth={cellStyle.columnWidth}
-      rowCount={gridStyleNx1.rowCount * 4}
+      rowCount={gridStyleNx1.rowCount * 8}
       rowHeight={cellStyle.rowHeight}
-      height={gridStyleNx1.height * 4}
+      height={gridStyleNx1.height * 8}
       width={letter21.length * (cellStyle.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
@@ -285,11 +297,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridInitials"
       columnCount={initials.length}
-      columnWidth={cellStyle.columnWidth}
+      columnWidth={gridStyleNx1.columnWidth}
       rowCount={gridStyleNx1.rowCount}
       rowHeight={cellStyle.rowHeight}
       height={gridStyleNx1.height}
-      width={initials.length * (cellStyle.columnWidth + 1)}
+      width={initials.length * (gridStyleNx1.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
       {CellInitials}
@@ -319,11 +331,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridMedials"
       columnCount={medials.length}
-      columnWidth={cellStyle.columnWidth}
+      columnWidth={gridStyleNx1.columnWidth}
       rowCount={gridStyleNx1.rowCount}
       rowHeight={cellStyle.rowHeight}
       height={gridStyleNx1.height}
-      width={medials.length * (cellStyle.columnWidth + 1)}
+      width={medials.length * (gridStyleNx1.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
       {CellMedials}
@@ -353,11 +365,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridNasalizations"
       columnCount={nasalizations.length}
-      columnWidth={cellStyle.columnWidth}
+      columnWidth={gridStyleNx1.columnWidth}
       rowCount={gridStyleNx1.rowCount}
       rowHeight={cellStyle.rowHeight}
       height={gridStyleNx1.height}
-      width={nasalizations.length * cellStyle.columnWidth + 2}
+      width={nasalizations.length * gridStyleNx1.columnWidth + 2}
       style={{ textAlign: 'center' }}
     >
       {CellNasalizations}
@@ -387,11 +399,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridFinals"
       columnCount={finals.length}
-      columnWidth={cellStyle.columnWidth}
+      columnWidth={gridStyleNx1.columnWidth}
       rowCount={gridStyleNx1.rowCount}
       rowHeight={cellStyle.rowHeight}
       height={gridStyleNx1.height}
-      width={finals.length * (cellStyle.columnWidth + 1)}
+      width={finals.length * (gridStyleNx1.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
       {CellFinals}
@@ -427,11 +439,11 @@ function TaiKanaPage() {
     <FixedSizeGrid
       className="GridTonals"
       columnCount={tonals.length}
-      columnWidth={cellStyle.columnWidth}
+      columnWidth={gridStyleNx1.columnWidth}
       rowCount={gridStyleNx1.rowCount * 2}
       rowHeight={cellStyle.rowHeight}
       height={gridStyleNx1.height * 2}
-      width={tonals.length * (cellStyle.columnWidth + 1)}
+      width={tonals.length * (gridStyleNx1.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
       {CellTonals}

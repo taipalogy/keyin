@@ -25,6 +25,14 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;400&display=swap"
             rel="stylesheet"
           />
+          {/* <link
+            href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;400&display=swap"
+            rel="stylesheet"
+          /> */}
+          {/* <link
+            href="https://fonts.googleapis.com/css2?family=Megrim&display=swap"
+            rel="stylesheet"
+          /> */}
         </Head>
         <body>
           <Main />

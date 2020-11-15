@@ -9,7 +9,7 @@ function HintPage() {
   };
 
   const words = [
-    { index: 0, hanyjiz: '', lurzmafjiz: 'hoefcia' },
+    { index: 0, hanyjiz: '', lurzmafjiz: 'huefcia' },
     { index: 1, hanyjiz: '', lurzmafjiz: 'hefcia' },
   ];
   const hp = new Highlighter(words);
