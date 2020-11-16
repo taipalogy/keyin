@@ -32,6 +32,13 @@ const wordsMizmix = [
 const sentence = ['hitf', 'chanz', 'taiwchiw', 'chinz', 'tuaw', 'tiaux'];
 let currWord: number = 0;
 
+const cellStyle = {
+  backgroundColor: 'papayawhip',
+  border: '1px dotted white',
+  columnWidth: 175,
+  rowHeight: 25,
+};
+
 const divStyle = {
   // workaround: https://github.com/cssinjs/jss/issues/1344
   display: 'flex',
@@ -43,7 +50,7 @@ const divStyle = {
   fontFamily: 'IBM Plex Mono',
   // fontSize: 24,
   padding: '5px',
-  width: '170px',
+  width: 180,
   color: 'black',
 };
 
@@ -56,7 +63,7 @@ const divStyleTwoColumns = {
   border: '1px solid silver',
   fontFamily: 'IBM Plex Mono',
   padding: '5px',
-  width: '365px',
+  width: 180 * 2 + 20,
   color: 'black',
 };
 
@@ -64,20 +71,13 @@ const divStyleEightColumns = {
   border: '1px solid silver',
   fontFamily: 'IBM Plex Mono',
   padding: '5px',
-  width: '1460px',
+  width: 180 * 8 + 100,
   color: 'black',
 };
 
 const divStyleHorizontal = {
   display: 'flex',
   flexDirection: 'row' as 'row',
-};
-
-const cellStyle = {
-  backgroundColor: 'papayawhip',
-  border: '1px dotted white',
-  columnWidth: 173,
-  rowHeight: 25,
 };
 
 const cellStyleTwoRows = (rowIndex: number, style: CSSProperties) => {
