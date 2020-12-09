@@ -10,7 +10,7 @@ import { Client, TonalSpellingTags, graphAnalyzeTonal } from 'taipa';
 class Hint {
   text: string = '';
   letters: Array<string> = new Array(); // positional letters
-  sounds: Array<string> = new Array();
+  spellingTags: Array<string> = new Array();
 }
 
 export class Highlight {
@@ -26,7 +26,7 @@ export class Entry {
   lurzmafjiz: string = '';
 }
 
-const tonalInHanji = new Map()
+const toneNumbersInHanji = new Map()
   .set('f', '一')
   .set('y', '二')
   .set('w', '三')
@@ -34,7 +34,7 @@ const tonalInHanji = new Map()
   .set('z', '七')
   .set('xx', '九');
 
-const namesInHanji = new Map()
+const soundNamesInHanji = new Map()
   .set(TonalSpellingTags.initialConsonant, '初聲')
   .set(TonalSpellingTags.vowel, '中聲')
   .set(TonalSpellingTags.nasalization, '鼻音化')
@@ -61,10 +61,11 @@ export class Highlighter {
       const h = new Hint();
       for (const e of ta.letterSequences) {
         for (const j of e) {
-          h.sounds.push(j.name);
+          h.spellingTags.push(j.name);
           h.letters.push(j.toString());
         }
-        h.text = namesInHanji.get(h.sounds[0]) + ' ' + h.sounds[0];
+        h.text =
+          soundNamesInHanji.get(h.spellingTags[0]) + ' ' + h.spellingTags[0];
       }
       this.targets[i] = h.letters[0];
       const sliced = this.literals[i].slice(this.targets[i].length);
@@ -75,23 +76,23 @@ export class Highlighter {
 
   setHintAndTarget(index: number, n: number) {
     if (
-      this.hints[index].sounds[n] === TonalSpellingTags.freeTone ||
-      this.hints[index].sounds[n] === TonalSpellingTags.checkedTone
+      this.hints[index].spellingTags[n] === TonalSpellingTags.freeTone ||
+      this.hints[index].spellingTags[n] === TonalSpellingTags.checkedTone
     ) {
-      if (tonalInHanji.has(this.hints[index].letters[n])) {
+      if (toneNumbersInHanji.has(this.hints[index].letters[n])) {
         let tonal: string = '';
-        tonal = tonalInHanji.get(this.hints[index].letters[n]);
+        tonal = toneNumbersInHanji.get(this.hints[index].letters[n]);
         this.hints[index].text =
-          namesInHanji.get(this.hints[index].sounds[n]) +
+          soundNamesInHanji.get(this.hints[index].spellingTags[n]) +
           tonal +
           ' ' +
-          this.hints[index].sounds[n];
+          this.hints[index].spellingTags[n];
       }
     } else {
       this.hints[index].text =
-        namesInHanji.get(this.hints[index].sounds[n]) +
+        soundNamesInHanji.get(this.hints[index].spellingTags[n]) +
         ' ' +
-        this.hints[index].sounds[n];
+        this.hints[index].spellingTags[n];
     }
     this.targets[index] = this.hints[index].letters[n];
   }
@@ -109,7 +110,7 @@ export class Highlighter {
             this.setHintAndTarget(idx, j);
           } else {
             if (j + 1 == this.hints[idx].letters.length) {
-              // last sound
+              // last spelling tag
               this.hints[idx].text = '';
               this.targets[idx] = '';
             } else {

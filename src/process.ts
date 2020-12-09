@@ -20,15 +20,15 @@ export function getStems(literal: string, ending: string) {
     return stems;
 }
 
-export function getSoundSequences(letterSeqs: PositionalLetter[][]) {
-    const snds = [];
+export function getLetterSequences(letterSeqs: PositionalLetter[][]) {
+    const letters = [];
     for(let j in letterSeqs) {
         for(let k in letterSeqs[j]) {
-            const snd = letterSeqs[j][k]
-            snds.push([snd.toString(), snd.name]);
+            const ltr = letterSeqs[j][k]
+            letters.push([ltr.toString(), ltr.name]);
         }
     }
-    return snds;
+    return letters;
 }
 
 export function getSurfaceForms(underlying: string, surface: string) {

@@ -8,7 +8,7 @@ import {
 import {
   getInflectionalSuffixes,
   getStems,
-  getSoundSequences,
+  getLetterSequences,
 } from '../src/process';
 
 function WordPage() {
@@ -20,7 +20,7 @@ function WordPage() {
     x => x.letter && x.letter.literal
   );
 
-  const soudnSeqs = getSoundSequences(
+  const soudnSeqs = getLetterSequences(
     tla.morphAnalyze(input).map(x => x.letters)
   );
   const uncombiningSeqs = tla
@@ -49,8 +49,8 @@ function WordPage() {
 
   return (
     <div>
-      拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms, sound
-      sequences, uncombining form sequences, 甲 letters
+      拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms,
+      positional-letter sequences, uncombining form sequences, 甲 letters
       <label>
         <br />
         <input type="text" value={input} onChange={handleChange} />
@@ -76,7 +76,7 @@ function WordPage() {
         <li>{x}</li>
       ))}
       <br />
-      sound sequences
+      positional-letter sequences
       {soudnSeqs.map(x => (
         <li>{x[0] + ' - ' + x[1]}</li>
       ))}
