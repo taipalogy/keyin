@@ -4,14 +4,13 @@ import { FixedSizeGrid, GridChildComponentProps } from 'react-window';
 import CopyToClipBoard from 'react-copy-to-clipboard';
 
 // alphabet
-const letter21 = [
+const letters20FirstHalf = [
   { letter: TonalLetterTags.a.toString(), hanjis: ['阿'] },
   { letter: TonalLetterTags.b.toString(), hanjis: ['米'] },
   { letter: TonalLetterTags.bb.toString(), hanjis: [''] },
   { letter: TonalLetterTags.c.toString(), hanjis: ['市'] },
   { letter: TonalLetterTags.ch.toString(), hanjis: ['志'] },
-  { letter: TonalLetterTags.e.toString(), hanjis: ['个', '烟', '益'] },
-  { letter: TonalLetterTags.er.toString(), hanjis: [''] },
+  { letter: TonalLetterTags.e.toString(), hanjis: ['个', '益'] },
   { letter: TonalLetterTags.f.toString(), hanjis: [''] },
   { letter: TonalLetterTags.g.toString(), hanjis: ['牛'] },
   { letter: TonalLetterTags.gg.toString(), hanjis: [''] },
@@ -29,7 +28,7 @@ const letter21 = [
 ];
 
 // alphabet
-const letter20 = [
+const letter20SecondHalf = [
   { letter: TonalLetterTags.n.toString(), hanjis: ['尼'] },
   { letter: TonalLetterTags.ng.toString(), hanjis: ['午'] },
   { letter: TonalLetterTags.nn.toString(), hanjis: ['井'] },
@@ -230,28 +229,28 @@ function TaiKanaPage() {
       )}
     >
       {rowIndex == 0
-        ? columnIndex >= 0 && letter21[columnIndex]
-          ? letter21[columnIndex].letter
+        ? columnIndex >= 0 && letters20FirstHalf[columnIndex]
+          ? letters20FirstHalf[columnIndex].letter
           : ''
         : rowIndex == 1
-        ? columnIndex >= 0 && letter21[columnIndex]
-          ? letter21[columnIndex].hanjis[0]
+        ? columnIndex >= 0 && letters20FirstHalf[columnIndex]
+          ? letters20FirstHalf[columnIndex].hanjis[0]
           : ''
         : rowIndex == 2
         ? columnIndex == 5
-          ? letter21[columnIndex].hanjis[1]
+          ? letters20FirstHalf[columnIndex].hanjis[1]
           : ''
         : rowIndex == 3
         ? columnIndex == 5
-          ? letter21[columnIndex].hanjis[2]
+          ? letters20FirstHalf[columnIndex].hanjis[2]
           : ''
         : rowIndex == 4
-        ? columnIndex >= 0 && letter20[columnIndex]
-          ? letter20[columnIndex].letter
+        ? columnIndex >= 0 && letter20SecondHalf[columnIndex]
+          ? letter20SecondHalf[columnIndex].letter
           : ''
         : rowIndex == 5
-        ? columnIndex >= 0 && letter20[columnIndex]
-          ? letter20[columnIndex].hanjis[0]
+        ? columnIndex >= 0 && letter20SecondHalf[columnIndex]
+          ? letter20SecondHalf[columnIndex].hanjis[0]
           : ''
         : ''}
     </div>
@@ -260,12 +259,12 @@ function TaiKanaPage() {
   const TableAlphabet = () => (
     <FixedSizeGrid
       className="GridAlphabet"
-      columnCount={21}
+      columnCount={20}
       columnWidth={cellStyle.columnWidth}
       rowCount={gridStyleNx1.rowCount * 8}
       rowHeight={cellStyle.rowHeight}
       height={gridStyleNx1.height * 8}
-      width={letter21.length * (cellStyle.columnWidth + 1)}
+      width={letters20FirstHalf.length * (cellStyle.columnWidth + 1)}
       style={{ textAlign: 'center' }}
     >
       {CellLetters}

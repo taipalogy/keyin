@@ -5,6 +5,7 @@ import {
   graphAnalyzeTonal,
   inflectDesinence,
 } from 'taipa';
+import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
 import {
   getInflectionalSuffixes,
   getStems,
@@ -21,10 +22,10 @@ function WordPage() {
   );
 
   const soudnSeqs = getLetterSequences(
-    tla.morphAnalyze(input).map(x => x.letters)
+    tla.morphAnalyze(input, new TonalUncombiningForms([])).map(x => x.letters)
   );
   const uncombiningSeqs = tla
-    .morphAnalyze(input)
+    .morphAnalyze(input, new TonalUncombiningForms([]))
     .map(it =>
       it
         .getForms()

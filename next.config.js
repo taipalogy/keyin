@@ -19,7 +19,7 @@ module.exports = {
       '/taikana': { page: '/taikana' },
       '/taizjitt': { page: '/taizjitt' },
       '/jittwtaix': { page: '/jittwtaix' },
-      '/koaxay': { page: '/koaxay' },
+      '/kuaxay': { page: '/kuaxay' },
       '/tokenizer': { page: '/tokenizer' },
       '/widgets': { page: '/widgets' },
     };

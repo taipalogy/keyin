@@ -1,4 +1,4 @@
-import { Client, tokenizeLatinSyllable } from 'taipa';
+import { Client, getLatinSyllableCompositions, PositionalLetter } from 'taipa';
 import { useState } from 'react';
 
 function TokenizerPage() {
@@ -8,7 +8,7 @@ function TokenizerPage() {
     setInput(e.target.value);
   };
 
-  const letterSeqs = tokenizeLatinSyllable(input);
+  const letterSeqs: PositionalLetter[][][] = getLatinSyllableCompositions(input);
   const stringSeqs = letterSeqs.map(x =>
     x.map(y => y.map(z => z.toString()).join(''))
   );

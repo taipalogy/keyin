@@ -3,6 +3,7 @@ import {
   tonalInflectionAnalyzer,
   TonalCombiningForms,
   TonalLetterTags,
+  extractTones,
 } from 'taipa';
 
 function TonePatternPage() {
@@ -21,7 +22,6 @@ function TonePatternPage() {
     .set(TonalLetterTags.xx, 9);
 
   const mapFinal = new Map<string, number>()
-    .set(TonalLetterTags.zero, 1)
     .set(TonalLetterTags.p, 4)
     .set(TonalLetterTags.t, 4)
     .set(TonalLetterTags.k, 4)
@@ -37,7 +37,11 @@ function TonePatternPage() {
     mapTonal.has(it.allomorph.tonal.toString())
       ? mapTonal.get(it.allomorph.tonal.toString())
       : mapFinal.get(it.allomorph.toString())
+        ? mapFinal.get(it.allomorph.toString())
+        : 1
   );
+
+  const numArray = extractTones(ms1.map(it => it.syllable.literal).join(''));
 
   const words = [
     'chongwthaiwgiy',
@@ -60,6 +64,8 @@ function TonePatternPage() {
         ))}
       </datalist>
       {items}
+      <br/>
+      {numArray.getToneNumbers()}
     </div>
   );
 }

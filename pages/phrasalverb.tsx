@@ -9,7 +9,7 @@ function PhrasalVerbPage() {
   };
 
   const phrasalVerbs = [
-    ['khoannw', 'tiurh'],
+    ['khuannw', 'tiurh'],
     ['longw', 'tiurh'],
   ];
 

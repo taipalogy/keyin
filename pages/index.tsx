@@ -49,7 +49,7 @@ function Home() {
         <a href="jittwtaix">日臺</a>
       </li>
       <li>
-        <a href="koaxay">歌仔</a>
+        <a href="kuaxay">歌仔</a>
       </li>
       <li>
         <a href="tokenizer">羅馬字 syllable tokenizer</a>

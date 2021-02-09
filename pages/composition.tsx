@@ -6,6 +6,7 @@ import {
   inflectDesinence,
   TonalWord,
 } from 'taipa';
+import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
 
 class Segment {
   literal: string = '';
@@ -107,7 +108,7 @@ function CompositionPage() {
   let optIdx = -1; // which radio button and input field to be displayed
 
   const tl = tonalLemmatizationAnalyzer;
-  const mphs = tl.morphAnalyze(input.scanned);
+  const mphs = tl.morphAnalyze(input.scanned, new TonalUncombiningForms([]));
 
   if (mphs) {
     for (let i = 0; i < mphs.length; i++) {

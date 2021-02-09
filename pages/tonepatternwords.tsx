@@ -3,6 +3,9 @@ import {
   tonalInflectionAnalyzer,
   TonalLetterTags,
   TonalDesinenceInflection,
+  getToneEndingNumbersTwo,
+  getToneEndingNumbersThree,
+  getToneEndingNumber,
 } from 'taipa';
 
 function TonePatternWordsPage() {
@@ -21,7 +24,6 @@ function TonePatternWordsPage() {
     .set(TonalLetterTags.xx, 9);
 
   const mapFinal = new Map<string, number>()
-    .set(TonalLetterTags.zero, 1)
     .set(TonalLetterTags.p, 4)
     .set(TonalLetterTags.t, 4)
     .set(TonalLetterTags.k, 4)
@@ -44,8 +46,21 @@ function TonePatternWordsPage() {
     items = ls1.map(it =>
       mapTonal.has(it.getInflectionalEnding().toString())
         ? mapTonal.get(it.getInflectionalEnding().toString())
-        : mapFinal.get(it.getAllomorphicEnding().toString())
+        : mapFinal.has(it.getAllomorphicEnding().toString())
+          ? mapFinal.get(it.getAllomorphicEnding().toString())
+          : 1
     );
+  }
+
+  let numArray: number [] = [];
+  if(tokens.length == 1) {
+    numArray.push(getToneEndingNumber(tokens[0]));
+  } else if(tokens.length == 2) {
+    numArray = getToneEndingNumbersTwo(tokens[0], tokens[1]);
+  } else if(tokens.length == 3) {
+    numArray = getToneEndingNumbersThree(tokens[0], tokens[1], tokens[2]);
+  } else if(tokens.length >= 4) {
+    tokens.map(it => numArray.push(getToneEndingNumber(it)));
   }
 
   const phrases = [
@@ -69,7 +84,10 @@ function TonePatternWordsPage() {
           <option key={it} value={it} />
         ))}
       </datalist>
+      <br/>
       {items}
+      <br/>
+      {numArray}
     </div>
   );
 }

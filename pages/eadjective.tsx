@@ -11,7 +11,7 @@ function EAdjectivePage() {
   const eAdjectives = [
     ['sin', 'e'],
     ['kuz', 'ez'],
-    ['soew', 'ew'],
+    ['suew', 'ew'],
   ];
 
   const matches = eAdjectives.filter(x => x.join(' ') === input);

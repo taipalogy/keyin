@@ -10,8 +10,8 @@ function ReplacivePage() {
 
   const words = [
     'chitwpaiy',
-    'chitwkoa',
-    'poannytang',
+    'chitwkua',
+    'puannytang',
     'tangzsixay',
     'tamwpurhxay',
   ];
