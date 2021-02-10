@@ -65,7 +65,7 @@ function TonePatternWordsPage() {
 
   const phrases = [
     'ciet tngh',
-    'hoz goaz',
+    'hoz guaz',
     'kongy aw',
     'giurx ez',
     'chongx cut khih',
@@ -84,7 +84,6 @@ function TonePatternWordsPage() {
           <option key={it} value={it} />
         ))}
       </datalist>
-      <br/>
       {items}
       <br/>
       {numArray}

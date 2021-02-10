@@ -41,7 +41,7 @@ function TonePatternPage() {
         : 1
   );
 
-  const numArray = extractTones(ms1.map(it => it.syllable.literal).join(''));
+  const numArray = extractTones(input);
 
   const words = [
     'chongwthaiwgiy',
