@@ -1,4 +1,4 @@
-import { Client, TonalSpellingTags, graphAnalyzeTonal } from 'taipa';
+import { Client, TonalSoundTags, graphAnalyzeTonal } from 'taipa';
 
 /*
  * initial state:      target + tail
@@ -9,8 +9,8 @@ import { Client, TonalSpellingTags, graphAnalyzeTonal } from 'taipa';
 
 class Hint {
   text: string = '';
-  letters: Array<string> = new Array(); // positional letters
-  spellingTags: Array<string> = new Array();
+  letters: Array<string> = new Array(); // letters
+  soundTags: Array<string> = new Array();
 }
 
 export class Highlight {
@@ -35,13 +35,13 @@ const toneNumbersInHanji = new Map()
   .set('xx', '九');
 
 const soundNamesInHanji = new Map()
-  .set(TonalSpellingTags.initialConsonant, '初聲')
-  .set(TonalSpellingTags.vowel, '中聲')
-  .set(TonalSpellingTags.nasalization, '鼻音化')
-  .set(TonalSpellingTags.stopFinalConsonant, '終聲')
-  .set(TonalSpellingTags.nasalFinalConsonant, '終聲')
-  .set(TonalSpellingTags.freeTone, '聲調')
-  .set(TonalSpellingTags.checkedTone, '聲調');
+  .set(TonalSoundTags.initialConsonant, '初聲')
+  .set(TonalSoundTags.vowel, '中聲')
+  .set(TonalSoundTags.nasalization, '鼻音化')
+  .set(TonalSoundTags.stopFinalConsonant, '終聲')
+  .set(TonalSoundTags.nasalFinalConsonant, '終聲')
+  .set(TonalSoundTags.freeTone, '聲調')
+  .set(TonalSoundTags.checkedTone, '聲調');
 
 export class Highlighter {
   tails: string[] = [];
@@ -59,13 +59,13 @@ export class Highlighter {
       const ta = clt.processTonal(this.entries[i].lurzmafjiz);
       this.literals[i] = ta.word.literal;
       const h = new Hint();
-      for (const e of ta.letterSequences) {
+      for (const e of ta.soundSequences) {
         for (const j of e) {
-          h.spellingTags.push(j.name);
+          h.soundTags.push(j.name);
           h.letters.push(j.toString());
         }
         h.text =
-          soundNamesInHanji.get(h.spellingTags[0]) + ' ' + h.spellingTags[0];
+          soundNamesInHanji.get(h.soundTags[0]) + ' ' + h.soundTags[0];
       }
       this.targets[i] = h.letters[0];
       const sliced = this.literals[i].slice(this.targets[i].length);
@@ -76,23 +76,23 @@ export class Highlighter {
 
   setHintAndTarget(index: number, n: number) {
     if (
-      this.hints[index].spellingTags[n] === TonalSpellingTags.freeTone ||
-      this.hints[index].spellingTags[n] === TonalSpellingTags.checkedTone
+      this.hints[index].soundTags[n] === TonalSoundTags.freeTone ||
+      this.hints[index].soundTags[n] === TonalSoundTags.checkedTone
     ) {
       if (toneNumbersInHanji.has(this.hints[index].letters[n])) {
         let tonal: string = '';
         tonal = toneNumbersInHanji.get(this.hints[index].letters[n]);
         this.hints[index].text =
-          soundNamesInHanji.get(this.hints[index].spellingTags[n]) +
+          soundNamesInHanji.get(this.hints[index].soundTags[n]) +
           tonal +
           ' ' +
-          this.hints[index].spellingTags[n];
+          this.hints[index].soundTags[n];
       }
     } else {
       this.hints[index].text =
-        soundNamesInHanji.get(this.hints[index].spellingTags[n]) +
+        soundNamesInHanji.get(this.hints[index].soundTags[n]) +
         ' ' +
-        this.hints[index].spellingTags[n];
+        this.hints[index].soundTags[n];
     }
     this.targets[index] = this.hints[index].letters[n];
   }

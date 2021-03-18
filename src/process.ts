@@ -1,4 +1,4 @@
-import { PositionalLetter } from 'taipa';
+import { Sound } from 'taipa';
 
 export function getInflectionalSuffixes(ending: string) {
     const desinences: string[] = [];
@@ -20,11 +20,11 @@ export function getStems(literal: string, ending: string) {
     return stems;
 }
 
-export function getLetterSequences(letterSeqs: PositionalLetter[][]) {
+export function getSoundSequences(soundSeqs: Sound[][]) {
     const letters = [];
-    for(let j in letterSeqs) {
-        for(let k in letterSeqs[j]) {
-            const ltr = letterSeqs[j][k]
+    for(let j in soundSeqs) {
+        for(let k in soundSeqs[j]) {
+            const ltr = soundSeqs[j][k]
             letters.push([ltr.toString(), ltr.name]);
         }
     }

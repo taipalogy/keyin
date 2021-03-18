@@ -9,7 +9,7 @@ import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
 import {
   getInflectionalSuffixes,
   getStems,
-  getLetterSequences,
+  getSoundSequences,
 } from '../src/process';
 
 function WordPage() {
@@ -21,9 +21,10 @@ function WordPage() {
     x => x.letter && x.letter.literal
   );
 
-  const soudnSeqs = getLetterSequences(
-    tla.morphAnalyze(input, new TonalUncombiningForms([])).map(x => x.letters)
+  const soundSeqs = getSoundSequences(
+    tla.morphAnalyze(input, new TonalUncombiningForms([])).map(x => x.sounds)
   );
+
   const uncombiningSeqs = tla
     .morphAnalyze(input, new TonalUncombiningForms([]))
     .map(it =>
@@ -51,7 +52,7 @@ function WordPage() {
   return (
     <div>
       拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms,
-      positional-letter sequences, uncombining form sequences, 甲 letters
+      sound sequences, uncombining form sequences, 甲 letters
       <label>
         <br />
         <input type="text" value={input} onChange={handleChange} />
@@ -77,8 +78,8 @@ function WordPage() {
         <li>{x}</li>
       ))}
       <br />
-      positional-letter sequences
-      {soudnSeqs.map(x => (
+      sound sequences
+      {soundSeqs.map(x => (
         <li>{x[0] + ' - ' + x[1]}</li>
       ))}
       <br />
