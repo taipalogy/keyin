@@ -1,4 +1,4 @@
-import { getSurfaceForms } from '../src/process';
+import { getSurfaceForms } from '../util/process';
 import { useState } from 'react';
 import { mutateFinalConsonantOfPrecedingSyllable } from 'taipa';
 

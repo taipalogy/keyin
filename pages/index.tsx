@@ -55,7 +55,7 @@ function Home() {
         <a href="tokenizer">羅馬字 syllable tokenizer</a>
       </li>
       <li>
-        <a href="widgets">widgets</a>
+        <a href="inputcells">input cells</a>
       </li>
     </ul>
   );

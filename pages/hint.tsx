@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Highlighter } from '../src/highlight';
+import { Highlighter } from '../util/highlight';
 
 function HintPage() {
   const [input, setInput] = useState('');

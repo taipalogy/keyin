@@ -1,6 +1,6 @@
 import { Client } from 'taipa';
 import { CSSProperties, useReducer, useState } from 'react';
-import { Highlighter, Entry, Highlight } from '../src/highlight';
+import { Highlighter, Entry, Highlight } from '../util/highlight';
 import { FixedSizeGrid, GridChildComponentProps } from 'react-window';
 
 const wordsChang: Entry[] = [
@@ -146,7 +146,7 @@ const inputStyle = {
   maxWidth: '140px',
 };
 
-function WidgetsPage() {
+function InputCellsPage() {
   const [input, setInput] = useReducer(
     (state: any, newState: any) => ({ ...state, ...newState }),
     {
@@ -1011,4 +1011,4 @@ function WidgetsPage() {
   );
 }
 
-export default WidgetsPage;
+export default InputCellsPage;
