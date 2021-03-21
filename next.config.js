@@ -22,6 +22,7 @@ module.exports = {
       '/kuaxay': { page: '/kuaxay' },
       '/tokenizer': { page: '/tokenizer' },
       '/inputcells': { page: '/inputcells' },
+      '/furigana': { page: '/furigana' },
     };
   },
   // assetPrefix: !debug ? '/keyin/' : '',
