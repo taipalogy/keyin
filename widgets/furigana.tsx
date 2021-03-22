@@ -1,8 +1,6 @@
-export const Furigana = (props: { hanji: string; furigana: string }) => (
-  <p>
-    <ruby>
-      {props.hanji}
-      <rt>{props.furigana}</rt>
-    </ruby>
-  </p>
+export const Furigana = (props: { character: string; furigana: string }) => (
+  <ruby>
+    {props.character}
+    <rt>{props.furigana}</rt>
+  </ruby>
 );
