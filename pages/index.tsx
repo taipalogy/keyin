@@ -58,7 +58,7 @@ function Home() {
         <a href="inputcells">input cells</a>
       </li>
       <li>
-        <a href="furigana">furigana</a>
+        <a href="entries">entries</a>
       </li>
     </ul>
   );

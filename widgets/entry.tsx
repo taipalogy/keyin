@@ -87,10 +87,17 @@ export const Example = (props: {
   jaStrings: JaString[];
 }) => {
   return (
-    <div>
+    <span>
       <TwSentence hanjiReadings={props.twStrings} />
       {'='}
       <JaSentence kanjiReadings={props.jaStrings} />
-    </div>
+      {'。'}
+    </span>
   );
 };
+
+const Definition = (props: {
+  meanings: Array<JaString[]>;
+  exampleTw: TwString[];
+  exampleJa: JaString[];
+}) => {};
