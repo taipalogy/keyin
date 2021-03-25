@@ -15,11 +15,14 @@ function FuriganaPage() {
   const tez = new HanjiReading('地', 'tez');
 
   const jin = new KanjiReading('人', 'jin');
+  const nin = new KanjiReading('人', 'nin');
+  const hito = new KanjiReading('人', 'hito');
   const buchu = new KanjiReading('物', 'buchu');
   const sei = new KanjiReading('生', 'sei');
   const si = new KanjiReading('死', 'si');
   const ten = new KanjiReading('天', 'ten');
   const ci = new KanjiReading('地', 'ci');
+  const gen = new KanjiReading('間', 'gen');
   const to = new KanaString('to');
 
   return (
@@ -30,7 +33,7 @@ function FuriganaPage() {
         jaStrings={[si, buchu, to, sei, buchu]}
       />
       <Definition
-        meanings={[[jin]]}
+        meanings={[[jin], [nin], [hito], [nin, gen]]}
         examples={[
           [
             [thien, tez, jinx],
