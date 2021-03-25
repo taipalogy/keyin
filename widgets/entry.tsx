@@ -73,7 +73,10 @@ const JaSentence = (props: { kanjiReadings: JaString[] }) => {
             furigana={cli.processKana(it.pronunciation).blockSequences[0]}
           />
         ) : it instanceof KanaString ? (
-          <KanaSpan characters={cli.processKana(it.kanas).blockSequences[0]} />
+          <KanaSpan
+            key={index}
+            characters={cli.processKana(it.kanas).blockSequences[0]}
+          />
         ) : (
           ''
         )
@@ -96,8 +99,20 @@ export const Example = (props: {
   );
 };
 
-const Definition = (props: {
+type examplePair = [TwString[], JaString[]];
+
+export const Definition = (props: {
   meanings: Array<JaString[]>;
-  exampleTw: TwString[];
-  exampleJa: JaString[];
-}) => {};
+  examples: Array<examplePair>;
+}) => {
+  return (
+    <span>
+      {props.meanings.map((it, index) => (
+        <JaSentence key={index} kanjiReadings={it} />
+      ))}
+      {props.examples.map((it, index) => (
+        <Example key={index} twStrings={it[0]} jaStrings={it[1]} />
+      ))}
+    </span>
+  );
+};
