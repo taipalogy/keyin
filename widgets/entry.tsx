@@ -118,3 +118,20 @@ export const Definition = (props: {
     </span>
   );
 };
+
+export const Entry = (props: {
+  pronunciation: string;
+  hanji: string;
+  abbreviation: string;
+}) => {
+  return (
+    <span>
+      {cli.processTonal(props.pronunciation).blockSequences[0] +
+        ' ' +
+        props.hanji +
+        ' (' +
+        props.abbreviation +
+        ')'}
+    </span>
+  );
+};

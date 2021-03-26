@@ -4,6 +4,7 @@ import {
   KanjiReading,
   KanaString,
   Definition,
+  Entry,
 } from '../widgets/entry';
 
 function FuriganaPage() {
@@ -27,11 +28,7 @@ function FuriganaPage() {
 
   return (
     <div>
-      <Example twStrings={[jinx, butt]} jaStrings={[jin, buchu]} />
-      <Example
-        twStrings={[siy, butt, uahh, butt]}
-        jaStrings={[si, buchu, to, sei, buchu]}
-      />
+      <Entry pronunciation={'tanx'} hanji={'陳'} abbreviation={'姓'} />
       <Definition
         meanings={[[jin], [nin], [hito], [nin, gen]]}
         examples={[
@@ -40,6 +37,12 @@ function FuriganaPage() {
             [ten, ci, jin],
           ],
         ]}
+      />
+
+      <Example twStrings={[jinx, butt]} jaStrings={[jin, buchu]} />
+      <Example
+        twStrings={[siy, butt, uahh, butt]}
+        jaStrings={[si, buchu, to, sei, buchu]}
       />
     </div>
   );
