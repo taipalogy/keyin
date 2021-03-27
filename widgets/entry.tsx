@@ -109,8 +109,8 @@ export const Definition = (props: {
     <span>
       {props.meanings
         .map((it, index) => <JaSentence key={index} kanjiReadings={it} />)
-        .map(it => (
-          <span>{it}。</span>
+        .map((it, index) => (
+          <span key={index}>{it}。</span>
         ))}
       {props.examples.map((it, index) => (
         <Example key={index} twStrings={it[0]} jaStrings={it[1]} />
