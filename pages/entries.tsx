@@ -5,6 +5,7 @@ import {
   KanaString,
   Definition,
   Entry,
+  Meaning,
 } from '../widgets/entry';
 
 function FuriganaPage() {
@@ -24,11 +25,13 @@ function FuriganaPage() {
   const ten = new KanjiReading('天', 'ten');
   const ci = new KanjiReading('地', 'ci');
   const gen = new KanjiReading('間', 'gen');
+  const cin = new KanjiReading('陳', 'cin');
   const to = new KanaString('to');
 
   return (
     <div>
-      <Entry pronunciation={'tanx'} hanji={'陳'} abbreviation={'姓'} />
+      <Entry pronunciation={'tanx'} hanji={'陳'} />
+      <Meaning abbreviation={'姓'} meanings={[[cin]]} />
       <Definition
         meanings={[[jin], [nin], [hito], [nin, gen]]}
         examples={[

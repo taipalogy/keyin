@@ -99,6 +99,22 @@ export const Example = (props: {
   );
 };
 
+export const Meaning = (props: {
+  abbreviation: string;
+  meanings: Array<JaString[]>;
+}) => {
+  return (
+    <span>
+      {' (' + props.abbreviation + ')'}
+      {props.meanings
+        .map((it, index) => <JaSentence key={index} kanjiReadings={it} />)
+        .map((it, index) => (
+          <span key={index}>{it}。</span>
+        ))}
+    </span>
+  );
+};
+
 type examplePair = [TwString[], JaString[]];
 
 export const Definition = (props: {
@@ -119,19 +135,13 @@ export const Definition = (props: {
   );
 };
 
-export const Entry = (props: {
-  pronunciation: string;
-  hanji: string;
-  abbreviation: string;
-}) => {
+export const Entry = (props: { pronunciation: string; hanji: string }) => {
   return (
     <span>
       {cli.processTonal(props.pronunciation).blockSequences[0] +
         ' ' +
-        props.hanji +
-        ' (' +
-        props.abbreviation +
-        ')'}
+        props.hanji}
+      {'。'}
     </span>
   );
 };
