@@ -10,8 +10,6 @@ const spanStyle = {
 
 const rubiStyle = {
   backgroundColor: 'papayawhip',
-  rubyPosition: 'under' as 'under',
-  rubyMerge: 'separate' as 'separate',
 };
 
 function FuriganaPage() {
