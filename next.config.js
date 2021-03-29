@@ -23,6 +23,7 @@ module.exports = {
       '/tokenizer': { page: '/tokenizer' },
       '/inputcells': { page: '/inputcells' },
       '/entries': { page: '/entries' },
+      '/furigana': { page: '/furigana' },
     };
   },
   // assetPrefix: !debug ? '/keyin/' : '',

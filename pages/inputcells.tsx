@@ -46,7 +46,6 @@ const divStyle = {
   alignItems: 'center',
   // backgroundColor: 'papayawhip',
   border: '1px solid silver',
-  // color: 'black',
   fontFamily: 'IBM Plex Mono',
   // fontSize: 24,
   padding: '5px',

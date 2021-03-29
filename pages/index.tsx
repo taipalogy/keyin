@@ -60,6 +60,9 @@ function Home() {
       <li>
         <a href="entries">entries</a>
       </li>
+      <li>
+        <a href="furigana">furigana</a>
+      </li>
     </ul>
   );
 }
