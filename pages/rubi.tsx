@@ -20,7 +20,7 @@ function FuriganaPage() {
 
   return (
     <div>
-      拍 furigana
+      拍 rubi
       <label>
         <br />
         <input type="text" value={input} onChange={handleChange} />

@@ -61,7 +61,7 @@ function Home() {
         <a href="entries">entries</a>
       </li>
       <li>
-        <a href="furigana">furigana</a>
+        <a href="rubi">rubi</a>
       </li>
     </ul>
   );
