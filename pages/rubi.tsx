@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Client } from 'taipa';
 
 const spanStyle = {
   fontFamily: 'IBM Plex Mono',
@@ -9,10 +10,15 @@ const spanStyle = {
 
 const rubiStyle = {
   backgroundColor: 'papayawhip',
+  rubyPosition: 'under' as 'under',
+  rubyMerge: 'separate' as 'separate',
 };
 
 function FuriganaPage() {
   const [input, setInput] = useState('');
+  const cli = new Client();
+  const ta = cli.processTonal(input);
+  const seqs = ta.blockSequences.filter(x => x.length > 0);
 
   const handleChange = function (e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
@@ -26,9 +32,16 @@ function FuriganaPage() {
         <input type="text" value={input} onChange={handleChange} />
       </label>
       <br />
-      <span style={spanStyle}>
-        <ruby>
-          天<rt style={rubiStyle}>{input}</rt>
+      <span>
+        <ruby style={spanStyle}>
+          <ruby>
+            天<rp>(</rp>
+            <rt style={rubiStyle}>{seqs[0]}</rt>
+            <rp>)</rp>
+          </ruby>
+          <rp>（</rp>
+          <rt>{input}</rt>
+          <rp>）</rp>
         </ruby>
       </span>
     </div>
