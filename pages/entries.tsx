@@ -1,12 +1,13 @@
 import {
-  Example,
+  TwJaExample,
   HanjiReading,
   KanjiReading,
   KanaString,
-  Definition,
-  Entry,
+  TwDefinition,
+  TwEntry,
   Meaning,
 } from '../widgets/entry';
+import { JaEntry, JaReference, TwMeaning } from '../widgets/entryjt';
 
 function FuriganaPage() {
   const jinx = new HanjiReading('人', 'jinx');
@@ -15,6 +16,8 @@ function FuriganaPage() {
   const siy = new HanjiReading('死', 'siy');
   const thien = new HanjiReading('天', 'thien');
   const tez = new HanjiReading('地', 'tez');
+  const mihh = new HanjiReading('物', 'mihh');
+  const kiannz = new HanjiReading('件', 'kiannz');
 
   const jin = new KanjiReading('人', 'jin');
   const nin = new KanjiReading('人', 'nin');
@@ -30,9 +33,11 @@ function FuriganaPage() {
 
   return (
     <div>
-      <Entry pronunciation={'tanx'} hanji={'陳'} />
+      {/* taizjitt */}
+      <TwEntry pronunciation={'tanx'} hanji={'陳'} />
       <Meaning abbreviation={'姓'} meanings={[[cin]]} />
-      <Definition
+      <TwDefinition
+        note={''}
         meanings={[[jin], [nin], [hito], [nin, gen]]}
         examples={[
           [
@@ -42,11 +47,21 @@ function FuriganaPage() {
         ]}
       />
 
-      <Example twStrings={[jinx, butt]} jaStrings={[jin, buchu]} />
-      <Example
+      <TwJaExample twStrings={[jinx, butt]} jaStrings={[jin, buchu]} />
+      <TwJaExample
         twStrings={[siy, butt, uahh, butt]}
         jaStrings={[si, buchu, to, sei, buchu]}
       />
+      <br />
+      {/* jitwtaix */}
+      <JaEntry
+        pronunciationKata={'ブッケン'}
+        pronunciationHira={''}
+        abbreviation={'名'}
+        kanji={'物件'}
+      />
+      <TwMeaning meanings={[[mihh, kiannz]]} />
+      <JaReference pronunciations={['モノ']} />
     </div>
   );
 }

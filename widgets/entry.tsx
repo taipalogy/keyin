@@ -1,8 +1,8 @@
 import { Client } from 'taipa';
 
-const cli = new Client();
+export const cli = new Client();
 
-abstract class TwString {}
+export abstract class TwString {}
 
 export class HanjiReading extends TwString {
   // thokwim
@@ -11,7 +11,7 @@ export class HanjiReading extends TwString {
   }
 }
 
-abstract class JaString {}
+export abstract class JaString {}
 
 export class KanjiReading extends JaString {
   // yomikata
@@ -44,7 +44,7 @@ export const KanaSpan = (props: { characters: string }) => (
   <span>{props.characters}</span>
 );
 
-const TwSentence = (props: { hanjiReadings: TwString[] }) => {
+export const TwSentence = (props: { hanjiReadings: TwString[] }) => {
   return (
     <span>
       {props.hanjiReadings.map((it, index) =>
@@ -85,7 +85,7 @@ const JaSentence = (props: { kanjiReadings: JaString[] }) => {
   );
 };
 
-export const Example = (props: {
+export const TwJaExample = (props: {
   twStrings: TwString[];
   jaStrings: JaString[];
 }) => {
@@ -117,25 +117,40 @@ export const Meaning = (props: {
 
 type examplePair = [TwString[], JaString[]];
 
-export const Definition = (props: {
+export const TwDefinition = (props: {
+  note: string;
   meanings: Array<JaString[]>;
   examples: Array<examplePair>;
 }) => {
   return (
     <span>
+      {props.note.length > 0 ? '(' + props.note + ')' : ''}
       {props.meanings
         .map((it, index) => <JaSentence key={index} kanjiReadings={it} />)
         .map((it, index) => (
           <span key={index}>{it}。</span>
         ))}
       {props.examples.map((it, index) => (
-        <Example key={index} twStrings={it[0]} jaStrings={it[1]} />
+        <TwJaExample key={index} twStrings={it[0]} jaStrings={it[1]} />
       ))}
     </span>
   );
 };
 
-export const Entry = (props: { pronunciation: string; hanji: string }) => {
+export const TwReference = (props: {
+  pronunciations: string[];
+  hanjis: string[];
+}) => {
+  return (
+    <span>
+      {'['}
+      {props.pronunciations.join('。')}
+      {']。'}
+    </span>
+  );
+};
+
+export const TwEntry = (props: { pronunciation: string; hanji: string }) => {
   return (
     <span>
       {cli.processTonal(props.pronunciation).blockSequences[0] +
