@@ -18,12 +18,25 @@ export const JaEntry = (props: {
   );
 };
 
-export const JaDefinition = (props: {
+export const JaTwDefinition = (props: {
   abbreviation: string;
-  meanings: Array<TwString[]>;
-  reference: string;
+  jaExample: JaString[];
+  twExamples: Array<TwString[]>;
+  references: string[];
 }) => {
-  return <span></span>;
+  return (
+    <span>
+      {'◉'}
+      {props.abbreviation.length > 0 ? '(' + props.abbreviation + ')' : ''}
+      {'「'}
+      <JaSentence kanjiReadings={props.jaExample} />
+      {'」'}
+      {props.twExamples.map((it, index) => (
+        <TwSentence key={index} hanjiReadings={it} />
+      ))}
+      {'。'}
+    </span>
+  );
 };
 
 export const JaReference = (props: { pronunciations: string[] }) => {
@@ -49,15 +62,17 @@ export const TwMeaning = (props: { meanings: Array<TwString[]> }) => {
 };
 
 export const JaTwExample = (props: {
-  jaStrings: JaString[];
-  twStrings: TwString[];
+  jaExample: JaString[];
+  twExamples: Array<TwString[]>;
 }) => {
   return (
     <span>
       {'「'}
-      <JaSentence kanjiReadings={props.jaStrings} />
+      <JaSentence kanjiReadings={props.jaExample} />
       {'」'}
-      <TwSentence hanjiReadings={props.twStrings} />
+      {props.twExamples.map((it, index) => (
+        <TwSentence key={index} hanjiReadings={it} />
+      ))}
       {'。'}
     </span>
   );

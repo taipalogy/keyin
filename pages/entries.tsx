@@ -3,7 +3,7 @@ import {
   HanjiReading,
   KanjiReading,
   KanaString,
-  TwDefinition,
+  TwJaDefinition,
   TwEntry,
   JaMeaning,
 } from '../widgets/entry';
@@ -12,6 +12,7 @@ import {
   JaReference,
   JaTwExample,
   TwMeaning,
+  JaTwDefinition,
 } from '../widgets/entryjt';
 
 function FuriganaPage() {
@@ -29,6 +30,7 @@ function FuriganaPage() {
   const chiannx = new HanjiReading('成', 'chiannx');
   const siauy = new HanjiReading('狂', 'siauy');
   const ex = new HanjiReading('的', 'ex');
+  const suannw = new HanjiReading('散', 'suannw');
 
   const jin = new KanjiReading('人', 'jin');
   const nin = new KanjiReading('人', 'nin');
@@ -54,7 +56,7 @@ function FuriganaPage() {
       {/* taizjitt */}
       <TwEntry pronunciation={'tanx'} hanji={'陳'} />
       <JaMeaning abbreviation={'姓'} meanings={[[cin]]} />
-      <TwDefinition
+      <TwJaDefinition
         abbreviation={''}
         meanings={[[jin], [nin], [hito], [nin, gen]]}
         examples={[
@@ -88,8 +90,11 @@ function FuriganaPage() {
         kanji={'物'}
       />
       <TwMeaning meanings={[[mihh], [mnghh], [mihh, kiannz]]} />
-      <JaTwExample jaStrings={[mono, o, i, u]} twStrings={[kongy, uez]} />
-      <JaTwExample jaStrings={[mono, ni, na, ru]} twStrings={[chiannx, mihh]} />
+      <JaTwExample jaExample={[mono, o, i, u]} twExamples={[[kongy, uez]]} />
+      <JaTwExample
+        jaExample={[mono, ni, na, ru]}
+        twExamples={[[chiannx, mihh]]}
+      />
       <br />
       <JaEntry
         pronunciationKata={'モノグルイ'}
@@ -98,6 +103,34 @@ function FuriganaPage() {
         kanji={'物狂'}
       />
       <TwMeaning meanings={[[siauy, ex]]} />
+      <br />
+      <JaEntry
+        pronunciationKata={'ヨオカイ'}
+        pronunciationHira={'よおかい'}
+        abbreviation={'名'}
+        kanji={'溶解'}
+      />
+      <JaTwDefinition
+        abbreviation={''}
+        jaExample={[new KanjiReading('水', ''), new KanjiReading('中', '')]}
+        twExamples={[[suannw]]}
+        references={[]}
+      />
+      <br />
+      <JaEntry
+        pronunciationKata={'ヨロズ'}
+        pronunciationHira={'よろづ'}
+        abbreviation={'數'}
+        kanji={'萬'}
+      />
+      <JaTwDefinition
+        abbreviation={''}
+        jaExample={[new KanjiReading('事', '')]}
+        twExamples={[
+          [new HanjiReading('各', 'kok'), new HanjiReading('項', 'hangz')],
+        ]}
+        references={[]}
+      />
     </div>
   );
 }
