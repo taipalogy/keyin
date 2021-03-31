@@ -5,9 +5,14 @@ import {
   KanaString,
   TwDefinition,
   TwEntry,
-  Meaning,
+  JaMeaning,
 } from '../widgets/entry';
-import { JaEntry, JaReference, TwMeaning } from '../widgets/entryjt';
+import {
+  JaEntry,
+  JaReference,
+  JaTwExample,
+  TwMeaning,
+} from '../widgets/entryjt';
 
 function FuriganaPage() {
   const jinx = new HanjiReading('人', 'jinx');
@@ -17,7 +22,13 @@ function FuriganaPage() {
   const thien = new HanjiReading('天', 'thien');
   const tez = new HanjiReading('地', 'tez');
   const mihh = new HanjiReading('物', 'mihh');
+  const mnghh = new HanjiReading('物', 'mnghh');
   const kiannz = new HanjiReading('件', 'kiannz');
+  const kongy = new HanjiReading('講', 'kongy');
+  const uez = new HanjiReading('話', 'uez');
+  const chiannx = new HanjiReading('成', 'chiannx');
+  const siauy = new HanjiReading('狂', 'siauy');
+  const ex = new HanjiReading('的', 'ex');
 
   const jin = new KanjiReading('人', 'jin');
   const nin = new KanjiReading('人', 'nin');
@@ -29,15 +40,22 @@ function FuriganaPage() {
   const ci = new KanjiReading('地', 'ci');
   const gen = new KanjiReading('間', 'gen');
   const cin = new KanjiReading('陳', 'cin');
+  const mono = new KanjiReading('物', 'mono');
+  const i = new KanjiReading('語', 'i');
+  const o = new KanaString('o');
   const to = new KanaString('to');
+  const u = new KanaString('u');
+  const ni = new KanaString('ni');
+  const na = new KanaString('na');
+  const ru = new KanaString('ru');
 
   return (
     <div>
       {/* taizjitt */}
       <TwEntry pronunciation={'tanx'} hanji={'陳'} />
-      <Meaning abbreviation={'姓'} meanings={[[cin]]} />
+      <JaMeaning abbreviation={'姓'} meanings={[[cin]]} />
       <TwDefinition
-        note={''}
+        abbreviation={''}
         meanings={[[jin], [nin], [hito], [nin, gen]]}
         examples={[
           [
@@ -62,6 +80,24 @@ function FuriganaPage() {
       />
       <TwMeaning meanings={[[mihh, kiannz]]} />
       <JaReference pronunciations={['モノ']} />
+      <br />
+      <JaEntry
+        pronunciationKata={'モノ'}
+        pronunciationHira={''}
+        abbreviation={'名'}
+        kanji={'物'}
+      />
+      <TwMeaning meanings={[[mihh], [mnghh], [mihh, kiannz]]} />
+      <JaTwExample jaStrings={[mono, o, i, u]} twStrings={[kongy, uez]} />
+      <JaTwExample jaStrings={[mono, ni, na, ru]} twStrings={[chiannx, mihh]} />
+      <br />
+      <JaEntry
+        pronunciationKata={'モノグルイ'}
+        pronunciationHira={'ものぐるひ'}
+        abbreviation={'名'}
+        kanji={'物狂'}
+      />
+      <TwMeaning meanings={[[siauy, ex]]} />
     </div>
   );
 }

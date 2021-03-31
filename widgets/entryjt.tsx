@@ -1,4 +1,4 @@
-import { TwString, TwSentence } from './entry';
+import { TwString, TwSentence, JaString, JaSentence } from './entry';
 
 export const JaEntry = (props: {
   pronunciationKata: string; // katakana
@@ -19,8 +19,9 @@ export const JaEntry = (props: {
 };
 
 export const JaDefinition = (props: {
-  note: string;
+  abbreviation: string;
   meanings: Array<TwString[]>;
+  reference: string;
 }) => {
   return <span></span>;
 };
@@ -43,6 +44,21 @@ export const TwMeaning = (props: { meanings: Array<TwString[]> }) => {
         .map((it, index) => (
           <span key={index}>{it}。</span>
         ))}
+    </span>
+  );
+};
+
+export const JaTwExample = (props: {
+  jaStrings: JaString[];
+  twStrings: TwString[];
+}) => {
+  return (
+    <span>
+      {'「'}
+      <JaSentence kanjiReadings={props.jaStrings} />
+      {'」'}
+      <TwSentence hanjiReadings={props.twStrings} />
+      {'。'}
     </span>
   );
 };

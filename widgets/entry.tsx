@@ -62,7 +62,7 @@ export const TwSentence = (props: { hanjiReadings: TwString[] }) => {
   );
 };
 
-const JaSentence = (props: { kanjiReadings: JaString[] }) => {
+export const JaSentence = (props: { kanjiReadings: JaString[] }) => {
   return (
     <span>
       {props.kanjiReadings.map((it, index) =>
@@ -70,12 +70,12 @@ const JaSentence = (props: { kanjiReadings: JaString[] }) => {
           <KanjiSpan
             key={index}
             characters={it.kanji}
-            furigana={cli.processKana(it.pronunciation).blockSequences[0]}
+            furigana={cli.processKana(it.pronunciation).blockSequences[1]}
           />
         ) : it instanceof KanaString ? (
           <KanaSpan
             key={index}
-            characters={cli.processKana(it.kanas).blockSequences[0]}
+            characters={cli.processKana(it.kanas).blockSequences[1]}
           />
         ) : (
           ''
@@ -99,7 +99,7 @@ export const TwJaExample = (props: {
   );
 };
 
-export const Meaning = (props: {
+export const JaMeaning = (props: {
   abbreviation: string;
   meanings: Array<JaString[]>;
 }) => {
@@ -118,13 +118,13 @@ export const Meaning = (props: {
 type examplePair = [TwString[], JaString[]];
 
 export const TwDefinition = (props: {
-  note: string;
+  abbreviation: string;
   meanings: Array<JaString[]>;
   examples: Array<examplePair>;
 }) => {
   return (
     <span>
-      {props.note.length > 0 ? '(' + props.note + ')' : ''}
+      {props.abbreviation.length > 0 ? '(' + props.abbreviation + ')' : ''}
       {props.meanings
         .map((it, index) => <JaSentence key={index} kanjiReadings={it} />)
         .map((it, index) => (
