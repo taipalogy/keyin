@@ -22,8 +22,6 @@ type JaTwExamplePair = [JaString[], Array<TwString[]>];
 
 export const JaTwDefinition = (props: {
   abbreviation: string;
-  // jaExample: JaString[];
-  // twExamples: Array<TwString[]>;
   examples: Array<JaTwExamplePair>;
   references: string[];
 }) => {
