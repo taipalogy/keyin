@@ -1,4 +1,4 @@
-import { TwString, TwSentence, JaString, JaSentence } from './taizjitt';
+import { TwCharacter, TwSentence, JaCharacter, JaSentence } from './taizjitt';
 
 export const JaEntry = (props: {
   pronunciationKata: string; // katakana
@@ -18,7 +18,7 @@ export const JaEntry = (props: {
   );
 };
 
-type JaTwExamplePair = [JaString[], Array<TwString[]>];
+type JaTwExamplePair = [JaCharacter[], Array<TwCharacter[]>];
 
 export const JaTwDefinition = (props: {
   abbreviation: string;
@@ -52,7 +52,7 @@ export const JaReference = (props: { pronunciations: string[] }) => {
   );
 };
 
-export const TwMeaning = (props: { meanings: Array<TwString[]> }) => {
+export const TwMeaning = (props: { meanings: Array<TwCharacter[]> }) => {
   return (
     <span>
       {props.meanings
@@ -65,8 +65,8 @@ export const TwMeaning = (props: { meanings: Array<TwString[]> }) => {
 };
 
 export const JaTwExample = (props: {
-  jaExample: JaString[];
-  twExamples: Array<TwString[]>;
+  jaExample: JaCharacter[];
+  twExamples: Array<TwCharacter[]>;
 }) => {
   return (
     <span>

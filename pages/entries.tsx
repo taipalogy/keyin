@@ -2,7 +2,7 @@ import {
   TwJaExample,
   HanjiReading,
   KanjiReading,
-  KanaString,
+  KanaCharacter,
   TwJaDefinition,
   TwEntry,
   JaMeaning,
@@ -44,12 +44,12 @@ function FuriganaPage() {
   const cin = new KanjiReading('陳', 'cin');
   const mono = new KanjiReading('物', 'mono');
   const i = new KanjiReading('語', 'i');
-  const o = new KanaString('o');
-  const to = new KanaString('to');
-  const u = new KanaString('u');
-  const ni = new KanaString('ni');
-  const na = new KanaString('na');
-  const ru = new KanaString('ru');
+  const o = new KanaCharacter('o');
+  const to = new KanaCharacter('to');
+  const u = new KanaCharacter('u');
+  const ni = new KanaCharacter('ni');
+  const na = new KanaCharacter('na');
+  const ru = new KanaCharacter('ru');
 
   return (
     <div>

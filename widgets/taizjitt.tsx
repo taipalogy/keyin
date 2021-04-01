@@ -2,25 +2,25 @@ import { Client } from 'taipa';
 
 export const cli = new Client();
 
-export abstract class TwString {}
+export abstract class TwCharacter {}
 
-export class HanjiReading extends TwString {
+export class HanjiReading extends TwCharacter {
   // thokwim
   constructor(public hanji: string, public pronunciation: string) {
     super();
   }
 }
 
-export abstract class JaString {}
+export abstract class JaCharacter {}
 
-export class KanjiReading extends JaString {
+export class KanjiReading extends JaCharacter {
   // yomikata
   constructor(public kanji: string, public pronunciation: string) {
     super();
   }
 }
 
-export class KanaString extends JaString {
+export class KanaCharacter extends JaCharacter {
   constructor(public kanas: string) {
     super();
   }
@@ -44,7 +44,7 @@ export const KanaSpan = (props: { characters: string }) => (
   <span>{props.characters}</span>
 );
 
-export const TwSentence = (props: { hanjiReadings: TwString[] }) => {
+export const TwSentence = (props: { hanjiReadings: TwCharacter[] }) => {
   return (
     <span>
       {props.hanjiReadings.map((it, index) =>
@@ -63,7 +63,7 @@ export const TwSentence = (props: { hanjiReadings: TwString[] }) => {
 };
 
 export const JaSentence = (props: {
-  kanjiReadings: JaString[];
+  kanjiReadings: JaCharacter[];
   isKata: boolean;
 }) => {
   return (
@@ -79,7 +79,7 @@ export const JaSentence = (props: {
                 : cli.processKana(it.pronunciation).blockSequences[0]
             }
           />
-        ) : it instanceof KanaString ? (
+        ) : it instanceof KanaCharacter ? (
           <KanaSpan
             key={index}
             characters={
@@ -97,8 +97,8 @@ export const JaSentence = (props: {
 };
 
 export const TwJaExample = (props: {
-  twStrings: TwString[];
-  jaStrings: JaString[];
+  twStrings: TwCharacter[];
+  jaStrings: JaCharacter[];
 }) => {
   return (
     <span>
@@ -110,9 +110,14 @@ export const TwJaExample = (props: {
   );
 };
 
+export const JaMeaningWithReference = (props: {
+  twString: TwCharacter[];
+  jaString: JaCharacter[];
+}) => {};
+
 export const JaMeaning = (props: {
   abbreviation: string;
-  meanings: Array<JaString[]>;
+  meanings: Array<JaCharacter[]>;
 }) => {
   return (
     <span>
@@ -128,11 +133,11 @@ export const JaMeaning = (props: {
   );
 };
 
-type TwJaExamplePair = [TwString[], JaString[]];
+type TwJaExamplePair = [TwCharacter[], JaCharacter[]];
 
 export const TwJaDefinition = (props: {
   abbreviation: string;
-  meanings: Array<JaString[]>;
+  meanings: Array<JaCharacter[]>;
   examples: Array<TwJaExamplePair>;
 }) => {
   return (
@@ -154,12 +159,13 @@ export const TwJaDefinition = (props: {
 
 export const TwReference = (props: {
   pronunciations: string[];
-  hanjis: string[];
+  hanjiReadings: TwCharacter[];
 }) => {
   return (
     <span>
       {'['}
-      {props.pronunciations.join('。')}
+      {props.pronunciations}
+      {<TwSentence hanjiReadings={props.hanjiReadings} />}
       {']。'}
     </span>
   );
