@@ -137,6 +137,20 @@ function FuriganaPage() {
         ]}
         references={[]}
       />
+      <br />
+      <JaEntry
+        pronunciationKata={'ハタ'}
+        pronunciationHira={''}
+        abbreviation={'接'}
+        kanji={'將'}
+      />
+      <TwMeaning
+        meanings={[
+          [new HanjiReading('亦', 'iaz')],
+          [new HanjiReading('亦', 'iaz'), new HanjiReading('是', 'siz')],
+        ]}
+      />
+      <JaReference pronunciations={['タダシワ', 'マタワ']} />
     </div>
   );
 }
