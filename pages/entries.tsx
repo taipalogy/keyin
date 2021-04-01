@@ -6,14 +6,14 @@ import {
   TwJaDefinition,
   TwEntry,
   JaMeaning,
-} from '../widgets/entry';
+} from '../widgets/taizjitt';
 import {
   JaEntry,
   JaReference,
   JaTwExample,
   TwMeaning,
   JaTwDefinition,
-} from '../widgets/entryjt';
+} from '../widgets/jitwtaix';
 
 function FuriganaPage() {
   const jinx = new HanjiReading('人', 'jinx');

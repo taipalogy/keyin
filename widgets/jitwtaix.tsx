@@ -1,4 +1,4 @@
-import { TwString, TwSentence, JaString, JaSentence } from './entry';
+import { TwString, TwSentence, JaString, JaSentence } from './taizjitt';
 
 export const JaEntry = (props: {
   pronunciationKata: string; // katakana
