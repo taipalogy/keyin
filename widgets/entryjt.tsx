@@ -18,10 +18,13 @@ export const JaEntry = (props: {
   );
 };
 
+type JaTwExamplePair = [JaString[], Array<TwString[]>];
+
 export const JaTwDefinition = (props: {
   abbreviation: string;
-  jaExample: JaString[];
-  twExamples: Array<TwString[]>;
+  // jaExample: JaString[];
+  // twExamples: Array<TwString[]>;
+  examples: Array<JaTwExamplePair>;
   references: string[];
 }) => {
   return (
@@ -29,11 +32,13 @@ export const JaTwDefinition = (props: {
       {'◉'}
       {props.abbreviation.length > 0 ? '(' + props.abbreviation + ')' : ''}
       {'「'}
-      <JaSentence kanjiReadings={props.jaExample} />
-      {'」'}
-      {props.twExamples.map((it, index) => (
-        <TwSentence key={index} hanjiReadings={it} />
+      {props.examples.map((it, index) => (
+        <JaSentence key={index} kanjiReadings={it[0]} />
       ))}
+      {'」'}
+      {props.examples.map(it =>
+        it[1].map((it, index) => <TwSentence key={index} hanjiReadings={it} />)
+      )}
       {'。'}
     </span>
   );

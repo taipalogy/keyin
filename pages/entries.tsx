@@ -112,8 +112,12 @@ function FuriganaPage() {
       />
       <JaTwDefinition
         abbreviation={''}
-        jaExample={[new KanjiReading('水', ''), new KanjiReading('中', '')]}
-        twExamples={[[suannw]]}
+        examples={[
+          [
+            [new KanjiReading('水', ''), new KanjiReading('中', '')],
+            [[suannw]],
+          ],
+        ]}
         references={[]}
       />
       <br />
@@ -125,9 +129,11 @@ function FuriganaPage() {
       />
       <JaTwDefinition
         abbreviation={''}
-        jaExample={[new KanjiReading('事', '')]}
-        twExamples={[
-          [new HanjiReading('各', 'kok'), new HanjiReading('項', 'hangz')],
+        examples={[
+          [
+            [new KanjiReading('事', '')],
+            [[new HanjiReading('各', 'kok'), new HanjiReading('項', 'hangz')]],
+          ],
         ]}
         references={[]}
       />

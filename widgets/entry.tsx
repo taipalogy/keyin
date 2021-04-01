@@ -115,12 +115,12 @@ export const JaMeaning = (props: {
   );
 };
 
-type examplePair = [TwString[], JaString[]];
+type TwJaExamplePair = [TwString[], JaString[]];
 
 export const TwJaDefinition = (props: {
   abbreviation: string;
   meanings: Array<JaString[]>;
-  examples: Array<examplePair>;
+  examples: Array<TwJaExamplePair>;
 }) => {
   return (
     <span>
