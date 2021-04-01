@@ -62,7 +62,10 @@ export const TwSentence = (props: { hanjiReadings: TwString[] }) => {
   );
 };
 
-export const JaSentence = (props: { kanjiReadings: JaString[] }) => {
+export const JaSentence = (props: {
+  kanjiReadings: JaString[];
+  isKata: boolean;
+}) => {
   return (
     <span>
       {props.kanjiReadings.map((it, index) =>
@@ -70,12 +73,20 @@ export const JaSentence = (props: { kanjiReadings: JaString[] }) => {
           <KanjiSpan
             key={index}
             characters={it.kanji}
-            furigana={cli.processKana(it.pronunciation).blockSequences[1]}
+            furigana={
+              props.isKata
+                ? cli.processKana(it.pronunciation).blockSequences[1]
+                : cli.processKana(it.pronunciation).blockSequences[0]
+            }
           />
         ) : it instanceof KanaString ? (
           <KanaSpan
             key={index}
-            characters={cli.processKana(it.kanas).blockSequences[1]}
+            characters={
+              props.isKata
+                ? cli.processKana(it.kanas).blockSequences[1]
+                : cli.processKana(it.kanas).blockSequences[0]
+            }
           />
         ) : (
           ''
@@ -93,7 +104,7 @@ export const TwJaExample = (props: {
     <span>
       <TwSentence hanjiReadings={props.twStrings} />
       {'='}
-      <JaSentence kanjiReadings={props.jaStrings} />
+      <JaSentence kanjiReadings={props.jaStrings} isKata={false} />
       {'。'}
     </span>
   );
@@ -107,7 +118,9 @@ export const JaMeaning = (props: {
     <span>
       {' (' + props.abbreviation + ')'}
       {props.meanings
-        .map((it, index) => <JaSentence key={index} kanjiReadings={it} />)
+        .map((it, index) => (
+          <JaSentence key={index} kanjiReadings={it} isKata={false} />
+        ))
         .map((it, index) => (
           <span key={index}>{it}。</span>
         ))}
@@ -126,7 +139,9 @@ export const TwJaDefinition = (props: {
     <span>
       {props.abbreviation.length > 0 ? '(' + props.abbreviation + ')' : ''}
       {props.meanings
-        .map((it, index) => <JaSentence key={index} kanjiReadings={it} />)
+        .map((it, index) => (
+          <JaSentence key={index} kanjiReadings={it} isKata={false} />
+        ))
         .map((it, index) => (
           <span key={index}>{it}。</span>
         ))}
