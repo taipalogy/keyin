@@ -31,11 +31,11 @@ export const JaTwDefinition = (props: {
       {props.abbreviation.length > 0 ? '(' + props.abbreviation + ')' : ''}
       {'「'}
       {props.examples.map((it, index) => (
-        <JaSentence key={index} kanjiReadings={it[0]} isKata={true} />
+        <JaSentence key={index} jaString={it[0]} isKata={true} />
       ))}
       {'」'}
       {props.examples.map(it =>
-        it[1].map((it, index) => <TwSentence key={index} hanjiReadings={it} />)
+        it[1].map((it, index) => <TwSentence key={index} twString={it} />)
       )}
       {'。'}
     </span>
@@ -56,7 +56,7 @@ export const TwMeaning = (props: { meanings: Array<TwCharacter[]> }) => {
   return (
     <span>
       {props.meanings
-        .map((it, index) => <TwSentence key={index} hanjiReadings={it} />)
+        .map((it, index) => <TwSentence key={index} twString={it} />)
         .map((it, index) => (
           <span key={index}>{it}。</span>
         ))}
@@ -71,10 +71,10 @@ export const JaTwExample = (props: {
   return (
     <span>
       {'「'}
-      <JaSentence kanjiReadings={props.jaExample} isKata={true} />
+      <JaSentence jaString={props.jaExample} isKata={true} />
       {'」'}
       {props.twExamples.map((it, index) => (
-        <TwSentence key={index} hanjiReadings={it} />
+        <TwSentence key={index} twString={it} />
       ))}
       {'。'}
     </span>

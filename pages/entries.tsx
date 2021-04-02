@@ -6,6 +6,8 @@ import {
   TwJaDefinition,
   TwEntry,
   JaMeaning,
+  TwJaDefinitionReference,
+  TwReference,
 } from '../widgets/taizjitt';
 import {
   JaEntry,
@@ -54,7 +56,7 @@ function FuriganaPage() {
   return (
     <div>
       {/* taizjitt */}
-      <TwEntry pronunciation={'tanx'} hanji={'陳'} />
+      <TwEntry pronunciation={'tanx'} hanjis={['陳']} />
       <JaMeaning abbreviation={'姓'} meanings={[[cin]]} />
       <TwJaDefinition
         abbreviation={''}
@@ -65,12 +67,32 @@ function FuriganaPage() {
             [ten, ci, jin],
           ],
         ]}
+        note={''}
       />
 
-      <TwJaExample twStrings={[jinx, butt]} jaStrings={[jin, buchu]} />
+      <TwJaExample twString={[jinx, butt]} jaString={[jin, buchu]} />
       <TwJaExample
-        twStrings={[siy, butt, uahh, butt]}
-        jaStrings={[si, buchu, to, sei, buchu]}
+        twString={[siy, butt, uahh, butt]}
+        jaString={[si, buchu, to, sei, buchu]}
+      />
+      <br />
+      <TwEntry pronunciation={'it'} hanjis={['壹']} />
+      <TwJaDefinition
+        abbreviation={'姓'}
+        meanings={[[new KanjiReading('壹', 'ici')]]}
+        examples={[[[], []]]}
+        note={''}
+      />
+      <TwJaDefinitionReference meaning={[new HanjiReading('一', 'it')]} />
+      <br />
+      <TwEntry pronunciation={'uinny'} hanjis={['袂', '阮', '抁']} />
+      <TwReference
+        pronunciation={'ngy'}
+        twStrings={[
+          [new HanjiReading('袂', '')],
+          [new HanjiReading('阮', '')],
+          [new HanjiReading('抁', '')],
+        ]}
       />
       <br />
       {/* jitwtaix */}

@@ -44,10 +44,10 @@ export const KanaSpan = (props: { characters: string }) => (
   <span>{props.characters}</span>
 );
 
-export const TwSentence = (props: { hanjiReadings: TwCharacter[] }) => {
+export const TwSentence = (props: { twString: TwCharacter[] }) => {
   return (
     <span>
-      {props.hanjiReadings.map((it, index) =>
+      {props.twString.map((it, index) =>
         it instanceof HanjiReading ? (
           <HanjiSpan
             key={index}
@@ -63,12 +63,12 @@ export const TwSentence = (props: { hanjiReadings: TwCharacter[] }) => {
 };
 
 export const JaSentence = (props: {
-  kanjiReadings: JaCharacter[];
+  jaString: JaCharacter[];
   isKata: boolean;
 }) => {
   return (
     <span>
-      {props.kanjiReadings.map((it, index) =>
+      {props.jaString.map((it, index) =>
         it instanceof KanjiReading ? (
           <KanjiSpan
             key={index}
@@ -97,23 +97,20 @@ export const JaSentence = (props: {
 };
 
 export const TwJaExample = (props: {
-  twStrings: TwCharacter[];
-  jaStrings: JaCharacter[];
+  twString: TwCharacter[];
+  jaString: JaCharacter[];
 }) => {
   return (
     <span>
-      <TwSentence hanjiReadings={props.twStrings} />
-      {'='}
-      <JaSentence kanjiReadings={props.jaStrings} isKata={false} />
-      {'。'}
+      <TwSentence twString={props.twString} />
+      {props.jaString.length > 0 && props.twString.length > 0 ? '=' : ''}
+      <JaSentence jaString={props.jaString} isKata={false} />
+      {props.jaString.length > 0 && props.twString.length > 0 ? '。' : ''}
     </span>
   );
 };
 
-export const JaMeaningWithReference = (props: {
-  twString: TwCharacter[];
-  jaString: JaCharacter[];
-}) => {};
+export const JaEmbeddedReference = (props: { jaString: JaCharacter[] }) => {};
 
 export const JaMeaning = (props: {
   abbreviation: string;
@@ -124,7 +121,7 @@ export const JaMeaning = (props: {
       {' (' + props.abbreviation + ')'}
       {props.meanings
         .map((it, index) => (
-          <JaSentence key={index} kanjiReadings={it} isKata={false} />
+          <JaSentence key={index} jaString={it} isKata={false} />
         ))
         .map((it, index) => (
           <span key={index}>{it}。</span>
@@ -139,45 +136,73 @@ export const TwJaDefinition = (props: {
   abbreviation: string;
   meanings: Array<JaCharacter[]>;
   examples: Array<TwJaExamplePair>;
+  note: string;
 }) => {
   return (
     <span>
       {props.abbreviation.length > 0 ? '(' + props.abbreviation + ')' : ''}
       {props.meanings
         .map((it, index) => (
-          <JaSentence key={index} kanjiReadings={it} isKata={false} />
+          <JaSentence key={index} jaString={it} isKata={false} />
         ))
         .map((it, index) => (
           <span key={index}>{it}。</span>
         ))}
       {props.examples.map((it, index) => (
-        <TwJaExample key={index} twStrings={it[0]} jaStrings={it[1]} />
+        <TwJaExample key={index} twString={it[0]} jaString={it[1]} />
       ))}
+      {props.note.length > 0 ? <Note text={props.note} /> : ''}
+    </span>
+  );
+};
+
+export const TwJaDefinitionReference = (props: { meaning: TwCharacter[] }) => {
+  return (
+    <span>
+      <TwReference pronunciation={''} twStrings={[props.meaning]} />
     </span>
   );
 };
 
 export const TwReference = (props: {
-  pronunciations: string[];
-  hanjiReadings: TwCharacter[];
+  pronunciation: string;
+  twStrings: Array<TwCharacter[]>;
 }) => {
   return (
     <span>
       {'['}
-      {props.pronunciations}
-      {<TwSentence hanjiReadings={props.hanjiReadings} />}
+      {cli.processTonal(props.pronunciation).blockSequences[0]}
+      {props.pronunciation.length == 0
+        ? props.twStrings
+            .map<React.ReactNode>((it, index) => (
+              <TwSentence key={index} twString={it} />
+            ))
+            .reduce((prev, curr) => [prev, '、', curr])
+        : props.twStrings.map<React.ReactNode>((it, index) => (
+            <span key={index}>
+              <TwSentence key={index} twString={it} />。
+            </span>
+          ))}
       {']。'}
     </span>
   );
 };
 
-export const TwEntry = (props: { pronunciation: string; hanji: string }) => {
+export const TwEntry = (props: { pronunciation: string; hanjis: string[] }) => {
   return (
     <span>
-      {cli.processTonal(props.pronunciation).blockSequences[0] +
-        ' ' +
-        props.hanji}
-      {'。'}
+      {cli.processTonal(props.pronunciation).blockSequences[0] + ' '}
+      {props.hanjis.map(it => it + '。')}
+    </span>
+  );
+};
+
+export const Note = (props: { text: string }) => {
+  return (
+    <span>
+      {'('}
+      {props.text}
+      {')'}
     </span>
   );
 };
