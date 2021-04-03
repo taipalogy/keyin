@@ -1,8 +1,16 @@
-import { Client } from 'taipa';
+import { stringify } from 'querystring';
+import React from 'react';
+import * as taipa from 'taipa';
 
-export const cli = new Client();
+export const cli = new taipa.Client();
 
-export abstract class TwCharacter {}
+interface Character {}
+
+class String {
+  constructor(public chars: Character[]) {}
+}
+
+export abstract class TwCharacter implements Character {}
 
 export class HanjiReading extends TwCharacter {
   // thokwim
@@ -11,7 +19,7 @@ export class HanjiReading extends TwCharacter {
   }
 }
 
-export abstract class JaCharacter {}
+export abstract class JaCharacter implements Character {}
 
 export class KanjiReading extends JaCharacter {
   // yomikata
@@ -26,10 +34,20 @@ export class KanaCharacter extends JaCharacter {
   }
 }
 
-export const HanjiSpan = (props: { characters: string; furigana: string }) => (
+class Punctuation implements Character {}
+
+class LeftSquareBracket extends Punctuation {
+  symbol: string = '[';
+}
+
+class RightSquareBracket extends Punctuation {
+  symbol: string = ']';
+}
+
+export const HanjiSpan = (props: { characters: string; rubi: string }) => (
   <ruby>
     {props.characters}
-    <rt>{props.furigana}</rt>
+    <rt>{props.rubi}</rt>
   </ruby>
 );
 
@@ -52,7 +70,7 @@ export const TwSentence = (props: { twString: TwCharacter[] }) => {
           <HanjiSpan
             key={index}
             characters={it.hanji}
-            furigana={cli.processTonal(it.pronunciation).blockSequences[0]}
+            rubi={cli.processTonal(it.pronunciation).blockSequences[0]}
           />
         ) : (
           ''
@@ -110,7 +128,39 @@ export const TwJaExample = (props: {
   );
 };
 
-export const JaEmbeddedReference = (props: { jaString: JaCharacter[] }) => {};
+export const EmbeddedReference = (props: { string: Character[] }) => {
+  for (let i = 0; i < props.string.length; i++) {
+    if (props.string[i] instanceof HanjiReading) {
+      if (i == 0) {
+        props.string.splice(0, 0, new LeftSquareBracket());
+      } else if (i > 0 && props.string[i - 1] instanceof JaCharacter) {
+        props.string.splice(i, 0, new LeftSquareBracket());
+      } else if (props.string[i + 1] instanceof JaCharacter) {
+        props.string.splice(i + 1, 0, new RightSquareBracket());
+      }
+      if (i > 0 && i == props.string.length - 1) {
+        props.string.splice(i + 1, 0, new RightSquareBracket());
+      }
+    }
+  }
+  return (
+    <span>
+      {props.string.map(it =>
+        it instanceof TwCharacter ? (
+          <TwSentence twString={[it]} />
+        ) : it instanceof JaCharacter ? (
+          <JaSentence jaString={[it]} isKata={false} />
+        ) : it instanceof LeftSquareBracket ? (
+          <span>{`${new LeftSquareBracket().symbol}`}</span>
+        ) : it instanceof RightSquareBracket ? (
+          <span>{`${new RightSquareBracket().symbol}`}</span>
+        ) : (
+          ''
+        )
+      )}
+    </span>
+  );
+};
 
 export const JaMeaning = (props: {
   abbreviation: string;

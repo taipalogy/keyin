@@ -8,6 +8,7 @@ import {
   JaMeaning,
   TwJaDefinitionReference,
   TwReference,
+  EmbeddedReference,
 } from '../widgets/taizjitt';
 import {
   JaEntry,
@@ -94,6 +95,7 @@ function FuriganaPage() {
           [new HanjiReading('抁', '')],
         ]}
       />
+      <br />
       <br />
       {/* jitwtaix */}
       <JaEntry
