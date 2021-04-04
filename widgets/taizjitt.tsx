@@ -33,24 +33,12 @@ export class KanaCharacter extends JaCharacter {
   }
 }
 
-class Symbol implements Character {
-  symbol: string = '';
-}
+abstract class Symbol implements Character {}
 
-class LeftSquareBracket extends Symbol {
-  symbol: string = '[';
-}
-
-class RightSquareBracket extends Symbol {
-  symbol: string = ']';
-}
-
-export class CircledIdeographFive extends Symbol {
-  symbol: string = '㊄';
-}
-
-export class CircledIdeographFour extends Symbol {
-  symbol: string = '㊃';
+export class SymbolNumber extends Symbol {
+  constructor(public number: string) {
+    super();
+  }
 }
 
 export const HanjiSpan = (props: { characters: string; rubi: string }) => (
@@ -71,6 +59,10 @@ export const KanaSpan = (props: { characters: string }) => (
   <span>{props.characters}</span>
 );
 
+export const SymbolSpan = (props: { symbol: string }) => (
+  <span>{props.symbol}</span>
+);
+
 export const TwSentence = (props: { twString: TwCharacter[] }) => {
   return (
     <span>
@@ -89,23 +81,25 @@ export const TwSentence = (props: { twString: TwCharacter[] }) => {
   );
 };
 
-/** A japanese sentence with taiwanese references. */
-export const JaSentence = (props: { string: Character[]; isKata: boolean }) => {
-  for (let i = 0; i < props.string.length; i++) {
-    if (props.string[i] instanceof HanjiReading) {
-      if (i == 0) {
-        props.string.splice(0, 0, new LeftSquareBracket());
-      } else if (i > 0 && props.string[i - 1] instanceof JaCharacter) {
-        props.string.splice(i, 0, new LeftSquareBracket());
-      } else if (props.string[i + 1] instanceof JaCharacter) {
-        props.string.splice(i + 1, 0, new RightSquareBracket());
-      }
-      if (i > 0 && i == props.string.length - 1) {
-        props.string.splice(i + 1, 0, new RightSquareBracket());
-      }
-    }
-  }
+export const Symbols = (props: { symbols: Symbol[] }) => {
+  return (
+    <span>
+      {props.symbols.map((it, index) =>
+        it instanceof SymbolNumber ? (
+          <SymbolSpan key={index} symbol={it.number} />
+        ) : (
+          ''
+        )
+      )}
+    </span>
+  );
+};
 
+/** A japanese sentence with taiwanese references. */
+export const JaSentence = (props: {
+  string: JaCharacter[];
+  isKata: boolean;
+}) => {
   return (
     <span>
       {props.string.map((it, index) =>
@@ -128,14 +122,6 @@ export const JaSentence = (props: { string: Character[]; isKata: boolean }) => {
                 : cli.processKana(it.kanas).blockSequences[0]
             }
           />
-        ) : it instanceof HanjiReading ? (
-          <HanjiSpan
-            key={index}
-            characters={it.hanji}
-            rubi={cli.processTonal(it.pronunciation).blockSequences[0]}
-          />
-        ) : it instanceof Symbol ? (
-          <span key={index}>{`${it.symbol}`}</span>
         ) : (
           ''
         )
@@ -158,17 +144,39 @@ export const TwJaExample = (props: {
   );
 };
 
+export const JaMeaningReference = (props: { meaning: Array<Character[]> }) => {
+  return (
+    <span>
+      {props.meaning.map((it, index) =>
+        it[0] && it[0] instanceof TwCharacter ? (
+          <TwReference key={index} twStrings={[it]} pronunciation={''} />
+        ) : it[0] && it[0] instanceof JaCharacter ? (
+          <JaSentence key={index} string={it} isKata={false} />
+        ) : it[0] && it[0] instanceof Symbol ? (
+          <Symbols key={index} symbols={it} />
+        ) : (
+          ''
+        )
+      )}
+    </span>
+  );
+};
+
 export const JaMeaning = (props: {
   abbreviation: string;
-  meanings: Array<Character[]>;
+  meanings: Array<JaCharacter[]>;
 }) => {
   return (
     <span>
-      {' (' + props.abbreviation + ')'}
+      {props.abbreviation.length > 0 ? ' (' + props.abbreviation + ')' : ''}
       {props.meanings
-        .map((it, index) => (
-          <JaSentence key={index} string={it} isKata={false} />
-        ))
+        .map((it, index) =>
+          it[0] && it[0] instanceof JaCharacter ? (
+            <JaSentence key={index} string={it} isKata={false} />
+          ) : (
+            ''
+          )
+        )
         .map((it, index) => (
           <span key={index}>{it}。</span>
         ))}
@@ -178,6 +186,26 @@ export const JaMeaning = (props: {
 
 type TwJaExamplePair = [TwCharacter[], JaCharacter[]];
 
+export const TwJaDefinitionReference = (props: {
+  meaning: Array<Character[]>;
+}) => {
+  return (
+    <span>
+      {props.meaning.map((it, index) =>
+        it[0] && it[0] instanceof JaCharacter ? (
+          <JaSentence key={index} string={it} isKata={false} />
+        ) : it[0] && it[0] instanceof TwCharacter ? (
+          <TwReference key={index} pronunciation={''} twStrings={[it]} />
+        ) : it[0] && it[0] instanceof Symbol ? (
+          <Symbols key={index} symbols={it} />
+        ) : (
+          ''
+        )
+      )}
+    </span>
+  );
+};
+
 export const TwJaDefinition = (props: {
   abbreviation: string;
   meanings: Array<Character[]>;
@@ -186,10 +214,8 @@ export const TwJaDefinition = (props: {
 }) => {
   return (
     <span>
-      {props.abbreviation.length > 0 ? '(' + props.abbreviation + ')' : ''}
       {props.meanings
         .map((it, index) => (
-          // <JaSentence key={index} jaString={it} isKata={false} />
           <JaMeaning
             abbreviation={props.abbreviation}
             meanings={props.meanings}
@@ -225,7 +251,7 @@ export const TwReference = (props: {
               <TwSentence key={index} twString={it} />。
             </span>
           ))}
-      {']。'}
+      {']'}
     </span>
   );
 };
