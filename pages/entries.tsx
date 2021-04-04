@@ -6,9 +6,9 @@ import {
   TwJaDefinition,
   TwEntry,
   JaMeaning,
-  TwJaDefinitionReference,
   TwReference,
-  EmbeddedReference,
+  CircledIdeographFive,
+  CircledIdeographFour,
 } from '../widgets/taizjitt';
 import {
   JaEntry,
@@ -84,7 +84,10 @@ function FuriganaPage() {
         examples={[[[], []]]}
         note={''}
       />
-      <TwJaDefinitionReference meaning={[new HanjiReading('一', 'it')]} />
+      <TwReference
+        pronunciation={''}
+        twStrings={[[new HanjiReading('一', 'it')]]}
+      />
       <br />
       <TwEntry pronunciation={'uinny'} hanjis={['袂', '阮', '抁']} />
       <TwReference
@@ -96,6 +99,34 @@ function FuriganaPage() {
         ]}
       />
       <br />
+      <JaMeaning
+        abbreviation={'八聲の一'}
+        meanings={[[new KanjiReading('下平', 'kahyau')]]}
+      />
+      <JaMeaning
+        abbreviation={''}
+        meanings={[
+          [
+            new HanjiReading('湖', 'ox'),
+            new KanaCharacter('no'),
+            new CircledIdeographFive(),
+          ],
+        ]}
+      />
+      <TwJaDefinition
+        abbreviation={''}
+        meanings={[
+          [
+            new HanjiReading('山', 'suann'),
+            new HanjiReading('柑', 'kam'),
+            new HanjiReading('仔', 'ay'),
+            new KanaCharacter('no'),
+            new CircledIdeographFour(),
+          ],
+        ]}
+        examples={[[[], []]]}
+        note={''}
+      />
       <br />
       {/* jitwtaix */}
       <JaEntry
