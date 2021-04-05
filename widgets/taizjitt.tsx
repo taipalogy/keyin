@@ -36,7 +36,7 @@ export class KanaCharacter extends JaCharacter {
 abstract class Symbol implements Character {}
 
 export class SymbolNumber extends Symbol {
-  constructor(public number: string) {
+  constructor(public symbol: string) {
     super();
   }
 }
@@ -86,7 +86,7 @@ export const Symbols = (props: { symbols: Symbol[] }) => {
     <span>
       {props.symbols.map((it, index) =>
         it instanceof SymbolNumber ? (
-          <SymbolSpan key={index} symbol={it.number} />
+          <SymbolSpan key={index} symbol={it.symbol} />
         ) : (
           ''
         )
@@ -144,9 +144,13 @@ export const TwJaExample = (props: {
   );
 };
 
-export const JaMeaningReference = (props: { meaning: Array<Character[]> }) => {
+export const JaMeaningReference = (props: {
+  abbreviation: string;
+  meaning: Array<Character[]>;
+}) => {
   return (
     <span>
+      {props.abbreviation.length > 0 ? ' (' + props.abbreviation + ')' : ''}
       {props.meaning.map((it, index) =>
         it[0] && it[0] instanceof TwCharacter ? (
           <TwReference key={index} twStrings={[it]} pronunciation={''} />
@@ -166,6 +170,7 @@ export const JaMeaningReference = (props: { meaning: Array<Character[]> }) => {
 export const JaMeaning = (props: {
   abbreviation: string;
   meanings: Array<JaCharacter[]>;
+  note: string;
 }) => {
   return (
     <span>
@@ -181,6 +186,7 @@ export const JaMeaning = (props: {
         .map((it, index) => (
           <span key={index}>{it}。</span>
         ))}
+      {props.note.length > 0 ? <Note text={props.note} /> : ''}
     </span>
   );
 };
@@ -188,10 +194,12 @@ export const JaMeaning = (props: {
 type TwJaExamplePair = [TwCharacter[], JaCharacter[]];
 
 export const TwJaDefinitionReference = (props: {
+  number: SymbolNumber;
   meaning: Array<Character[]>;
 }) => {
   return (
     <span>
+      {<Symbols symbols={[props.number]} />}
       {props.meaning.map((it, index) =>
         it[0] && it[0] instanceof JaCharacter ? (
           <JaSentence key={index} string={it} isKata={false} />
@@ -217,12 +225,16 @@ export const TwJaDefinition = (props: {
   return (
     <span>
       {props.meanings.map((it, index) => (
-        <JaMeaning abbreviation={props.abbreviation} meanings={[it]} />
+        <JaMeaning
+          key={index}
+          abbreviation={props.abbreviation}
+          meanings={[it]}
+          note={props.note}
+        />
       ))}
       {props.examples.map((it, index) => (
         <TwJaExample key={index} twString={it[0]} jaString={it[1]} />
       ))}
-      {props.note.length > 0 ? <Note text={props.note} /> : ''}
     </span>
   );
 };
