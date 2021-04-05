@@ -10,6 +10,7 @@ import {
   TwJaDefinitionReference,
   JaMeaningReference,
   SymbolNumber,
+  KatakanaCharacter,
 } from '../widgets/taizjitt';
 import {
   JaEntry,
@@ -58,7 +59,7 @@ function FuriganaPage() {
   return (
     <div>
       {/* taizjitt */}
-      <TwEntry pronunciation={'tanx'} hanjis={['陳']} />
+      <TwEntry pronunciations={['tanx']} hanjis={['陳']} />
       <JaMeaning abbreviation={'姓'} meanings={[[cin]]} note={''} />
       <TwJaDefinition
         abbreviation={''}
@@ -78,7 +79,7 @@ function FuriganaPage() {
         jaString={[si, buchu, to, sei, buchu]}
       />
       <br />
-      <TwEntry pronunciation={'it'} hanjis={['壹']} />
+      <TwEntry pronunciations={['it']} hanjis={['壹']} />
       <TwJaDefinition
         abbreviation={'姓'}
         meanings={[[new KanjiReading('壹', 'ici')]]}
@@ -90,7 +91,7 @@ function FuriganaPage() {
         twStrings={[[new HanjiReading('一', 'it')]]}
       />
       <br />
-      <TwEntry pronunciation={'uinny'} hanjis={['袂', '阮', '抁']} />
+      <TwEntry pronunciations={['uinny']} hanjis={['袂', '阮', '抁']} />
       <TwReference
         pronunciation={'ngy'}
         twStrings={[
@@ -124,6 +125,36 @@ function FuriganaPage() {
           [new KanaCharacter('no')],
           [new SymbolNumber('㊃')],
         ]}
+      />
+      <TwJaDefinition
+        abbreviation={'姓'}
+        meanings={[[new KanjiReading('壹', 'ici')]]}
+        examples={[[[], []]]}
+        note={''}
+      />
+      <br />
+      <TwEntry pronunciations={['ongx', 'siannx']} hanjis={['王城']} />
+      <TwJaDefinition
+        abbreviation={''}
+        meanings={[
+          [new KanjiReading('王', 'wau'), new KanjiReading('城', 'jou')],
+        ]}
+        examples={[[[], []]]}
+        note={''}
+      />
+      <TwJaDefinition
+        abbreviation={''}
+        meanings={[
+          [
+            new KanjiReading('安', 'an'),
+            new KanjiReading('平', 'pin'),
+            new KanaCharacter('no'),
+            new KatakanaCharacter('zeirandeia'),
+            new KanjiReading('城', 'jyau'),
+          ],
+        ]}
+        examples={[[[], []]]}
+        note={''}
       />
       <br />
       {/* jitwtaix */}

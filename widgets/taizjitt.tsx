@@ -33,6 +33,12 @@ export class KanaCharacter extends JaCharacter {
   }
 }
 
+export class KatakanaCharacter extends JaCharacter {
+  constructor(public kanas: string) {
+    super();
+  }
+}
+
 abstract class Symbol implements Character {}
 
 export class SymbolNumber extends Symbol {
@@ -121,6 +127,11 @@ export const JaSentence = (props: {
                 ? cli.processKana(it.kanas).blockSequences[1]
                 : cli.processKana(it.kanas).blockSequences[0]
             }
+          />
+        ) : it instanceof KatakanaCharacter ? (
+          <KanaSpan
+            key={index}
+            characters={cli.processKana(it.kanas).blockSequences[1]}
           />
         ) : (
           ''
@@ -263,10 +274,15 @@ export const TwReference = (props: {
   );
 };
 
-export const TwEntry = (props: { pronunciation: string; hanjis: string[] }) => {
+export const TwEntry = (props: {
+  pronunciations: string[];
+  hanjis: string[];
+}) => {
   return (
     <span>
-      {cli.processTonal(props.pronunciation).blockSequences[0] + ' '}
+      {props.pronunciations.map(
+        it => cli.processTonal(it).blockSequences[0] + ' '
+      )}
       {props.hanjis.map(it => it + '。')}
     </span>
   );
