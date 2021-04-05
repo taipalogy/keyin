@@ -158,6 +158,7 @@ export const JaMeaningReference = (props: { meaning: Array<Character[]> }) => {
           ''
         )
       )}
+      {'。'}
     </span>
   );
 };
@@ -202,6 +203,7 @@ export const TwJaDefinitionReference = (props: {
           ''
         )
       )}
+      {'。'}
     </span>
   );
 };
@@ -214,16 +216,9 @@ export const TwJaDefinition = (props: {
 }) => {
   return (
     <span>
-      {props.meanings
-        .map((it, index) => (
-          <JaMeaning
-            abbreviation={props.abbreviation}
-            meanings={props.meanings}
-          />
-        ))
-        .map((it, index) => (
-          <span key={index}>{it}。</span>
-        ))}
+      {props.meanings.map((it, index) => (
+        <JaMeaning abbreviation={props.abbreviation} meanings={[it]} />
+      ))}
       {props.examples.map((it, index) => (
         <TwJaExample key={index} twString={it[0]} jaString={it[1]} />
       ))}
