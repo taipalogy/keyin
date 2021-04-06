@@ -114,6 +114,30 @@ function FuriganaPage() {
           [new SymbolNumber('㊄')],
         ]}
       />
+      <JaMeaningReference
+        abbreviation={'同'}
+        meaning={[
+          [
+            new HanjiReading('起', 'khiy'),
+            new HanjiReading('來', 'laix'),
+            new HanjiReading('行', 'kiannx'),
+          ],
+          [new SymbolNumber('(')],
+          [
+            new KanjiReading('起', 'o'),
+            new KanaCharacter('ki'),
+            new KanaCharacter('te'),
+            new KanjiReading('步', 'aru'),
+            new KanaCharacter('ke'),
+          ],
+          [new SymbolNumber(')')],
+          [
+            new KanaCharacter('no'),
+            new KanjiReading('音', 'im'),
+            new KanjiReading('便', 'pienz'),
+          ],
+        ]}
+      />
       <TwJaDefinitionReference
         number={new SymbolNumber('㊀')}
         meaning={[

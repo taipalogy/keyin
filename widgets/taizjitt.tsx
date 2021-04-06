@@ -103,12 +103,12 @@ export const Symbols = (props: { symbols: Symbol[] }) => {
 
 /** A japanese sentence with taiwanese references. */
 export const JaSentence = (props: {
-  string: JaCharacter[];
+  jaString: JaCharacter[];
   isKata: boolean;
 }) => {
   return (
     <span>
-      {props.string.map((it, index) =>
+      {props.jaString.map((it, index) =>
         it instanceof KanjiReading ? (
           <KanjiSpan
             key={index}
@@ -149,7 +149,7 @@ export const TwJaExample = (props: {
     <span>
       <TwSentence twString={props.twString} />
       {props.jaString.length > 0 && props.twString.length > 0 ? '=' : ''}
-      <JaSentence string={props.jaString} isKata={false} />
+      <JaSentence jaString={props.jaString} isKata={false} />
       {props.jaString.length > 0 && props.twString.length > 0 ? '。' : ''}
     </span>
   );
@@ -166,7 +166,7 @@ export const JaMeaningReference = (props: {
         it[0] && it[0] instanceof TwCharacter ? (
           <TwReference key={index} twStrings={[it]} pronunciation={''} />
         ) : it[0] && it[0] instanceof JaCharacter ? (
-          <JaSentence key={index} string={it} isKata={false} />
+          <JaSentence key={index} jaString={it} isKata={false} />
         ) : it[0] && it[0] instanceof Symbol ? (
           <Symbols key={index} symbols={it} />
         ) : (
@@ -189,7 +189,7 @@ export const JaMeaning = (props: {
       {props.meanings
         .map((it, index) =>
           it[0] && it[0] instanceof JaCharacter ? (
-            <JaSentence key={index} string={it} isKata={false} />
+            <JaSentence key={index} jaString={it} isKata={false} />
           ) : (
             ''
           )
@@ -213,7 +213,7 @@ export const TwJaDefinitionReference = (props: {
       {<Symbols symbols={[props.number]} />}
       {props.meaning.map((it, index) =>
         it[0] && it[0] instanceof JaCharacter ? (
-          <JaSentence key={index} string={it} isKata={false} />
+          <JaSentence key={index} jaString={it} isKata={false} />
         ) : it[0] && it[0] instanceof TwCharacter ? (
           <TwReference key={index} pronunciation={''} twStrings={[it]} />
         ) : it[0] && it[0] instanceof Symbol ? (

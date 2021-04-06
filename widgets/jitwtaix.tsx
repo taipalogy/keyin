@@ -31,7 +31,7 @@ export const JaTwDefinition = (props: {
       {props.abbreviation.length > 0 ? '(' + props.abbreviation + ')' : ''}
       {'「'}
       {props.examples.map((it, index) => (
-        <JaSentence key={index} string={it[0]} isKata={true} />
+        <JaSentence key={index} jaString={it[0]} isKata={true} />
       ))}
       {'」'}
       {props.examples.map(it =>
@@ -71,7 +71,7 @@ export const JaTwExample = (props: {
   return (
     <span>
       {'「'}
-      <JaSentence string={props.jaExample} isKata={true} />
+      <JaSentence jaString={props.jaExample} isKata={true} />
       {'」'}
       {props.twExamples.map((it, index) => (
         <TwSentence key={index} twString={it} />
