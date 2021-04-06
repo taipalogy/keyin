@@ -64,19 +64,14 @@ function FuriganaPage() {
       <TwJaDefinition
         abbreviation={''}
         meanings={[[jin], [nin], [hito], [nin, gen]]}
-        examples={[
-          [
-            [thien, tez, jinx],
-            [ten, ci, jin],
-          ],
-        ]}
+        examples={[[[thien, tez, jinx], [[ten, ci, jin]]]]}
         note={''}
       />
 
-      <TwJaExample twString={[jinx, butt]} jaString={[jin, buchu]} />
+      <TwJaExample twString={[jinx, butt]} jaString={[[jin, buchu]]} />
       <TwJaExample
         twString={[siy, butt, uahh, butt]}
-        jaString={[si, buchu, to, sei, buchu]}
+        jaString={[[si, buchu, to, sei, buchu]]}
       />
       <br />
       <TwEntry pronunciations={['it']} hanjis={['壹']} />

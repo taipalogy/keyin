@@ -143,13 +143,21 @@ export const JaSentence = (props: {
 
 export const TwJaExample = (props: {
   twString: TwCharacter[];
-  jaString: JaCharacter[];
+  jaString: Array<Character[]>;
 }) => {
   return (
     <span>
       <TwSentence twString={props.twString} />
       {props.jaString.length > 0 && props.twString.length > 0 ? '=' : ''}
-      <JaSentence jaString={props.jaString} isKata={false} />
+      {props.jaString.map((it, index) =>
+        it[0] && it[0] instanceof JaCharacter ? (
+          <JaSentence key={index} jaString={it} isKata={false} />
+        ) : it[0] && it[0] instanceof Symbol ? (
+          <Symbols key={index} symbols={it} />
+        ) : (
+          ''
+        )
+      )}
       {props.jaString.length > 0 && props.twString.length > 0 ? '。' : ''}
     </span>
   );
@@ -202,7 +210,7 @@ export const JaMeaning = (props: {
   );
 };
 
-type TwJaExamplePair = [TwCharacter[], JaCharacter[]];
+type TwJaExamplePair = [TwCharacter[], Array<Character[]>];
 
 export const TwJaDefinitionReference = (props: {
   number: SymbolNumber;
