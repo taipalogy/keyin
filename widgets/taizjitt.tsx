@@ -190,14 +190,14 @@ export const JaMeaningReference = (props: {
 
 export const JaMeaning = (props: {
   abbreviations: string[];
-  meanings: Array<JaCharacter[]>;
+  meaning: Array<JaCharacter[]>;
 }) => {
   return (
     <span>
       {props.abbreviations.length > 0 && props.abbreviations[0].length > 0
         ? props.abbreviations.map(it => ' (' + it + ')')
         : ''}
-      {props.meanings.map((it, index) =>
+      {props.meaning.map((it, index) =>
         it[0] && it[0] instanceof JaCharacter ? (
           <JaSentence key={index} jaString={it} isKata={false} />
         ) : it[0] && it[0] instanceof TwCharacter ? (
@@ -249,7 +249,7 @@ export const TwJaDefinition = (props: {
         <JaMeaning
           key={index}
           abbreviations={props.abbreviations}
-          meanings={[it]}
+          meaning={[it]}
         />
       ))}
       {props.examples.map((it, index) => (

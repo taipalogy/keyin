@@ -60,7 +60,7 @@ function FuriganaPage() {
     <div>
       {/* taizjitt */}
       <TwEntry pronunciations={['tanx']} hanjis={['陳']} />
-      <JaMeaning abbreviations={['姓']} meanings={[[cin]]} />
+      <JaMeaning abbreviations={['姓']} meaning={[[cin]]} />
       <TwJaDefinition
         abbreviations={['']}
         meanings={[[jin], [nin], [hito], [nin, gen]]}
@@ -130,7 +130,7 @@ function FuriganaPage() {
       <br />
       <JaMeaning
         abbreviations={[]}
-        meanings={[
+        meaning={[
           [new Symbol('(')],
           [new KanjiReading('八聲の一', '')],
           [new Symbol(')')],
@@ -139,11 +139,11 @@ function FuriganaPage() {
       />
       <JaMeaning
         abbreviations={[]}
-        meanings={[[new KanjiReading('剛', 'kichu'), new KanaCharacter('i')]]}
+        meaning={[[new KanjiReading('剛', 'kichu'), new KanaCharacter('i')]]}
       />
       <JaMeaning
         abbreviations={[]}
-        meanings={[
+        meaning={[
           [new Symbol('(')],
           [new HanjiReading('軟', 'lngy')],
           [new KanjiReading('の反對', '')],
