@@ -9,7 +9,7 @@ import {
   TwReference,
   TwJaDefinitionReference,
   JaMeaningReference,
-  SymbolNumber,
+  Symbol,
   KatakanaCharacter,
 } from '../widgets/taizjitt';
 import {
@@ -60,12 +60,11 @@ function FuriganaPage() {
     <div>
       {/* taizjitt */}
       <TwEntry pronunciations={['tanx']} hanjis={['陳']} />
-      <JaMeaning abbreviation={'姓'} meanings={[[cin]]} note={''} />
+      <JaMeaning abbreviations={['姓']} meanings={[[cin]]} />
       <TwJaDefinition
-        abbreviation={''}
+        abbreviations={['']}
         meanings={[[jin], [nin], [hito], [nin, gen]]}
         examples={[[[thien, tez, jinx], [[ten, ci, jin]]]]}
-        note={''}
       />
 
       <TwJaExample twString={[jinx, butt]} jaString={[[jin, buchu]]} />
@@ -76,10 +75,9 @@ function FuriganaPage() {
       <br />
       <TwEntry pronunciations={['it']} hanjis={['壹']} />
       <TwJaDefinition
-        abbreviation={'姓'}
+        abbreviations={['姓']}
         meanings={[[new KanjiReading('壹', 'ici')]]}
         examples={[[[], []]]}
-        note={''}
       />
       <TwReference
         pronunciation={''}
@@ -96,28 +94,81 @@ function FuriganaPage() {
         ]}
       />
       <br />
-      <JaMeaning
-        abbreviation={'八聲の一'}
-        meanings={[[new KanjiReading('下平', 'kahyau')]]}
-        note={''}
+      <TwReference
+        pronunciation={''}
+        twStrings={[
+          [new HanjiReading('研', 'gieny')],
+          [new HanjiReading('研', 'ngaiy')],
+          [new HanjiReading('研', 'gany')],
+          [new HanjiReading('研', '')],
+          [new HanjiReading('研', 'ngiriy')],
+        ]}
       />
+      <br />
+      <TwReference
+        pronunciation={''}
+        twStrings={[
+          [new HanjiReading('髻', 'kuew')],
+          [new HanjiReading('髻', 'korw')],
+        ]}
+      />
+      <br />
+      <TwReference
+        pronunciation={'gingy'}
+        twStrings={[[new HanjiReading('眼', '')], [new HanjiReading('研', '')]]}
+      />
+      <br />
+      <TwEntry pronunciations={['giy']} hanjis={['圉', '語', '敔']} />
+      <TwReference
+        pronunciation={'guy'}
+        twStrings={[
+          [new HanjiReading('圉', '')],
+          [new HanjiReading('語', '')],
+          [new HanjiReading('敔', '')],
+        ]}
+      />
+      <br />
+      <JaMeaning
+        abbreviations={[]}
+        meanings={[
+          [new Symbol('(')],
+          [new KanjiReading('八聲の一', '')],
+          [new Symbol(')')],
+          [new KanjiReading('下平', 'kahyau')],
+        ]}
+      />
+      <JaMeaning
+        abbreviations={[]}
+        meanings={[[new KanjiReading('剛', 'kichu'), new KanaCharacter('i')]]}
+      />
+      <JaMeaning
+        abbreviations={[]}
+        meanings={[
+          [new Symbol('(')],
+          [new HanjiReading('軟', 'lngy')],
+          [new KanjiReading('の反對', '')],
+          [new Symbol(')')],
+          [new HanjiReading('硬', 'ngez')],
+        ]}
+      />
+      <br />
       <JaMeaningReference
-        abbreviation={''}
+        abbreviations={['']}
         meaning={[
           [new HanjiReading('湖', 'ox')],
           [new KanaCharacter('no')],
-          [new SymbolNumber('㊄')],
+          [new Symbol('㊄')],
         ]}
       />
       <JaMeaningReference
-        abbreviation={'同'}
+        abbreviations={['同']}
         meaning={[
           [
             new HanjiReading('起', 'khiy'),
             new HanjiReading('來', 'laix'),
             new HanjiReading('行', 'kiannx'),
           ],
-          [new SymbolNumber('(')],
+          [new Symbol('(')],
           [
             new KanjiReading('起', 'o'),
             new KanaCharacter('ki'),
@@ -125,7 +176,7 @@ function FuriganaPage() {
             new KanjiReading('步', 'aru'),
             new KanaCharacter('ke'),
           ],
-          [new SymbolNumber(')')],
+          [new Symbol(')')],
           [
             new KanaCharacter('no'),
             new KanjiReading('音', 'im'),
@@ -134,7 +185,7 @@ function FuriganaPage() {
         ]}
       />
       <TwJaDefinitionReference
-        number={new SymbolNumber('㊀')}
+        number={new Symbol('㊀')}
         meaning={[
           [
             new HanjiReading('山', 'suann'),
@@ -142,27 +193,25 @@ function FuriganaPage() {
             new HanjiReading('仔', 'ay'),
           ],
           [new KanaCharacter('no')],
-          [new SymbolNumber('㊃')],
+          [new Symbol('㊃')],
         ]}
       />
       <TwJaDefinition
-        abbreviation={'姓'}
+        abbreviations={['姓']}
         meanings={[[new KanjiReading('壹', 'ici')]]}
         examples={[[[], []]]}
-        note={''}
       />
       <br />
       <TwEntry pronunciations={['ongx', 'siannx']} hanjis={['王城']} />
       <TwJaDefinition
-        abbreviation={''}
+        abbreviations={['']}
         meanings={[
           [new KanjiReading('王', 'wau'), new KanjiReading('城', 'jou')],
         ]}
         examples={[[[], []]]}
-        note={''}
       />
       <TwJaDefinition
-        abbreviation={''}
+        abbreviations={['']}
         meanings={[
           [
             new KanjiReading('安', 'an'),
@@ -173,7 +222,6 @@ function FuriganaPage() {
           ],
         ]}
         examples={[[[], []]]}
-        note={''}
       />
       <br />
       {/* jitwtaix */}
