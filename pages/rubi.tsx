@@ -6,6 +6,7 @@ const spanStyle = {};
 const rubiStyle = {
   backgroundColor: 'papayawhip',
   fontSize: '450%',
+  fontFamily: 'IBM Plex Mono',
 };
 
 const rtStyle = {
@@ -18,7 +19,7 @@ const rtStyle = {
 };
 
 const toneStyle = {
-  backgroundColor: 'lightskyblue',
+  backgroundColor: 'plum',
   fontSize: '125%',
   textAlign: 'center' as 'center',
   writingMode: 'initial' as 'initial',
