@@ -62,6 +62,7 @@ function FuriganaPage() {
       <TwEntry pronunciations={['tanx']} hanjis={['陳']} />
       <JaMeaning abbreviations={['姓']} meaning={[[cin]]} />
       <TwJaDefinition
+        number={new Symbol('')}
         abbreviations={['']}
         meanings={[[jin], [nin], [hito], [nin, gen]]}
         examples={[[[thien, tez, jinx], [[ten, ci, jin]]]]}
@@ -75,6 +76,7 @@ function FuriganaPage() {
       <br />
       <TwEntry pronunciations={['it']} hanjis={['壹']} />
       <TwJaDefinition
+        number={new Symbol('')}
         abbreviations={['姓']}
         meanings={[[new KanjiReading('壹', 'ici')]]}
         examples={[[[], []]]}
@@ -184,11 +186,6 @@ function FuriganaPage() {
           ],
         ]}
       />
-      <TwJaDefinition
-        abbreviations={['姓']}
-        meanings={[[new KanjiReading('壹', 'ici')]]}
-        examples={[[[], []]]}
-      />
       <JaMeaningReference
         abbreviations={['']}
         meaning={[
@@ -210,6 +207,18 @@ function FuriganaPage() {
             new HanjiReading('關', 'kuainn'),
             new HanjiReading('鬼', 'kuiy'),
             new HanjiReading('門', 'mngx'),
+          ],
+        ]}
+      />
+      <JaMeaningReference
+        abbreviations={['藥']}
+        meaning={[
+          [new HanjiReading('當', 'tong'), new HanjiReading('歸', 'kui')],
+          [
+            new KanaCharacter('no'),
+            new KanjiReading('一', ''),
+            new KanjiReading('部', 'bu'),
+            new KanjiReading('分', 'bun'),
           ],
         ]}
       />
@@ -242,6 +251,7 @@ function FuriganaPage() {
       <br />
       <TwEntry pronunciations={['ongx', 'siannx']} hanjis={['王城']} />
       <TwJaDefinition
+        number={new Symbol('')}
         abbreviations={['']}
         meanings={[
           [new KanjiReading('王', 'wau'), new KanjiReading('城', 'jou')],
@@ -249,6 +259,7 @@ function FuriganaPage() {
         examples={[[[], []]]}
       />
       <TwJaDefinition
+        number={new Symbol('')}
         abbreviations={['']}
         meanings={[
           [
@@ -260,6 +271,17 @@ function FuriganaPage() {
           ],
         ]}
         examples={[[[], []]]}
+      />
+      <br />
+      <TwEntry pronunciations={['kuz', 'kim', 'suann']} hanjis={['舊金山']} />
+      <JaMeaning
+        abbreviations={[]}
+        meaning={[
+          [new Symbol('(')],
+          [new KanjiReading('地名', '')],
+          [new Symbol(')')],
+          [new KatakanaCharacter('karifuoruniya')],
+        ]}
       />
       <br />
       {/* jitwtaix */}

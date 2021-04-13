@@ -239,6 +239,7 @@ export const TwJaDefinitionReference = (props: {
 };
 
 export const TwJaDefinition = (props: {
+  number: Symbol;
   abbreviations: string[];
   meanings: Array<Character[]>;
   examples: Array<TwJaExamplePair>;
