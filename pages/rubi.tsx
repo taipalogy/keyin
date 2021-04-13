@@ -5,17 +5,24 @@ const spanStyle = {};
 
 const rubiStyle = {
   backgroundColor: 'papayawhip',
-  fontSize: '350%',
-  // rubyOverhang: 'auto',
-  // display: 'inline',
-  // verticalAlign: 'middle',
-  // writingMode: 'vertical-rl' as 'vertical-rl',
-  // rubyPosition: 'over' as 'over',
-
-  // text: 'mixed',
+  fontSize: '450%',
 };
 
-const rtStyle = {};
+const rtStyle = {
+  backgroundColor: 'mistyrose',
+  // fontSize: '125%',
+  textAlign: 'center' as 'center',
+  writingMode: 'vertical-rl' as 'vertical-rl',
+  verticalAlign: 'middle',
+  display: 'inline',
+};
+
+const toneStyle = {
+  backgroundColor: 'lightskyblue',
+  fontSize: '125%',
+  textAlign: 'center' as 'center',
+  writingMode: 'initial' as 'initial',
+};
 
 function FuriganaPage() {
   const [input, setInput] = useState('');
@@ -37,7 +44,13 @@ function FuriganaPage() {
       <br />
       <span style={spanStyle}>
         <ruby style={rubiStyle}>
-          天<rt style={rtStyle}>{seqs[0]}</rt>
+          松
+          <rt style={rtStyle}>
+            <ruby>
+              {seqs[0]}
+              <rt style={toneStyle}>⟨</rt>
+            </ruby>
+          </rt>
         </ruby>
       </span>
     </div>
