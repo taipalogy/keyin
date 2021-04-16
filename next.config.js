@@ -23,7 +23,7 @@ module.exports = {
       '/tokenizer': { page: '/tokenizer' },
       '/inputcells': { page: '/inputcells' },
       '/entries': { page: '/entries' },
-      '/rubi': { page: '/rubi' },
+      '/ruby': { page: '/ruby' },
     };
   },
   // assetPrefix: !debug ? '/keyin/' : '',

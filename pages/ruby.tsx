@@ -3,7 +3,7 @@ import { Client } from 'taipa';
 
 const spanStyle = {};
 
-const rubiStyle = {
+const rubyStyle = {
   backgroundColor: 'papayawhip',
   fontSize: '450%',
   fontFamily: 'IBM Plex Mono',
@@ -25,7 +25,7 @@ const toneStyle = {
   writingMode: 'initial' as 'initial',
 };
 
-function FuriganaPage() {
+function RubyPage() {
   const [input, setInput] = useState('');
   const cli = new Client();
   const ta = cli.processTonal(input);
@@ -37,14 +37,14 @@ function FuriganaPage() {
 
   return (
     <div>
-      拍 rubi
+      拍 ruby
       <label>
         <br />
         <input type="text" value={input} onChange={handleChange} />
       </label>
       <br />
       <span style={spanStyle}>
-        <ruby style={rubiStyle}>
+        <ruby style={rubyStyle}>
           松
           <rt style={rtStyle}>
             <ruby>
@@ -58,4 +58,4 @@ function FuriganaPage() {
   );
 }
 
-export default FuriganaPage;
+export default RubyPage;
