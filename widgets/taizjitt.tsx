@@ -201,7 +201,7 @@ export const JaMeaning = (props: {
         it[0] && it[0] instanceof JaCharacter ? (
           <JaSentence key={index} jaString={it} isKata={false} />
         ) : it[0] && it[0] instanceof TwCharacter ? (
-          <TwReference pronunciation={''} twStrings={[it]} />
+          <TwReference key={index} pronunciation={''} twStrings={[it]} />
         ) : it[0] && it[0] instanceof SymbolCharacter ? (
           <Symbols key={index} symbols={it} />
         ) : (
