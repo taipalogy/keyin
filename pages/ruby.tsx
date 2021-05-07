@@ -1,28 +1,25 @@
 import { useState } from 'react';
 import { Client } from 'taipa';
 
-const spanStyle = {};
-
 const rubyStyle = {
   backgroundColor: 'papayawhip',
-  fontSize: '450%',
   fontFamily: 'IBM Plex Mono',
+  fontSize: '450%',
+  writingMode: 'vertical-rl' as 'vertical-rl',
+  // -webkit-writing-mode: vertical-rl;
+  // -moz-writing-mode: vertical-rl;
+  textOrientation: 'upright' as 'upright',
 };
 
 const rtStyle = {
   backgroundColor: 'mistyrose',
-  // fontSize: '125%',
   textAlign: 'center' as 'center',
-  writingMode: 'vertical-rl' as 'vertical-rl',
   verticalAlign: 'middle',
-  display: 'inline',
 };
 
 const toneStyle = {
   backgroundColor: 'plum',
-  fontSize: '125%',
   textAlign: 'center' as 'center',
-  writingMode: 'initial' as 'initial',
 };
 
 function RubyPage() {
@@ -43,7 +40,7 @@ function RubyPage() {
         <input type="text" value={input} onChange={handleChange} />
       </label>
       <br />
-      <span style={spanStyle}>
+      <span>
         <ruby style={rubyStyle}>
           松
           <rt style={rtStyle}>
