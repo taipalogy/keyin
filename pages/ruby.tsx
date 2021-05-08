@@ -40,7 +40,7 @@ function RubyPage() {
         <input type="text" value={input} onChange={handleChange} />
       </label>
       <br />
-      <span>
+      <div>
         <ruby style={rubyStyle}>
           松
           <rt style={rtStyle}>
@@ -50,7 +50,20 @@ function RubyPage() {
             </ruby>
           </rt>
         </ruby>
-      </span>
+      </div>
+      <div>
+        <ruby style={rubyStyle}>
+          松<rt style={rtStyle}>シォン⟨</rt>
+        </ruby>
+        <ruby style={rubyStyle}>
+          松<rt style={rtStyle}>⟨</rt>
+        </ruby>
+      </div>
+      <div>
+        <ruby style={rubyStyle}>
+          シォン⟨<rt style={rtStyle}>松</rt>
+        </ruby>
+      </div>
     </div>
   );
 }
