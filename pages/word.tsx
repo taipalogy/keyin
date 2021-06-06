@@ -4,7 +4,10 @@ import {
   lemmatize,
   graphAnalyzeTonal,
   inflectDesinence,
+  TonalSoundTags,
+  TonalLetterTags,
 } from 'taipa';
+import { freeToneLettersTonal } from 'taipa/lib/tonal/version2';
 import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
 import {
   getInflectionalSuffixes,
@@ -24,6 +27,13 @@ function WordPage() {
   const soundSeqs = getSoundSequences(
     tla.morphAnalyze(input, new TonalUncombiningForms([])).map(x => x.sounds)
   );
+
+  const transfix: string[] = [];
+  soundSeqs
+    .map(x => x[0])
+    .map(y => {
+      if (freeToneLettersTonal.includes(y)) transfix.push(y);
+    });
 
   const uncombiningSeqs = tla
     .morphAnalyze(input, new TonalUncombiningForms([]))
@@ -82,6 +92,8 @@ function WordPage() {
       {soundSeqs.map(x => (
         <li>{x[0] + ' - ' + x[1]}</li>
       ))}
+      <br />
+      transfix: {transfix.join(', ')}
       <br />
       uncombining form sequences
       {uncombiningSeqs.map(x => (
