@@ -21,18 +21,33 @@ function WordPage() {
   const tla = tonalLemmatizationAnalyzer;
 
   const letters = graphAnalyzeTonal(input).map(
-    x => x.letter && x.letter.literal
+    it => it.letter && it.letter.literal
   );
 
   const soundSeqs = getSoundSequences(
     tla.morphAnalyze(input, new TonalUncombiningForms([])).map(x => x.sounds)
   );
 
-  const transfix: string[] = [];
-  soundSeqs
-    .map(x => x[0])
-    .map(y => {
-      if (freeToneLettersTonal.includes(y)) transfix.push(y);
+  const transfix = tla
+    .morphAnalyze(input, new TonalUncombiningForms([]))
+    .map(it => it.sounds)
+    .map(it => {
+      if (freeToneLettersTonal.includes(it[it.length - 1].toString())) {
+        return it[it.length - 1].toString();
+      }
+    });
+
+  const withoutTransfix = tla
+    .morphAnalyze(input, new TonalUncombiningForms([]))
+    .map(it => it.sounds)
+    .map(it => {
+      if (
+        it[it.length - 1].name === TonalSoundTags.checkedTone ||
+        it[it.length - 1].name === TonalSoundTags.freeTone
+      ) {
+        it.pop();
+      }
+      return it.map(it => it.toString()).join('');
     });
 
   const uncombiningSeqs = tla
@@ -93,7 +108,9 @@ function WordPage() {
         <li>{x[0] + ' - ' + x[1]}</li>
       ))}
       <br />
-      transfix: {transfix.join(', ')}
+      transfix: {transfix.join('-')}
+      <br />
+      without transfix: {withoutTransfix.join('-')}
       <br />
       uncombining form sequences
       {uncombiningSeqs.map(x => (
