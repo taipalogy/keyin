@@ -4,15 +4,15 @@ import {
   lemmatize,
   graphAnalyzeTonal,
   inflectDesinence,
-  TonalSoundTags,
+  TonalSpellingTags,
   TonalLetterTags,
 } from 'taipa';
-import { freeToneLettersTonal } from 'taipa/lib/tonal/version2';
+import { freeToneLettersTonal } from 'taipa/lib/tonal/tonalres';
 import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
 import {
   getInflectionalSuffixes,
   getStems,
-  getSoundSequences,
+  getLetterSoundPairs,
 } from '../util/process';
 
 function WordPage() {
@@ -21,17 +21,17 @@ function WordPage() {
   const tla = tonalLemmatizationAnalyzer;
 
   const letters = graphAnalyzeTonal(input).map(
-    it => it.letter && it.letter.literal
+    (it) => it.letter && it.letter.literal
   );
 
-  const soundSeqs = getSoundSequences(
-    tla.morphAnalyze(input, new TonalUncombiningForms([])).map(x => x.sounds)
+  const pairs = getLetterSoundPairs(
+    tla.morphAnalyze(input, new TonalUncombiningForms([])).map((x) => x.sounds)
   );
 
   const transfix = tla
     .morphAnalyze(input, new TonalUncombiningForms([]))
-    .map(it => it.sounds)
-    .map(it => {
+    .map((it) => it.sounds)
+    .map((it) => {
       if (freeToneLettersTonal.includes(it[it.length - 1].toString())) {
         return it[it.length - 1].toString();
       }
@@ -39,36 +39,36 @@ function WordPage() {
 
   const withoutTransfix = tla
     .morphAnalyze(input, new TonalUncombiningForms([]))
-    .map(it => it.sounds)
-    .map(it => {
+    .map((it) => it.sounds)
+    .map((it) => {
       if (
-        it[it.length - 1].name === TonalSoundTags.checkedTone ||
-        it[it.length - 1].name === TonalSoundTags.freeTone
+        it[it.length - 1].name === TonalSpellingTags.checkedTone ||
+        it[it.length - 1].name === TonalSpellingTags.freeTone
       ) {
         it.pop();
       }
-      return it.map(it => it.toString()).join('');
+      return it.map((it) => it.toString()).join('');
     });
 
   const uncombiningSeqs = tla
     .morphAnalyze(input, new TonalUncombiningForms([]))
-    .map(it =>
+    .map((it) =>
       it
         .getForms()
-        .map(it => it.literal)
+        .map((it) => it.literal)
         .join(', ')
     )
-    .filter(it => it.length > 0);
+    .filter((it) => it.length > 0);
 
   const lxLemma = lemmatize(input);
   const stems = getStems(lxLemma.word.literal, lxLemma.getInflectionalEnding());
   const inflectionalSuffixes = getInflectionalSuffixes(
     lxLemma.getInflectionalEnding()
   );
-  const lemmas = lxLemma.getLemmas().map(x => x.literal);
+  const lemmas = lxLemma.getLemmas().map((x) => x.literal);
 
   const lxInflect = inflectDesinence(input);
-  const proceedingForms = lxInflect.getForms().map(x => x.literal);
+  const proceedingForms = lxInflect.getForms().map((x) => x.literal);
 
   const handleChange = function (e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
@@ -84,27 +84,27 @@ function WordPage() {
       </label>
       <br />
       lemmas
-      {lemmas.map(x => (
+      {lemmas.map((x) => (
         <li>{x}</li>
       ))}
       <br />
       stem
-      {stems.map(x => (
+      {stems.map((x) => (
         <li>{x}</li>
       ))}
       <br />
       inflectional suffix
-      {inflectionalSuffixes.map(x => (
+      {inflectionalSuffixes.map((x) => (
         <li>{x}</li>
       ))}
       <br />
       proceeding forms
-      {proceedingForms.map(x => (
+      {proceedingForms.map((x) => (
         <li>{x}</li>
       ))}
       <br />
       sound sequences
-      {soundSeqs.map(x => (
+      {pairs.map((x) => (
         <li>{x[0] + ' - ' + x[1]}</li>
       ))}
       <br />
@@ -113,7 +113,7 @@ function WordPage() {
       without transfix: {withoutTransfix.join('-')}
       <br />
       uncombining form sequences
-      {uncombiningSeqs.map(x => (
+      {uncombiningSeqs.map((x) => (
         <li>{x}</li>
       ))}
       <br />

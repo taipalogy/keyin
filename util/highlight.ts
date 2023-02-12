@@ -1,4 +1,4 @@
-import { Client, TonalSoundTags, graphAnalyzeTonal } from 'taipa';
+import { Client, TonalSpellingTags, graphAnalyzeTonal } from 'taipa';
 
 /*
  * initial state:      target + tail
@@ -35,13 +35,13 @@ const toneNumbersInHanji = new Map()
   .set('xx', '九');
 
 const soundNamesInHanji = new Map()
-  .set(TonalSoundTags.initialConsonant, '初聲')
-  .set(TonalSoundTags.vowel, '中聲')
-  .set(TonalSoundTags.nasalization, '鼻音化')
-  .set(TonalSoundTags.stopFinalConsonant, '終聲')
-  .set(TonalSoundTags.nasalFinalConsonant, '終聲')
-  .set(TonalSoundTags.freeTone, '聲調')
-  .set(TonalSoundTags.checkedTone, '聲調');
+  .set(TonalSpellingTags.initialConsonant, '初聲')
+  .set(TonalSpellingTags.vowel, '中聲')
+  .set(TonalSpellingTags.nasalization, '鼻音化')
+  .set(TonalSpellingTags.stopFinalConsonant, '終聲')
+  .set(TonalSpellingTags.nasalFinalConsonant, '終聲')
+  .set(TonalSpellingTags.freeTone, '聲調')
+  .set(TonalSpellingTags.checkedTone, '聲調');
 
 export class Highlighter {
   tails: string[] = [];
@@ -64,8 +64,7 @@ export class Highlighter {
           h.soundTags.push(j.name);
           h.letters.push(j.toString());
         }
-        h.text =
-          soundNamesInHanji.get(h.soundTags[0]) + ' ' + h.soundTags[0];
+        h.text = soundNamesInHanji.get(h.soundTags[0]) + ' ' + h.soundTags[0];
       }
       this.targets[i] = h.letters[0];
       const sliced = this.literals[i].slice(this.targets[i].length);
@@ -76,8 +75,8 @@ export class Highlighter {
 
   setHintAndTarget(index: number, n: number) {
     if (
-      this.hints[index].soundTags[n] === TonalSoundTags.freeTone ||
-      this.hints[index].soundTags[n] === TonalSoundTags.checkedTone
+      this.hints[index].soundTags[n] === TonalSpellingTags.freeTone ||
+      this.hints[index].soundTags[n] === TonalSpellingTags.checkedTone
     ) {
       if (toneNumbersInHanji.has(this.hints[index].letters[n])) {
         let tonal: string = '';
@@ -146,7 +145,7 @@ export class Highlighter {
 
       const slicedGsLiteral = gsLiteral.slice(0, idxSlicing);
       const lensSlicedGsLiteral = slicedGsLiteral.map(
-        it => it.letter.literal.length
+        (it) => it.letter.literal.length
       );
       const idxTailBegin: number =
         lensSlicedGsLiteral.length > 0

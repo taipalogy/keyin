@@ -170,7 +170,7 @@ export const JaMeaningReference = (props: {
   return (
     <span>
       {props.abbreviations.length > 0 && props.abbreviations[0].length > 0
-        ? props.abbreviations.map(it => ' (' + it + ')')
+        ? props.abbreviations.map((it) => ' (' + it + ')')
         : ''}
       {props.meaning.map((it, index) =>
         it[0] && it[0] instanceof TwCharacter ? (
@@ -195,9 +195,9 @@ export const JaMeaning = (props: {
   return (
     <span>
       {props.abbreviations.length > 0 && props.abbreviations[0].length > 0
-        ? props.abbreviations.map(it => ' (' + it + ')')
+        ? props.abbreviations.map((it) => ' (' + it + ')')
         : ''}
-      {props.meaning.map((it, index) =>
+      {props.meaning.map((it: any, index) =>
         it[0] && it[0] instanceof JaCharacter ? (
           <JaSentence key={index} jaString={it} isKata={false} />
         ) : it[0] && it[0] instanceof TwCharacter ? (
@@ -291,9 +291,9 @@ export const TwEntry = (props: {
   return (
     <span>
       {props.pronunciations.map(
-        it => cli.processTonal(it).blockSequences[0] + ' '
+        (it) => cli.processTonal(it).blockSequences[0] + ' '
       )}
-      {props.hanjis.map(it => it + '。')}
+      {props.hanjis.map((it) => it + '。')}
     </span>
   );
 };
