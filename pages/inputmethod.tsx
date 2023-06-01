@@ -1,7 +1,7 @@
-import { Client } from 'taipa';
 import { useState } from 'react';
 import CopyToClipBoard from 'react-copy-to-clipboard';
-import { getSyllabograms } from '../ime/twkana';
+import { getSyllabograms } from '../ime/syllabograms';
+import { getIdeograms } from '../ime/ideograms';
 
 function InputMethodPage() {
   const [input, setInput] = useState('');
@@ -10,28 +10,11 @@ function InputMethodPage() {
     setInput(e.target.value);
   };
 
-  const tokens: string[] = [];
-
-  /*
-  const matchArr = input.match(/\w+/g);
-  if (matchArr) {
-    matchArr.filter((it) => it != undefined).map((it) => tokens.push(it));
-  }
-
-  const cli = new Client();
-  const tas = tokens.map((it) => cli.processTonal(it));
-
-  const listOfSeqs = tas.map((it) =>
-    it.blockSequences.filter((it) => it.length > 0)
-  );
-
-  const textTaikana = listOfSeqs.map((y) => y[0]).join('');
-*/
-
-  const textTaikana = getSyllabograms(input);
+  const syllabograms = getSyllabograms(input);
+  const ideograms = getIdeograms(input);
 
   return (
-    <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 16 }}>
+    <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
       拍羅馬字, 輸出文字
       <label>
         <br />
@@ -39,14 +22,15 @@ function InputMethodPage() {
           type="text"
           value={input}
           onChange={handleChange}
-          style={{ fontFamily: 'IBM Plex Mono', fontSize: 16 }}
+          style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}
         />
       </label>
       <br />
-      <li>{textTaikana}</li>
-      <CopyToClipBoard text={textTaikana}>
+      <li>{syllabograms}</li>
+      <li>{ideograms}</li>
+      <CopyToClipBoard text={syllabograms}>
         <button
-          disabled={textTaikana === ''}
+          disabled={syllabograms === ''}
           // onClick={handleClickButton}
         >
           Copy
