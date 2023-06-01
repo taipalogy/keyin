@@ -1,6 +1,6 @@
 function KuaxayPage() {
   return (
-    <div>
+    <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
       <label>
         對答相褒歌
         <li>

@@ -75,12 +75,17 @@ function WordPage() {
   };
 
   return (
-    <div>
+    <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 24 }}>
       拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms, sound
       sequences, uncombining form sequences, 甲 letters
       <label>
         <br />
-        <input type="text" value={input} onChange={handleChange} />
+        <input
+          type="text"
+          value={input}
+          onChange={handleChange}
+          style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}
+        />
       </label>
       <br />
       lemmas
