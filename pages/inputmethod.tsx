@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import CopyToClipBoard from 'react-copy-to-clipboard';
 import { getSyllabograms } from '../ime/syllabograms';
-import { getIdeograms } from '../ime/ideograms';
+import { getLogograms } from '../ime/logograms';
 
 function InputMethodPage() {
   const [input, setInput] = useState('');
@@ -11,7 +11,7 @@ function InputMethodPage() {
   };
 
   const syllabograms = getSyllabograms(input);
-  const ideograms = getIdeograms(input);
+  const ideograms = getLogograms(input);
 
   return (
     <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>

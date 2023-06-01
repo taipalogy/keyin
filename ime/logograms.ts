@@ -7,13 +7,13 @@ interface DictHanjiType {
   [key: string]: string[];
 }
 
-export function getIdeograms(data: any) {
+export function getLogograms(data: any) {
   const input = data.toString().trim();
   const dict: DictHanjiType = dictHanji;
   const keys = Object.keys(dict);
   const syllables = analyzeIntoSyllables(input);
 
-  const ideograms: string[] = [];
+  const logograms: string[] = [];
 
   if (syllables.length == 0) {
     for (const key of keys) {
@@ -21,7 +21,7 @@ export function getIdeograms(data: any) {
         const arr: string[] = dict[key];
         const chrs = arr.join(',');
         // console.info(chrs);
-        ideograms.push(chrs);
+        logograms.push(chrs);
       }
     }
   } else {
@@ -31,9 +31,10 @@ export function getIdeograms(data: any) {
           return pair[0];
         }
       );
-      const fldValue: string[] = dict[latin.join()] || [];
-      ideograms.push(fldValue[0]);
+      console.log(latin.join(''));
+      const fldValue: string[] = dict[latin.join('')] || [];
+      logograms.push(fldValue[0]);
     });
   }
-  return ideograms;
+  return logograms;
 }
