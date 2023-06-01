@@ -1,3 +1,6 @@
+import { lemmatize } from 'taipa';
+import { getStems, getInflectionalSuffixes } from '../util/process';
+
 import { analyzeIntoSyllables } from './syllabograms';
 // read a file in react
 const dictHanji = require('./hanji.json');
@@ -26,13 +29,25 @@ export function getLogograms(data: any) {
     }
   } else {
     syllables.forEach((ltrSndPairs) => {
-      const latin: string[] = ltrSndPairs.map(
+      const chars: string[] = ltrSndPairs.map(
         (pair: [string, string], idx, arrPairs) => {
           return pair[0];
         }
       );
-      console.log(latin.join(''));
-      const fldValue: string[] = dict[latin.join('')] || [];
+
+      const syl = chars.join('');
+      console.log(chars.join(''));
+
+      let fldValue: string[] = [];
+
+      const lxLemma = lemmatize(syl);
+      const lemmas = lxLemma.getLemmas().map((x) => x.literal);
+
+      if (lemmas.length > 0) {
+        fldValue = dict[lemmas[0]] || [];
+      } else {
+        fldValue = dict[syl] || [];
+      }
       logograms.push(fldValue[0]);
     });
   }

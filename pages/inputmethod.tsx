@@ -11,7 +11,7 @@ function InputMethodPage() {
   };
 
   const syllabograms = getSyllabograms(input);
-  const ideograms = getLogograms(input);
+  const logograms = getLogograms(input);
 
   return (
     <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
@@ -27,10 +27,18 @@ function InputMethodPage() {
       </label>
       <br />
       <li>{syllabograms}</li>
-      <li>{ideograms}</li>
       <CopyToClipBoard text={syllabograms}>
         <button
           disabled={syllabograms === ''}
+          // onClick={handleClickButton}
+        >
+          Copy
+        </button>
+      </CopyToClipBoard>
+      <li>{logograms}</li>
+      <CopyToClipBoard text={logograms.join('')}>
+        <button
+          disabled={logograms.join('') === ''}
           // onClick={handleClickButton}
         >
           Copy
