@@ -14,7 +14,7 @@ export function getStems(literal: string, ending: string) {
   const ie = ending;
   const stems: string[] = [];
   if (l.length - ie.length != 0) {
-    stems.push(l.substr(0, l.length - ie.length));
+    stems.push(l.substring(0, l.length - ie.length));
     return stems;
   }
   return stems;

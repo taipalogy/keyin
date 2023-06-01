@@ -63,6 +63,9 @@ function Home() {
       <li>
         <a href="ruby">ruby</a>
       </li>
+      <li>
+        <a href="inputmethod">input method</a>
+      </li>
     </ul>
   );
 }

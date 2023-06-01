@@ -176,13 +176,13 @@ function TaiKanaPage() {
 
   const matchArr = input.match(/\w+/g);
   if (matchArr) {
-    matchArr.filter(it => it != undefined).map(it => tokens.push(it));
+    matchArr.filter((it) => it != undefined).map((it) => tokens.push(it));
   }
 
   const cli = new Client();
-  const tas = tokens.map(it => cli.processTonal(it));
-  const listOfSeqs = tas.map(it =>
-    it.blockSequences.filter(it => it.length > 0)
+  const tas = tokens.map((it) => cli.processTonal(it));
+  const listOfSeqs = tas.map((it) =>
+    it.blockSequences.filter((it) => it.length > 0)
   );
 
   const handleChange = function (e: React.ChangeEvent<HTMLInputElement>) {
@@ -199,7 +199,7 @@ function TaiKanaPage() {
   };
 */
 
-  const textTaikana = listOfSeqs.map(y => y[0]).join('');
+  const textTaikana = listOfSeqs.map((it) => it[0]).join('');
 
   const CellLetters = ({
     columnIndex,
@@ -223,8 +223,7 @@ function TaiKanaPage() {
               border: '1px solid white',
               color: cellStyle.color,
             }
-          : {
-          },
+          : {},
         style
       )}
     >
@@ -460,7 +459,7 @@ function TaiKanaPage() {
         />
       </label>
       <br />
-      {listOfSeqs.map(x => (
+      {listOfSeqs.map((x) => (
         <li>
           {x.length == 0
             ? ''
