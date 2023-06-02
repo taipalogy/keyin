@@ -32,6 +32,7 @@ function InputMethodPage() {
         />
       </label>
       <br />
+      <li>{syllabograms.join('')}</li>
       <li>{syllabograms.map((it) => it + ',')}</li>
       <CopyToClipBoard text={syllabograms.join('')}>
         <button
