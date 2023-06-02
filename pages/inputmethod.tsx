@@ -10,8 +10,14 @@ function InputMethodPage() {
     setInput(e.target.value);
   };
 
-  const syllabograms = getSyllabograms(input);
-  const logograms = getLogograms(input);
+  const syllabograms: string[] = getSyllabograms(input);
+  const logograms: string[] = getLogograms(input);
+
+  const karacters: string[] = syllabograms.map((syl, idx, arr) => {
+    const sli = syl.slice(1);
+    if (logograms[idx]) return logograms[idx] + sli;
+    else return syl;
+  });
 
   return (
     <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
@@ -26,19 +32,30 @@ function InputMethodPage() {
         />
       </label>
       <br />
-      <li>{syllabograms}</li>
-      <CopyToClipBoard text={syllabograms}>
+      <li>{syllabograms.map((it) => it + ',')}</li>
+      <CopyToClipBoard text={syllabograms.join('')}>
         <button
-          disabled={syllabograms === ''}
+          disabled={syllabograms.join('') === ''}
           // onClick={handleClickButton}
         >
           Copy
         </button>
       </CopyToClipBoard>
+      <br />
       <li>{logograms}</li>
       <CopyToClipBoard text={logograms.join('')}>
         <button
           disabled={logograms.join('') === ''}
+          // onClick={handleClickButton}
+        >
+          Copy
+        </button>
+      </CopyToClipBoard>
+      <br />
+      <li>{karacters}</li>
+      <CopyToClipBoard text={karacters.join('')}>
+        <button
+          disabled={karacters.join('') === ''}
           // onClick={handleClickButton}
         >
           Copy

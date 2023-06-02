@@ -36,7 +36,7 @@ export function getLogograms(data: any) {
       );
 
       const syl = chars.join('');
-      console.log(chars.join(''));
+      // console.log(chars.join(''));
 
       let fldValue: string[] = [];
 
