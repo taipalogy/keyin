@@ -64,12 +64,10 @@ export function getSyllabograms(data: any) {
   const syle: string[] = []; // a syllable
 
   if (syllables.length == 0) {
-    for (const key of keys) {
-      if (key === input) {
-        const arr: string[] = dict[key];
-        // console.info('>' + arr[1]);
-        syllabograms.push(arr[0]);
-      }
+    if (keys.includes(input)) {
+      const arr: string[] = dict[input];
+      // console.info('>' + arr[1]);
+      syllabograms.push(arr[0]);
     }
   } else {
     syllables.forEach((ltrSndPairs) => {
