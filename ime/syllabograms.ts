@@ -68,7 +68,7 @@ export function getSyllabograms(data: any) {
       if (key === input) {
         const arr: string[] = dict[key];
         // console.info('>' + arr[1]);
-        syllabograms.push(arr[1]);
+        syllabograms.push(arr[0]);
       }
     }
   } else {
