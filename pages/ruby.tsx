@@ -26,7 +26,7 @@ function RubyPage() {
   const [input, setInput] = useState('');
   const cli = new Client();
   const ta = cli.processTonal(input);
-  const seqs = ta.blockSequences.filter(x => x.length > 0);
+  const seqs = ta.blockSequences.filter((x) => x.length > 0);
 
   const handleChange = function (e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
@@ -42,26 +42,21 @@ function RubyPage() {
       <br />
       <div>
         <ruby style={rubyStyle}>
-          松
+          事
           <rt style={rtStyle}>
             <ruby>
               {seqs[0]}
-              <rt style={toneStyle}>⟨</rt>
+              <rt style={toneStyle}></rt>
             </ruby>
           </rt>
         </ruby>
       </div>
       <div>
         <ruby style={rubyStyle}>
-          松<rt style={rtStyle}>シォン⟨</rt>
+          事<rt style={rtStyle}>タィ³チ³</rt>
         </ruby>
         <ruby style={rubyStyle}>
-          松<rt style={rtStyle}>⟨</rt>
-        </ruby>
-      </div>
-      <div>
-        <ruby style={rubyStyle}>
-          シォン⟨<rt style={rtStyle}>松</rt>
+          事<rt style={rtStyle}>スˉ</rt>
         </ruby>
       </div>
     </div>
