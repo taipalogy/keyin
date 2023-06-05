@@ -2,7 +2,6 @@ import { Client, TokenAnalysis } from 'taipa';
 import { tonalLemmatizationAnalyzer } from 'taipa';
 import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
 import { TonalWord } from 'taipa';
-import { getLetterSoundPairs } from '../util/process';
 import { TonalLetterTags, TonalSpellingTags } from 'taipa';
 import { Sound } from 'taipa';
 
@@ -31,21 +30,6 @@ export function analyzeIntoSyllables(input: string) {
   const wrd = ta.word as TonalWord; // type casting
 
   const pairs = getLetterSoundPairsSyllabic(
-    tla
-      .morphAnalyze(wrd.literal, new TonalUncombiningForms([]))
-      .map((x) => x.sounds)
-  );
-
-  return pairs;
-}
-
-function analyzeSpell(input: string) {
-  const cli = new Client();
-  const tla = tonalLemmatizationAnalyzer;
-  const ta: TokenAnalysis = cli.processTonal(input.toString().trim());
-  const wrd = ta.word as TonalWord; // type casting
-
-  const pairs = getLetterSoundPairs(
     tla
       .morphAnalyze(wrd.literal, new TonalUncombiningForms([]))
       .map((x) => x.sounds)

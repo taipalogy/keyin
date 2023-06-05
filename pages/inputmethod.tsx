@@ -2,6 +2,7 @@ import { useState } from 'react';
 import CopyToClipBoard from 'react-copy-to-clipboard';
 import { getSyllabograms } from '../ime/syllabograms';
 import { getLogograms } from '../ime/logograms';
+import { getWords } from '../ime/words';
 
 function InputMethodPage() {
   const [input, setInput] = useState('');
@@ -12,6 +13,7 @@ function InputMethodPage() {
 
   const syllabograms: string[] = getSyllabograms(input);
   const logograms: string[] = getLogograms(input);
+  const words: string[] = getWords(input);
 
   const karacters: string[] = syllabograms.map((syl, idx, arr) => {
     const sli = syl.slice(1);
@@ -57,6 +59,16 @@ function InputMethodPage() {
       <CopyToClipBoard text={karacters.join('')}>
         <button
           disabled={karacters.join('') === ''}
+          // onClick={handleClickButton}
+        >
+          Copy
+        </button>
+      </CopyToClipBoard>
+      <br />
+      <li>{words}</li>
+      <CopyToClipBoard text={words.join('')}>
+        <button
+          disabled={words.join('') === ''}
           // onClick={handleClickButton}
         >
           Copy

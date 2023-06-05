@@ -12,7 +12,7 @@ import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
 import {
   getInflectionalSuffixes,
   getStems,
-  getLetterSoundPairs,
+  getLetterSoundPairsSequential,
 } from '../util/process';
 
 function WordPage() {
@@ -24,7 +24,7 @@ function WordPage() {
     (it) => it.letter && it.letter.literal
   );
 
-  const pairs = getLetterSoundPairs(
+  const pairs = getLetterSoundPairsSequential(
     tla.morphAnalyze(input, new TonalUncombiningForms([])).map((x) => x.sounds)
   );
 

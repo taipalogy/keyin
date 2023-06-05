@@ -20,7 +20,7 @@ export function getStems(literal: string, ending: string) {
   return stems;
 }
 
-export function getLetterSoundPairs(soundSeqs: Sound[][]) {
+export function getLetterSoundPairsSequential(soundSeqs: Sound[][]) {
   const letters = [];
   for (let j in soundSeqs) {
     for (let k in soundSeqs[j]) {

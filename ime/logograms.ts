@@ -3,7 +3,7 @@ import { getStems, getInflectionalSuffixes } from '../util/process';
 
 import { analyzeIntoSyllables } from './syllabograms';
 // read a file in react
-const dictHanji = require('./hanji.json');
+const dictHanji = require('./hanjis.json');
 
 // this typing is required by react
 interface DictHanjiType {
@@ -19,13 +19,10 @@ export function getLogograms(data: any) {
   const logograms: string[] = [];
 
   if (syllables.length == 0) {
-    for (const key of keys) {
-      if (key === input) {
-        const arr: string[] = dict[key];
-        const chrs = arr.join(',');
-        // console.info(chrs);
-        logograms.push(chrs);
-      }
+    if (keys.includes(input)) {
+      const arr: string[] = dict[input];
+      // console.info('>' + arr[1]);
+      logograms.push(arr[0]);
     }
   } else {
     syllables.forEach((ltrSndPairs) => {
@@ -40,14 +37,14 @@ export function getLogograms(data: any) {
 
       let fldValue: string[] = [];
 
-      const lxLemma = lemmatize(syl);
-      const lemmas = lxLemma.getLemmas().map((x) => x.literal);
+      // const lxLemma = lemmatize(syl);
+      // const lemmas = lxLemma.getLemmas().map((x) => x.literal);
 
-      if (lemmas.length > 0) {
-        fldValue = dict[lemmas[0]] || [];
-      } else {
-        fldValue = dict[syl] || [];
-      }
+      // if (lemmas.length > 0) {
+      //   fldValue = dict[lemmas[0]] || [];
+      // } else {
+      fldValue = dict[syl] || [];
+      // }
       logograms.push(fldValue[0]);
     });
   }
