@@ -1,7 +1,12 @@
-import { lemmatize } from 'taipa';
-import { getStems, getInflectionalSuffixes } from '../util/process';
-
+import {
+  Client,
+  TokenAnalysis,
+  tonalLemmatizationAnalyzer,
+  TonalWord,
+} from 'taipa';
+import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
 import { analyzeIntoSyllables } from './syllabograms';
+
 // read a file in react
 const dictHanji = require('./hanjis.json');
 
@@ -37,15 +42,19 @@ export function getLogograms(data: any) {
 
       let fldValue: string[] = [];
 
-      // const lxLemma = lemmatize(syl);
-      // const lemmas = lxLemma.getLemmas().map((x) => x.literal);
-
-      // if (lemmas.length > 0) {
-      //   fldValue = dict[lemmas[0]] || [];
-      // } else {
       fldValue = dict[syl] || [];
-      // }
+
       logograms.push(fldValue[0]);
+
+      const cli = new Client();
+      const tla = tonalLemmatizationAnalyzer;
+      const ta: TokenAnalysis = cli.processTonal(input.toString().trim());
+      const wrd = ta.word as TonalWord; // type casting
+
+      const forms = tla
+        .morphAnalyze(wrd.literal, new TonalUncombiningForms([]))
+        .map((mrfm) => mrfm.getForms().map((frm) => frm.literal));
+      // forms.map((frm) => console.log(frm));
     });
   }
   return logograms;
