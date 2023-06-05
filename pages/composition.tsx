@@ -5,8 +5,8 @@ import {
   Client,
   inflectDesinence,
   TonalWord,
+  TonalUncombiningForms,
 } from 'taipa';
-import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
 
 class Segment {
   literal: string = '';
@@ -22,7 +22,7 @@ class Segment {
 
   isProceedingForm(str: string) {
     const lx = inflectDesinence(this.literal);
-    if (lx.getForms().filter(x => x.literal === str).length > 0) return true;
+    if (lx.getForms().filter((x) => x.literal === str).length > 0) return true;
     return false;
   }
 
@@ -61,11 +61,11 @@ const cli = new Client();
 function getSeqs(alphabet: string, str: string) {
   if (alphabet == optGroup2[1]) {
     const ta = cli.processKana(str);
-    return ta.blockSequences.filter(x => x.length > 0);
+    return ta.blockSequences.filter((x) => x.length > 0);
   } else if (alphabet == optGroup2[0]) {
     const ta = cli.processTonal(str);
     if ((ta.word as TonalWord).syllables) {
-      return (ta.word as TonalWord).syllables.flatMap(x => x.literal);
+      return (ta.word as TonalWord).syllables.flatMap((x) => x.literal);
     }
   }
   return [];
@@ -147,14 +147,14 @@ function CompositionPage() {
     }
   }
 
-  if (optGroup2.filter(x => x.includes(input.selectedTwo)).length > 0) {
+  if (optGroup2.filter((x) => x.includes(input.selectedTwo)).length > 0) {
     alphabet = input.selectedTwo;
     seqs = getSeqs(alphabet, input.typed);
   } else {
     seqs = getSeqs(alphabet, input.typed);
   }
 
-  if (optGroup3.filter(x => x.includes(input.selectedThree)).length > 0) {
+  if (optGroup3.filter((x) => x.includes(input.selectedThree)).length > 0) {
     const str: string = input.selectedThree;
     fcolor = { color: str };
   }
@@ -172,7 +172,7 @@ function CompositionPage() {
         onChange={handleChange}
       />
       <datalist id="words">
-        {candidates.map(item => (
+        {candidates.map((item) => (
           <option key={item} value={item} />
         ))}
       </datalist>
@@ -228,7 +228,7 @@ function CompositionPage() {
             onChange={handleChange}
           />
         )}
-        {seqs.map(x => (
+        {seqs.map((x) => (
           <li> {x} </li>
         ))}
       </div>

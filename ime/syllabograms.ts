@@ -1,6 +1,6 @@
 import { Client, TokenAnalysis } from 'taipa';
 import { tonalLemmatizationAnalyzer } from 'taipa';
-import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
+import { TonalUncombiningForms } from 'taipa';
 import { TonalWord } from 'taipa';
 import { TonalLetterTags, TonalSpellingTags } from 'taipa';
 import { Sound } from 'taipa';

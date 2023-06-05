@@ -1,7 +1,9 @@
 import { Client, TokenAnalysis, TonalWord } from 'taipa';
-import { tonalLemmatizationAnalyzer } from 'taipa';
-import { getLetterSoundPairsSequential } from '../util/process';
-import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
+import {
+  tonalLemmatizationAnalyzer,
+  getLetterSoundPairsSequential,
+  TonalUncombiningForms,
+} from 'taipa';
 import { lemmatize } from 'taipa';
 import { getStems, getInflectionalSuffixes } from '../util/process';
 

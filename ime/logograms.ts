@@ -4,7 +4,7 @@ import {
   tonalLemmatizationAnalyzer,
   TonalWord,
 } from 'taipa';
-import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
+import { TonalUncombiningForms } from 'taipa';
 import { analyzeIntoSyllables } from './syllabograms';
 
 // read a file in react
@@ -48,12 +48,13 @@ export function getLogograms(data: any) {
 
       const cli = new Client();
       const tla = tonalLemmatizationAnalyzer;
-      const ta: TokenAnalysis = cli.processTonal(input.toString().trim());
+      const ta: TokenAnalysis = cli.processTonal(syl.toString().trim());
       const wrd = ta.word as TonalWord; // type casting
 
       const forms = tla
         .morphAnalyze(wrd.literal, new TonalUncombiningForms([]))
         .map((mrfm) => mrfm.getForms().map((frm) => frm.literal));
+      // console.log('>' + input + '>' + syl);
       // forms.map((frm) => console.log(frm));
     });
   }

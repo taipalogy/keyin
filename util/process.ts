@@ -20,17 +20,6 @@ export function getStems(literal: string, ending: string) {
   return stems;
 }
 
-export function getLetterSoundPairsSequential(soundSeqs: Sound[][]) {
-  const letters = [];
-  for (let j in soundSeqs) {
-    for (let k in soundSeqs[j]) {
-      const ltr = soundSeqs[j][k];
-      letters.push([ltr.toString(), ltr.name]);
-    }
-  }
-  return letters;
-}
-
 export function getSurfaceForms(underlying: string, surface: string) {
   const forms: string[] = [];
   if (underlying && surface && underlying !== surface) {

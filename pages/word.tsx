@@ -5,15 +5,11 @@ import {
   graphAnalyzeTonal,
   inflectDesinence,
   TonalSpellingTags,
-  TonalLetterTags,
+  getLetterSoundPairsSequential,
+  TonalUncombiningForms,
 } from 'taipa';
 import { freeToneLettersTonal } from 'taipa/lib/tonal/tonalres';
-import { TonalUncombiningForms } from 'taipa/lib/unchange/metaplasm';
-import {
-  getInflectionalSuffixes,
-  getStems,
-  getLetterSoundPairsSequential,
-} from '../util/process';
+import { getInflectionalSuffixes, getStems } from '../util/process';
 
 function WordPage() {
   const [input, setInput] = useState('');
