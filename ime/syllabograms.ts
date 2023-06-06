@@ -1,9 +1,8 @@
-import { Client, TokenAnalysis } from 'taipa';
-import { tonalLemmatizationAnalyzer } from 'taipa';
-import { TonalUncombiningForms } from 'taipa';
-import { TonalWord } from 'taipa';
-import { TonalLetterTags, TonalSpellingTags } from 'taipa';
-import { Sound } from 'taipa';
+import {
+  TonalLetterTags,
+  TonalSpellingTags,
+  analyzeIntoSyllables,
+} from 'taipa';
 
 // read a file in react
 const syllabary = require('./mix.json');
@@ -11,31 +10,6 @@ const syllabary = require('./mix.json');
 // this typing is required by react
 interface SyllabaryType {
   [key: string]: string[];
-}
-
-function getLetterSoundPairsSyllabic(
-  soundSeqs: Sound[][]
-): [string, string][][] {
-  // return letter-sound-name pairs
-
-  return soundSeqs.map((v) => {
-    return v.map((v) => [v.toString(), v.name]);
-  });
-}
-
-export function analyzeIntoSyllables(input: string) {
-  const cli = new Client();
-  const tla = tonalLemmatizationAnalyzer;
-  const ta: TokenAnalysis = cli.processTonal(input.toString().trim());
-  const wrd = ta.word as TonalWord; // type casting
-
-  const pairs = getLetterSoundPairsSyllabic(
-    tla
-      .morphAnalyze(wrd.literal, new TonalUncombiningForms([]))
-      .map((x) => x.sounds)
-  );
-
-  return pairs;
 }
 
 export function getSyllabograms(data: any) {

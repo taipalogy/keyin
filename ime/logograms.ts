@@ -1,11 +1,8 @@
 import {
-  Client,
-  TokenAnalysis,
-  tonalLemmatizationAnalyzer,
-  TonalWord,
+  analyzeIntoSyllables,
+  getUncombiningForms,
+  pairsToString,
 } from 'taipa';
-import { TonalUncombiningForms } from 'taipa';
-import { analyzeIntoSyllables } from './syllabograms';
 
 // read a file in react
 const dictHanji = require('./hanjis.json');
@@ -31,31 +28,23 @@ export function getLogograms(data: any) {
     }
   } else {
     syllables.forEach((ltrSndPairs) => {
-      const chars: string[] = ltrSndPairs.map(
-        (pair: [string, string], idx, arrPairs) => {
-          return pair[0];
-        }
-      );
+      const lookup = pairsToString(ltrSndPairs);
+      if (lookup.length > 0 && keys.includes(lookup)) {
+        let fldValue: string[] = [];
 
-      const syl = chars.join('');
-      // console.log(chars.join(''));
+        fldValue = dict[lookup] || [];
 
-      let fldValue: string[] = [];
+        logograms.push(fldValue[0]);
+      } else if (lookup.length > 0) {
+        const forms = getUncombiningForms(lookup);
+        const results = forms.map((it) => {
+          if (keys.includes(it)) {
+            return dict[it];
+          } else return [];
+        });
 
-      fldValue = dict[syl] || [];
-
-      logograms.push(fldValue[0]);
-
-      const cli = new Client();
-      const tla = tonalLemmatizationAnalyzer;
-      const ta: TokenAnalysis = cli.processTonal(syl.toString().trim());
-      const wrd = ta.word as TonalWord; // type casting
-
-      const forms = tla
-        .morphAnalyze(wrd.literal, new TonalUncombiningForms([]))
-        .map((mrfm) => mrfm.getForms().map((frm) => frm.literal));
-      // console.log('>' + input + '>' + syl);
-      // forms.map((frm) => console.log(frm));
+        results.map((it) => it.map((i) => logograms.push(i)));
+      }
     });
   }
   return logograms;

@@ -1,11 +1,4 @@
-import { Client, TokenAnalysis, TonalWord } from 'taipa';
-import {
-  tonalLemmatizationAnalyzer,
-  getLetterSoundPairsSequential,
-  TonalUncombiningForms,
-} from 'taipa';
-import { lemmatize } from 'taipa';
-import { getStems, getInflectionalSuffixes } from '../util/process';
+import { analyzeIntoSequence, getLemmas, pairsToString } from 'taipa';
 
 // read a file in react
 const dictVocab = require('./vocabulary.json');
@@ -13,21 +6,6 @@ const dictVocab = require('./vocabulary.json');
 // this typing is required by react
 interface DictVocabType {
   [key: string]: string[];
-}
-
-function analyzeIntoSequence(input: string) {
-  const cli = new Client();
-  const tla = tonalLemmatizationAnalyzer;
-  const ta: TokenAnalysis = cli.processTonal(input.toString().trim());
-  const wrd = ta.word as TonalWord; // type casting
-
-  const pairs = getLetterSoundPairsSequential(
-    tla
-      .morphAnalyze(wrd.literal, new TonalUncombiningForms([]))
-      .map((x) => x.sounds)
-  );
-
-  return pairs;
 }
 
 export function getWords(data: any) {
@@ -46,13 +24,21 @@ export function getWords(data: any) {
       words.push(arr[0]);
     }
   } else {
-    const chars: string[] = letterSoundPairs.map((pair) => {
-      return pair[0];
-    });
+    const lookup = pairsToString(letterSoundPairs);
+    if (lookup.length > 0 && keys.includes(lookup)) {
+      // the vocab contains the word
+      words.push(dict[lookup][0]);
+    } else if (lookup.length > 0) {
+      // the vocab doesn't contain the word
+      // if the vocab contains the lemmas of the word
+      const lemmas = getLemmas(lookup);
+      const results = lemmas.map((it) => {
+        if (keys.includes(it)) {
+          return dict[it];
+        } else return [];
+      });
 
-    const entry: string = chars.join('');
-    if (entry.length > 0 && keys.includes(entry)) {
-      words.push(dict[entry][0]);
+      results.map((it) => it.map((i) => words.push(i)));
     }
   }
   return words;
