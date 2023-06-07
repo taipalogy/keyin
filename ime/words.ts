@@ -26,11 +26,11 @@ export function getWords(data: any) {
   } else {
     const lookup = pairsToString(letterSoundPairs);
     if (lookup.length > 0 && keys.includes(lookup)) {
-      // the vocab contains the word
+      // the vocabulary contains the word
       words.push(dict[lookup][0]);
     } else if (lookup.length > 0) {
-      // the vocab doesn't contain the word
-      // if the vocab contains the lemmas of the word
+      // the vocabulary doesn't contain the word
+      // if the vocabulary contains the lemmas of the word
       const lemmas = getLemmas(lookup);
       const results = lemmas.map((it) => {
         if (keys.includes(it)) {
