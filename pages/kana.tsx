@@ -5,7 +5,7 @@ function KanaPage() {
   const [input, setInput] = useState('');
   const cli = new Client();
   const ta = cli.processKana(input);
-  const seqs = ta.blockSequences.filter(x => x.length > 0);
+  const seqs = ta.blockSequences.filter((x) => x.length > 0);
 
   const handleChange = function (e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
@@ -18,7 +18,7 @@ function KanaPage() {
         <br />
         <input type="text" value={input} onChange={handleChange} />
       </label>
-      {seqs.map(x => (
+      {seqs.map((x) => (
         <li> {x} </li>
       ))}
     </div>
