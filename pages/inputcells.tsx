@@ -5,12 +5,12 @@ import { FixedSizeGrid, GridChildComponentProps } from 'react-window';
 
 const wordsChang: Entry[] = [
   { index: 0, hanyjiz: '棕', lurzmafjiz: 'chang' },
-  { index: 1, hanyjiz: '粽ハァ⤇', lurzmafjiz: 'changy' },
+  { index: 1, hanyjiz: '짜ㆁ²', lurzmafjiz: 'changy' },
   { index: 2, hanyjiz: '粽', lurzmafjiz: 'changw' },
-  { index: 3, hanyjiz: 'サ̅ㇰ', lurzmafjiz: 'chak' },
+  { index: 3, hanyjiz: '짜ㇰ', lurzmafjiz: 'chak' },
   { index: 4, hanyjiz: '欉', lurzmafjiz: 'changx' },
-  { index: 5, hanyjiz: '棕簑', lurzmafjiz: 'changz' },
-  { index: 6, hanyjiz: 'サ̅ㇰ⤇', lurzmafjiz: 'chakk' },
+  { index: 5, hanyjiz: '짜ㆁˉ', lurzmafjiz: 'changz' },
+  { index: 6, hanyjiz: '짜ㇰ˙', lurzmafjiz: 'chakk' },
   { index: 7, hanyjiz: '昨昏', lurzmafjiz: 'changxx' },
 ];
 
@@ -290,7 +290,7 @@ function InputCellsPage() {
       ) : rowIndex == 2 ? (
         cli
           .processTonal(wordsChang[0].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0)
+          .blockSequences.filter((it) => it.length > 0)
           .join(', ')
       ) : rowIndex == 3 ? (
         <div>
@@ -332,7 +332,7 @@ function InputCellsPage() {
       ) : rowIndex == 2 ? (
         cli
           .processTonal(wordsChang[1].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0)
+          .blockSequences.filter((it) => it.length > 0)
           .join(', ')
       ) : rowIndex == 3 ? (
         <div>
@@ -374,7 +374,7 @@ function InputCellsPage() {
       ) : rowIndex == 2 ? (
         cli
           .processTonal(wordsChang[2].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0)
+          .blockSequences.filter((it) => it.length > 0)
           .join(', ')
       ) : rowIndex == 3 ? (
         <div>
@@ -416,7 +416,7 @@ function InputCellsPage() {
       ) : rowIndex == 2 ? (
         cli
           .processTonal(wordsChang[3].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0)
+          .blockSequences.filter((it) => it.length > 0)
           .join(', ')
       ) : rowIndex == 3 ? (
         <div>
@@ -458,7 +458,7 @@ function InputCellsPage() {
       ) : rowIndex == 2 ? (
         cli
           .processTonal(wordsChang[4].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0)
+          .blockSequences.filter((it) => it.length > 0)
           .join(', ')
       ) : rowIndex == 3 ? (
         <div>
@@ -500,7 +500,7 @@ function InputCellsPage() {
       ) : rowIndex == 2 ? (
         cli
           .processTonal(wordsChang[5].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0)
+          .blockSequences.filter((it) => it.length > 0)
           .join(', ')
       ) : rowIndex == 3 ? (
         <div>
@@ -542,7 +542,7 @@ function InputCellsPage() {
       ) : rowIndex == 2 ? (
         cli
           .processTonal(wordsChang[6].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0)
+          .blockSequences.filter((it) => it.length > 0)
           .join(', ')
       ) : rowIndex == 3 ? (
         <div>
@@ -584,7 +584,7 @@ function InputCellsPage() {
       ) : rowIndex == 2 ? (
         cli
           .processTonal(wordsChang[7].lurzmafjiz)
-          .blockSequences.filter(it => it.length > 0)
+          .blockSequences.filter((it) => it.length > 0)
           .join(', ')
       ) : rowIndex == 3 ? (
         <div>
@@ -992,7 +992,7 @@ function InputCellsPage() {
       </div>
       4.
       <div style={divStyleFont}>
-        {sentence.map(it => it).join(' ')}
+        {sentence.map((it) => it).join(' ')}
         <GridSentence />
         <input
           type="text"
