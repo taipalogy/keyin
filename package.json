@@ -13,10 +13,10 @@
   "author": "Taipalogy",
   "license": "MIT",
   "dependencies": {
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.2.12",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-window": "^1.8.5",
-    "next": "^13.1.6",
+    "next": "^13.4.6",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
@@ -24,7 +24,7 @@
     "taipa": "^0.11.0"
   },
   "devDependencies": {
-    "@types/node": "^18.13.0",
-    "typescript": "4.9.5"
+    "@types/node": "^20.3.1",
+    "typescript": "^5.1.3"
   }
 }
