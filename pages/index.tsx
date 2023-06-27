@@ -25,9 +25,6 @@ function Home() {
         <a href="composition">composition</a>
       </li>
       <li>
-        <a href="prediction">prediction</a>
-      </li>
-      <li>
         <a href="tonepattern">tone pattern</a>
       </li>
       <li>

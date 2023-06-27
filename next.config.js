@@ -11,7 +11,6 @@ module.exports = {
       '/surfaceform': { page: '/surfaceform' },
       '/eadjective': { page: '/eadjective' },
       '/composition': { page: '/composition' },
-      '/prediction': { page: '/prediction' },
       '/tonepattern': { page: '/tonepattern' },
       '/tonepatternwords': { page: '/tonepatternwords' },
       '/kana': { page: '/kana' },
