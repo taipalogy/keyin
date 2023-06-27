@@ -113,19 +113,35 @@ export function getSyllabograms(data: any) {
                   syle.push(dict[arrPairs[idx - 1][0] + TonalLetterTags.i][0]);
                 else
                   syle.push(dict[arrPairs[idx - 1][0] + TonalLetterTags.i][1]);
-                syle.push(fldValue[1]); // push small kana e
+                syle.push(fldValue[1]); // push small syllabogram e
               } else {
                 // in case of e. not ~ek or ~ekk
-                // push kana
+                // push syllabogram
                 syle.push(dict[arrPairs[idx - 1][0] + pair[0]][0]);
               }
-            } else {
-              // in case of ur, or, er, ir
-              // push syllabogram
+            } else if (
+              pair[0] === TonalLetterTags.ur ||
+              pair[0] === TonalLetterTags.er ||
+              pair[0] === TonalLetterTags.or
+            ) {
+              // in case of ur, er, or
+              // use initial and vowel to get syllabogram, push it
               syle.push(dict[arrPairs[idx - 1][0] + TonalLetterTags.o][0]);
               // push one more syllabogram
-              // bc this letter is not one of a, i, u, e, o
-              syle.push(fldValue[1]); // push small kana
+              // because this letter is not one of a, i, u, e, o
+              syle.push(fldValue[1]); // push small syllabogram
+
+              // syllable jo is not present in syllable lists,
+              // however it is still needed in syllabary for vowel er
+            } else if (pair[0] === TonalLetterTags.ir) {
+              // in case of ir
+              // use initial and vowel to get syllabogram, push it
+              syle.push(dict[arrPairs[idx - 1][0] + TonalLetterTags.u][0]);
+              // push one more syllabogram
+              // because this letter is not one of a, i, u, e, o
+              syle.push(fldValue[1]); // push small syllabogram
+            } else if (pair[0] === TonalLetterTags.ar) {
+              // in case of ar
             }
           } else if (
             pair[1] === TonalSpellingTags.freeTone ||
@@ -148,11 +164,11 @@ export function getSyllabograms(data: any) {
                 arrPairs[0][1] === TonalSpellingTags.initialConsonant) ||
               (idx > 0 && arrPairs[0][1] === TonalSpellingTags.vowel)
             ) {
-              // in case of leading kanas,
+              // in case of leading syllabograms,
               // which means an initial followed by a leading vowel
               // or a leading vowel
 
-              syle.push(fldValue[1]); // push the small kana
+              syle.push(fldValue[1]); // push the small syllabogram
             } else if (
               init.length == 1 &&
               vwls.length == 0 &&
