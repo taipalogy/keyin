@@ -12,12 +12,12 @@ function InputMethodPage() {
   };
 
   const syllabograms: string[] = getSyllabograms(input);
-  const logograms: string[] = getLogograms(input);
+  const logograms: string[][][] = getLogograms(input);
   const words: string[] = getWords(input);
 
   const karacters: string[] = syllabograms.map((syl, idx, arr) => {
     const sli = syl.slice(1);
-    if (logograms[idx]) return logograms[idx] + sli;
+    if (logograms[idx] && logograms[idx][0]) return logograms[idx][0][0] + sli;
     else return syl;
   });
 
@@ -45,8 +45,16 @@ function InputMethodPage() {
         </button>
       </CopyToClipBoard>
       <br />
-      <li>{logograms}</li>
-      <CopyToClipBoard text={logograms.join('')}>
+      <li>
+        {syllabograms.map(
+          (val, idx, arr) =>
+            val +
+            ':' +
+            (logograms[idx] ? logograms[idx].map((it) => it) : '[]') +
+            '.'
+        )}
+      </li>
+      <CopyToClipBoard text={logograms.join('.')}>
         <button
           disabled={logograms.join('') === ''}
           // onClick={handleClickButton}

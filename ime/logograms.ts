@@ -18,13 +18,13 @@ export function getLogograms(data: any) {
   const keys = Object.keys(dict);
   const syllables = analyzeIntoSyllables(input);
 
-  const logograms: string[] = [];
+  const logograms: string[][][] = [];
 
   if (syllables.length == 0) {
     if (keys.includes(input)) {
       const arr: string[] = dict[input];
       // console.info('>' + arr[1]);
-      logograms.push(arr[0]);
+      logograms.push([arr]);
     }
   } else {
     syllables.forEach((ltrSndPairs) => {
@@ -34,16 +34,21 @@ export function getLogograms(data: any) {
 
         fldValue = dict[lookup] || [];
 
-        logograms.push(fldValue[0]);
+        logograms.push([fldValue]);
       } else if (lookup.length > 0) {
         const forms = getUncombiningForms(lookup);
-        const results = forms.map((it) => {
-          if (keys.includes(it)) {
-            return dict[it];
-          } else return [];
-        });
+        const results = forms
+          .map((it) => {
+            if (keys.includes(it)) {
+              return dict[it];
+            } else {
+              // in case of 1st tone, ~f.
+              return [];
+            }
+          })
+          .filter((it) => it.length > 0);
 
-        results.map((it) => it.map((i) => logograms.push(i)));
+        logograms.push(results);
       }
     });
   }
