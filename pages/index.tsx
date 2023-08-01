@@ -63,6 +63,9 @@ function Home() {
       <li>
         <a href="inputmethod">input method</a>
       </li>
+      <li>
+        <a href="multiwordinput">multiword input</a>
+      </li>
     </ul>
   );
 }

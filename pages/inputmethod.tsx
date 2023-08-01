@@ -11,6 +11,10 @@ function InputMethodPage() {
     setInput(e.target.value);
   };
 
+  const handleClear = () => {
+    setInput('');
+  };
+
   const syllabograms: string[] = getSyllabograms(input);
   const logograms: string[][][] = getLogograms(input);
   const words: string[] = getWords(input);
@@ -33,6 +37,7 @@ function InputMethodPage() {
           style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}
         />
       </label>
+      <button onClick={handleClear}>Clear</button>
       <br />
       <li>{syllabograms.join('')}</li>
       <li>{syllabograms.map((it) => it + ',')}</li>

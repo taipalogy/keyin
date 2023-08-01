@@ -23,6 +23,8 @@ module.exports = {
       '/inputcells': { page: '/inputcells' },
       '/entries': { page: '/entries' },
       '/ruby': { page: '/ruby' },
+      '/inputmethod': { page: '/inputmethod' },
+      '/multiwordinput': { page: '/multiwordinput' },
     };
   },
   // assetPrefix: !debug ? '/keyin/' : '',
