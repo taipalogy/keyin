@@ -66,6 +66,9 @@ function Home() {
       <li>
         <a href="multiwordinput">multiword input</a>
       </li>
+      <li>
+        <a href="rime">rime</a>
+      </li>
     </ul>
   );
 }

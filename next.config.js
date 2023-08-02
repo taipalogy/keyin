@@ -25,6 +25,7 @@ module.exports = {
       '/ruby': { page: '/ruby' },
       '/inputmethod': { page: '/inputmethod' },
       '/multiwordinput': { page: '/multiwordinput' },
+      '/rime': { page: '/rime' },
     };
   },
   // assetPrefix: !debug ? '/keyin/' : '',

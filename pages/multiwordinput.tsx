@@ -35,12 +35,7 @@ function MultiwordinputPage() {
       {syllabograms}
       <br />
       <CopyToClipBoard text={syllabograms.join('')}>
-        <button
-          disabled={syllabograms.join('') === ''}
-          // onClick={handleClickButton}
-        >
-          Copy
-        </button>
+        <button disabled={syllabograms.join('') === ''}>Copy</button>
       </CopyToClipBoard>
     </div>
   );

@@ -42,12 +42,7 @@ function InputMethodPage() {
       <li>{syllabograms.join('')}</li>
       <li>{syllabograms.map((it) => it + ',')}</li>
       <CopyToClipBoard text={syllabograms.join('')}>
-        <button
-          disabled={syllabograms.join('') === ''}
-          // onClick={handleClickButton}
-        >
-          Copy
-        </button>
+        <button disabled={syllabograms.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
       <li>
@@ -60,32 +55,17 @@ function InputMethodPage() {
         )}
       </li>
       <CopyToClipBoard text={logograms.join('.')}>
-        <button
-          disabled={logograms.join('') === ''}
-          // onClick={handleClickButton}
-        >
-          Copy
-        </button>
+        <button disabled={logograms.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
       <li>{karacters}</li>
       <CopyToClipBoard text={karacters.join('')}>
-        <button
-          disabled={karacters.join('') === ''}
-          // onClick={handleClickButton}
-        >
-          Copy
-        </button>
+        <button disabled={karacters.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
       <li>{words}</li>
       <CopyToClipBoard text={words.join('')}>
-        <button
-          disabled={words.join('') === ''}
-          // onClick={handleClickButton}
-        >
-          Copy
-        </button>
+        <button disabled={words.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
     </div>
