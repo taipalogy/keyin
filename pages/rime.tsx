@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { getSyllabograms } from '../ime/syllabograms';
-import { TonalSpellingTags, analyzeIntoSyllables } from 'taipa';
+import {
+  TonalSpellingTags,
+  analyzeIntoSyllables,
+  getSyllablesEnd,
+  getSyllablesInclude,
+} from 'taipa';
 
 function RimePage() {
   const [input, setInput] = useState('');
@@ -10,16 +15,14 @@ function RimePage() {
   };
 
   const syllables = analyzeIntoSyllables(input);
-  const vwls: string[] = [];
+  const rime: string[] = [];
   let target = '';
   if (syllables.length == 1) {
     target = getSyllabograms(syllables[0].map((it) => it[0]).join('')).join('');
     syllables[0].map((it) => {
-      if (it[1] === TonalSpellingTags.vowel) vwls.push(it[0]);
+      if (it[1] !== TonalSpellingTags.initialConsonant) rime.push(it[0]);
     });
   }
-
-  const rimes = getSyllabograms(vwls[vwls.length - 1]);
 
   return (
     <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
@@ -36,7 +39,15 @@ function RimePage() {
       <br />
       input:{target}
       <br />
-      rimes:{rimes}
+      rime:
+      {getSyllabograms(rime.length > 0 ? rime.join('') : '')} ({rime.join('')})
+      <br />
+      rimes:
+      {rime.length > 0
+        ? getSyllablesEnd(rime.join(''))
+            .map((it) => getSyllabograms(it))
+            .join(',')
+        : ''}
     </div>
   );
 }
