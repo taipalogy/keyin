@@ -26,6 +26,7 @@ module.exports = {
       '/inputmethod': { page: '/inputmethod' },
       '/multiwordinput': { page: '/multiwordinput' },
       '/rime': { page: '/rime' },
+      '/alliteration': { page: '/alliteration' },
     };
   },
   // assetPrefix: !debug ? '/keyin/' : '',

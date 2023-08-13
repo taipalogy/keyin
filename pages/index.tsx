@@ -69,6 +69,9 @@ function Home() {
       <li>
         <a href="rime">rime</a>
       </li>
+      <li>
+        <a href="alliteration">alliteration</a>
+      </li>
     </ul>
   );
 }
