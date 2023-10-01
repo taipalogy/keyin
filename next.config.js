@@ -27,6 +27,7 @@ module.exports = {
       '/multiwordinput': { page: '/multiwordinput' },
       '/rime': { page: '/rime' },
       '/alliteration': { page: '/alliteration' },
+      '/toneless': { page: '/toneless' },
     };
   },
   // assetPrefix: !debug ? '/keyin/' : '',

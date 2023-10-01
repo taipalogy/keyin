@@ -72,6 +72,9 @@ function Home() {
       <li>
         <a href="alliteration">alliteration</a>
       </li>
+      <li>
+        <a href="toneless">toneless</a>
+      </li>
     </ul>
   );
 }
