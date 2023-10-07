@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { inflectTransfix } from 'taipa';
+import { getSyllabograms } from '../ime/syllabograms';
 
-function ReplacivePage() {
+function TransfixInflectionPage() {
   const [input, setInput] = useState('');
 
   const handleChange = function (e: React.ChangeEvent<HTMLInputElement>) {
@@ -22,10 +23,14 @@ function ReplacivePage() {
     items = lx.getForms().map((x) => x.literal);
   }
 
+  const syllabograms: string[] = [];
+
+  items.length > 0 ? syllabograms.push(getSyllabograms(items[0]).join('')) : '';
+
   return (
     <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
       <label>
-        拍羅馬字, 輸出 inflected form
+        拍羅馬字, 輸出單語个屈折形佫顯示貫通接辭个屈折
         <br />
         <input
           type="text"
@@ -39,9 +44,9 @@ function ReplacivePage() {
           <option key={item} value={item} />
         ))}
       </datalist>
-      {items}
+      {items}. {syllabograms}
     </div>
   );
 }
 
-export default ReplacivePage;
+export default TransfixInflectionPage;

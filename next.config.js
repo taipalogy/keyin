@@ -5,7 +5,7 @@ module.exports = {
     return {
       '/': { page: '/' },
       '/word': { page: '/word' },
-      '/replacive': { page: '/replacive' },
+      '/transfixinflection': { page: '/transfixinflection' },
       '/additive': { page: '/additive' },
       '/phrasalverb': { page: '/phrasalverb' },
       '/surfaceform': { page: '/surfaceform' },

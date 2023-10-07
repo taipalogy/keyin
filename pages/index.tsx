@@ -7,7 +7,7 @@ function Home() {
         <a href="word">單語</a>
       </li>
       <li>
-        <a href="replacive">replacive</a>
+        <a href="transfixinflection">transfix inflection</a>
       </li>
       <li>
         <a href="additive">additive</a>
