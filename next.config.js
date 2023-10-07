@@ -28,6 +28,7 @@ module.exports = {
       '/rime': { page: '/rime' },
       '/alliteration': { page: '/alliteration' },
       '/toneless': { page: '/toneless' },
+      '/inflection': { page: '/inflection' },
     };
   },
   // assetPrefix: !debug ? '/keyin/' : '',

@@ -75,6 +75,9 @@ function Home() {
       <li>
         <a href="toneless">toneless</a>
       </li>
+      <li>
+        <a href="inflection">inflection</a>
+      </li>
     </ul>
   );
 }
