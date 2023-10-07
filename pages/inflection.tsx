@@ -15,10 +15,9 @@ function InflectionPage() {
   lexeme.getForms().map((v) => forms.push(v.literal));
 
   const syllabograms: string[] = [];
+
   forms.length > 0
-    ? forms.forEach((f) =>
-        getSyllabograms(f).forEach((slbgrm) => syllabograms.push(slbgrm))
-      )
+    ? forms.forEach((f) => syllabograms.push(getSyllabograms(f).join('')))
     : [];
 
   return (
@@ -33,8 +32,8 @@ function InflectionPage() {
           style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}
         />{' '}
       </label>
-      {forms.map((x) => (
-        <li> {x} </li>
+      {forms.map((frm) => (
+        <li> {frm} </li>
       ))}
       <br />
       {syllabograms.map((grm) => (
