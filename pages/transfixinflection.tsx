@@ -44,7 +44,7 @@ function TransfixInflectionPage() {
           <option key={item} value={item} />
         ))}
       </datalist>
-      {items}. {syllabograms}
+      {items + ',' + syllabograms + '.'}
     </div>
   );
 }

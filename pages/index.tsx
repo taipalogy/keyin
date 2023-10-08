@@ -10,7 +10,7 @@ function Home() {
         <a href="transfixinflection">transfix inflection</a>
       </li>
       <li>
-        <a href="additive">additive</a>
+        <a href="suprafix">suprafix</a>
       </li>
       <li>
         <a href="phrasalverb">phrasal verb</a>

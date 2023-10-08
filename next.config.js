@@ -6,7 +6,7 @@ module.exports = {
       '/': { page: '/' },
       '/word': { page: '/word' },
       '/transfixinflection': { page: '/transfixinflection' },
-      '/additive': { page: '/additive' },
+      '/suprafix': { page: '/suprafix' },
       '/phrasalverb': { page: '/phrasalverb' },
       '/surfaceform': { page: '/surfaceform' },
       '/eadjective': { page: '/eadjective' },

@@ -26,7 +26,7 @@ export function getSyllabograms(data: any) {
       const arr: string[] = dict[input];
       // console.info('>' + arr[1]);
       syllabograms.push(arr[0]);
-    }
+    } else return [];
   } else {
     syllables.forEach((ltrSndPairs) => {
       syle.length = 0; // reset the array

@@ -10,6 +10,7 @@ import { TonalCombiningMorpheme } from 'taipa';
 import { lowerLettersTonal } from 'taipa';
 import { TonalLetterTags } from 'taipa';
 import { AlphabeticGrapheme } from 'taipa';
+import { getSyllabograms } from '../ime/syllabograms';
 
 function AdditivePage() {
   const [input, setInput] = useState('');
@@ -26,7 +27,7 @@ function AdditivePage() {
     [TonalLetterTags.z], // 71
   ];
 
-  const matches = syllableSeqs.filter(x => x.join('') === input);
+  const matches = syllableSeqs.filter((x) => x.join('') === input);
   const tia = tonalInflectionAnalyzer;
 
   let gs1: AlphabeticGrapheme[] = [];
@@ -82,19 +83,29 @@ function AdditivePage() {
   const forms: TonalInflectionLexeme[] = [lx1, lx2, lx3];
 
   return (
-    <div>
+    <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
       <label>
-        拍羅馬字, 輸出單語
+        拍羅馬字, 輸出有超分節接辭个單語，無聲調音節加上超分節接辭：
         <br />
-        <input type="text" list="stems" onChange={handleChange} />
+        <input
+          type="text"
+          list="stems"
+          onChange={handleChange}
+          style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}
+        />
       </label>
       <datalist id="stems">
-        {syllableSeqs.map(x => (
+        {syllableSeqs.map((x) => (
           <option key={x[0] + x[1]} value={x[0] + x[1]} />
         ))}
       </datalist>
-      {forms.map(x => (
-        <a>{x.word.literal} </a>
+      {forms.map((x) => (
+        <a>
+          {x.word.literal +
+            ', ' +
+            getSyllabograms(x.word.literal).join('') +
+            '.'}{' '}
+        </a>
       ))}
     </div>
   );
