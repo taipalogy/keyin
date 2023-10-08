@@ -19,9 +19,25 @@ function InputMethodPage() {
   const logograms: string[][][] = getLogograms(input);
   const words: string[] = getWords(input);
 
-  const characters: string[] = syllabograms.map((syl, idx, arr) => {
-    const sli = syl.slice(1);
-    if (logograms[idx] && logograms[idx][0]) return logograms[idx][0][0] + sli;
+  const noRubies: string[] = syllabograms.map((syl, idx, arr) => {
+    const sliced = syl.slice(1);
+    if (logograms[idx] && logograms[idx][0])
+      return logograms[idx][0][0] + sliced;
+    else return syl;
+  });
+
+  const rubiesHead: string[] = syllabograms.map((syl, idx, arr) => {
+    const sliced = syl.slice(1);
+    const substr = syl.substring(0, 1);
+    if (logograms[idx] && logograms[idx][0])
+      return (
+        '<ruby>' +
+        logograms[idx][0][0] +
+        '<rt>' +
+        substr +
+        '</rt></ruby>' +
+        sliced
+      );
     else return syl;
   });
 
@@ -60,9 +76,14 @@ function InputMethodPage() {
         <button disabled={logograms.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
-      <li>{characters}</li>
-      <CopyToClipBoard text={characters.join('')}>
-        <button disabled={characters.join('') === ''}>Copy</button>
+      <li>{noRubies}</li>
+      <CopyToClipBoard text={noRubies.join('')}>
+        <button disabled={noRubies.join('') === ''}>Copy</button>
+      </CopyToClipBoard>
+      <br />
+      <li>{rubiesHead}</li>
+      <CopyToClipBoard text={rubiesHead.join('')}>
+        <button disabled={rubiesHead.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
       <li>{words}</li>
