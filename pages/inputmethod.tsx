@@ -19,7 +19,7 @@ function InputMethodPage() {
   const logograms: string[][][] = getLogograms(input);
   const words: string[] = getWords(input);
 
-  const karacters: string[] = syllabograms.map((syl, idx, arr) => {
+  const characters: string[] = syllabograms.map((syl, idx, arr) => {
     const sli = syl.slice(1);
     if (logograms[idx] && logograms[idx][0]) return logograms[idx][0][0] + sli;
     else return syl;
@@ -45,22 +45,24 @@ function InputMethodPage() {
         <button disabled={syllabograms.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
+      {/* The logograms for both combining form and uncombining form. */}
       <li>
-        {syllabograms.map(
-          (val, idx, arr) =>
-            val +
-            ':' +
-            (logograms[idx] ? logograms[idx].map((it) => it) : '[]') +
-            '.'
-        )}
+        {syllabograms.map((val, idx, arr) => (
+          <li>
+            {val +
+              ':' +
+              (logograms[idx] ? logograms[idx].map((it) => it) : '[]') +
+              '.'}
+          </li>
+        ))}
       </li>
       <CopyToClipBoard text={logograms.join('.')}>
         <button disabled={logograms.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
-      <li>{karacters}</li>
-      <CopyToClipBoard text={karacters.join('')}>
-        <button disabled={karacters.join('') === ''}>Copy</button>
+      <li>{characters}</li>
+      <CopyToClipBoard text={characters.join('')}>
+        <button disabled={characters.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
       <li>{words}</li>
