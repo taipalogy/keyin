@@ -16,11 +16,17 @@ function HintPage() {
   const hlt = hp.getTarget(input, 0);
 
   return (
-    <div>
+    <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
       拍羅馬字, 顯示 hint
       <label>
         <br />
-        <input type="text" list="words" value={input} onChange={handleChange} />
+        <input
+          type="text"
+          list="words"
+          value={input}
+          onChange={handleChange}
+          style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}
+        />
       </label>
       {hp.targets[0]}, {hp.tails[0]}
       <br />

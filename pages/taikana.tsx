@@ -47,7 +47,7 @@ function TaiKanaPage() {
   const textTaikana = listOfSeqs.map((it) => it[0]).join('');
 
   return (
-    <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 16 }}>
+    <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
       拍羅馬字, 輸出台灣語假名
       <label>
         <br />
@@ -55,7 +55,7 @@ function TaiKanaPage() {
           type="text"
           value={input}
           onChange={handleChange}
-          style={{ fontFamily: 'IBM Plex Mono', fontSize: 16 }}
+          style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}
         />
       </label>
       <br />
