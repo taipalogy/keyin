@@ -41,6 +41,14 @@ function InputMethodPage() {
     else return syl;
   });
 
+  const okurigana: string[] = syllabograms.map((syl, idx, arr) => {
+    const sliced = syl.slice(1);
+    const substr = syl.substring(0, 1);
+    if (logograms[idx] && logograms[idx][0])
+      return logograms[idx][0][0] + '(' + substr + ')' + sliced;
+    else return syl;
+  });
+
   return (
     <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
       拍羅馬字, 輸出文字
@@ -101,6 +109,11 @@ function InputMethodPage() {
         }
       >
         <button disabled={words.join('') === ''}>Copy</button>
+      </CopyToClipBoard>
+      <br />
+      <li>{okurigana}</li>
+      <CopyToClipBoard text={okurigana.join('')}>
+        <button disabled={okurigana.join('') === ''}>Copy</button>
       </CopyToClipBoard>
     </div>
   );
