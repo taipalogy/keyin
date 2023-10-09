@@ -41,6 +41,11 @@ function InputMethodPage() {
     else return syl;
   });
 
+  const rubyWhole: string =
+    words.length > 0
+      ? '<ruby>' + words + '<rt>' + syllabograms.join('') + '</rt></ruby>'
+      : '';
+
   const okurigana: string[] = syllabograms.map((syl, idx, arr) => {
     const sliced = syl.slice(1);
     const substr = syl.substring(0, 1);
@@ -100,15 +105,9 @@ function InputMethodPage() {
       </CopyToClipBoard>
       <br />
       {/* rubyWhole */}
-      <li>
-        {'<ruby>' + words + '<rt>' + syllabograms.join('') + '</rt></ruby>'}
-      </li>
-      <CopyToClipBoard
-        text={
-          '<ruby>' + words + '<rt>' + syllabograms.join('') + '</rt></ruby>'
-        }
-      >
-        <button disabled={words.join('') === ''}>Copy</button>
+      <li>{rubyWhole}</li>
+      <CopyToClipBoard text={rubyWhole}>
+        <button disabled={rubyWhole === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
       <li>{okurigana}</li>
