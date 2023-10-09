@@ -78,6 +78,9 @@ function Home() {
       <li>
         <a href="inflection">inflection</a>
       </li>
+      <li>
+        <a href="candidate">candidate</a>
+      </li>
     </ul>
   );
 }

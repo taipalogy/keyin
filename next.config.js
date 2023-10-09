@@ -29,6 +29,7 @@ module.exports = {
       '/alliteration': { page: '/alliteration' },
       '/toneless': { page: '/toneless' },
       '/inflection': { page: '/inflection' },
+      '/candidate': { page: '/candidate' },
     };
   },
   // assetPrefix: !debug ? '/keyin/' : '',
