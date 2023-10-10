@@ -147,7 +147,14 @@ function CandidatePage() {
             </li>
           ))}
         </ul>
-        {<p>You have selected {selections.map((s) => s)}</p>}
+        {
+          <p>
+            You have selected {selections.map((s) => s)}.{' '}
+            {noRuby.map((syl, idx) =>
+              selections[idx] ? selections[idx] + syl.slice(1) : syl
+            )}
+          </p>
+        }
       </div>
     </div>
   );
