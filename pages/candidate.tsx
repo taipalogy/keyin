@@ -3,6 +3,7 @@ import CopyToClipBoard from 'react-copy-to-clipboard';
 import { getSyllabograms } from '../ime/syllabograms';
 import { getLogograms } from '../ime/logograms';
 
+// hanji selections
 const selections: Array<string> = new Array<string>();
 
 function CandidatePage() {
@@ -22,7 +23,6 @@ function CandidatePage() {
   const [selectedOption, setSelectedOption] = useState<string>();
 
   // items. candidates
-  // const [items, setItems] = useState([{ label: '', value: 0 }]);
   const [selectedItem, setSelectedItem] = useState<{
     label: string;
     value: number;
@@ -33,7 +33,6 @@ function CandidatePage() {
   const logograms: string[][][] = getLogograms(input);
   let incrementor: number = 0;
 
-  console.log('----------------------------------------');
   const candidates: { label: string; value: number }[] = [];
 
   console.log(
@@ -55,36 +54,16 @@ function CandidatePage() {
   const handleOptionChange = (
     changeEvent: React.ChangeEvent<HTMLInputElement>
   ) => {
-    // console.log(
-    //   'selectedOption>' +
-    //     Number(selectedOption) +
-    //     'changeEvent>' +
-    //     changeEvent.target.value
-    // );
     setSelectedOption(changeEvent.target.value);
-    // console.log('selectedOption>' + Number(selectedOption));
-
-    // console.log(
-    //   'candidates>' +
-    //     candidates.map((elem) => elem.label + ',' + elem.value + '.')
-    // );
-    // console.log('items>' + items);
-    // setItems(candidates);
-    // console.log('items>' + items);
-  };
-
-  const handleCycle = () => {
-    // const index = items.indexOf(selectedItem);
-    // setSelectedItem(items[(index + 1) % items.length]);
   };
 
   console.log('selectedOption>' + selectedOption);
   console.log('selectedItem>' + selectedItem?.label + selectedItem?.value);
   const selectedSyllable: number = selectedOption ? Number(selectedOption) : 0;
   const selectedHanji: number = selectedItem?.value ? selectedItem?.value : 0;
-  selections[selectedSyllable] = candidates[selectedHanji]
-    ? candidates[selectedHanji].label
-    : '';
+  if (candidates[selectedHanji]) {
+    selections[selectedSyllable] = candidates[selectedHanji].label;
+  }
   console.log(selections);
 
   const noRuby: string[] = syllabograms.map((syl, idx, arr) => {
@@ -153,7 +132,6 @@ function CandidatePage() {
       </div>
       <br />
       <div>
-        {/* <button onClick={handleCycle}>Cycle Items</button> */}
         {selectedItem && <p>You have selected {selectedItem.label}</p>}
         <ul>
           {candidates.map((cand) => (
