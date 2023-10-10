@@ -16,6 +16,13 @@ function CandidatePage() {
     setInput('');
   };
 
+  // candidates
+  const syllabograms: string[] = getSyllabograms(input);
+  const logograms: string[][][] = getLogograms(input);
+  let incrementor: number = 0;
+
+  const arr: { label: string; value: number }[] = [];
+
   // radio buttons
   const [selectedOption, setSelectedOption] = useState('');
 
@@ -23,23 +30,27 @@ function CandidatePage() {
     changeEvent: React.ChangeEvent<HTMLInputElement>
   ) => {
     setSelectedOption(changeEvent.target.value);
+    setItems(arr);
   };
 
-  // candidates
-  const [items, setItems] = useState([
-    { label: 'Item 1', value: 1 },
-    { label: 'Item 2', value: 2 },
-    { label: 'Item 3', value: 3 },
-  ]);
+  console.log('selectedOption>' + Number(selectedOption));
+  if (logograms.length > 0 && Number(selectedOption) >= 0) {
+    logograms[Number(selectedOption)].flatMap((tones) =>
+      tones.map((lggrm) => arr.push({ label: lggrm, value: incrementor++ }))
+    );
+  }
+  console.log('logograms>' + logograms);
+  console.log('arr>' + arr.map((elem) => elem.label + ',' + elem.value + '.'));
+
+  const [items, setItems] = useState([{ label: '', value: 0 }]);
   const [selectedItem, setSelectedItem] = useState(items[0]);
+
+  console.log('items>' + items);
 
   const handleCycle = () => {
     const index = items.indexOf(selectedItem);
     setSelectedItem(items[(index + 1) % items.length]);
   };
-
-  const syllabograms: string[] = getSyllabograms(input);
-  const logograms: string[][][] = getLogograms(input);
 
   const noRuby: string[] = syllabograms.map((syl, idx, arr) => {
     const sliced = syl.slice(1);
@@ -94,12 +105,12 @@ function CandidatePage() {
             <label>
               <input
                 type="radio"
-                value={'option' + idx}
-                checked={selectedOption === 'option' + idx}
+                value={idx}
+                checked={selectedOption === idx.toString()}
                 onChange={handleOptionChange}
               />
-              {val + logograms[idx] ? logograms[idx].map((it) => it) : '[]'}
-              option{idx}
+              {val + logograms[idx] ? logograms[idx].map((it) => it) : ''}
+              syllable{idx}
             </label>
           </div>
         ))}
