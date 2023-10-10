@@ -123,7 +123,7 @@ function CandidatePage() {
                 checked={selectedOption === idx.toString()}
                 onChange={handleOptionChange}
               />
-              {val + logograms[idx] ? logograms[idx].map((it) => it) : ''}
+              {logograms[idx] ? val + logograms[idx].map((it) => it) : ''}
               syllable{idx}
             </label>
           </li>
