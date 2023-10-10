@@ -3,6 +3,8 @@ import CopyToClipBoard from 'react-copy-to-clipboard';
 import { getSyllabograms } from '../ime/syllabograms';
 import { getLogograms } from '../ime/logograms';
 
+const selections: Array<string> = new Array<string>();
+
 function CandidatePage() {
   // word input
   const [input, setInput] = useState('');
@@ -78,13 +80,17 @@ function CandidatePage() {
 
   console.log('selectedOption>' + selectedOption);
   console.log('selectedItem>' + selectedItem?.label + selectedItem?.value);
-  const selectedValue: number = selectedItem?.value ? selectedItem?.value : 0;
+  const selectedSyllable: number = selectedOption ? Number(selectedOption) : 0;
+  const selectedHanji: number = selectedItem?.value ? selectedItem?.value : 0;
+  selections[selectedSyllable] = candidates[selectedHanji]
+    ? candidates[selectedHanji].label
+    : '';
+  console.log(selections);
+
   const noRuby: string[] = syllabograms.map((syl, idx, arr) => {
     const sliced = syl.slice(1);
-    // if (logograms[idx] && logograms[idx][0])
-    // return logograms[idx][0][0] + sliced;
-    if (candidates && candidates[selectedValue]) {
-      return candidates[selectedValue].label + sliced;
+    if (logograms[idx] && logograms[idx][0]) {
+      return logograms[idx][0][0] + sliced;
     } else return syl;
   });
 
@@ -144,14 +150,6 @@ function CandidatePage() {
           </li>
         ))}
         {selectedOption && <p>You selected syllable {selectedOption}!</p>}
-        {selectedOption &&
-          logograms[Number(selectedOption)].map((baseForms, inx, arr) => (
-            <li>
-              {baseForms.map((frm) => (
-                <button>{frm}</button>
-              ))}
-            </li>
-          ))}
       </div>
       <br />
       <div>
@@ -171,6 +169,7 @@ function CandidatePage() {
             </li>
           ))}
         </ul>
+        {<p>You have selected {selections.map((s) => s)}</p>}
       </div>
     </div>
   );
