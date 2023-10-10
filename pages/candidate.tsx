@@ -17,23 +17,32 @@ function CandidatePage() {
   };
 
   // radio buttons. syllables
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState<string>();
 
   // items. candidates
-  const [items, setItems] = useState([{ label: '', value: 0 }]);
-  const [selectedItem, setSelectedItem] = useState(items[0]);
+  // const [items, setItems] = useState([{ label: '', value: 0 }]);
+  const [selectedItem, setSelectedItem] = useState<{
+    label: string;
+    value: number;
+  }>();
 
   // candidates
   const syllabograms: string[] = getSyllabograms(input);
   const logograms: string[][][] = getLogograms(input);
   let incrementor: number = 0;
 
-  const arr: { label: string; value: number }[] = [];
+  console.log('----------------------------------------');
+  const candidates: { label: string; value: number }[] = [];
 
-  console.log('selectedOption>' + Number(selectedOption));
+  console.log(
+    'candidates>' +
+      candidates.map((elem) => elem.label + ',' + elem.value + '.')
+  );
   if (logograms.length > 0 && Number(selectedOption) >= 0) {
     logograms[Number(selectedOption)].flatMap((tones) =>
-      tones.map((lggrm) => arr.push({ label: lggrm, value: incrementor++ }))
+      tones.map((lggrm) =>
+        candidates.push({ label: lggrm, value: incrementor++ })
+      )
     );
   }
   console.log('logograms>' + logograms);
@@ -44,24 +53,39 @@ function CandidatePage() {
   const handleOptionChange = (
     changeEvent: React.ChangeEvent<HTMLInputElement>
   ) => {
+    // console.log(
+    //   'selectedOption>' +
+    //     Number(selectedOption) +
+    //     'changeEvent>' +
+    //     changeEvent.target.value
+    // );
     setSelectedOption(changeEvent.target.value);
-    console.log(
-      'arr>' + arr.map((elem) => elem.label + ',' + elem.value + '.')
-    );
-    setItems(arr);
-    console.log('items>' + items);
+    // console.log('selectedOption>' + Number(selectedOption));
+
+    // console.log(
+    //   'candidates>' +
+    //     candidates.map((elem) => elem.label + ',' + elem.value + '.')
+    // );
+    // console.log('items>' + items);
+    // setItems(candidates);
+    // console.log('items>' + items);
   };
 
   const handleCycle = () => {
-    const index = items.indexOf(selectedItem);
-    setSelectedItem(items[(index + 1) % items.length]);
+    // const index = items.indexOf(selectedItem);
+    // setSelectedItem(items[(index + 1) % items.length]);
   };
 
+  console.log('selectedOption>' + selectedOption);
+  console.log('selectedItem>' + selectedItem?.label + selectedItem?.value);
+  const selectedValue: number = selectedItem?.value ? selectedItem?.value : 0;
   const noRuby: string[] = syllabograms.map((syl, idx, arr) => {
     const sliced = syl.slice(1);
-    if (logograms[idx] && logograms[idx][0])
-      return logograms[idx][0][0] + sliced;
-    else return syl;
+    // if (logograms[idx] && logograms[idx][0])
+    // return logograms[idx][0][0] + sliced;
+    if (candidates && candidates[selectedValue]) {
+      return candidates[selectedValue].label + sliced;
+    } else return syl;
   });
 
   return (
@@ -104,9 +128,9 @@ function CandidatePage() {
         <button disabled={noRuby.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
-      <form>
+      <div>
         {syllabograms.map((val, idx) => (
-          <div>
+          <li>
             <label>
               <input
                 type="radio"
@@ -117,22 +141,32 @@ function CandidatePage() {
               {val + logograms[idx] ? logograms[idx].map((it) => it) : ''}
               syllable{idx}
             </label>
-          </div>
+          </li>
         ))}
-      </form>
+        {selectedOption && <p>You selected syllable {selectedOption}!</p>}
+        {selectedOption &&
+          logograms[Number(selectedOption)].map((baseForms, inx, arr) => (
+            <li>
+              {baseForms.map((frm) => (
+                <button>{frm}</button>
+              ))}
+            </li>
+          ))}
+      </div>
       <br />
       <div>
-        <button onClick={handleCycle}>Cycle Items</button>
+        {/* <button onClick={handleCycle}>Cycle Items</button> */}
+        {selectedItem && <p>You have selected {selectedItem.label}</p>}
         <ul>
-          {items.map((item) => (
-            <li key={item.value}>
+          {candidates.map((cand) => (
+            <li key={cand.value}>
               <button
                 style={{
-                  fontWeight: item === selectedItem ? 'bold' : 'normal',
+                  fontWeight: cand === selectedItem ? 'bold' : 'normal',
                 }}
-                onClick={() => setSelectedItem(item)}
+                onClick={() => setSelectedItem(cand)}
               >
-                {item.label}
+                {cand.label}
               </button>
             </li>
           ))}
