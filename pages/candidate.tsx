@@ -5,6 +5,7 @@ import { getLogograms } from '../ime/logograms';
 
 // hanji selections
 const selections: Array<string> = new Array<string>();
+let currentSyllable: number = -1;
 
 function CandidatePage() {
   // word input
@@ -61,9 +62,10 @@ function CandidatePage() {
   console.log('selectedItem>' + selectedItem?.label + selectedItem?.value);
   const selectedSyllable: number = selectedOption ? Number(selectedOption) : 0;
   const selectedHanji: number = selectedItem?.value ? selectedItem?.value : 0;
-  if (candidates[selectedHanji]) {
+  if (candidates[selectedHanji] && currentSyllable == selectedSyllable) {
     selections[selectedSyllable] = candidates[selectedHanji].label;
   }
+  currentSyllable = selectedSyllable;
   console.log(selections);
 
   const noRuby: string[] = syllabograms.map((syl, idx, arr) => {
@@ -123,7 +125,7 @@ function CandidatePage() {
                 checked={selectedOption === idx.toString()}
                 onChange={handleOptionChange}
               />
-              {logograms[idx] ? val + logograms[idx].map((it) => it) : ''}
+              {logograms[idx] ? val + ':' + logograms[idx].map((it) => it) : ''}
               syllable{idx}
             </label>
           </li>
@@ -139,6 +141,7 @@ function CandidatePage() {
               <button
                 style={{
                   fontWeight: cand === selectedItem ? 'bold' : 'normal',
+                  fontSize: '36px',
                 }}
                 onClick={() => setSelectedItem(cand)}
               >
