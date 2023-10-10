@@ -16,22 +16,19 @@ function CandidatePage() {
     setInput('');
   };
 
+  // radio buttons. syllables
+  const [selectedOption, setSelectedOption] = useState('');
+
+  // items. candidates
+  const [items, setItems] = useState([{ label: '', value: 0 }]);
+  const [selectedItem, setSelectedItem] = useState(items[0]);
+
   // candidates
   const syllabograms: string[] = getSyllabograms(input);
   const logograms: string[][][] = getLogograms(input);
   let incrementor: number = 0;
 
   const arr: { label: string; value: number }[] = [];
-
-  // radio buttons
-  const [selectedOption, setSelectedOption] = useState('');
-
-  const handleOptionChange = (
-    changeEvent: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSelectedOption(changeEvent.target.value);
-    setItems(arr);
-  };
 
   console.log('selectedOption>' + Number(selectedOption));
   if (logograms.length > 0 && Number(selectedOption) >= 0) {
@@ -40,12 +37,20 @@ function CandidatePage() {
     );
   }
   console.log('logograms>' + logograms);
-  console.log('arr>' + arr.map((elem) => elem.label + ',' + elem.value + '.'));
+  console.log(
+    'logograms[Number(selectedOption)]>' + logograms[Number(selectedOption)]
+  );
 
-  const [items, setItems] = useState([{ label: '', value: 0 }]);
-  const [selectedItem, setSelectedItem] = useState(items[0]);
-
-  console.log('items>' + items);
+  const handleOptionChange = (
+    changeEvent: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSelectedOption(changeEvent.target.value);
+    console.log(
+      'arr>' + arr.map((elem) => elem.label + ',' + elem.value + '.')
+    );
+    setItems(arr);
+    console.log('items>' + items);
+  };
 
   const handleCycle = () => {
     const index = items.indexOf(selectedItem);
