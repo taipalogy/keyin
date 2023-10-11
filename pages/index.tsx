@@ -38,6 +38,28 @@ function Home() {
         </ul>
       </fieldset>
       <fieldset>
+        <legend>Kana</legend>
+        <ul>
+          <li>
+            <a href="taikana">taiwanese kana</a>
+          </li>
+          <li>
+            <a href="kana">kana</a>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Tone Pattern</legend>
+        <ul>
+          <li>
+            <a href="tonepattern">tone pattern</a>
+          </li>
+          <li>
+            <a href="tonepatternwords">tone pattern - words</a>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
         <legend>Rhetoric</legend>
         <ul>
           <li>
@@ -45,6 +67,34 @@ function Home() {
           </li>
           <li>
             <a href="alliteration">alliteration</a>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Text</legend>
+        <ul>
+          <li>
+            <a href="taizjitt">臺日</a>
+          </li>
+          <li>
+            <a href="jittwtaix">日臺</a>
+          </li>
+          <li>
+            <a href="kuaxay">歌仔</a>
+          </li>
+          <li>
+            <a href="entries">entries</a>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Typing Practice</legend>
+        <ul>
+          <li>
+            <a href="inputcells">input cells</a>
+          </li>
+          <li>
+            <a href="hint">hint</a>
           </li>
         </ul>
       </fieldset>
@@ -59,37 +109,7 @@ function Home() {
           <a href="composition">composition</a>
         </li>
         <li>
-          <a href="tonepattern">tone pattern</a>
-        </li>
-        <li>
-          <a href="tonepatternwords">tone pattern - words</a>
-        </li>
-        <li>
-          <a href="kana">kana</a>
-        </li>
-        <li>
-          <a href="hint">hint</a>
-        </li>
-        <li>
-          <a href="taikana">taiwanese kana</a>
-        </li>
-        <li>
-          <a href="taizjitt">臺日</a>
-        </li>
-        <li>
-          <a href="jittwtaix">日臺</a>
-        </li>
-        <li>
-          <a href="kuaxay">歌仔</a>
-        </li>
-        <li>
           <a href="tokenizer">羅馬字 syllable tokenizer</a>
-        </li>
-        <li>
-          <a href="inputcells">input cells</a>
-        </li>
-        <li>
-          <a href="entries">entries</a>
         </li>
         <li>
           <a href="ruby">ruby</a>
