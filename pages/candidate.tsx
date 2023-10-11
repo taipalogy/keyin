@@ -81,6 +81,9 @@ function CandidatePage() {
     } else return syl;
   });
 
+  const noRubyHanjiSelected = noRuby.map((syl, idx) =>
+    selections[idx] ? selections[idx] + syl.slice(1) : syl
+  );
   return (
     <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
       拍羅馬字, 輸出文字
@@ -160,6 +163,15 @@ function CandidatePage() {
         {noRuby.map((syl, idx) =>
           selections[idx] ? selections[idx] + syl.slice(1) : syl
         )}
+        <CopyToClipBoard text={noRubyHanjiSelected.map((syl) => syl).join('')}>
+          <button
+            disabled={
+              noRubyHanjiSelected.map((syl) => syl).join('').length == 0
+            }
+          >
+            Copy
+          </button>
+        </CopyToClipBoard>
       </div>
     </div>
   );
