@@ -21,10 +21,10 @@ function CandidatePage() {
   };
 
   // radio buttons. syllables
-  const [selectedOption, setSelectedOption] = useState<string>();
+  const [selectedSylOption, setSelectedOption] = useState<string>();
 
   // items. candidates
-  const [selectedItem, setSelectedItem] = useState<{
+  const [selectedCandItem, setSelectedItem] = useState<{
     label: string;
     value: number;
   }>();
@@ -36,20 +36,20 @@ function CandidatePage() {
 
   const candidates: { label: string; value: number }[] = [];
 
-  console.log(
-    'candidates>' +
-      candidates.map((elem) => elem.label + ',' + elem.value + '.')
-  );
-  if (logograms.length > 0 && Number(selectedOption) >= 0) {
-    logograms[Number(selectedOption)].flatMap((tones) =>
+  if (logograms.length > 0 && Number(selectedSylOption) >= 0) {
+    logograms[Number(selectedSylOption)].flatMap((tones) =>
       tones.map((lggrm) =>
         candidates.push({ label: lggrm, value: incrementor++ })
       )
     );
   }
+  console.log(
+    'candidates>' +
+      candidates.map((elem) => elem.value + ',' + elem.label + '.')
+  );
   console.log('logograms>' + logograms);
   console.log(
-    'logograms[Number(selectedOption)]>' + logograms[Number(selectedOption)]
+    'logograms[Number(selectedOption)]>' + logograms[Number(selectedSylOption)]
   );
 
   const handleOptionChange = (
@@ -58,10 +58,16 @@ function CandidatePage() {
     setSelectedOption(changeEvent.target.value);
   };
 
-  console.log('selectedOption>' + selectedOption);
-  console.log('selectedItem>' + selectedItem?.label + selectedItem?.value);
-  const selectedSyllable: number = selectedOption ? Number(selectedOption) : 0;
-  const selectedHanji: number = selectedItem?.value ? selectedItem?.value : 0;
+  console.log('selectedOption>' + selectedSylOption);
+  console.log(
+    'selectedItem>' + selectedCandItem?.label + selectedCandItem?.value
+  );
+  const selectedSyllable: number = selectedSylOption
+    ? Number(selectedSylOption)
+    : 0;
+  const selectedHanji: number = selectedCandItem?.value
+    ? selectedCandItem?.value
+    : 0;
   if (candidates[selectedHanji] && currentSyllable == selectedSyllable) {
     selections[selectedSyllable] = candidates[selectedHanji].label;
   }
@@ -122,25 +128,23 @@ function CandidatePage() {
               <input
                 type="radio"
                 value={idx}
-                checked={selectedOption === idx.toString()}
+                checked={selectedSylOption === idx.toString()}
                 onChange={handleOptionChange}
               />
               {logograms[idx] ? val + ':' + logograms[idx].map((it) => it) : ''}
-              syllable{idx}
             </label>
           </li>
         ))}
-        {selectedOption && <p>You selected syllable {selectedOption}!</p>}
+        {selectedSylOption && <p>You selected syllable {selectedSylOption}!</p>}
       </div>
-      <br />
       <div>
-        {selectedItem && <p>You have selected {selectedItem.label}</p>}
+        {selectedCandItem && <p>You have selected {selectedCandItem.label}</p>}
         <ul>
           {candidates.map((cand) => (
             <li key={cand.value}>
               <button
                 style={{
-                  fontWeight: cand === selectedItem ? 'bold' : 'normal',
+                  fontWeight: cand === selectedCandItem ? 'bold' : 'normal',
                   fontSize: '36px',
                 }}
                 onClick={() => setSelectedItem(cand)}
@@ -150,14 +154,12 @@ function CandidatePage() {
             </li>
           ))}
         </ul>
-        {
-          <p>
-            You have selected {selections.map((s) => s)}.{' '}
-            {noRuby.map((syl, idx) =>
-              selections[idx] ? selections[idx] + syl.slice(1) : syl
-            )}
-          </p>
-        }
+        {selections.length > 0 && (
+          <p> You have selected {selections.map((s) => s)}.</p>
+        )}
+        {noRuby.map((syl, idx) =>
+          selections[idx] ? selections[idx] + syl.slice(1) : syl
+        )}
       </div>
     </div>
   );
