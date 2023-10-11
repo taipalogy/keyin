@@ -17,24 +17,43 @@ function Home() {
           </li>
         </ul>
       </fieldset>
+      <fieldset>
+        <legend>Forms</legend>
+        <ul>
+          <li>
+            <a href="transfixinflection">transfix inflection</a>
+          </li>
+          <li>
+            <a href="eadjective">e-adjective</a>
+          </li>
+          <li>
+            <a href="surfaceform">surface form</a>
+          </li>
+          <li>
+            <a href="phrasalverb">phrasal verb</a>
+          </li>
+          <li>
+            <a href="inflection">inflection</a>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Rhetoric</legend>
+        <ul>
+          <li>
+            <a href="rime">rime</a>
+          </li>
+          <li>
+            <a href="alliteration">alliteration</a>
+          </li>
+        </ul>
+      </fieldset>
       <ul>
         <li>
           <a href="word">單語</a>
         </li>
         <li>
-          <a href="transfixinflection">transfix inflection</a>
-        </li>
-        <li>
           <a href="suprafix">suprafix</a>
-        </li>
-        <li>
-          <a href="phrasalverb">phrasal verb</a>
-        </li>
-        <li>
-          <a href="surfaceform">surface form</a>
-        </li>
-        <li>
-          <a href="eadjective">e-adjective</a>
         </li>
         <li>
           <a href="composition">composition</a>
@@ -76,16 +95,7 @@ function Home() {
           <a href="ruby">ruby</a>
         </li>
         <li>
-          <a href="rime">rime</a>
-        </li>
-        <li>
-          <a href="alliteration">alliteration</a>
-        </li>
-        <li>
           <a href="toneless">toneless</a>
-        </li>
-        <li>
-          <a href="inflection">inflection</a>
         </li>
       </ul>
     </div>
