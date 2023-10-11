@@ -160,9 +160,7 @@ function CandidatePage() {
         {selections.length > 0 && (
           <p> You have selected {selections.map((s) => s)}.</p>
         )}
-        {noRuby.map((syl, idx) =>
-          selections[idx] ? selections[idx] + syl.slice(1) : syl
-        )}
+        {noRubyHanjiSelected}
         <CopyToClipBoard text={noRubyHanjiSelected.map((syl) => syl).join('')}>
           <button
             disabled={
