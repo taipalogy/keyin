@@ -18,7 +18,7 @@ function Home() {
         </ul>
       </fieldset>
       <fieldset>
-        <legend>Forms</legend>
+        <legend>Metaplasm</legend>
         <ul>
           <li>
             <a href="transfixinflection">transfix inflection</a>
@@ -98,26 +98,40 @@ function Home() {
           </li>
         </ul>
       </fieldset>
-      <ul>
-        <li>
-          <a href="word">單語</a>
-        </li>
-        <li>
-          <a href="suprafix">suprafix</a>
-        </li>
-        <li>
-          <a href="composition">composition</a>
-        </li>
-        <li>
-          <a href="tokenizer">羅馬字 syllable tokenizer</a>
-        </li>
-        <li>
-          <a href="ruby">ruby</a>
-        </li>
-        <li>
-          <a href="toneless">toneless</a>
-        </li>
-      </ul>
+      <fieldset>
+        <legend>Word Formation</legend>
+        <ul>
+          <li>
+            <a href="word">單語</a>
+          </li>
+          <li>
+            <a href="suprafix">suprafix</a>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Orientation</legend>
+        <ul>
+          {' '}
+          <li>
+            <a href="orientation">orientation</a>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Others</legend>
+        <ul>
+          <li>
+            <a href="composition">composition</a>
+          </li>
+          <li>
+            <a href="tokenizer">羅馬字 syllable tokenizer</a>
+          </li>
+          <li>
+            <a href="toneless">toneless</a>
+          </li>
+        </ul>
+      </fieldset>
     </div>
   );
 }

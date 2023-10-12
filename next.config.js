@@ -22,7 +22,7 @@ module.exports = {
       '/tokenizer': { page: '/tokenizer' },
       '/inputcells': { page: '/inputcells' },
       '/entries': { page: '/entries' },
-      '/ruby': { page: '/ruby' },
+      '/orientation': { page: '/orientation' },
       '/inputmethod': { page: '/inputmethod' },
       '/multiwordinput': { page: '/multiwordinput' },
       '/rime': { page: '/rime' },

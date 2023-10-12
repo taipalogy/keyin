@@ -22,7 +22,7 @@ const toneStyle = {
   textAlign: 'center' as 'center',
 };
 
-function RubyPage() {
+function OrientationPage() {
   const [input, setInput] = useState('');
   const cli = new Client();
   const ta = cli.processTonal(input);
@@ -63,4 +63,4 @@ function RubyPage() {
   );
 }
 
-export default RubyPage;
+export default OrientationPage;
