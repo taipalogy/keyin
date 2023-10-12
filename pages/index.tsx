@@ -119,16 +119,21 @@ function Home() {
         </ul>
       </fieldset>
       <fieldset>
-        <legend>Others</legend>
+        <legend>Natural Language Processing</legend>
         <ul>
-          <li>
-            <a href="composition">composition</a>
-          </li>
           <li>
             <a href="tokenizer">羅馬字 syllable tokenizer</a>
           </li>
           <li>
             <a href="toneless">toneless</a>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Others</legend>
+        <ul>
+          <li>
+            <a href="composition">composition</a>
           </li>
         </ul>
       </fieldset>
