@@ -85,7 +85,7 @@ const candidates = [
     segments[2].segment.literal,
 ];
 
-function CompositionPage() {
+function ChainingPage() {
   const [input, setInput] = useReducer(
     (state: any, newState: any) => ({ ...state, ...newState }),
     {
@@ -236,4 +236,4 @@ function CompositionPage() {
   );
 }
 
-export default CompositionPage;
+export default ChainingPage;

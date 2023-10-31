@@ -133,7 +133,7 @@ function Home() {
         <legend>Others</legend>
         <ul>
           <li>
-            <a href="composition">composition</a>
+            <a href="chaining">chaining</a>
           </li>
         </ul>
       </fieldset>
