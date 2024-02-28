@@ -22,22 +22,22 @@ export function getLogograms(data: any) {
 
   if (syllables.length == 0) {
     if (keys.includes(input)) {
-      const arr: string[] = dict[input];
+      const grams: string[] = dict[input];
       // console.info('>' + arr[1]);
-      logograms.push([arr]);
+      logograms.push([grams]);
     }
   } else {
     syllables.forEach((ltrSndPairs) => {
       const lookup = pairsToString(ltrSndPairs);
       if (lookup.length > 0 && keys.includes(lookup)) {
-        let fldValue: string[] = [];
+        let gramsBaseForm: string[] = [];
 
-        fldValue = dict[lookup] || [];
+        gramsBaseForm = dict[lookup] || [];
 
-        logograms.push([fldValue]);
+        logograms.push([gramsBaseForm]);
       } else if (lookup.length > 0) {
-        const forms = getUncombiningForms(lookup);
-        const results = forms
+        const uncombiningforms = getUncombiningForms(lookup);
+        const gramsUForms = uncombiningforms
           .map((it) => {
             if (keys.includes(it)) {
               return dict[it];
@@ -48,7 +48,7 @@ export function getLogograms(data: any) {
           })
           .filter((it) => it.length > 0);
 
-        logograms.push(results);
+        logograms.push(gramsUForms);
       }
     });
   }
