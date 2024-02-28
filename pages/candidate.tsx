@@ -49,7 +49,8 @@ function CandidatePage() {
   );
   console.log('logograms>' + logograms);
   console.log(
-    'logograms[Number(selectedOption)]>' + logograms[Number(selectedSylOption)]
+    'all logograms for this selected syllable>' +
+      logograms[Number(selectedSylOption)]
   );
 
   const handleOptionChange = (
@@ -58,7 +59,7 @@ function CandidatePage() {
     setSelectedOption(changeEvent.target.value);
   };
 
-  console.log('selectedOption>' + selectedSylOption);
+  console.log('selected syllable option>' + selectedSylOption);
   console.log(
     'selectedItem>' + selectedCandItem?.label + selectedCandItem?.value
   );
@@ -84,6 +85,7 @@ function CandidatePage() {
   const noRubyHanjiSelected = noRuby.map((syl, idx) =>
     selections[idx] ? selections[idx] + syl.slice(1) : syl
   );
+
   return (
     <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 36 }}>
       拍羅馬字, 輸出文字
@@ -124,6 +126,7 @@ function CandidatePage() {
         <button disabled={noRuby.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
+      <hr />
       <div>
         {syllabograms.map((val, idx) => (
           <li>
@@ -140,6 +143,7 @@ function CandidatePage() {
         ))}
         {selectedSylOption && <p>You selected syllable {selectedSylOption}!</p>}
       </div>
+      <hr />
       <div>
         {selectedCandItem && <p>You have selected {selectedCandItem.label}</p>}
         <ul>
@@ -157,6 +161,9 @@ function CandidatePage() {
             </li>
           ))}
         </ul>
+      </div>
+      <hr />
+      <div>
         {selections.length > 0 && (
           <p> You have selected {selections.map((s) => s)}.</p>
         )}
