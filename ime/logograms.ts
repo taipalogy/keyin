@@ -22,22 +22,17 @@ export function getLogograms(data: any) {
 
   if (syllables.length == 0) {
     if (keys.includes(input)) {
-      const grams: string[] = dict[input];
-      // console.info('>' + arr[1]);
-      logograms.push([grams]);
     }
   } else {
-    syllables.forEach((ltrSndPairs) => {
+    syllables.forEach((ltrSndPairs, ind, arr) => {
       const lookup = pairsToString(ltrSndPairs);
-      if (lookup.length > 0 && keys.includes(lookup)) {
-        let gramsBaseForm: string[] = [];
-
-        gramsBaseForm = dict[lookup] || [];
-
-        logograms.push([gramsBaseForm]);
-      } else if (lookup.length > 0) {
+      if (lookup.length > 0 && keys.includes(lookup) && ind == arr.length - 1) {
+        // get the logograms for the last syllable which holds the base form
+        logograms.push([dict[lookup] || []]);
+      } else if (lookup.length > 0 && ind < arr.length - 1) {
+        // get the logograms for syllables except for the last one
         const uncombiningforms = getUncombiningForms(lookup);
-        const gramsUForms = uncombiningforms
+        const lggrmsUForms = uncombiningforms
           .map((it) => {
             if (keys.includes(it)) {
               return dict[it];
@@ -48,7 +43,7 @@ export function getLogograms(data: any) {
           })
           .filter((it) => it.length > 0);
 
-        logograms.push(gramsUForms);
+        logograms.push(lggrmsUForms);
       }
     });
   }
