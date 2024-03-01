@@ -100,30 +100,6 @@ function CandidatePage() {
       </label>
       <button onClick={handleClear}>Clear</button>
       <br />
-      <li>{syllabograms.join('')}</li>
-      <li>{syllabograms.join(',')}</li>
-      <CopyToClipBoard text={syllabograms.join('')}>
-        <button disabled={syllabograms.join('') === ''}>Copy</button>
-      </CopyToClipBoard>
-      <br />
-      {/* The logograms for both combining form and uncombining form. */}
-      <li>
-        {syllabograms.map((val, idx, arr) => (
-          <li>
-            {val + ':' + (logograms[idx] ? logograms[idx].map((it) => it) : '')}
-          </li>
-        ))}
-      </li>
-      <CopyToClipBoard text={logograms.join('.')}>
-        <button disabled={logograms.join('') === ''}>Copy</button>
-      </CopyToClipBoard>
-      <br />
-      <li>{noRuby}</li>
-      <CopyToClipBoard text={noRuby.join('')}>
-        <button disabled={noRuby.join('') === ''}>Copy</button>
-      </CopyToClipBoard>
-      <br />
-      <hr />
       <div>
         {syllabograms.map((val, idx) => (
           <li>
@@ -142,7 +118,6 @@ function CandidatePage() {
       </div>
       <hr />
       <div>
-        {selectedCandItem && <p>You have selected {selectedCandItem.label}</p>}
         <ul>
           {candidates.map((cand) => (
             <li key={cand.value}>
@@ -158,12 +133,10 @@ function CandidatePage() {
             </li>
           ))}
         </ul>
+        {selectedCandItem && <p>You have selected {selectedCandItem.label}</p>}
       </div>
       <hr />
       <div>
-        {selections.length > 0 && (
-          <p> You have selected {selections.map((s) => s)}.</p>
-        )}
         {noRubyHanjiSelected}
         <CopyToClipBoard text={noRubyHanjiSelected.map((syl) => syl).join('')}>
           <button
@@ -174,6 +147,9 @@ function CandidatePage() {
             Copy
           </button>
         </CopyToClipBoard>
+        {selections.length > 0 && (
+          <p> You have selected {selections.map((s) => s)}.</p>
+        )}
       </div>
     </div>
   );

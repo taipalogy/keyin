@@ -69,7 +69,7 @@ function InputMethodPage() {
       <button onClick={handleClear}>Clear</button>
       <br />
       <li>{syllabograms.join('')}</li>
-      <li>{syllabograms.map((it) => it + ',')}</li>
+      <li>{syllabograms.join(',')}</li>
       <CopyToClipBoard text={syllabograms.join('')}>
         <button disabled={syllabograms.join('') === ''}>Copy</button>
       </CopyToClipBoard>
@@ -78,10 +78,7 @@ function InputMethodPage() {
       <li>
         {syllabograms.map((val, idx, arr) => (
           <li>
-            {val +
-              ':' +
-              (logograms[idx] ? logograms[idx].map((it) => it) : '[]') +
-              '.'}
+            {val + ':' + (logograms[idx] ? logograms[idx].map((it) => it) : '')}
           </li>
         ))}
       </li>
