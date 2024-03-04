@@ -127,11 +127,6 @@ function Home() {
           <li>
             <a href="toneless">toneless</a>
           </li>
-        </ul>
-      </fieldset>
-      <fieldset>
-        <legend>Others</legend>
-        <ul>
           <li>
             <a href="chaining">chaining</a>
           </li>
