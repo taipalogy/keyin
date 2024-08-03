@@ -6,7 +6,7 @@ import {
   inflectDesinence,
   TonalSpellingTags,
   getLetterSoundPairsSequential,
-  TonalUncombiningForms,
+  TonalStandaloneForms,
 } from 'taipa';
 import { freeToneLettersTonal } from 'taipa/lib/tonal/tonalres';
 import { getInflectionalSuffixes, getStems } from '../util/process';
@@ -21,11 +21,11 @@ function WordPage() {
   );
 
   const pairs = getLetterSoundPairsSequential(
-    tla.morphAnalyze(input, new TonalUncombiningForms([])).map((x) => x.sounds)
+    tla.morphAnalyze(input, new TonalStandaloneForms([])).map((x) => x.sounds)
   );
 
   const transfix = tla
-    .morphAnalyze(input, new TonalUncombiningForms([]))
+    .morphAnalyze(input, new TonalStandaloneForms([]))
     .map((it) => it.sounds)
     .map((it) => {
       if (freeToneLettersTonal.includes(it[it.length - 1].toString())) {
@@ -34,7 +34,7 @@ function WordPage() {
     });
 
   const withoutTransfix = tla
-    .morphAnalyze(input, new TonalUncombiningForms([]))
+    .morphAnalyze(input, new TonalStandaloneForms([]))
     .map((it) => it.sounds)
     .map((it) => {
       if (
@@ -46,8 +46,8 @@ function WordPage() {
       return it.map((it) => it.toString()).join('');
     });
 
-  const uncombiningSeqs = tla
-    .morphAnalyze(input, new TonalUncombiningForms([]))
+  const standaloneSeqs = tla
+    .morphAnalyze(input, new TonalStandaloneForms([]))
     .map((it) =>
       it
         .getForms()
@@ -73,7 +73,7 @@ function WordPage() {
   return (
     <div style={{ fontFamily: 'IBM Plex Mono', fontSize: 24 }}>
       拍羅馬字, 輸出 lemmas, stem, inflectional suffix, proceeding forms, sound
-      sequences, uncombining form sequences, 甲 letters
+      sequences, standalone form sequences, 甲 letters
       <label>
         <br />
         <input
@@ -113,8 +113,8 @@ function WordPage() {
       <br />
       without transfix: {withoutTransfix.join('-')}
       <br />
-      uncombining form sequences
-      {uncombiningSeqs.map((x) => (
+      standalone form sequences
+      {standaloneSeqs.map((x) => (
         <li>{x}</li>
       ))}
       <br />

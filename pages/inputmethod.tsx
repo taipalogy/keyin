@@ -74,7 +74,7 @@ function InputMethodPage() {
         <button disabled={syllabograms.join('') === ''}>Copy</button>
       </CopyToClipBoard>
       <br />
-      {/* The logograms for both combining form and uncombining form. */}
+      {/* The logograms for both combining form and standalone form. */}
       <li>
         {syllabograms.map((val, idx, arr) => (
           <li>

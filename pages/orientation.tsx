@@ -56,7 +56,7 @@ function OrientationPage() {
           事<rt style={rtStyle}>タィ³チ³</rt>
         </ruby>
         <ruby style={rubyStyle}>
-          事<rt style={rtStyle}>スˉ</rt>
+          事<rt style={rtStyle}>ス⁷</rt>
         </ruby>
       </div>
     </div>

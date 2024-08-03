@@ -21,10 +21,10 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.3.1",
     "react-window": "^1.8.10",
-    "taipa": "^0.13.0"
+    "taipa": "^0.13.1"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^22.1.0",
     "typescript": "^5.5.4"
   }
 }

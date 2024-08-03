@@ -5,7 +5,7 @@ import {
   Client,
   inflectDesinence,
   TonalWord,
-  TonalUncombiningForms,
+  TonalStandaloneForms,
 } from 'taipa';
 
 class Segment {
@@ -32,9 +32,9 @@ class Segment {
   }
 }
 
-const pah = new Segment('phah');
+const phah = new Segment('phah');
 const jiz = new Segment('jiz');
-const sek = new Segment('sek');
+const sik = new Segment('sik');
 
 // radio groups
 const optGroup1 = ['type'];
@@ -43,7 +43,7 @@ const optGroup3 = ['blue', 'green', 'red'];
 
 const segments = [
   {
-    segment: pah,
+    segment: phah,
     options: optGroup1,
   },
   {
@@ -51,7 +51,7 @@ const segments = [
     options: optGroup2,
   },
   {
-    segment: sek,
+    segment: sik,
     options: optGroup3,
   },
 ];
@@ -108,7 +108,7 @@ function ChainingPage() {
   let optIdx = -1; // which radio button and input field to be displayed
 
   const tl = tonalLemmatizationAnalyzer;
-  const mphs = tl.morphAnalyze(input.scanned, new TonalUncombiningForms([]));
+  const mphs = tl.morphAnalyze(input.scanned, new TonalStandaloneForms([]));
 
   if (mphs) {
     for (let i = 0; i < mphs.length; i++) {

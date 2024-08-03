@@ -1,8 +1,4 @@
-import {
-  analyzeIntoSyllables,
-  getUncombiningForms,
-  pairsToString,
-} from 'taipa';
+import { analyzeIntoSyllables, getStandaloneForms, pairsToString } from 'taipa';
 
 // read a file in react
 const dictHanji = require('./hanjis.json');
@@ -31,8 +27,8 @@ export function getLogograms(data: any) {
         logograms.push([dict[lookup] || []]);
       } else if (lookup.length > 0 && ind < arr.length - 1) {
         // get the logograms for syllables except for the last one
-        const uncombiningforms = getUncombiningForms(lookup);
-        const lggrmsUForms = uncombiningforms
+        const standaloneForms = getStandaloneForms(lookup);
+        const lggrmsUForms = standaloneForms
           .map((it) => {
             if (keys.includes(it)) {
               return dict[it];
