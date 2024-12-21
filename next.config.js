@@ -17,7 +17,7 @@ module.exports = {
       '/hint': { page: '/hint' },
       '/taikana': { page: '/taikana' },
       '/taizjitt': { page: '/taizjitt' },
-      '/jittwtaix': { page: '/jittwtaix' },
+      '/jitwtaix': { page: '/jitwtaix' },
       '/kuaxay': { page: '/kuaxay' },
       '/tokenizer': { page: '/tokenizer' },
       '/inputcells': { page: '/inputcells' },
