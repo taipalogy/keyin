@@ -122,9 +122,11 @@ function OrientationPage() {
             <ruby>事<rt>タィ³チ³</rt></ruby>，
             <ruby>大條<rt>뚜ァ³띠ァゥ⁵</rt></ruby>，
             <ruby>發生<rt>ファッ¹シㆁ</rt></ruby>，
-            <ruby>띠ㇰ<rt>的</rt></ruby>，
+            <ruby>テㇰ<rt>的</rt></ruby>，
             <ruby>事<rt>こと</rt></ruby>，
             <ruby>羅生門<rt>らしょうもん</rt></ruby>，
+            <ruby>時代<rt>시대</rt></ruby>，
+            <ruby>文化<rt>문화</rt></ruby>，
           </div>
         </div>
       </div>
