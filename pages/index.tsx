@@ -77,7 +77,7 @@ function Home() {
             <a href="taizjitt">臺日</a>
           </li>
           <li>
-            <a href="jittwtaix">日臺</a>
+            <a href="jitwtaix">日臺</a>
           </li>
           <li>
             <a href="kuaxay">歌仔</a>
