@@ -34,7 +34,7 @@ class Segment {
 
 const phah = new Segment('phah');
 const jiz = new Segment('jiz');
-const sik = new Segment('sik');
+const sek = new Segment('sek');
 
 // radio groups
 const optGroup1 = ['type'];
@@ -51,7 +51,7 @@ const segments = [
     options: optGroup2,
   },
   {
-    segment: sik,
+    segment: sek,
     options: optGroup3,
   },
 ];

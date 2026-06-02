@@ -18,7 +18,7 @@ function Home() {
         </ul>
       </fieldset>
       <fieldset>
-        <legend>Metaplasm</legend>
+        <legend>Morphology</legend>
         <ul>
           <li>
             <a href="transfixinflection">transfix inflection</a>
